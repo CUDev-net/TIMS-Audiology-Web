@@ -1,0 +1,73 @@
+﻿<UserControl x:Class="TIMS_X.CloudAssistant.Views.PatientView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TIMS_X.CloudAssistant.Views"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:converters="clr-namespace:TIMS_X.CloudAssistant.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <Style x:Key="TextBlockStyle" TargetType="{x:Type TextBlock}">
+                <Setter Property="Foreground" Value="#333333" />
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+            </Style>
+            <Style x:Key="DateStyle" TargetType="{x:Type TextBlock}">
+                <Setter Property="Foreground" Value="#333333" />
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+            </Style>
+            <converters:BoolVisibilityConverter x:Key="BoolVisibilityConverter" />
+        </ResourceDictionary>
+
+    </UserControl.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <Grid Background="WhiteSmoke">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <DockPanel>
+                <StackPanel Orientation="Horizontal" Margin="15" DockPanel.Dock="Left">
+                    <Image Source="{Binding PatientAvatarPath}" Width="25" Height="25"></Image>
+                    <TextBlock Text="{Binding Model.Name}" Style="{StaticResource TextBlockStyle}" Margin="5"></TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="15" HorizontalAlignment="Center" Visibility="{Binding IsBusy, Converter={StaticResource BoolVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}" >
+                    <mah:ProgressRing 
+                                      IsActive="{Binding IsBusy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                      Width="30" Height="30" />
+                    <TextBlock Style="{StaticResource DateStyle}" Text="Loading, Please Wait..." VerticalAlignment="Center" />
+
+                </StackPanel>
+
+
+                <StackPanel Orientation="Horizontal" Margin="15" HorizontalAlignment="Right">
+                    <TextBlock Text="DOB:" Style="{StaticResource DateStyle}" Margin="5"></TextBlock>
+                    <TextBlock Text="{Binding Model.BirthDate, StringFormat=d}" Style="{StaticResource DateStyle}" Margin="0,5,5,5"></TextBlock>
+                </StackPanel>
+            </DockPanel>
+
+
+            <GroupBox Header="Noah Testing" Grid.Row="1" Margin="5" Padding="15">
+                <StackPanel Orientation="Vertical">
+                    <StackPanel x:Name="PART_ModuleContainer" Grid.Row="1"></StackPanel>
+                    <StackPanel x:Name="PART_SessionContainer" Grid.Row="2"></StackPanel>
+                </StackPanel>
+
+            </GroupBox>
+
+            <GroupBox Header="Document Uploading" Grid.Row="2" Margin="5" Padding="15" Height="250">
+                <Button Content="Select Document(s)"></Button>
+            </GroupBox>
+
+
+        </Grid>
+    </ScrollViewer>
+    
+</UserControl>

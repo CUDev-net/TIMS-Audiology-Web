@@ -1,0 +1,395 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="generator" content="HelpNDoc Professional Edition 9.8.0.588">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="favicon.ico"/>
+
+  <title>Adding Payments</title>
+  <meta name="description" content="" /> 
+  <meta name="keywords" content="Adding Payments,Working in Adjudication,Adjudication,Payment Reversals">
+
+
+
+  
+  
+
+  <!-- Twitter Card data -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Adding Payments">
+  <meta name="twitter:description" content="">
+
+  <!-- Open Graph data -->
+  <meta property="og:title" content="Adding Payments" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="" />
+  <meta property="og:site_name" content="TIMS Audiology and SLP Version 6.08" /> 
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendors/bootstrap-3.4.1/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <link href="vendors/bootstrap-3.4.1/css/ie10-viewport-bug-workaround.css" rel="stylesheet"/>
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="vendors/html5shiv-3.7.3/html5shiv.min.js"></script>
+      <script src="vendors/respond-1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+  <!-- JsTree styles -->
+  <link href="vendors/jstree-3.3.10/themes/default/style.min.css" rel="stylesheet"/>
+
+  <!-- Hnd styles -->
+  <link href="css/layout.min.css" rel="stylesheet" />
+  <link href="css/effects.min.css" rel="stylesheet" />
+  <link href="css/theme-dark-blue.min.css" rel="stylesheet" />
+  <link href="css/print.min.css" rel="stylesheet" media="print" />
+  <style type="text/css">nav { width: 350px} @media screen and (min-width:769px) { body.md-nav-expanded div#main { margin-left: 350px} body.md-nav-expanded header { padding-left: 364px} }</style>
+  <style type="text/css">.navigation #inline-toc { width: auto !important}</style>
+
+  <!-- Content style -->
+  <link href="css/hnd.content.css" rel="stylesheet" />
+
+  
+
+
+
+</head>
+
+<body class="md-nav-expanded">
+
+
+
+  
+
+  <div id="skip-link">
+    <a href="#main-content" class="element-invisible">Skip to main content</a>
+  </div>
+
+  <header class="headroom">
+    <button class="hnd-toggle btn btn-default">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>        
+    </button>
+    <h1>TIMS Audiology and SLP Version 6.08</h1>
+    <a href="https://us.timsaudiology.com"><img src="_logo.png" alt="logo" class="logo"/></a>
+  </header>
+
+  <nav id="panel-left" class="md-nav-expanded">
+    <!-- Nav tabs -->
+    <ul class="tab-tabs nav nav-tabs" role="tablist">
+      <li id="nav-close" role="presentation"> 
+        <button class="hnd-toggle btn btn-default" aria-label="close">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+      </li>
+      
+	  
+        <li role="presentation" class="tab active">
+            <a href="#contents" id="tab-contents" aria-controls="contents" role="tab" data-toggle="tab">
+                <i class="glyphicon glyphicon-list"></i>
+                Contents
+            </a>
+        </li>
+      
+        <li role="presentation" class="tab">
+            <a href="#index" id="tab-index" aria-controls="index" role="tab" data-toggle="tab">
+                <i class="glyphicon glyphicon-asterisk"></i>
+                Index
+            </a>
+        </li>
+      
+        <li role="presentation" class="tab">
+            <a href="#search" id="tab-search" aria-controls="search" role="tab" data-toggle="tab">
+                <i class="glyphicon glyphicon-search"></i>
+                Search
+            </a>
+        </li>
+      
+    </ul>  <!-- /Nav tabs -->
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+	  
+      <div role="tabpanel" class="tab-pane active" id="contents">
+        <div id="toc" class="tree-container unselectable"
+            data-url="_toc.json"
+            data-openlvl="1"
+        >
+            
+        </div>
+      </div>  <!-- /contents-->
+      
+      <div role="tabpanel" class="tab-pane" id="index">
+        <div id="keywords" class="tree-container unselectable"
+            data-url="_keywords.json"
+            data-openlvl="2"
+        >
+            
+        </div>
+      </div>  <!-- /index-->
+      
+      <div role="tabpanel" class="tab-pane" id="search">
+        <div class="search-content">
+          <div class="search-input">
+            <form id="search-form">
+              <div class="form-group">
+                <div class="input-group">
+                  <input type="text" class="form-control" id="input-search" name="input-search" placeholder="Search..." aria-label="Search..." />
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit" aria-label="Search...">
+                      <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </button>
+                  </span>
+                </div>
+              </div>
+            </form>
+          </div>  <!-- /search-input -->
+          <div class="search-result">
+            <div id="search-info"></div>
+            <div class="tree-container unselectable" id="search-tree"></div>
+          </div>  <!-- /search-result -->
+        </div>  <!-- /search-content -->
+      </div>  <!-- /search-->
+      
+    </div>  <!-- /Tab panes -->
+
+  </nav>
+
+  <div id="main">
+
+    <article>
+        <div id="topic-content" class="container-fluid" 
+		  data-hnd-id="AddingPayments"
+		  data-hnd-context="248"
+		  data-hnd-title="Adding Payments"
+		>
+            
+                <div class="navigation">
+                    <ol class="breadcrumb">
+                        <li>Claims</li><li>Adjudication</li><li><a href="WorkinginAdjudication.html">Working in Adjudication</a></li>
+                    </ol>
+                    <div class="nav-arrows">
+                        <div class="btn-group btn-group" role="group"><div class="btn-group"><button type="button" title="In this page..." class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span></button><ul id="inline-toc" class="dropdown-menu dropdown-menu-right"></ul></div><a class="btn btn-default" href="WorkinginAdjudication.html" title="Working in Adjudication" role="button"><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span></a><a class="btn btn-default" href="EditInsuredInformation.html" title="Edit Insured Information" role="button"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a><a class="btn btn-default" href="E-PaymentProcessing.html" title="E-Payment Processing" role="button"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></div>
+                    </div>
+                </div> 
+            
+
+            <a id="main-content"></a>
+
+            <h2>Adding Payments</h2>
+
+            <div class="main-content">
+                
+<p class="rvps3"><span class="rvts8">Claim payments can be added for Primary Payers, Secondary Payers, and Patients. &nbsp;The process is similar for all, with the exception of POS CoPayments, as discussed below. &nbsp;&nbsp;</span></p>
+<p class="rvps3"><img alt="" style="padding : 1px;" src="lib/important.gif"><span class="rvts15">Note</span><span class="rvts8">: Entering payments can be done at the same time you enter adjustments, so that all information from an EOB can be entered at once.</span></p>
+<h1 class="rvps5"><span class="rvts0"><span class="rvts13">Add a Payment</span></span></h1>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li class="rvps3 noindent"><span class="rvts8">Select the desired claim on the patient tree and click the Reg button in the</span><span class="rvts15"> Apply</span><span class="rvts8"> section at the bottom of the Adjudication screen.</span></li>
+</ol>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/apply%20pmts%20adj.gif"></p>
+<p class="rvps6"><span class="rvts8">The </span><span class="rvts15">Apply Payments/Adjustments</span><span class="rvts8"> screen will popup. &nbsp;The fields for the payment and adjustment details will be on the top, and a list of all transactions in the claim will be at the bottom. To see the transaction lines on the top, click the Flip Display button </span><img alt="" style="padding : 1px;" src="lib/adj%20flip%20btn.gif"><span class="rvts8">.</span></p>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/apply%20pmt%20adj.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="2" class="rvps3 noindent"><span class="rvts8">In the </span><span class="rvts15">Select Payment Source</span><span class="rvts8"> section, choose either the Payer, or Patient as the payment source. </span><span class="rvts15">(required)</span></li>
+</ol>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/apply%20pmt%20source.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="3" class="rvps3 noindent"><span class="rvts8">In the </span><span class="rvts15">Payment Options</span><span class="rvts8"> section, select "Manual" to record the payment in TIMS and process elsewhere. &nbsp;Select "Credit Card" or "E-Check" to process either type directly through TIMS. &nbsp;See </span><a class="rvts16" href="E-PaymentProcessing.html">E-Payment Processing</a><span class="rvts8"> for more information. The Refund Check option is used when a refund needs to be issued to the patient - see </span><a class="rvts16" href="AddingPayments.html#RefundChecks">Refund Checks</a><span class="rvts8"> below.</span></li>
+</ol>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/apply%20pmt%20option.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="4" class="rvps3 noindent"><span class="rvts8">Choose the </span><span class="rvts15">Payment Method</span><span class="rvts8"> from the drop down field. </span><span class="rvts15">(required) </span><span class="rvts8">Payments must be previously added in </span><a class="rvts16" href="PaymentMethods.html">Setup</a><span class="rvts8">.</span></li>
+</ol>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/adj%20pmt%20method.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="5" class="rvps3 noindent"><span class="rvts8">The </span><span class="rvts15">Date</span><span class="rvts8"> will default to today's date. &nbsp;Choose another date if necessary. </span><span class="rvts15">(required)</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">Enter the </span><span class="rvts15">Reference Number</span><span class="rvts8"> for the transaction. </span><span class="rvts15">(required)</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">In the </span><span class="rvts15">Payment column</span><span class="rvts8"> of the transaction list, enter the amount to be applied to each of the transaction lines. &nbsp;(see example). &nbsp;</span></li>
+</ol>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/adj%20enter%20pmts.gif"></p>
+<p class="rvps6"><span class="rvts8">As you enter amounts for each line item, the Payment Balance field will be updated with the total payment amount, and the Claim Balance will reflect the applied payment.</span></p>
+<p class="rvps11"><img alt="" style="padding : 1px;" src="lib/adj%20pmt%20balance.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="8" class="rvps3 noindent"><span class="rvts8">When the payment has been completely distributed, click </span><span class="rvts15">Save</span><span class="rvts8">, or Cancel to abandon your changes.</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">The payment will now be listed with the applied amount under each transaction line. (see example)</span></li>
+</ol>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/adj%20pmt%20details.gif"></p>
+<h1 class="rvps5"><span class="rvts0"><span class="rvts13">Changing or Deleting a Payment</span></span></h1>
+<p class="rvps3"><span class="rvts8">If a payment has </span><span class="rvts25">not</span><span class="rvts8"> been exported to QuickBooks® or included in a finalized </span><a class="rvts16" href="GLExport.html">GL Batch</a><span class="rvts8"> yet, you can edit the details or delete the payment entirely.</span></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li class="rvps3 noindent"><span class="rvts8">Double-click on the payment line in the Transaction Details section.&nbsp;</span></li>
+</ol>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/adj%20pmt%20line%20edit.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="2" class="rvps3 noindent"><span class="rvts8">The </span><span class="rvts15">Edit Payment</span><span class="rvts8"> screen will popup. &nbsp;"QuickBooks Status" will display "Not Synced".</span></li>
+</ol>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/adj%20pmt%20edit.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="3" class="rvps3 noindent"><span class="rvts8">Edit any of the payment details, and click OK to save, or Cancel to abandon your changes.</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">To delete the payment, click the </span><span class="rvts15">Delete</span><span class="rvts8"> button, a message will ask you to confirm the deletion. &nbsp;Click Yes to delete, or No to cancel. </span><img alt="" style="padding : 1px;" src="lib/important.gif"><span class="rvts8"> </span><span class="rvts15">Note</span><span class="rvts8">: This will only delete the part of the payment applied to the particular line item, not the entire payment.</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">Click on the </span><span class="rvts15">Payments</span><span class="rvts8"> button to see a summary of the total payment for all lines in the claim.</span></li>
+</ol>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/adj%20check%20summary.gif"></p>
+<p class="rvps6"><span class="rvts8">If the payment is from the patient, you can select that line and click the </span><span class="rvts15">Print Pmt Receipt</span><span class="rvts8"> button </span><img alt="" style="padding : 1px;" src="lib/adj%20print%20receipt%20btn.gif"><span class="rvts8"> to view and print a receipt if needed.</span></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="6" class="rvps3 noindent"><img alt="" style="padding : 1px;" src="lib/important.gif"><span class="rvts15"> Note</span><span class="rvts8">: if the payment has been exported to QuickBooks® or finalized in GL, you can still double-click on the payment line to bring up the Edit Payment screen. &nbsp;However, the fields will not be editable and the export information will be displayed after "QuickBooks Status".</span></li>
+</ol>
+<h1 class="rvps5"><span class="rvts0"><span class="rvts13">POS CoPayments</span></span></h1>
+<p class="rvps3"><a name="CoPayments"></a><span class="rvts8">In the </span><a class="rvts16" href="InsuranceCoPayment.html">POS Module</a><span class="rvts8">, you can designate a payment receipt as an Insurance CoPayment and link it to a specific appointment, which can then be generated into a claim. &nbsp;If the claim you are viewing has a copayment linked to it, &nbsp;the patient name and claim in the Patient Tree will be </span><span class="rvts79">green</span><span class="rvts8">. &nbsp;</span></p>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/adj%20copay%20tree.gif"></p>
+<p class="rvps3"><span class="rvts8">In addition, the Copay button </span><img alt="" style="padding : 1px;" src="lib/adj%20copay%20btn.gif"><span class="rvts8"> in the Apply Payments/Adjustments section will be active and blue. &nbsp;Follow these steps to complete the process and apply the co-payment to the claim.</span></p>
+<p class="rvps3"><span class="rvts8"><br/></span></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li class="rvps3 noindent"><span class="rvts8">Click the </span><span class="rvts15">Copay</span><span class="rvts8"> button </span><img alt="" style="padding : 1px;" src="lib/adj%20copay%20btn.gif"><span class="rvts8">. The </span><span class="rvts15">Apply Patient CoPayments</span><span class="rvts8"> screen will popup.</span></li>
+</ol>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/apply%20copayments.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="2" class="rvps3 noindent"><span class="rvts8">The CoPayment amount, payment method, reference and date will automatically be filled in with the data originally entered when the POS payment was made.</span></li>
+</ol>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/copay%20amt.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="3" class="rvps3 noindent"><span class="rvts8">The transaction lines will be listed and the only available fields for editing are the Payment fields for each line.</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">Distribute the payment across one or more of the transaction lines. &nbsp;As you enter amounts, the Payment Balance will update to the total distributed so far.</span></li>
+</ol>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/adjust%20copay.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="5" class="rvps3 noindent"><span class="rvts8">When you are finished distributing the co-payment, click Save. &nbsp;If you did not distribute the entire payment, a message will popup letting you know what the remaining balance is. &nbsp;Click Yes to save without distributing the entire payment, or No to return to the previous screen and distribute the remaining amount. You can return later to distribute the remaining amount if necessary.</span></li>
+</ol>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/copay%20msg.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="6" class="rvps3 noindent"><span class="rvts8">The payment will now be listed with the applied amount under each transaction line.</span></li>
+</ol>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/copay%20line%20details.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="7" class="rvps3 noindent"><img alt="" style="padding : 1px;" src="lib/important.gif"><span class="rvts8"> </span><span class="rvts15">Note</span><span class="rvts8">: Co-payment details cannot be edited in Adjudication once they have been distributed. However, they can be removed using the Remove CoPays function from the CoPay Adjustment screen in the POS Payment. (see </span><a class="rvts16" href="InsuranceCoPayment.html#AdjustCopayments">Adjusting CoPayments</a><span class="rvts8"> in POS help)</span></li>
+</ol>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/copay%20adj%20screen.gif"></p>
+<h1 class="rvps5"><span class="rvts0"><span class="rvts13">Reversing Payments</span></span></h1>
+<p class="rvps3"><a name="ReversingPayments"></a><span class="rvts8">A negative payment (reversal) can be entered to correct a payment entered in error (for a wrong patient for example). &nbsp;This would generally be done when the prior payment has already been exported to QuickBooks &nbsp;and cannot be edited or deleted. &nbsp;To add a negative payment follow these steps:</span></p>
+<p class="rvps3"><span class="rvts8"><br/></span></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li class="rvps3 noindent"><span class="rvts8">Select the desired claim on the patient tree and click the Reg button </span><img alt="" style="padding : 1px;" src="lib/adj%20reg%20btn.gif"><span class="rvts8"> in the Apply Payments/Adjustments section at the bottom of the Adjudication link. &nbsp;The Apply Payments/Adjustments screen will popup. &nbsp;The fields for the payment and adjustment details will be on the top, and a list of all transactions in the claim will be at the bottom.</span></li>
+</ol>
+<p class="rvps11"><img alt="" style="padding : 1px;" src="lib/apply%20pmt%20adj.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="2" class="rvps3 noindent"><span class="rvts8">In the Select Payment Source section, choose either the desired Payer or Patient as the payment source. </span><span class="rvts15">(required)</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">In the </span><span class="rvts15">Payment Options</span><span class="rvts8"> section, select "Manual" to record the payment in TIMS and process elsewhere. Select "Credit Card" or "E-Check" to process either type directly through TIMS. &nbsp;See </span><a class="rvts16" href="E-PaymentProcessing.html">E-Payment Processing</a><span class="rvts8"> for more information. The Refund Check option is used when a refund needs to be issued to the patient - see </span><a class="rvts16" href="AddingPayments.html#RefundChecks">Refund Checks</a><span class="rvts8"> below.</span></li>
+</ol>
+<p class="rvps11"><img alt="" style="padding : 1px;" src="lib/apply%20pmt%20option.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="4" class="rvps3 noindent"><span class="rvts8">Choose the Payment Method from the drop down field. &nbsp;</span><span class="rvts15">(required)</span></li>
+</ol>
+<p class="rvps11"><img alt="" style="padding : 1px;" src="lib/adj%20pmt%20method.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="5" class="rvps3 noindent"><span class="rvts8">The Date will default to today's date. &nbsp;Choose another date if necessary. </span><span class="rvts15">(required)</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">Enter the Reference Number for the transaction. </span><span class="rvts15">(required)</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">In the Payment column of the transaction list, enter the </span><span class="rvts15">negative amount</span><span class="rvts8"> to be applied to each of the transaction lines. &nbsp;Enter a </span><span class="rvts15">minus sign</span><span class="rvts8"> in front of the payment amount. &nbsp;&nbsp;</span></li>
+</ol>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/adj%20enter%20neg%20pmts.gif"></p>
+<p class="rvps6"><span class="rvts8">As you enter amounts for each line item, the Payment Balance field will be updated with the total negative payment amount, and the Claim Balance will reflect the applied negative payment.</span></p>
+<p class="rvps11"><img alt="" style="padding : 1px;" src="lib/adj%20claim%20pmt%20balance.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="8" class="rvps3 noindent"><span class="rvts8">When the payment has been completely distributed, click Save, or Cancel to abandon your changes. &nbsp;A message will ask if you are sure you wish to post a negative payment, click Yes to save.</span></li>
+</ol>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/adj%20neg%20pmt%20msg.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="9" class="rvps3 noindent"><span class="rvts8">The payment will now be listed with the applied amount under each transaction line with a negative payment amount.&nbsp;</span></li>
+</ol>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/adj%20neg%20pmt%20details.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="10" class="rvps3 noindent"><span class="rvts8">It will be exported as a General Journal Entry in QuickBooks &nbsp;and will appear in the Patient Register as type "General Journal", dated as the date of export from TIMS. (see </span><a class="rvts16" href="ExportingClaimPaymentstoQuickBoo.html#PmtReversals">QuickBooks instructions</a><span class="rvts8">)</span></li>
+</ol>
+<h1 class="rvps5"><span class="rvts0"><span class="rvts13">Refund Checks</span></span></h1>
+<p class="rvps3"><a name="RefundChecks"></a><span class="rvts8">If there is a need to issue the patient a refund check because of an over payment, it can be done with the same steps above for a Payment Reversal, with the following changes:</span></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li class="rvps3 noindent"><span class="rvts8">In the </span><span class="rvts15">Payment Options</span><span class="rvts8"> section, select Refund Check.</span></li>
+</ol>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/adj%20refund1.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="2" class="rvps3 noindent"><span class="rvts8">The Payment Method choices will only be those from </span><span class="rvts15">Refund Check Accounts</span><span class="rvts8"> previously entered in </span><a class="rvts16" href="PaymentMethods.html#RefundChecks">Setup</a><span class="rvts8">. </span><span class="rvts15">(required)</span><span class="rvts8">. Choose the appropriate method/account.</span></li>
+</ol>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/adj%20refund2.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="3" class="rvps3 noindent"><span class="rvts8">In the Payment column of the transaction list, enter the </span><span class="rvts15">negative amount</span><span class="rvts8"> to be applied to each of the transaction lines. &nbsp;Enter a </span><span class="rvts15">minus sign</span><span class="rvts8"> in front of the payment amount.</span></li>
+</ol>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/adj%20refund3.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="4" class="rvps3 noindent"><span class="rvts8">When the payment has been completely distributed, click Save, or Cancel to abandon your changes. &nbsp;A message will ask if you are sure you wish to post a negative payment, click Yes to save.</span></li>
+</ol>
+<p class="rvps11"><img alt="" style="padding : 1px;" src="lib/adj%20neg%20pmt%20msg.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="5" class="rvps6 noindent"><span class="rvts8">Another message will ask you to confirm the negative payment amount. Click OK to save.</span></li>
+</ol>
+<p class="rvps11"><img alt="" style="padding : 1px;" src="lib/adj%20refund4.gif"></p>
+<p class="rvps3"><span class="rvts8"><br/></span></p>
+<p class="rvps3"><span class="rvts8"><br/></span></p>
+<p class="rvps3"><span class="rvts8"><br/></span></p>
+<p class="rvps3"><span class="rvts8"></span><span class="rvts8"></span></p>
+
+            </div>
+            
+            
+        </div>  <!-- /#topic-content -->
+    </article>
+
+    <footer></footer>
+
+  </div>  <!-- /#main -->
+
+  <div class="mask" data-toggle="sm-nav-expanded"></div>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="hndModal" tabindex="-1" role="dialog" aria-labelledby="hndModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="hndModalLabel"></h4>
+        </div>
+        <div class="modal-body">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary modal-btn-close" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Splitter -->
+  <div id="hnd-splitter" style="left: 350px"></div>  
+
+  <!-- Scripts -->
+  <script src="vendors/jquery-3.7.1/jquery.min.js"></script>
+  <script src="vendors/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+  <script src="vendors/bootstrap-3.4.1/js/ie10-viewport-bug-workaround.js"></script>
+  <script src="vendors/markjs-8.11.1/jquery.mark.min.js"></script>
+  <script src="vendors/uri-1.19.11/uri.min.js"></script>
+  <script src="vendors/imageMapResizer-1.0.10/imageMapResizer.min.js"></script>
+  <script src="vendors/headroom-0.11.0/headroom.min.js"></script>
+  <script src="vendors/jstree-3.3.10/jstree.min.js"></script>  
+  <script src="vendors/interactjs-1.9.22/interact.min.js"></script>  
+
+  <!-- HelpNDoc scripts -->
+  <script src="js/polyfill.object.min.js"></script>
+  <script src="_translations.js"></script>
+  <script src="js/hndsd.min.js"></script>
+  <script src="js/hndse.min.js"></script>
+  <script src="js/app.min.js"></script>
+
+  <!-- Init script -->
+  <script src="_topic_init.js"></script>
+
+
+
+</body>
+
+</html>
+

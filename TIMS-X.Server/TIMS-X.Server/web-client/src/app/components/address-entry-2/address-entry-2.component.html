@@ -1,0 +1,39 @@
+<form [formGroup]="address2form" autocomplete="off" novalidate>
+    <div>
+        <div class="form-group row">
+            <div class="col-sm-12">
+                <input type="text" class="form-control form-control-sm focus-ring tims-input" name="address2line1"
+                    [formControlName]="'address2line1'" placeholder="street 1" maxlength="55"
+                    [ngClass]="{ 'is-invalid': f['address2line1'].touched && f['address2line1'].errors }">
+                <show-errors [control]="f['address2line1']"></show-errors>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-12">
+                <input type="text" class="form-control form-control-sm focus-ring tims-input" name="address2line2"
+                    [formControlName]="'address2line2'" placeholder="street 2" maxlength="55">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-12">
+                <input type="text" class="form-control form-control-sm focus-ring tims-input" name="city2"
+                    [formControlName]="'city2'" placeholder="city" maxlength="20">
+                <show-errors [control]="f['city2']"></show-errors>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-4">
+                <input type="text" class="form-control form-control-sm focus-ring tims-input" name="state2"
+                    maxlength="2" [formControlName]="'state2'" maxlength="3"
+                    [ngClass]="{ 'is-invalid': f['state2'].touched && f['state2'].errors }">
+            </div>
+            <div class="col-sm-8">
+                <input type="text" class="form-control form-control-sm focus-ring tims-input" name="zipcode2"
+                    formControlName="zipcode2" placeholder="zip" NumberOnly maxlength="15"
+                    [ngClass]="{ 'is-invalid': f['zipcode2'].touched && f['zipcode2'].errors }"
+                    (input)="zipChanged($event)">
+                <show-errors [control]="f['zipcode2']"></show-errors>
+            </div>
+        </div>
+    </div>
+</form>

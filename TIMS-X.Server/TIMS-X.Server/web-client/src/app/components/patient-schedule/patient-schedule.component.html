@@ -1,0 +1,127 @@
+<form class="container" [formGroup]="scheduleForm" a (ngSubmit)="onSubmit()" autocomplete="off" novalidate
+    (keyup.enter)="onSubmit()">
+    <div class="row" style="background-color: #003768; color: white;">
+        <h2>{{practiceName}}</h2>
+    </div>
+    <div class="ps-row">
+        <div class="row">
+            <h4>Patient Appointment Request</h4>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6 mt-1 mb-1" style="display: flex;">
+                <input type="text" class="form-control form-control-sm focus-ring tims-input" PatientName
+                    [formControlName]="'firstname'" placeholder="first name" required maxlength="25"
+                    [ngClass]="{ 'is-invalid': f['firstname'].touched && f['firstname'].errors }">
+                <input type="text" style="width: 50px; margin-left: 5px;"
+                    class="form-control form-control-sm focus-ring tims-input" PatientName [formControlName]="'initial'"
+                    placeholder="initial" maxlength="1"
+                    [ngClass]="{ 'is-invalid': f['initial'].touched && f['initial'].errors }">
+            </div>
+            <div class="col-sm-6 mt-1 mb-1">
+                <input type="text" class="form-control form-control-sm focus-ring tims-input" PatientName
+                    [formControlName]="'lastname'" placeholder="last name" required maxlength="35"
+                    [ngClass]="{ 'is-invalid': f['lastname'].touched && f['lastname'].errors }">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6 mt-1 mb-1">
+                <input class="form-control form-control-sm date-only focus-ring tims-input" placeholder="birth date"
+                    BirthDate bsDatepicker #dp="bsDatepicker" [formControlName]="'birthdate'" [bsConfig]="bsConfig"
+                    name="birthdate" [ngClass]="{ 'is-invalid': f['birthdate'].touched && f['birthdate'].errors }">
+            </div>
+            <div class="col-sm-6 mt-1 mb-1">
+                <label class="col-form-label tims-label" for="isNewPatient">New Patient?</label>
+                <input type="checkbox" class="form-check-input cb-1x focus-ring tims-input"
+                    [formControlName]="'isNewPatient'">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6 mt-1 mb-1">
+                <label class="col-form-label tims-label" for="phone">Phone</label>
+                <input type="tel" style="width: 130px; display: inline-block;" NumberOnly PhoneMask [locale]="locale"
+                    [placeholder]="phonemask" [formControlName]="'phone'" maxlength="15"
+                    class="form-control form-control-sm focus-ring tims-input"
+                    [ngClass]="{ 'is-invalid': f['phone'].touched && f['phone'].errors }">
+            </div>
+            <div class="col-sm-6 mt-1 mb-1" style="display: flex; align-items: baseline;">
+                <label class="col-form-label tims-label" for="emailaddress">Email</label>
+                <input type="text" style="flex-grow: 1; display: inline-block;"
+                    class="form-control form-control-sm focus-ring tims-input" name="emailaddress"
+                    [formControlName]="'emailaddress'" placeholder="email" maxlength="99"
+                    [ngClass]="{ 'is-invalid': f['emailaddress'].touched && f['emailaddress'].errors }">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2 mt-1 mb-1">
+                <label class="col-form-label tims-label" for="site">Location</label>
+            </div>
+            <div class="col-sm-4 mt-1 mb-1">
+                <select class="form-control form-control-sm focus-ring tims-input" [formControlName]="'siteId'"
+                    [ngClass]="{ 'is-invalid': f['siteId'].touched && f['siteId'].errors }">
+                    <option [ngValue]="null">choose</option>
+                    <option *ngFor="let p of ts.patientScheduleStore.site_list" [value]="p.id">
+                        {{p.name}}</option>
+                </select>
+            </div>
+            <div class="col-sm-2 mt-1 mb-1">
+                <label class="col-form-label tims-label" for="provider">Provider</label>
+            </div>
+            <div class="col-sm-4 mt-1 mb-1">
+                <select class="form-control form-control-sm focus-ring tims-input" [formControlName]="'providerId'"
+                    [ngClass]="{ 'is-invalid': f['providerId'].touched && f['providerId'].errors }">
+                    <option [ngValue]="null">choose</option>
+                    <option *ngFor="let p of ts.patientScheduleStore.provider_list" [value]="p.id">
+                        {{p.firstName}}
+                        {{p.lastName}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2 mt-1 mb-1">
+                <label class="col-form-label tims-label" for="apptType">Reason for Visit</label>
+            </div>
+            <div class="col-sm-4 mt-1 mb-1">
+                <textarea type="text" class="form-control form-control-sm focus-ring tims-input" maxlength="50"
+                    [ngClass]="{ 'is-invalid': f['reason'].touched && f['reason'].errors }" [formControlName]="'reason'"
+                    rows="2"></textarea>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2 mt-1 mb-1">
+                <label class="col-form-label tims-label" for="apptType">Date</label>
+            </div>
+            <div class="col-sm-4 mt-1 mb-1" style="align-items: baseline;">
+                <input class="form-control form-control-sm focus-ring tims-input" placeholder="date" bsDatepicker
+                    #dp="bsDatepicker" [bsConfig]="bsConfig" [formControlName]="'date'" required
+                    [ngClass]="{ 'is-invalid': f['date'].touched && f['date'].errors }">
+                <div class="bad-date" *ngIf="badDate">Date must be after today</div>
+            </div>
+            <div class="col-sm-6 mt-1 mb-1" style="display: flex; align-items: baseline;">
+                <label style="margin: 6px 6px 0 0;" class="col-form-label tims-label">Time</label>
+                <select style="max-width: 130px;" class="form-control form-control-sm focus-ring tims-input"
+                    [formControlName]="'selectedTimeSlot'" (change)="onTimeChanged()"
+                    [ngClass]="{ 'is-invalid': f['selectedTimeSlot'].touched && f['selectedTimeSlot'].errors }">
+                    <option [ngValue]="null">{{ts.patientScheduleStore.timeslotMessage}}</option>
+                    <option *ngFor="let p of ts.patientScheduleStore.timeSlots" [value]="p.timeSlot">
+                        {{p.timeSlot | date: 'shortTime'}}</option>
+                </select>
+                <label style="margin: 4px 6px 0 0;" class="col-form-label tims-label">to</label>
+                <label style="margin: 4px 0 0 0;" class="col-form-label tims-label">{{endTime}}</label>
+            </div>
+        </div>
+        <div class="row">
+            <re-captcha [formControlName]="'recaptchaToken'" class="g-recaptcha" style="margin-left: 15px;"
+                [ngClass]="{ 'is-invalid': f['recaptchaToken'].touched && f['recaptchaToken'].errors }"
+                siteKey="6LfYw7YqAAAAAAADxpEs7YjMbVcxRMuX0LFf--B8"></re-captcha>
+        </div>
+
+        <div class="row d-flex justify-content-center">
+            <button style="width: 80px; margin-bottom: 5px;" [disabled]="isSubmitted" class="btn tims-button gradient"
+                type="button" (click)="onSubmit()"><span style="color: black;">Submit</span></button>
+        </div>
+    </div>
+</form>

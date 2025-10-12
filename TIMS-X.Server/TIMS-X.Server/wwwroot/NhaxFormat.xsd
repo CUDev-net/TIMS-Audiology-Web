@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<!-- Schema defining the Patient part of the Nhax format -->
+	<xs:simpleType name="String64">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="64"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="String50">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="String30">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="30"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="String20">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="20"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="String10">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="10"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="UserInitials">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="3"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="GUID">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FastViewFormat">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Pdf"/>
+			<xs:enumeration value="Rtf"/>
+			<xs:enumeration value="Jpg"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="Patients">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Patient" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Patient">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Sessions" minOccurs="0"/>
+				<xs:element ref="PatientModuleSetupData" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="PatientComments" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="PatientIdentification" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="ActivePatient" type="xs:short"/>
+			<xs:attribute name="PatientGUID" type="GUID"/>
+			<xs:attribute name="PatientNo" type="String20"/>
+			<xs:attribute name="CreateDate" type="xs:dateTime" use="required"/>
+			<xs:attribute name="UserInitials" type="UserInitials" use="required"/>
+			<xs:attribute name="FirstName" type="String30"/>
+			<xs:attribute name="LastName" type="String30"/>
+			<xs:attribute name="MiddleName" type="String30"/>
+			<xs:attribute name="Gender" type="xs:short"/>
+			<xs:attribute name="BirthDate" type="xs:date"/>
+			<xs:attribute name="Salutation" type="String30"/>
+			<xs:attribute name="Title" type="String30"/>
+			<xs:attribute name="Address1" type="String30"/>
+			<xs:attribute name="Address2" type="String30"/>
+			<xs:attribute name="Address3" type="String30"/>
+			<xs:attribute name="Province" type="String30"/>
+			<xs:attribute name="Zip" type="String20"/>
+			<xs:attribute name="City" type="String30"/>
+			<xs:attribute name="Country" type="String30"/>
+			<xs:attribute name="HomePhone" type="String30"/>
+			<xs:attribute name="WorkPhone" type="String30"/>
+			<xs:attribute name="SSNumber" type="String20"/>
+			<xs:attribute name="EMail" type="String50"/>
+			<xs:attribute name="Insurance1" type="String30"/>
+			<xs:attribute name="Insurance2" type="String30"/>
+			<xs:attribute name="Referral" type="String30"/>
+			<xs:attribute name="Physician" type="String30"/>
+			<xs:attribute name="MobilePhone" type="String30"/>
+			<xs:attribute name="Other1" type="String30"/>
+			<xs:attribute name="Other2" type="String30"/>
+			<xs:attribute name="PatientRecordOffset" type="xs:long"/>
+			<!-- the PatientRecordOffset is only used in the PATIENTDIRECTORY -->
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Sessions">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Session" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Session">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Action" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="CreateDate" type="xs:date" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Action">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="PublicData" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="PrivateData" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="UniqueIDRef" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="FastView" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="UniqueId" type="xs:int"/>
+			<xs:attribute name="UserInitials" type="UserInitials" use="required"/>
+			<xs:attribute name="ModuleId" type="xs:int" use="required"/>
+			<xs:attribute name="CreateDate" type="xs:dateTime" use="required"/>
+			<xs:attribute name="LastModifiedDate" type="xs:dateTime"/>
+			<xs:attribute name="DevTypeCode" type="xs:short"/>
+			<xs:attribute name="Description" type="String64"/>
+			<xs:attribute name="DataTypeCode" type="xs:short" use="required"/>
+			<xs:attribute name="DataFmtCodeStd" type="xs:short" use="required"/>
+			<xs:attribute name="DataFmtCodePriv" type="xs:short" use="required"/>
+			<xs:attribute name="Hidden" type="xs:boolean"/>
+			<xs:attribute name="Removed" type="xs:boolean"/>
+			<xs:attribute name="ActionGroup" type="xs:dateTime"/>
+			<xs:attribute name="IsArchived" type="xs:boolean"/>
+			<xs:attribute name="ActionGUID" type="GUID"/>
+			<xs:attribute name="UserGUID" type="GUID"/>
+			<xs:attribute name="ActionGroupGUID" type="GUID"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PublicData" type="xs:base64Binary"/>
+	<xs:element name="PrivateData" type="xs:base64Binary"/>
+	<xs:element name="UniqueIDRef"/>
+	<xs:element name="FastView">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Data" type="xs:base64Binary"/>
+			</xs:sequence>
+			<xs:attribute name="CreateDate" type="xs:dateTime" use="required"/>
+			<xs:attribute name="LastModifiedDate" type="xs:dateTime" use="required"/>
+			<xs:attribute name="Format" type="FastViewFormat" use="required"/>
+			<xs:attribute name="Version" type="xs:int" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PatientModuleSetupData">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="SetupData" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="ModuleId" type="xs:int"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SetupData" type="xs:base64Binary"/>
+	<xs:element name="PatientComments">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Comment" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="Format" type="xs:int"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Comment" type="xs:base64Binary"/>
+	<xs:element name="PatientIdentification">
+		<xs:complexType>
+			<xs:attribute name="ManufactureID" type="xs:int"/>
+			<xs:attribute name="IdentificationData" type="String64"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,313 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="generator" content="HelpNDoc Professional Edition 9.8.0.588">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="favicon.ico"/>
+
+  <title>Appointment Grid</title>
+  <meta name="description" content="" /> 
+  <meta name="keywords" content="Appointment Grid,Calendar,Appointments Overview,Appointments">
+
+
+
+  
+  
+
+  <!-- Twitter Card data -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Appointment Grid">
+  <meta name="twitter:description" content="">
+
+  <!-- Open Graph data -->
+  <meta property="og:title" content="Appointment Grid" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="" />
+  <meta property="og:site_name" content="TIMS Audiology and SLP Version 6.08" /> 
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendors/bootstrap-3.4.1/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <link href="vendors/bootstrap-3.4.1/css/ie10-viewport-bug-workaround.css" rel="stylesheet"/>
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="vendors/html5shiv-3.7.3/html5shiv.min.js"></script>
+      <script src="vendors/respond-1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+  <!-- JsTree styles -->
+  <link href="vendors/jstree-3.3.10/themes/default/style.min.css" rel="stylesheet"/>
+
+  <!-- Hnd styles -->
+  <link href="css/layout.min.css" rel="stylesheet" />
+  <link href="css/effects.min.css" rel="stylesheet" />
+  <link href="css/theme-dark-blue.min.css" rel="stylesheet" />
+  <link href="css/print.min.css" rel="stylesheet" media="print" />
+  <style type="text/css">nav { width: 350px} @media screen and (min-width:769px) { body.md-nav-expanded div#main { margin-left: 350px} body.md-nav-expanded header { padding-left: 364px} }</style>
+  <style type="text/css">.navigation #inline-toc { width: auto !important}</style>
+
+  <!-- Content style -->
+  <link href="css/hnd.content.css" rel="stylesheet" />
+
+  
+
+
+
+</head>
+
+<body class="md-nav-expanded">
+
+
+
+  
+
+  <div id="skip-link">
+    <a href="#main-content" class="element-invisible">Skip to main content</a>
+  </div>
+
+  <header class="headroom">
+    <button class="hnd-toggle btn btn-default">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>        
+    </button>
+    <h1>TIMS Audiology and SLP Version 6.08</h1>
+    <a href="https://us.timsaudiology.com"><img src="_logo.png" alt="logo" class="logo"/></a>
+  </header>
+
+  <nav id="panel-left" class="md-nav-expanded">
+    <!-- Nav tabs -->
+    <ul class="tab-tabs nav nav-tabs" role="tablist">
+      <li id="nav-close" role="presentation"> 
+        <button class="hnd-toggle btn btn-default" aria-label="close">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+      </li>
+      
+	  
+        <li role="presentation" class="tab active">
+            <a href="#contents" id="tab-contents" aria-controls="contents" role="tab" data-toggle="tab">
+                <i class="glyphicon glyphicon-list"></i>
+                Contents
+            </a>
+        </li>
+      
+        <li role="presentation" class="tab">
+            <a href="#index" id="tab-index" aria-controls="index" role="tab" data-toggle="tab">
+                <i class="glyphicon glyphicon-asterisk"></i>
+                Index
+            </a>
+        </li>
+      
+        <li role="presentation" class="tab">
+            <a href="#search" id="tab-search" aria-controls="search" role="tab" data-toggle="tab">
+                <i class="glyphicon glyphicon-search"></i>
+                Search
+            </a>
+        </li>
+      
+    </ul>  <!-- /Nav tabs -->
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+	  
+      <div role="tabpanel" class="tab-pane active" id="contents">
+        <div id="toc" class="tree-container unselectable"
+            data-url="_toc.json"
+            data-openlvl="1"
+        >
+            
+        </div>
+      </div>  <!-- /contents-->
+      
+      <div role="tabpanel" class="tab-pane" id="index">
+        <div id="keywords" class="tree-container unselectable"
+            data-url="_keywords.json"
+            data-openlvl="2"
+        >
+            
+        </div>
+      </div>  <!-- /index-->
+      
+      <div role="tabpanel" class="tab-pane" id="search">
+        <div class="search-content">
+          <div class="search-input">
+            <form id="search-form">
+              <div class="form-group">
+                <div class="input-group">
+                  <input type="text" class="form-control" id="input-search" name="input-search" placeholder="Search..." aria-label="Search..." />
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit" aria-label="Search...">
+                      <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </button>
+                  </span>
+                </div>
+              </div>
+            </form>
+          </div>  <!-- /search-input -->
+          <div class="search-result">
+            <div id="search-info"></div>
+            <div class="tree-container unselectable" id="search-tree"></div>
+          </div>  <!-- /search-result -->
+        </div>  <!-- /search-content -->
+      </div>  <!-- /search-->
+      
+    </div>  <!-- /Tab panes -->
+
+  </nav>
+
+  <div id="main">
+
+    <article>
+        <div id="topic-content" class="container-fluid" 
+		  data-hnd-id="AppointmentGrid"
+		  data-hnd-context="123"
+		  data-hnd-title="Appointment Grid"
+		>
+            
+                <div class="navigation">
+                    <ol class="breadcrumb">
+                        <li>Appointments</li><li>Appointments Link Overview</li><li>Calendar</li>
+                    </ol>
+                    <div class="nav-arrows">
+                        <div class="btn-group btn-group" role="group"><div class="btn-group"><button type="button" title="In this page..." class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span></button><ul id="inline-toc" class="dropdown-menu dropdown-menu-right"></ul></div><a class="btn btn-default" href="BlockLegendPanel.html" title="Block Legend Panel" role="button"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a><a class="btn btn-default" href="AppointmentSummaryPanel.html" title="Appointment Summary Panel" role="button"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></div>
+                    </div>
+                </div> 
+            
+
+            <a id="main-content"></a>
+
+            <h2>Appointment Grid</h2>
+
+            <div class="main-content">
+                
+<p class="rvps3"><img alt="" style="padding : 1px;" src="lib/appt%20grid.gif"></p>
+<p class="rvps3"><span class="rvts8"><br/></span></p>
+<ul style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside; list-style-type: disc;">
+ <li class="rvps3 noindent"><span class="rvts8">The Appointment Grid displays appointments based on the </span><a class="rvts16" href="ViewTabs.html">View Tab</a><span class="rvts8"> chosen and criteria selected in the </span><a class="rvts16" href="AppointmentGrid.html#FilterCalendarView">Filter</a><span class="rvts8">.&nbsp;&nbsp;</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">Collapsing the Month, Summary, Block Legend, and Patient panels allows wider columns on the Scheduler. The panels of the Scheduler can be docked, sliding or hidden. When the panels are hidden and collapsed, they appear as tabs along the sides of the screen. (see example) &nbsp;Clicking on the tab of a hidden panel will reopen the panel and bring it into view on the screen with the pin horizontal. When the pin is horizontal, the panels become sliding and will be hidden again when the mouse is moved anywhere else on the appointment screen.</span></li>
+</ul>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/collapsed%20panels.gif"></p>
+<ul style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside; list-style-type: disc;">
+ <li class="rvps3 noindent"><span class="rvts8">Appointments shown on the grid include all appointments made by other computers within your office. This view is updated every 60 seconds by default (but can be changed by Support if needed). New appointments made by other offices will only appear after each office replicates (generally once an hour).</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">Appointments are </span><span class="rvts15">color-coded by provider</span><span class="rvts8"> (see example), which is displayed on a small box on the left side of the appointment box. &nbsp;The provider color is assigned in </span><a class="rvts16" href="Providers.html">Setup - Providers</a><span class="rvts8">.</span></li>
+</ul>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/grid%20prov%20color.gif"></p>
+<ul style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside; list-style-type: disc;">
+ <li class="rvps3 noindent"><span class="rvts15">New in version 6.07</span><span class="rvts8"> - </span><span class="rvts15">Appointment status</span><span class="rvts8"> can be assigned an icon. In </span><a class="rvts16" href="AppointmentStatus.html">Appointment Status setup</a><span class="rvts8">, choose the icon you wish to appear on the grid for appointments with that status.</span></li>
+</ul>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/appt%20status%20icons.gif"><span class="rvts8"> </span><img alt="" style="padding : 1px;" src="lib/appt%20status%20icons%20on%20grid.gif"></p>
+<ul style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside; list-style-type: disc;">
+ <li class="rvps3 noindent"><span class="rvts8">The main block of the appointment is also </span><span class="rvts15">color coded</span><span class="rvts8"> </span><span class="rvts15">by Appointment Type</span><span class="rvts8">, Site, or Resource depending on the setting in </span><a class="rvts16" href="UserPreferences.html">User Preferences</a><span class="rvts8">.&nbsp;</span></li>
+</ul>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/grid%20type%20color.gif"></p>
+<ul style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside; list-style-type: disc;">
+ <li class="rvps3 noindent"><span class="rvts8">The </span><span class="rvts15">description</span><span class="rvts8"> will include the Appointment Type, the Site and the Resource (if one has been selected). &nbsp;In addition, if the mouse is hovered over the appointment, a tool tip will display additional details.&nbsp;</span></li>
+</ul>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/grid%20w%20tooltip.gif"></p>
+<ul style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside; list-style-type: disc;">
+ <li class="rvps3 noindent"><span class="rvts8">You can choose which appointments of a certain </span><span class="rvts15">status</span><span class="rvts8"> will display in the grid (i.e. you can set canceled appointments to not display on the grid) See </span><a class="rvts16" href="AppointmentStatus.html">Appointment Status setup</a><span class="rvts8">.</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">The </span><span class="rvts15">resolution</span><span class="rvts8"> (increments) of the calendar can be set and/or changed in </span><a class="rvts16" href="UserPreferences.html">User Preferences</a><span class="rvts8">.&nbsp;&nbsp;&nbsp;</span></li>
+ <ul style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: circle;">
+  <li class="rvps6 noindent"><span class="rvts8">If your resolution is set to 15 &nbsp;or 20 minute increments, you may not be able to see the whole day at once.&nbsp;&nbsp;Use the scroll bar and/or up and down arrows on the right side, to see the time slot you need.</span></li>
+ </ul>
+ <li class="rvps3 noindent"><span class="rvts8">Daily </span><span class="rvts15">Office Start and End times</span><span class="rvts8"> are also set in </span><a class="rvts16" href="Site.html">Site Setup</a><span class="rvts8">.&nbsp;&nbsp;Provider daily hours are set in </span><a class="rvts16" href="UserPreferences.html">User Preferences</a><span class="rvts8">. This only effects the background color of the calendar.&nbsp;&nbsp;Office hours are displayed in a light color, while non-office hours (and weekends) are darker.&nbsp;&nbsp;You can still make an appointment outside of your office hours if you wish, although you will receive a popup warning asking if this is what you wish to do.</span></li>
+</ul>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/outside%20hours%20msg.gif"></p>
+<ul style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside; list-style-type: disc;">
+ <li class="rvps3 noindent"><span class="rvts8">In the Provider View, </span><a class="rvts35" href="ScheduleBlocks.html">Schedule blocks</a><span class="rvts8"> will be displayed in the color chosen when the block was setup. Schedule blocks are a way to designate certain times and days for particular appointment types and providers. &nbsp;The </span><a class="rvts16" href="BlockLegendPanel.html">Block Legend panel</a><span class="rvts8"> lets you know which colors signify which type of appointment block. See </span><a class="rvts16" href="ScheduleBlocks1.html">Setup Schedule Blocks</a><span class="rvts8"> for more information.</span></li>
+</ul>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/grid%20blocks.gif"></p>
+<ul style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside; list-style-type: disc;">
+ <li class="rvps3 noindent"><span class="rvts8">You can change the </span><span class="rvts15">Start or End time</span><span class="rvts8"> of an appointment by dragging the block on the grid.&nbsp;&nbsp;Hold your mouse over the top or bottom edge until a double-headed arrow appears.&nbsp;&nbsp;Then hold the left mouse button down while dragging to the desired time slot. Let go of the mouse button and you'll then be asked if you wish to save the change to the start/end time.&nbsp;&nbsp;Say Yes.</span></li>
+ <li class="rvps3 noindent"><span class="rvts15">Appointment details</span><span class="rvts8"> can be viewed from the grid two ways:</span></li>
+ <ul style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: circle;">
+  <li class="rvps6 noindent"><span class="rvts8">Click once on the appointment - the details will be displayed in the </span><a class="rvts16" href="AppointmentSummaryPanel.html">Appointment Summary Panel</a><span class="rvts8"> to the right.&nbsp;&nbsp;</span></li>
+  <li class="rvps6 noindent"><span class="rvts8">Double-click on the appointment - the </span><a class="rvts16" href="AppointmentDetails.html">Appointment Details</a><span class="rvts8"> popup will be displayed.&nbsp;&nbsp;Make any changes needed and click the OK button.</span></li>
+ </ul>
+</ul>
+<p class="rvps3"><span class="rvts8"><br/></span></p>
+<p class="rvps3"><span class="rvts8"><br/></span></p>
+<h1 class="rvps5"><span class="rvts0"><span class="rvts13">Filter Calendar View</span></span></h1>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/filter%20icon.gif"></p>
+<ul style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside; list-style-type: disc;">
+ <li class="rvps3 noindent"><span class="rvts8">The Filter icon gives the users the ability to filter the calendar view according to various parameters including Providers, Sites, Resources and Specialties (Audiology or SLP).</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">The calendar view is specific to each user and any changes made do not affect other user views.</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">Clicking on the Filter icon opens a pop-up screen with the available parameters to use to search for an appropriate appointment time.</span></li>
+</ul>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/appt%20filter%20screen.gif"></p>
+<ul style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside; list-style-type: disc;">
+ <li class="rvps3 noindent"><span class="rvts8">A maximum of 20 members of any group (Provider, Site, Resources) may be selected at any time.</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">The Resource options are only shown when a specific Site is checked and are not shown when All Sites are checked.</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">Click on the </span><span class="rvts15">Apply button</span><span class="rvts8"> to change calendar view based on chosen parameters.</span></li>
+</ul>
+<p class="rvps3"><span class="rvts8"><br/></span></p>
+<p class="rvps3"><span class="rvts8"><br/></span></p>
+<p class="rvps3"><span class="rvts8"></span><span class="rvts8"></span></p>
+
+            </div>
+            
+            
+        </div>  <!-- /#topic-content -->
+    </article>
+
+    <footer></footer>
+
+  </div>  <!-- /#main -->
+
+  <div class="mask" data-toggle="sm-nav-expanded"></div>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="hndModal" tabindex="-1" role="dialog" aria-labelledby="hndModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="hndModalLabel"></h4>
+        </div>
+        <div class="modal-body">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary modal-btn-close" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Splitter -->
+  <div id="hnd-splitter" style="left: 350px"></div>  
+
+  <!-- Scripts -->
+  <script src="vendors/jquery-3.7.1/jquery.min.js"></script>
+  <script src="vendors/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+  <script src="vendors/bootstrap-3.4.1/js/ie10-viewport-bug-workaround.js"></script>
+  <script src="vendors/markjs-8.11.1/jquery.mark.min.js"></script>
+  <script src="vendors/uri-1.19.11/uri.min.js"></script>
+  <script src="vendors/imageMapResizer-1.0.10/imageMapResizer.min.js"></script>
+  <script src="vendors/headroom-0.11.0/headroom.min.js"></script>
+  <script src="vendors/jstree-3.3.10/jstree.min.js"></script>  
+  <script src="vendors/interactjs-1.9.22/interact.min.js"></script>  
+
+  <!-- HelpNDoc scripts -->
+  <script src="js/polyfill.object.min.js"></script>
+  <script src="_translations.js"></script>
+  <script src="js/hndsd.min.js"></script>
+  <script src="js/hndse.min.js"></script>
+  <script src="js/app.min.js"></script>
+
+  <!-- Init script -->
+  <script src="_topic_init.js"></script>
+
+
+
+</body>
+
+</html>
+

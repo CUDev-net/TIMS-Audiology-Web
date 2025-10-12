@@ -1,0 +1,115 @@
+<div>
+    <div class="modal-body">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <div class="nav-link" (click)="handlesSelectFilterClick()"
+                    [ngClass]="{ 'active': !isFindOpeningsSelected }">Filter Schedule
+                </div>
+            </li>
+            <li class="nav-item">
+                <div class="nav-link" (click)="handlesFindOpeningsClick()"
+                    [ngClass]="{ 'active': isFindOpeningsSelected }">
+                    Find Openings</div>
+            </li>
+        </ul>
+
+        <div class="filter-row">
+            <div class="filters">
+                <div class="entry-component"><input class="form-check-input" style="margin-right: 10px;" type="checkbox"
+                        [(ngModel)]="areAllProvidersChecked" (change)="onAllProvidersChanged()">
+                    <span>All Providers</span>
+                </div>
+                <div class="entry-component" *ngFor="let p of providerList">
+                    <input class="form-check-input" style="margin-right: 10px;" type="checkbox"
+                        [(ngModel)]="p.isChecked" (change)="onProviderChanged()">
+                    <span>{{p.provider.firstName}} {{p.provider.lastName}}</span>
+                </div>
+            </div>
+
+            <div class="filters">
+                <div class="entry-component"><input class="form-check-input" style="margin-right: 10px;" type="checkbox"
+                        [(ngModel)]="areAllSitesChecked" (change)="onAllSitesChanged()">
+                    <span>All Sites</span>
+                </div>
+                <div class="entry-component" *ngFor="let s of siteList">
+                    <input class="form-check-input" style="margin-right: 10px;" type="checkbox"
+                        [(ngModel)]="s.isChecked" (change)="onSiteChanged()">
+                    <span>{{s.site.name}}</span>
+                </div>
+            </div>
+
+            <div class="filters" *ngIf="ts.practiceStore.businessRules.usesCalendarResources">
+                <div class="entry-component"><input class="form-check-input" style="margin-right: 10px;" type="checkbox"
+                        [(ngModel)]="areAllResourcesChecked" (change)="onAllResourcesChanged()">
+                    <span>All Resources</span>
+                </div>
+                <div class="entry-component" *ngFor="let r of resourceList">
+                    <input class="form-check-input" style="margin-right: 10px;" type="checkbox"
+                        [(ngModel)]="r.isChecked" (change)="onResourceChanged()">
+                    <span>{{r.resource.name}}</span>
+                </div>
+            </div>
+
+            <div class="filters" *ngIf="ts.practiceStore.businessRules.usesSlp">
+                <div class="entry-component"><input class="form-check-input" style="margin-right: 10px;" type="checkbox"
+                        [(ngModel)]="areAllSpecialtiesChecked" (change)="onAllSpecialityChanged()">
+                    <span>All Specialties</span>
+                </div>
+                <div class="entry-component">
+                    <input class="form-check-input" style="margin-right: 10px;" type="checkbox"
+                        [(ngModel)]="isAudiologyChecked" (change)="onSpecialityChanged()">
+                    <span>Audiology</span>
+                </div>
+                <div class="entry-component">
+                    <input class="form-check-input" style="margin-right: 10px;" type="checkbox"
+                        [(ngModel)]="isSlpChecked" (change)="onSpecialityChanged()">
+                    <span>SLP</span>
+                </div>
+
+            </div>
+
+            <div [style.visibility]="isFindOpeningsSelected ? 'visible' : 'hidden'" class="openings-data">
+                <div class="entry-component"><span class="openings-label">Start Date</span>
+                    <input class="form-control form-control-sm focus-ring tims-input openings-date" bsDatepicker
+                        #dp="bsDatepicker" [bsConfig]="bsConfig" [(ngModel)]="startdate" required>
+                </div>
+
+                <div class="entry-component"><span class="openings-label">End Date</span>
+                    <input class="form-control form-control-sm focus-ring tims-input openings-date" bsDatepicker
+                        #dp="bsDatepicker" [bsConfig]="bsConfig" [(ngModel)]="enddate" required>
+                </div>
+
+                <div class="entry-component"><span class="openings-label">Appt Type</span>
+                    <select style="display: inline-block; width: 150px;" (change)="onAppointmentTypeChanged()"
+                        class="form-control form-control-sm focus-ring tims-input" [(ngModel)]="appointmentTypeId">
+                        <option [ngValue]="null">choose</option>
+                        <option *ngFor="let p of ts.lookupStore.appointmentType_list" [value]="p.id">
+                            {{p.name}}</option>
+                    </select>
+                </div>
+
+                <div class="entry-component"><span class="openings-label">Duration</span>
+                    <app-duration-entry style="display: inline-block; width: 150px;"
+                        [(minutes)]="duration"></app-duration-entry>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div style="align-items: flex-start;" class="modal-footer">
+        <div class="me-auto">
+            <div *ngIf="hasError" class="filter-row invalid-feedback error-message">
+                {{error}}
+            </div>
+        </div>
+
+        <div style="width: auto;" class="input-group input-group-sm justify-content-end">
+            <button style="margin-left: auto;" class="btn tims-button gradient" type="button" (click)="onSubmit()"><i
+                    class="dialog-button bi bi-floppy-fill"></i></button>
+            <button class="btn tims-button gradient" type="button" (click)="onCancel()"><i
+                    class="dialog-button bi bi-x-square-fill"></i></button>
+        </div>
+    </div>
+</div>

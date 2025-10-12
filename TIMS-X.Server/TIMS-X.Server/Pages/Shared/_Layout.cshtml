@@ -1,0 +1,148 @@
+﻿@using System.Security.Claims
+@using TIMS_X.Core.Utils
+@using TIMS_X.Server.Extensions
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - TIMS Audiology</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+              integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+              integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    </environment>
+
+    @RenderSection("Styles", false)
+</head>
+<body id='@(ViewData["PageId"] ?? "")'>
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top custom-nav" style="padding: 0 1rem">
+        @if (User.Identity.IsAuthenticated)
+        {
+           <a class="navbar-brand" asp-page="/Index">
+                <img style="height: 21px" src="~/images/navbar-logo3.png" alt="logo" />
+            </a>
+        }
+        else
+        {
+            <a class="navbar-brand">
+                <img style="height: 21px" src="~/images/navbar-logo3.png" alt="logo" />
+            </a>
+        }
+
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav mr-auto">
+                @if (User.HasClaim(ClaimTypes.Role, StringConstants.Support))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-page="/Support/Customers">Customers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-page="/Support/Servers">Servers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-page="/Support/SupportUsers">Support Users</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-page="/Support/Vendors">Vendors</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-page="/Support/Permissions">Permissions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-page="/Support/Reports">Reports</a>
+                    </li>
+                }
+                else if (User.HasClaim(ClaimTypes.Role, StringConstants.Customer))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" href="/scheduler">Appointments</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-page="/PatientFormEditor">Patient Form Editor</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Help/WhatsNewinVersion607.html">Help</a>
+                    </li>
+                }
+            </ul>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div style="font-size: 12px; margin: 0 5px;">
+                    <span style="color: #cccccc">Signed into&nbsp;</span><span style="font-weight: bolder; color: #ffffff;">@User.FindFirstValue(StringConstants.OfficeCode).FirstCharToUpper()</span>
+                    <span style="color: #cccccc">&nbsp;as&nbsp;</span>
+                    <span  style="font-weight: bolder; color: #ffffff">@User.FindFirstValue(ClaimTypes.Name)</span>
+
+                    <a class="nav-link" style="margin: 0 5px; display: inline-block;" asp-controller="Signout" asp-action="Signout">Sign Out</a>
+                </div>
+            }
+        </div>
+    </nav>
+
+    <div class="body-content">
+        @RenderBody()
+    </div>
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+        <script src="~/lib/bootstrap/js/bootstrap.js"></script>
+        <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
+        @if (User.HasClaim(ClaimTypes.Role, StringConstants.Support))
+{
+            <script src="~/js/site.js" asp-append-version="true"></script>
+}
+    </environment>
+    <environment exclude="Development">
+        @*<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
+                    asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                    asp-fallback-test="window.jQuery"
+                    crossorigin="anonymous"
+                    integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
+            </script>
+            <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.19.0/jquery.validate.min.js"
+                    asp-fallback-src="~/lib/jquery-validation/dist/jquery.validate.js"
+                    asp-fallback-test="window.jQuery && window.jQuery.validator"
+                    crossorigin="anonymous"
+                    integrity="sha384-jR1IKAba71QSQwPRf3TY+RAEovSBBqf4Hyp7Txom+SfpO0RCZPgXbINV+5ncw+Ph">
+            </script>
+            <script src="https://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js"
+                    asp-fallback-src="~/lib/jquery-validation/dist/jquery.validate.js"
+                    asp-fallback-test="window.jQuery && window.jQuery.validator && window.jQuery.validator.unobtrusive"
+                    crossorigin="anonymous"
+                    integrity="sha384-mq7cJ2/0DBBpfwa9Ta1iT5TPlKf/YcfHkgfM9fpaAt1j8Lo2s1TM6UgIKB9+nfAS">
+            </script>
+
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/js/bootstrap.min.js"
+                    integrity="sha384-3qaqj0lc6sV/qpzrc1N5DC6i1VRn/HyX4qdPaiEFbn54VjQBEU341pvjz7Dv3n6P"
+                    crossorigin="anonymous"
+                    asp-fallback-src="~/lib/bootstrap/js/bootstrap.min.js"
+                    asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
+            </script>*@
+        <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
+        <script src="~/lib/jquery-validation/dist/jquery.validate.js" asp-append-version="true"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+        <script src="~/lib/bootstrap/js/bootstrap.min.js" asp-append-version="true"></script>
+
+        @if (User.HasClaim(ClaimTypes.Role, StringConstants.Support))
+{
+            <script src="~/js/site.min.js" asp-append-version="true"></script>
+}
+    </environment>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

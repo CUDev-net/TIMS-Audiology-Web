@@ -1,0 +1,190 @@
+<form [formGroup]="payerform" autocomplete="off" novalidate>
+    <div class="row">
+        <div class="col-sm-12 ps-1 pe-1">
+            <label class="col-form-label tims-label"
+                style="font-weight: 600; text-decoration: underline;">{{header}}</label>
+        </div>
+    </div>
+
+    <ul class="nav nav-tabs" style="margin: 5px -2px 0 -2px;">
+        <li class="nav-item" (click)="handlesInsuranceClick(true)">
+            <div class="nav-link" [ngClass]="{ 'active': !isRelatedSelected }">
+                Insurance
+            </div>
+        </li>
+        <li class="nav-item" (click)="handlesInsuranceClick(false)">
+            <div class="nav-link" [ngClass]="{ 'active': isRelatedSelected }">
+                Related</div>
+        </li>
+    </ul>
+
+    <div style="margin-top: 3px;" [style.display]="isRelatedSelected ? 'block' : 'none'">
+        <div class="row">
+            <div class="col-sm-10 pe-1 position-relative">
+                <input type="text" class="form-control form-control-sm focus-ring tims-input" PatientName
+                    name="firstname" [formControlName]="'firstname'" placeholder="first name" maxlength="35">
+            </div>
+            <div class="col-sm-2 ps-1 pe-1 position-relative">
+                <input type="text" class="form-control form-control-sm focus-ring tims-input" name="middlename"
+                    PatientName maxlength="1" [formControlName]="'middlename'" placeholder="mi">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 pe-1 position-relative">
+                <input type="text" class="form-control form-control-sm focus-ring tims-input" PatientName
+                    name="lastname" [formControlName]="'lastname'" placeholder="last name" maxlength="60">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 pe-1 position-relative">
+                <input type="text" class="form-control form-control-sm focus-ring tims-input"
+                    [formControlName]="'address1'" placeholder="address 1" maxlength="55">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 pe-1 position-relative">
+                <input type="text" class="form-control form-control-sm focus-ring tims-input"
+                    [formControlName]="'address2'" placeholder="address 2" maxlength="55">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 pe-1 position-relative">
+                <input type="text" class="form-control form-control-sm focus-ring tims-input" [formControlName]="'city'"
+                    placeholder="city" maxlength="30">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 pe-1 position-relative">
+                <input type="text" class="form-control form-control-sm focus-ring tims-input"
+                    [formControlName]="'state'" placeholder="state" maxlength="3">
+            </div>
+            <div class="col-sm-9 pe-1 position-relative">
+                <input type="text" class="form-control form-control-sm focus-ring tims-input"
+                    [formControlName]="'zipcode'" NumberOnly placeholder="zip" maxlength="15"
+                    (input)="zipChanged($event)">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-7 pe-1 position-relative">
+                <input type="text" class="form-control form-control-sm focus-ring tims-input"
+                    [formControlName]="'phone'" placeholder="###-###-####" maxlength="15" NumberOnly PhoneMask>
+            </div>
+            <div class="col-sm-5 pe-1 position-relative">
+                <div class="position-relative">
+                    <input class="form-control form-control-sm date-only focus-ring tims-input" BirthDate
+                        placeholder="birth date" bsDatepicker #dp="bsDatepicker" [bsConfig]="bsConfig"
+                        [formControlName]="'birthdate'">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 pe-1 position-relative">
+                <label class="col-form-label tims-label" for="genderid">Gender</label>
+            </div>
+            <div class="col-sm-6 pe-1 position-relative">
+                <select class="form-control form-control-sm focus-ring tims-input" [formControlName]="'genderid'">
+                    <option [ngValue]="null">choose</option>
+                    <option *ngFor="let p of ts.lookupStore.gender_list" [value]="p.name">{{p.description}}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 pe-1 position-relative">
+                <label class="col-form-label tims-label" for="releasesignaturedate">Release Signature</label>
+            </div>
+
+            <div class="col-sm-6 pe-1 position-relative">
+                <input class="form-control form-control-sm date-only focus-ring tims-input" BirthDate placeholder="date"
+                    bsDatepicker #dp="bsDatepicker" [bsConfig]="bsConfig" [formControlName]="'releasesignaturedate'"
+                    name="releasesignaturedate">
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-top: 3px;" [style.display]="isRelatedSelected ? 'none' : 'block'">
+        <div class="row">
+            <div class="col-sm-6 ps-1 pe-1">
+                <label class="col-form-label tims-label" for="payerid">Payer</label>
+            </div>
+            <div class="col-sm-6 ps-1 pe-1">
+                <select style="display: inline-block;" class="form-control form-control-sm focus-ring tims-input"
+                    name="payerid" [formControlName]="'payerid'" (change)="onPayerChanged()">
+                    <option [ngValue]="null">choose</option>
+                    <option *ngFor="let p of ts.insurancePayerStore.payer_list" [value]="p.id">{{p.name}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 ps-1 pe-1">
+                <label class="col-form-label tims-label" for="relationshipid">Relationship</label>
+            </div>
+            <div class="col-sm-6 ps-1 pe-1">
+                <select style="display: inline-block;" class="form-control form-control-sm focus-ring tims-input"
+                    name="relationshipid" [formControlName]="'relationshipid'" (change)="onRelationshipChanged()">
+                    <option [ngValue]="null">choose</option>
+                    <option *ngFor="let p of ts.lookupStore.patient_realionship_list" [value]="p.name">{{p.description}}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 ps-1 pe-1">
+                <label class="col-form-label tims-label" for="insuranceid">Insurance ID</label>
+            </div>
+            <div class="col-sm-6 ps-1 pe-1">
+                <input type="text" class="form-control form-control-sm focus-ring tims-input" name="insuranceid"
+                    [formControlName]="'insuranceid'" maxlength="50">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 ps-1 pe-1">
+                <label class="col-form-label tims-label" for="groupname">Group Name</label>
+            </div>
+            <div class="col-sm-6 ps-1 pe-1">
+                <input type="text" class="form-control form-control-sm focus-ring tims-input" name="groupname"
+                    [formControlName]="'groupname'" maxlength="50">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 ps-1 pe-1">
+                <label class="col-form-label tims-label" for="groupnumber">Group Number</label>
+            </div>
+            <div class="col-sm-6 ps-1 pe-1">
+                <input type="text" class="form-control form-control-sm focus-ring tims-input" name="groupnumber"
+                    [formControlName]="'groupnumber'" maxlength="50">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 ps-1 pe-1">
+                <label class="col-form-label tims-label" for="medicaresecondarycodeid">Medicare Secondary Code</label>
+            </div>
+            <div class="col-sm-6 ps-1 pe-1">
+                <select style="display: inline-block;" class="form-control form-control-sm focus-ring tims-input"
+                    name="medicaresecondarycodeid" [formControlName]="'medicaresecondarycodeid'">
+                    <option [ngValue]="null">choose</option>
+                    <option *ngFor="let p of ts.lookupStore.medicare_secondary_codes_list" [value]="p.name">
+                        {{p.name}}-{{p.description}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 ps-1 pe-1">
+                <label class="col-form-label tims-label" for="carrierid">Carrier ID</label>
+            </div>
+            <div class="col-sm-6 ps-1 pe-1">
+                <input type="text" class="form-control form-control-sm focus-ring tims-input" name="carrierid"
+                    [formControlName]="'carrierid'" maxlength="128">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 ps-1 pe-1">
+                <label class="col-form-label tims-label" for="carrierid">Notes</label>
+            </div>
+            <div class="col-sm-6 ps-1 pe-1">
+                <textarea type="text" class="form-control form-control-sm focus-ring tims-input free-text"
+                    maxlength="1024" [formControlName]="'notes'" rows="4"></textarea>
+            </div>
+        </div>
+    </div>
+</form>

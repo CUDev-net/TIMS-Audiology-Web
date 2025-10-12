@@ -1,0 +1,112 @@
+﻿<Window x:Class="TIMS_X.CloudAssistant.Views.FilterProvidersView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TIMS_X.CloudAssistant.Views"
+        mc:Ignorable="d"
+        Title="Filter Providers" SizeToContent="WidthAndHeight"
+        WindowStartupLocation="CenterOwner"
+        MinWidth="370">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- MahApps.Metro resource dictionaries. Make sure that all file names are Case Sensitive! -->
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+                <!-- Accent and AppTheme setting -->
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Steel.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <Style x:Key="PromptTextStyle" TargetType="{x:Type TextBlock}">
+                <Setter Property="Foreground" Value="Black" />
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+                <Setter Property="HorizontalAlignment" Value="Left" />
+            </Style>
+            <Style x:Key="ValueTextStyle" TargetType="{x:Type TextBlock}">
+                <Setter Property="Foreground" Value="Black" />
+                <Setter Property="Background" Value="WhiteSmoke" />
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="FontFamily" Value="Consolas"/>
+                <Setter Property="Margin" Value="7,2"></Setter>
+                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="Padding" Value="5,2"></Setter>
+            </Style>
+            <Style x:Key="ContactTextStyle" TargetType="{x:Type TextBlock}">
+                <Setter Property="Foreground" Value="Black" />
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+            </Style>
+
+        </ResourceDictionary>
+        
+    </Window.Resources>
+
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="25,10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Left" Margin="0,0,0,5">
+            <Button Content="Select All" Height="25" Command="{Binding HandlesSelectAllCommand}" Width="80" Margin="0,0,10,0"/>
+            <Button Content="Deselect All" Height="25" Command="{Binding HandlesDeSelectAllCommand}" Width="80" />
+        </StackPanel>
+        <ListBox x:Name="_providerListBox" ItemsSource ="{Binding ProviderList}" Height="250" Grid.Row="1" SelectionMode="Multiple"
+                 DisplayMemberPath="Provider.LastFirstMiddle"  HorizontalAlignment="Stretch" >
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="{x:Type ListBoxItem}">
+                    <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                <Border Name="Border" BorderThickness="1" BorderBrush="Silver" Background="WhiteSmoke"  Margin="1">
+                                    <Grid Height="30" HorizontalAlignment="Stretch">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="30" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Path x:Name="Unchecked" Stretch="Uniform" Fill="#404040" Width="20" Height="20" Margin="2"
+                                              Data="F1 M 23,23L 53,23L 53,53L 23,53L 23,23 Z M 28,28L 28,48L 48,48L 48,28L 28,28 Z "/>
+                                        <Path x:Name="Checked" Stretch="Uniform" Fill="#404040" Visibility="Collapsed" Width="24" Height="24" Margin="4,2,2,2"
+                                              Data="F1 M 32.2209,33.4875L 39.1875,40.0582L 52.9627,24.5415L 56.2877,27.4707L 39.5834,47.5L 28.8959,36.8125L 32.2209,33.4875 Z M 22,25L 50,25L 45.5,30L 27,30L 27,49L 46,49L 46,42.5L 51,36.5L 51,54L 22,54L 22,25 Z "/>
+
+                                        <ContentPresenter x:Name="ContentSite"
+                                                          VerticalAlignment="Center"
+                                                          HorizontalAlignment="Center"
+                                                          ContentSource="{Binding}"
+                                                          Margin="10,2"
+                                                          Grid.Column="1"/>
+                                    </Grid>
+
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="False">
+                                        <Setter TargetName="Border" Property="BorderBrush" Value="Silver" />
+                                        <Setter TargetName="Unchecked" Property="Visibility" Value="Visible" />
+                                        <Setter TargetName="Checked" Property="Visibility" Value="Collapsed" />
+                                    </Trigger>
+                                    <Trigger Property="Border.IsMouseOver" Value="True">
+                                        <Setter TargetName="Border" Property="Background" Value="LightSlateGray" />
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter TargetName="Border" Property="Background" Value="LightBlue" />
+                                        <Setter TargetName="Unchecked" Property="Visibility" Value="Collapsed" />
+                                        <Setter TargetName="Checked" Property="Visibility" Value="Visible" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
+        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center" Margin="0,10,0,0">
+            <Button Content="Okay" Height="25" Command="{Binding HandlesOkayCommand}"  Width="60" Margin="0,0,10,0"/>
+            <Button Content="Cancel" Height="25" IsCancel="True" Width="60" />
+        </StackPanel>
+    </Grid>
+</Window>

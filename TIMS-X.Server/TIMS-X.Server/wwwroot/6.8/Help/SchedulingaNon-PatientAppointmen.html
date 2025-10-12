@@ -1,0 +1,309 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="generator" content="HelpNDoc Professional Edition 9.8.0.588">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="favicon.ico"/>
+
+  <title>Scheduling a Non-Patient Appointment</title>
+  <meta name="description" content="" /> 
+  <meta name="keywords" content="Scheduling Appointments,Non-Patient Appointment,Appointments">
+
+
+
+  
+  
+
+  <!-- Twitter Card data -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Scheduling a Non-Patient Appointment">
+  <meta name="twitter:description" content="">
+
+  <!-- Open Graph data -->
+  <meta property="og:title" content="Scheduling a Non-Patient Appointment" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="" />
+  <meta property="og:site_name" content="TIMS Audiology and SLP Version 6.08" /> 
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendors/bootstrap-3.4.1/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <link href="vendors/bootstrap-3.4.1/css/ie10-viewport-bug-workaround.css" rel="stylesheet"/>
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="vendors/html5shiv-3.7.3/html5shiv.min.js"></script>
+      <script src="vendors/respond-1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+  <!-- JsTree styles -->
+  <link href="vendors/jstree-3.3.10/themes/default/style.min.css" rel="stylesheet"/>
+
+  <!-- Hnd styles -->
+  <link href="css/layout.min.css" rel="stylesheet" />
+  <link href="css/effects.min.css" rel="stylesheet" />
+  <link href="css/theme-dark-blue.min.css" rel="stylesheet" />
+  <link href="css/print.min.css" rel="stylesheet" media="print" />
+  <style type="text/css">nav { width: 350px} @media screen and (min-width:769px) { body.md-nav-expanded div#main { margin-left: 350px} body.md-nav-expanded header { padding-left: 364px} }</style>
+  <style type="text/css">.navigation #inline-toc { width: auto !important}</style>
+
+  <!-- Content style -->
+  <link href="css/hnd.content.css" rel="stylesheet" />
+
+  
+
+
+
+</head>
+
+<body class="md-nav-expanded">
+
+
+
+  
+
+  <div id="skip-link">
+    <a href="#main-content" class="element-invisible">Skip to main content</a>
+  </div>
+
+  <header class="headroom">
+    <button class="hnd-toggle btn btn-default">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>        
+    </button>
+    <h1>TIMS Audiology and SLP Version 6.08</h1>
+    <a href="https://us.timsaudiology.com"><img src="_logo.png" alt="logo" class="logo"/></a>
+  </header>
+
+  <nav id="panel-left" class="md-nav-expanded">
+    <!-- Nav tabs -->
+    <ul class="tab-tabs nav nav-tabs" role="tablist">
+      <li id="nav-close" role="presentation"> 
+        <button class="hnd-toggle btn btn-default" aria-label="close">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+      </li>
+      
+	  
+        <li role="presentation" class="tab active">
+            <a href="#contents" id="tab-contents" aria-controls="contents" role="tab" data-toggle="tab">
+                <i class="glyphicon glyphicon-list"></i>
+                Contents
+            </a>
+        </li>
+      
+        <li role="presentation" class="tab">
+            <a href="#index" id="tab-index" aria-controls="index" role="tab" data-toggle="tab">
+                <i class="glyphicon glyphicon-asterisk"></i>
+                Index
+            </a>
+        </li>
+      
+        <li role="presentation" class="tab">
+            <a href="#search" id="tab-search" aria-controls="search" role="tab" data-toggle="tab">
+                <i class="glyphicon glyphicon-search"></i>
+                Search
+            </a>
+        </li>
+      
+    </ul>  <!-- /Nav tabs -->
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+	  
+      <div role="tabpanel" class="tab-pane active" id="contents">
+        <div id="toc" class="tree-container unselectable"
+            data-url="_toc.json"
+            data-openlvl="1"
+        >
+            
+        </div>
+      </div>  <!-- /contents-->
+      
+      <div role="tabpanel" class="tab-pane" id="index">
+        <div id="keywords" class="tree-container unselectable"
+            data-url="_keywords.json"
+            data-openlvl="2"
+        >
+            
+        </div>
+      </div>  <!-- /index-->
+      
+      <div role="tabpanel" class="tab-pane" id="search">
+        <div class="search-content">
+          <div class="search-input">
+            <form id="search-form">
+              <div class="form-group">
+                <div class="input-group">
+                  <input type="text" class="form-control" id="input-search" name="input-search" placeholder="Search..." aria-label="Search..." />
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit" aria-label="Search...">
+                      <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </button>
+                  </span>
+                </div>
+              </div>
+            </form>
+          </div>  <!-- /search-input -->
+          <div class="search-result">
+            <div id="search-info"></div>
+            <div class="tree-container unselectable" id="search-tree"></div>
+          </div>  <!-- /search-result -->
+        </div>  <!-- /search-content -->
+      </div>  <!-- /search-->
+      
+    </div>  <!-- /Tab panes -->
+
+  </nav>
+
+  <div id="main">
+
+    <article>
+        <div id="topic-content" class="container-fluid" 
+		  data-hnd-id="SchedulingaNon-PatientAppointmen"
+		  data-hnd-context="133"
+		  data-hnd-title="Scheduling a Non-Patient Appointment"
+		>
+            
+                <div class="navigation">
+                    <ol class="breadcrumb">
+                        <li>Appointments</li><li>Scheduling Appointments</li>
+                    </ol>
+                    <div class="nav-arrows">
+                        <div class="btn-group btn-group" role="group"><div class="btn-group"><button type="button" title="In this page..." class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span></button><ul id="inline-toc" class="dropdown-menu dropdown-menu-right"></ul></div><a class="btn btn-default" href="AppointmentCancellationList.html" title="Appointment Cancellation List" role="button"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a><a class="btn btn-default" href="AppointmentAuthorizations.html" title="Appointment Authorizations" role="button"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></div>
+                    </div>
+                </div> 
+            
+
+            <a id="main-content"></a>
+
+            <h2>Scheduling a Non-Patient Appointment</h2>
+
+            <div class="main-content">
+                
+<p class="rvps3"><span class="rvts8">You can schedule a non-patient appointment, otherwise known as a "Schedule Item".&nbsp;&nbsp;A Schedule Item is still assigned to one or more providers, but not to a patient.&nbsp;&nbsp;This type of appointment can be used for meetings, lunches, out of office, etc.</span></p>
+<h1 class="rvps5"><span class="rvts0"><span class="rvts13">Search for an Opening</span></span></h1>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li class="rvps3 noindent"><span class="rvts8">Click on the Search for Appointment icon </span><img alt="" style="padding : 1px;" src="lib/appt%20search%20btn.gif"><span class="rvts8"> in the top part of the screen. &nbsp;The search criteria screen will popup.&nbsp;</span></li>
+</ol>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/appt%20filter%20screen2.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li class="rvps6 noindent"><span class="rvts15">Providers</span><span class="rvts8"> - Check the name of the provider for whom you wish to search for openings. Check All Providers to search all of them. &nbsp;</span></li>
+  <li class="rvps6 noindent"><span class="rvts15">Sites</span><span class="rvts8"> - Check the name of the site for which you wish to search for openings. &nbsp;Check All Sites to search all of them. &nbsp;</span></li>
+  <li class="rvps6 noindent"><span class="rvts15">Resources</span><span class="rvts8"> -&nbsp;Check the name of the resource for which you wish to search for openings. Individual Resources are only shown when a specific Site is checked, and are not shown when All Sites are checked. Check All Resources to search all of them. &nbsp;</span></li>
+  <li class="rvps6 noindent"><span class="rvts15">Specialties</span><span class="rvts8"> - Check either All Specialties, or just Audiology or SLP. &nbsp;The Appointment Type list will be filtered accordingly.</span></li>
+  <li class="rvps6 noindent"><span class="rvts8">Change the </span><span class="rvts15">Start and End</span><span class="rvts8"> search date, if needed. &nbsp;If not changed, the search period will default to 1 month, starting from today's date.</span></li>
+ </ol>
+ <li value="2" class="rvps3 noindent"><span class="rvts8">Click Find Openings </span><img alt="" style="padding : 1px;" src="lib/find%20openings%20btn.gif"><span class="rvts8"> to see a list of times that match the selected parameters, or Close to cancel the search.&nbsp;</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">A list of available openings will be displayed.</span></li>
+</ol>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/openings%20list.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="4" class="rvps3 noindent"><span class="rvts8">Double-click on the desired time slot. The Create New Schedule Item screen will open.&nbsp;</span></li>
+</ol>
+<p class="rvps19"><img alt="" style="padding : 1px;" src="lib/sched%20create%20new.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li class="rvps6 noindent"><span class="rvts8">The </span><span class="rvts15">Provider(s)</span><span class="rvts8"> field will automatically be filled in with the name of the provider you clicked on. &nbsp;You can select different, additional, or all providers by clicking the down arrow on the field and checking the box next to the desired name(s). This is a required field.</span></li>
+  <li class="rvps6 noindent"><span class="rvts8">The </span><span class="rvts15">Sites</span><span class="rvts8"> field will automatically be filled in with the name of the provider you clicked on. &nbsp;You can select different, additional, or all providers by clicking the down arrow on the field and checking the box next to the desired site name(s). </span><span class="rvts15">This is a required field</span><span class="rvts8">.</span></li>
+  <li class="rvps6 noindent"><span class="rvts8">Type a brief description of the appointment in the </span><span class="rvts15">Subject field</span><span class="rvts8">. </span><span class="rvts15">This is a required field</span><span class="rvts8">.</span></li>
+  <li class="rvps6 noindent"><span class="rvts15">Date</span><span class="rvts8"> will default to the date of the slot on the results list, that was double-clicked.&nbsp;&nbsp;If this date &nbsp;is not correct, you can change it here if needed. &nbsp;The date can be changed by clicking on the calendar icon and selecting a new date. &nbsp;</span></li>
+ </ol>
+</ol>
+<p class="rvps19"><img alt="" style="padding : 1px;" src="lib/calendar%20popup.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li value="5" class="rvps6 noindent"><span class="rvts15">Time</span><span class="rvts8">&nbsp;will default to the beginning time of the slot on the results list, that was double-clicked. &nbsp;&nbsp;If this time is not correct, you can change it here if needed. The start time can be changed by clicking on the time and typing a new value. &nbsp;The end time will be calculated automatically by adding the duration to the start time.</span></li>
+  <li class="rvps6 noindent"><span class="rvts8">Set the </span><span class="rvts15">Duration</span><span class="rvts8"> to any time from 1 minute to 11 hours 59 minutes. &nbsp;</span></li>
+  <li class="rvps6 noindent"><span class="rvts8">Type a brief description of the </span><span class="rvts15">Location</span><span class="rvts8"> for the appointment, if desired. &nbsp;This can be simply the office name or something more descriptive, such as "conference room", "John's office", etc.</span></li>
+  <li class="rvps6 noindent"><span class="rvts8">Choose a specific </span><span class="rvts15">Color</span><span class="rvts8"> (if desired) by clicking on the color button </span><img alt="" style="padding : 1px;" src="lib/sched%20color%20brn.gif"><span class="rvts8">. The appointment will appear on the grid using this color with a striped background. &nbsp;</span></li>
+ </ol>
+</ol>
+<p class="rvps19"><img alt="" style="padding : 1px;" src="lib/sched%20appt%20color.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li value="9" class="rvps6 noindent"><span class="rvts8">Type any </span><span class="rvts15">Notes</span><span class="rvts8">, if desired.</span></li>
+ </ol>
+ <li value="5" class="rvps3 noindent"><span class="rvts8">Click OK to save or Cancel to abandon changes.</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">If the schedule item is a </span><span class="rvts15">recurring</span><span class="rvts8"> one, check the </span><span class="rvts15">Recurrence</span><span class="rvts8"> box, and follow the steps in the </span><a class="rvts16" href="RecurringAppointments.html">Recurring Appointments</a><span class="rvts8"> section.</span></li>
+</ol>
+<h1 class="rvps7"><span class="rvts0"><span class="rvts24">Additional Notes:</span></span><span class="rvts0"><span class="rvts8">&nbsp;</span></span></h1>
+<ul style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside; list-style-type: disc;">
+ <li class="rvps3 noindent"><span class="rvts8">If you already know the day and time on which you want to schedule the appointment, simply switch to that day by clicking on the appropriate date on the Months Panel. &nbsp;Then proceed from Step 4 above, double-clicking on the desired timeslot.</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">If you make an appointment for any date and time before the current date and time - a popup message will inform you of this, and ask if you're sure that's what you want to do.</span></li>
+</ul>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/appt%20in%20past%20msg.gif"></p>
+<ul style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside; list-style-type: disc;">
+ <li class="rvps3 noindent"><span class="rvts8">If you make an appointment for a provider for a site or time that the provider is not scheduled to be available, a popup will inform you and ask if you want to continue.</span></li>
+</ul>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/outside%20hours%20msg.gif"></p>
+<p class="rvps18"><span class="rvts8"><br/></span></p>
+<p class="rvps18"><span class="rvts8"></span><span class="rvts8"></span></p>
+
+            </div>
+            
+            
+        </div>  <!-- /#topic-content -->
+    </article>
+
+    <footer></footer>
+
+  </div>  <!-- /#main -->
+
+  <div class="mask" data-toggle="sm-nav-expanded"></div>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="hndModal" tabindex="-1" role="dialog" aria-labelledby="hndModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="hndModalLabel"></h4>
+        </div>
+        <div class="modal-body">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary modal-btn-close" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Splitter -->
+  <div id="hnd-splitter" style="left: 350px"></div>  
+
+  <!-- Scripts -->
+  <script src="vendors/jquery-3.7.1/jquery.min.js"></script>
+  <script src="vendors/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+  <script src="vendors/bootstrap-3.4.1/js/ie10-viewport-bug-workaround.js"></script>
+  <script src="vendors/markjs-8.11.1/jquery.mark.min.js"></script>
+  <script src="vendors/uri-1.19.11/uri.min.js"></script>
+  <script src="vendors/imageMapResizer-1.0.10/imageMapResizer.min.js"></script>
+  <script src="vendors/headroom-0.11.0/headroom.min.js"></script>
+  <script src="vendors/jstree-3.3.10/jstree.min.js"></script>  
+  <script src="vendors/interactjs-1.9.22/interact.min.js"></script>  
+
+  <!-- HelpNDoc scripts -->
+  <script src="js/polyfill.object.min.js"></script>
+  <script src="_translations.js"></script>
+  <script src="js/hndsd.min.js"></script>
+  <script src="js/hndse.min.js"></script>
+  <script src="js/app.min.js"></script>
+
+  <!-- Init script -->
+  <script src="_topic_init.js"></script>
+
+
+
+</body>
+
+</html>
+

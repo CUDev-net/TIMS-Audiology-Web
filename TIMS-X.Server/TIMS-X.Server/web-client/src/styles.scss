@@ -1,0 +1,207 @@
+@import '../node_modules/bootstrap/scss/bootstrap';
+@import '../node_modules/bootstrap/scss/functions';
+@import '../node_modules/bootstrap/scss/variables';
+@import '../node_modules/bootstrap/scss/utilities';
+@import '../node_modules/bootstrap-icons';
+
+@import './tims-defaults.scss';
+
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus {
+    outline: 0 none;
+}
+
+.tims-button {
+    background: $btn_grad_end;
+    color: #ffffff;
+    border-color: $btn_border;
+}
+
+.tims-button:not(:disabled):not(.disabled):active {
+    border-color: $btn_border;
+}
+
+.tims-button:hover,
+.tims-button:focus,
+.tims-button:active,
+.tims-button.active,
+.open>.dropdown-toggle.tims-button {
+    background: $btn_grad_start;
+    border-color: $btn_border;
+}
+
+.tims-button:active,
+.tims-button.active {
+    background: $btn_grad_active_start;
+    box-shadow: none;
+    border-color: $btn_border;
+}
+
+.tims-button.gradient {
+    background: -moz-linear-gradient(top, $btn_grad_start, $btn_grad_end);
+    /* FF3.6+ */
+    background: -webkit-linear-gradient(top, $btn_grad_start, $btn_grad_end);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, $btn_grad_start, $btn_grad_end);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, $btn_grad_start, $btn_grad_end);
+    /* IE10+ */
+    background: linear-gradient(to bottom, $btn_grad_start, $btn_grad_end);
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$btn_grad_start', endColorstr='$btn_grad_end', GradientType=0);
+    /* IE6-9 */
+}
+
+.tims-button.gradient:hover,
+.tims-button.gradient:focus,
+.tims-button.gradient:active,
+.tims-button.gradient.active,
+.open>.dropdown-toggle.tims-button {
+    background: -moz-linear-gradient(top, $btn_grad_hover_start, $btn_grad_hover_end);
+    /* FF3.6+ */
+    background: -webkit-linear-gradient(top, $btn_grad_hover_start, $btn_grad_hover_end);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, $btn_grad_hover_start, $btn_grad_hover_end);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, $btn_grad_hover_start, $btn_grad_hover_end);
+    /* IE10+ */
+    background: linear-gradient(to bottom, $btn_grad_hover_start, $btn_grad_hover_end);
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$btn_grad_hover_start', endColorstr='$btn_grad_hover_start', GradientType=0);
+    /* IE6-9 */
+}
+
+.tims-button.gradient:active,
+.tims-button.gradient.active {
+    background: -moz-linear-gradient(top, $btn_grad_active_start, $btn_grad_active_end);
+    /* FF3.6+ */
+    background: -webkit-linear-gradient(top, $btn_grad_active_start, $btn_grad_active_end);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, $btn_grad_active_start, $btn_grad_active_end);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, $btn_grad_active_start, $btn_grad_active_end);
+    /* IE10+ */
+    background: linear-gradient(to bottom, $btn_grad_active_start, $btn_grad_active_end);
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$btn_grad_active_start', endColorstr='$btn_grad_active_end', GradientType=0);
+    /* IE6-9 */
+}
+
+
+.col-form-label {
+    padding-left: 10px;
+    padding-right: 5px;
+    padding-top: 1px !important;
+    padding-bottom: 1px !important;
+}
+
+.column-row {
+    height: 100%;
+}
+
+input[type=checkbox].cb-1x {
+    /* Double-sized Checkboxes */
+    -ms-transform: scale(1.1);
+    /* IE */
+    -moz-transform: scale(1.1);
+    /* FF */
+    -webkit-transform: scale(1.1);
+    /* Safari and Chrome */
+    -o-transform: scale(1.1);
+    /* Opera */
+    padding: 0 2px;
+    position: relative;
+    vertical-align: middle;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.tims-input {
+    --bs-focus-ring-color: #00a5fe;
+    --bs-focus-ring-width: .05rem;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.date-only {}
+
+.modal-header {
+    background: $form_header_color;
+}
+
+.modal-footer {
+    background: $form_footer_color;
+    padding: 2px 8px;
+}
+
+.dialog-button {
+    color: #505050 !important;
+}
+
+.form-control.is-invalid {
+    background-image: none;
+}
+
+.invalid-tooltip {
+    font-size: 11px;
+    padding: 2px 4px;
+}
+
+.tims-label {
+    font-size: $default_font_size;
+    padding-left: 5px;
+}
+
+.tims-today-class {
+    background-color: #01721a;
+    color: #ffffff;
+}
+
+.entry-component {
+    margin-bottom: 1px;
+}
+
+.is-ot-status {
+    color: $ot_status_color;
+    background-color: $ot_status_background_color;
+    border-color: #d6e9c6;
+    border-radius: 5px;
+}
+
+.no-ot-status {
+    background-color: $no_ot_status_background_color;
+    border-radius: 5px;
+}
+
+.swatch {
+    vertical-align: middle;
+    float: left;
+    height: 13px;
+    width: 11px;
+    border: solid 1px grey;
+    margin-right: 5px;
+}
+
+.required-control {
+    background-color: $required_background_color;
+}
+
+.patient-link-housing:hover {
+    background-color: #eee;
+}
+
+a.patient-link:hover {
+    text-decoration: underline;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+a.patient-link {
+    padding: 1px 0;
+    color: #0088cc;
+    text-decoration: none;
+    display: inline-block;
+}

@@ -1,0 +1,335 @@
+﻿@page "{id:int}"
+@using Microsoft.CodeAnalysis.CSharp.Syntax
+@model Pages.Support.EditCustomerModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Edit Customer";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h2 class="h2">@Model.Customer.Name</h2>
+        </div>
+    </div>
+    @if (Model.VersionHistory != null)
+    {
+
+        <div class="row">
+            <div class="col">
+                <a class="btn btn-sm btn-outline-primary mb-2" data-toggle="collapse" href="#updateSection" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    Current Version: @Model.CurrentVersion
+                </a>
+            </div>
+        </div>
+        <div class="row collapse mb-2" id="updateSection">
+            <div class="col">
+                <form method="post" class="form-control" id="versionForm" onsubmit="return submitVersion();">
+                    <input asp-for="Customer.Id" type="hidden" />
+                    <input asp-for="Customer.OfficeCode" type="hidden" />
+                    <input asp-for="Customer.Name" type="hidden" />
+                    <input asp-for="Customer.Database" type="hidden" />
+                    <div class="form-group">
+                        <div>
+                            <div class="row">
+                                <div class="col">
+                                    <span class="font-weight-bold">Version History</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col scrollbox m-2 p-2 border-left">
+                                    <table class="table" id="dataTable">
+                                        <thead>
+                                            <tr>
+                                                <th>Type</th>
+                                                <th>Version</th>
+                                                <th>Date Applied</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var version in Model.VersionHistory)
+                                            {
+                                                <tr style="background-color: @version.Background;">
+                                                    <td>@version.Type</td>
+                                                    <td>@version.VersionDisplay</td>
+                                                    <td>@version.DateApplied</td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        @if (Model.HasUpdates)
+                        {
+                            <div class="row pl-1">
+                                <div class="col">
+                                    <span class="font-weight-bold">Available Upgrades</span>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <select asp-for="SelectedUpdate" class="form-control">
+                                            @foreach (var update in Model.Updates)
+                                            {
+                                                <option value="@update.Version">@update</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <button type="submit" class="btn btn-success" name="installButton" value="Install">Install</button>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="row mt-2">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <span class="font-italic">No new versions available.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    }
+
+    @if (Model.TwilioRecords != null)
+    {
+        <div class="row">
+            <div class="col scrollbox m-2 p-2 border-left">
+                <table class="table" id="dataTable">
+                    <thead>
+                        <tr>
+                            <th>Description</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var record in Model.TwilioRecords)
+                        {
+                            <tr>
+                                <td>@record</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+
+    <div class="row">
+        <div class="col">
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <form method="post" class="form-control" id="editCustomerForm" onsubmit="return submitCustomerForm()">
+                <div class="font-italic">Last Updated: @Model.Customer.DateUpdated by @Model.Customer.UpdatedByUser.Name</div>
+                <input asp-for="Customer.Id" type="hidden" />
+                <input asp-for="Customer.DateCreated" type="hidden" />
+                <input asp-for="Customer.DateUpdated" type="hidden" />
+                <input asp-for="Customer.UpdatedBy" type="hidden" />
+                <input asp-for="Customer.PermissionList" value="" type="hidden" id="permissionList" />
+                <input asp-for="Customer.VendorPermissions" type="hidden" />
+
+                <div class="row">
+                    <div class="col">
+                        <div class="form-check mb-2">
+                            <input type="checkbox" class="form-check-input" asp-for="Customer.Inactive" />
+                            <label class="form-check-label" asp-for="Customer.Inactive"></label>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Customer.Name"></label>
+                            <input class="form-control" asp-for="Customer.Name" maxlength="128" />
+                            <span class="text-danger" asp-validation-for="Customer.Name"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Customer.OfficeCode">Office Code</label>
+                            <input class="form-control" asp-for="Customer.OfficeCode" maxlength="16" />
+                            <span class="text-danger" asp-validation-for="Customer.OfficeCode"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Customer.ServerId">Server</label>
+                            <select asp-for="Customer.ServerId" class="form-control" id="serverField">
+
+                                @foreach (var server in Model.Servers.Where(x => !x.Inactive || x.Id == Model.Customer.ServerId))
+                                {
+                                    if (server.Inactive)
+                                    {
+                                        <option value="@server.Id" disabled>@server.CombinedName (Inactive)</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@server.Id">@server.CombinedName</option>
+                                    }
+
+                                }
+                            </select>
+                            @*<span class="text-danger" asp-validation-for="Customer.ServerId" class="text-danger"></span>*@
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Customer.Database"></label>
+                            <input class="form-control" asp-for="Customer.Database" maxlength="128" id="databaseField" />
+                            <span class="text-danger" asp-validation-for="Customer.Database"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Customer.TimeZoneId">Time Zone</label>
+                            <select asp-for="Customer.TimeZoneId" class="form-control" id="timezoneField">
+
+                                @foreach (var timezoneCountry in Model.TimeZones.Keys)
+                                {
+                                    var timeZones = Model.TimeZones[timezoneCountry];
+
+                                    <optgroup label="@timezoneCountry">
+
+                                        @foreach(var timeZone in timeZones)
+                                        {
+                                            <option value="@timeZone.Value">@timeZone.Name</option>
+                                        }
+                                        
+                                    </optgroup>
+                                }
+                            </select>
+                            @*<span class="text-danger" asp-validation-for="Customer.ServerId" class="text-danger"></span>*@
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Customer.Notes"></label>
+                            <textarea class="form-control" asp-for="Customer.Notes" maxlength="256" rows="4"></textarea>
+                            <span class="text-danger" asp-validation-for="Customer.Notes"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-auto">
+                                    <label for="permissionsList">Vendor Permissions</label>
+                                </div>
+                                <div class="col mb-1">
+                                    <button class="btn btn-link" style="margin-top: -6px" onclick="return toggleEditEditMode()" id="editPermissionsButton">edit</button>
+                                </div>
+
+                                <div class="mb-1 col-auto align-baseline" role="group">
+                                    <button id="addVendorButton" type="button" class="dropdown-toggle btn btn-outline-success btn-sm float-right" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-plus"></i> Add Vendor
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="addVendorButton">
+                                        @foreach (var vendor in Model.Vendors.Where(x => !x.Inactive))
+                                        {
+                                            bool hide = Model.Customer.VendorPermissions.Any(p => p.VendorId == vendor.Id);
+
+                                            <button @(hide ? "style=display:none" : "") class="dropdown-item" id="addVendor_@vendor.Id" onclick="return toggleVendor(true, @vendor.Id)">@vendor.Name</button>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="list-group border" id="permissionsList">
+                                @{
+                                    var permissions = Model.Customer.VendorPermissions.GroupBy(x => x.VendorId).ToDictionary(g => g.Key, g => g.Select(item => item.Permission).ToList());
+                                    foreach (var vendor in Model.Vendors.Where(x => !x.Inactive || Model.Customer.VendorPermissions.Select(v => v.VendorId).Contains(x.Id)))
+                                    {
+                                        bool hasExisting = permissions.Keys.Any(x => x == vendor.Id);
+
+
+                                        var currentPermissions = new List<Models.VendorPermission>();
+                                        var availablePermissions = Model.VendorPermissions;
+
+                                        if (hasExisting)
+                                        {
+                                            currentPermissions = permissions[vendor.Id];
+                                        }
+                                        else if (vendor.DefaultPermissions != null && vendor.DefaultPermissions.Any())
+                                        {
+                                            currentPermissions = vendor.DefaultPermissions.Select(p => p.Permission).ToList();
+
+                                        }
+                                        availablePermissions = availablePermissions.Where(x => currentPermissions.All(p => p.Id != x.Id)).ToList();
+
+                                        string vendorId = "vendor_" + vendor.Id;
+                                        string assignedListBox = vendorId + "_assigned";
+                                        string unassignedListBox = vendorId + "_unassigned";
+                                        string btnAllRight = vendorId + "_btnallright";
+                                        string btnRight = vendorId + "_btnright";
+                                        string btnAllLeft = vendorId + "_btnallleft";
+                                        string btnLeft = vendorId + "_btnleft";
+                                        string vendorClass = vendor.Inactive ? "disabled" : "";
+                                        string inactiveVendor = vendor.Inactive ? " (Inactive)" : "";
+
+                                        <div id="permissionContainer_@vendor.Id" @(hasExisting ? "" : "style=display:none")>
+                                            <div class="list-group-item-secondary p-2 font-weight-bold @vendorClass" id="@vendorId">
+                                                <span class="mr-2">@vendor.Name @inactiveVendor</span>
+                                                <button style="display: none; margin-top: -3px" class="btn btn-sm btn-link ml-1 float-right editPermissionsMode" title="Remove item" onclick="return toggleVendor(false, @vendor.Id)">
+                                                    <i class="fas fa-times" style="color: #FF5047"></i>
+                                                </button>
+                                            </div>
+
+                                            <div class="pl-2 pr-2 pb-2 pt-1" style="background: #F3F3F3">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <select multiple="multiple" id='@assignedListBox' class="form-control" size="5">
+                                                            @foreach (var permission in currentPermissions)
+                                                            {
+                                                                var className = permission.Inactive ? "disabled" : "";
+                                                                var inactivePermission = permission.Inactive ? " (Inactive)" : "";
+                                                                <option value="@permission.Id" class="@className">@permission.Name @inactivePermission</option>
+                                                            }
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-auto text-center btn-group-vertical editPermissionsMode" style="display: none">
+                                                        <input type="button" id="@btnAllLeft" data-assigned="@assignedListBox" data-unassigned="@unassignedListBox" value="<<" class="btn btn-sm btn-outline-secondary" />
+                                                        <input type="button" id="@btnLeft" data-assigned="@assignedListBox" data-unassigned="@unassignedListBox" value="<" class="btn btn-sm btn-outline-secondary" />
+                                                        <input type="button" id="@btnRight" data-assigned="@assignedListBox" data-unassigned="@unassignedListBox" value=">" class="btn btn-sm btn-outline-secondary" />
+                                                        <input type="button" id="@btnAllRight" data-assigned="@assignedListBox" data-unassigned="@unassignedListBox" value=">>" class="btn btn-sm btn-outline-secondary" />
+                                                    </div>
+                                                    <div class="col editPermissionsMode" style="display: none">
+                                                        <select multiple="multiple" id='@unassignedListBox' class="form-control" size="5">
+                                                            @foreach (var permission in availablePermissions)
+                                                            {
+                                                                <option value="@permission.Id">@permission.Name</option>
+                                                            }
+                                                        </select>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-sm-auto">
+                                <button type="submit" class="btn btn-primary" value="Save" name="saveButton" onclick="submitFormClick(this)">Save</button>
+                                <a href="~/Support/Customers" class="btn btn-dark">Cancel</a>
+                            </div>
+                            <div class="col-sm-auto">
+                                <button class="btn btn-outline-primary mb-4" onclick="return runTest(@Model.Customer.Id)"><i class="fas fa-plug"></i> Test Database Connection</button>
+                            </div>
+                            <div class="col col-6">
+                                <div id="testConnectionMessage" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

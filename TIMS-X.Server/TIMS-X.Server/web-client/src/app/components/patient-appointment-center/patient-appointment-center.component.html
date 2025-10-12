@@ -1,0 +1,54 @@
+<div class="pat-appt-wrapper">
+
+    <!-- <div style="margin: 0 10px; padding-top: 5px;">
+        <button style="padding: 0px 6px; float: left; color: black; font-size: 14px;" class="btn tims-button gradient"
+            type="button" (click)="onGetPatientAppointments()" data-bs-toggle="tooltip" title="Close">Build
+            List</button>
+
+        <button style="padding: 0px 6px; float: right; font-size: 14px;" class="btn tims-button gradient" type="button"
+            (click)="onClose()" data-bs-toggle="tooltip" title="Close"><i
+                class="dialog-button bi bi-x-square-fill"></i></button>
+    </div> -->
+    <div style="display: block;">
+        <table class="table">
+            <thead>
+                <tr class="list-header">
+                    <th class="header">Name</th>
+                    <th class="header">DOB</th>
+                    <th class="header">Email</th>
+                    <th class="header">Phone</th>
+                    <th class="header">Requested Date/Time</th>
+                    <th class="header">Provider</th>
+                    <th class="header">Site</th>
+                    <th class="header">Received Date/Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let a of ts.schedulerStore.patient_appointments;">
+                    <td class="patient" style="width: 22%;"><a class="patient-link"
+                            (click)="selectPatient(a.appointmentId)">{{a.firstName}}
+                            {{a.initial}} {{a.lastName}}</a></td>
+                    <td class="patient" style="width: 8%;"><a class="patient-link"
+                            (click)="selectPatient(a.appointmentId)">{{
+                            a.birthDate |
+                            dateTimeFromIso | date:'mediumDate'}}</a></td>
+                    <td class="patient" style="width: 15%;"><a class="patient-link"
+                            (click)="selectPatient(a.appointmentId)">{{a.email}}</a></td>
+                    <td class="patient" style="width: 10%;"><a class="patient-link"
+                            (click)="selectPatient(a.appointmentId)">{{a.phone}}</a></td>
+                    <td class="patient" style="width: 10%;"><a class="patient-link"
+                            (click)="gotoDate(a.appointmentId)">{{a.date |
+                            dateTimeFromIso | date:'medium'}}</a></td>
+                    <td class="patient" style="width: 10%;"><a class="patient-link"
+                            (click)="selectPatient(a.appointmentId)">{{a.provider}}</a>
+                    </td>
+                    <td class="patient" style="width: 10%;"><a class="patient-link"
+                            (click)="selectPatient(a.appointmentId)">{{a.site}}</a></td>
+                    <td class="patient" style="width: 10%;"><a class="patient-link"
+                            (click)="selectPatient(a.appointmentId)">{{a.dateReceived |
+                            dateTimeFromIso | date:'medium'}}</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

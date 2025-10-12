@@ -1,0 +1,70 @@
+﻿@page
+@model Pages.Support.CreateVendorModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h2 class="h2">Create Vendor</h2>
+            <form method="post" class="form-control" onsubmit="return submitVendorForm()">
+                <input asp-for="Vendor.Id" type="hidden" value="0">
+                <input asp-for="Vendor.DateCreated" type="hidden" value="@DateTime.Now" />
+                <input asp-for="Vendor.Inactive" type="hidden" value="false" />
+                <input asp-for="Vendor.DefaultPermissionsJson" type="hidden" id="permissionList" value="" />
+                <div>
+                    <div class="form-group">
+                        <label asp-for="Vendor.Name"></label>
+                        <input class="form-control" asp-for="Vendor.Name" maxlength="64" />
+                        <span class="text-danger" asp-validation-for="Vendor.Name"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Vendor.ApiKey"></label>
+                        <div class="input-group my-auto">
+                            <input class="form-control" asp-for="Vendor.ApiKey" maxlength="64" />
+                            <span class="input-group-append">
+                                <button class="btn btn-primary" onclick="return generateApiKey()" title="Re-generate key"><i class="fas fa-redo"></i></button>
+                            </span>
+                        </div>
+                        <span class="text-danger" asp-validation-for="Vendor.ApiKey"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-auto">
+                                <label asp-for="Vendor.DefaultPermissions">Default Permissions</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <select multiple="multiple" id='dvpAssigned' class="form-control" size="5">
+                                </select>
+                            </div>
+                            <div class="col-auto text-center btn-group-vertical editPermissionsMode" style="display: none">
+                                <input type="button" id="btnallleft" data-assigned="dvpAssigned" data-unassigned="dvpUnassigned" value="<<" class="btn btn-sm btn-outline-secondary" />
+                                <input type="button" id="btnleft" data-assigned="dvpAssigned" data-unassigned="dvpUnassigned" value="<" class="btn btn-sm btn-outline-secondary" /><br />
+                                <input type="button" id="btnright" data-assigned="dvpAssigned" data-unassigned="dvpUnassigned" value=">" class="btn btn-sm btn-outline-secondary" /><br />
+                                <input type="button" id="btnallright" data-assigned="dvpAssigned" data-unassigned="dvpUnassigned" value=">>" class="btn btn-sm btn-outline-secondary" /><br />
+                            </div>
+                            <div class="col editPermissionsMode" style="display: none">
+                                <select multiple="multiple" id='dvpUnassigned' class="form-control" size="5">
+                                    @foreach (var permission in Model.VendorPermissions)
+                                    {
+                                        <option value="@permission.Id">@permission.Name</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+                <div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

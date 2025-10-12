@@ -1,0 +1,66 @@
+﻿@page
+@model Pages.Support.ServersModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewBag.Title = "Servers";
+}
+<h3 class="h3 my-auto">TIMS Servers</h3>
+<div class="container">
+    <div class="row">
+        @if (!string.IsNullOrEmpty(Model.DeleteError))
+        {
+            <div class="col my-auto alert alert-danger m-3">
+                <span>@Model.DeleteError</span>
+            </div>
+
+        }
+        <div class="form-check my-auto m-4">
+            <input type="checkbox" class="form-check-input" for="includeInactive" id="includeInactive" onchange="filterInactive()" />
+            <label class="form-check-label" for="includeInactive">Include Inactive</label>
+        </div>
+        <div class="col my-auto ">
+            <a class="btn btn-outline-success btn-sm float-right m-2" asp-page="./CreateServer"><i class="fa fa-plus"></i> Add New</a>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col my-auto">
+            <form method="post">
+                <table class="table" id="dataTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>Customer Count</th>
+                            <th>Date Created</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var server in Model.Servers)
+                        {
+                            var className = server.Inactive ? "disabled" : "";
+                            var styleName = server.Inactive ? "display: none" : "";
+                            var disableDelete = server.CanDelete ? "" : "disabled";
+                            <tr class="@className" style="@styleName">
+                                <td class="@className">@server.Id</td>
+                                <td class="@className"><a class="@className" asp-page="./EditServer" asp-route-id="@server.Id">@server.Name</a></td>
+                                <td class="@className">@server.Address</td>
+                                <td class="@className">@server.Customers.Count()</td>
+                                <td class="@className">@server.DateCreated</td>
+                                <td class="@className">
+                                    <button disabled="@server.DisableDelete" name="delete" type="submit" asp-page-handler="delete" asp-route-id="@server.Id" class="btn btn-link" onclick="return confirm('Delete server @server.Name?')" title="Delete @server.Name"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                </td>
+                            </tr>
+
+                        }
+                    </tbody>
+                </table>
+            </form>
+        </div>
+
+    </div>
+
+</div>
+

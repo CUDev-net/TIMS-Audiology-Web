@@ -1,0 +1,40 @@
+:host {
+    display: flex;
+    flex: 1 0 auto;
+    flex-direction: column;
+}
+
+.patient-panel {
+    display: flex;
+    flex: 1 0 100%;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.patient-list-wrapper {
+    display: flex;
+    flex: 1 0 auto;
+    flex-direction: column;
+    background-color: #FFFFFF;
+    border-top: 1px solid #bbbbbb;
+    border-left: 1px solid #bbbbbb;
+}
+
+.patient-list {
+    margin-top: 10px;
+    margin-right: 0;
+    padding: 0 0 0 10px;
+}
+
+.list-header {
+    margin: 0 0 10px 0;
+    font-weight: bolder;
+}
+
+.item-divider {
+    margin: 0 10px 0 0;
+}
+
+.inactive {
+    color: #585858;
+}

@@ -1,0 +1,10 @@
+<div (click)="handlesViewSummary()" style="padding: 0; border-bottom: 1px solid grey;">
+    <div
+        style="background-color: #F5F5F5; color: black; padding: 0 5px 5px 5px; border-bottom: .5px dashed grey; font-weight: 700;">
+        {{displayDate}}</div>
+    <div style="padding: 5px 0;" [style.color]="ForegroundColor" [style.background-color]="BackgroundColor"><span
+            class="swatch" style="margin: 5px"
+            [style.background-color]="scheduleItem.provider_web_color"></span><strong>{{subject}}</strong>{{text}}
+        <i *ngIf="scheduleItem.isRecurring" style="margin-left: 5px" class="dialog-button bi bi-arrow-repeat"></i>
+    </div>
+</div>

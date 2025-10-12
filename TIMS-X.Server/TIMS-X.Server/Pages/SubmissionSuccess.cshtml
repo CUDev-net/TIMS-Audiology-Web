@@ -1,0 +1,24 @@
+﻿@page "{id:int}"
+@using Microsoft.CodeAnalysis.CSharp.Syntax
+@using TIMS_X.Server.Services
+@model Pages.SubmissionSuccessModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Patient";
+}
+
+
+<div class="container form-control">
+    <div class="row">
+        <div class="col-sm-6">
+            <label>Documents saved successfully!</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <a href="@Url.Page("/Patient", new {id=@Model.Patient.Id})" class="btn btn-outline-primary">Return To Patient</a>
+        </div>
+    </div>
+</div>
+

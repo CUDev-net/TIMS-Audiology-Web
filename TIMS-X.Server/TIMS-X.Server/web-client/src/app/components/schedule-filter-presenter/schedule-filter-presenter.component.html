@@ -1,0 +1,15 @@
+<div class="banner-background">
+    <i class="bi bi-caret-right-fill filter-button" (click)="onShowFilters()"></i>
+    <div style="display: inline;" *ngIf="!ts.appointmentStore.isSearchForOpenings">
+        <span class="higlghlight">Showing
+            Schedule</span>&nbsp;<span class="dim">for:</span>&nbsp;<span>{{providerString}}</span>&nbsp;<span
+            class="dim">at:</span>&nbsp;<span>{{siteString}}</span>&nbsp;<span *ngIf="DisplayCalendarResources"
+            class="dim">using:</span>&nbsp;<span>{{resourceString}}</span><span>{{slpString}}</span>
+    </div>
+    <div style="display: inline;" *ngIf="ts.appointmentStore.isSearchForOpenings">
+        <span class="higlghlight">Showing
+            Openings</span>&nbsp;<span class="dim">from:</span>&nbsp;<span>{{StartDate}}</span>&nbsp;<span
+            class="dim">to:</span>&nbsp;<span>{{EndDate}}</span>&nbsp;<span
+            class="dim">lasting:</span>&nbsp;<span>{{Duration}}</span>
+    </div>
+</div>

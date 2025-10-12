@@ -1,0 +1,83 @@
+
+.list-item {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word
+}
+
+.list-item.block .media {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0
+}
+
+.list-item.block .list-content {
+    padding: 1rem
+}
+
+.list-row .list-item {
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: .75rem .625rem
+}
+
+.list-item {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word
+}
+
+.list-row .list-item > * {
+    padding-left: .625rem;
+    padding-right: .625rem
+}
+
+.dropdown {
+    position: relative
+}
+
+a:focus,
+a:hover {
+    text-decoration: none
+}
+
+list-item {
+    background: white
+}
+
+.draggable:hover {
+    cursor: move; /* fallback if grab cursor is unsupported */
+    cursor: grab;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+}
+
+/* (Optional) Apply a "closed-hand" cursor during drag operation. */
+.draggable:active {
+    cursor: grabbing;
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
+}
+
+.list-item-placeholder {
+    background: #DCFFD6;
+    border: 2px solid #7B8E77;
+}
+
+.card {
+    min-height: 40px;
+    margin: 0 auto; /* Added */
+    float: none; /* Added */
+    margin-bottom: 10px; /* Added */
+}
+
+

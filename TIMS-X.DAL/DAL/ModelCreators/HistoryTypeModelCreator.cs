@@ -1,0 +1,35 @@
+﻿using Microsoft.EntityFrameworkCore;
+using TIMS_X.Core.Domain;
+
+namespace TIMS_X.DAL.DAL.ModelCreators;
+
+public class HistoryTypeModelCreator : IModelCreator
+{
+    public void CreateModel(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<HistoryType>(entity =>
+        {
+            entity.Property(e => e.Id).HasColumnName("ID").ValueGeneratedOnAdd();
+            entity.HasKey(i => i.Id);
+            entity.Ignore(i => i.PendingDelete);
+            entity.Ignore(i => i.HasStateBeenSet);
+
+            entity.Property(e => e.Description).HasMaxLength(50);
+
+            entity.Property(e => e.IsSlp).HasColumnName("SLP");
+
+            entity.Property(e => e.UpdatedUserId).HasColumnName("UID");
+
+            entity.Property(e => e.UpdatedDate)
+                .HasColumnName("DtUpdated")
+                .HasColumnType("datetime")
+                .HasDefaultValueSql("(getdate())");
+
+            entity.Property(e => e.Name)
+                .IsRequired()
+                .HasMaxLength(50);
+
+            entity.ToTable(nameof(HistoryType));
+        });
+    }
+}

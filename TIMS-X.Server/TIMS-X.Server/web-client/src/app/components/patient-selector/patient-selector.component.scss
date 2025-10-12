@@ -1,0 +1,17 @@
+.patient-panel {
+    display: flex;
+    flex: 1 0 100%;
+    flex-direction: column;
+}
+
+.search-panel {
+    margin-left: 5px;
+    display: flex;
+    flex: 1 0 90%;
+    flex-direction: column;
+}
+
+.search {
+    margin: 5px;
+    width: auto;
+}

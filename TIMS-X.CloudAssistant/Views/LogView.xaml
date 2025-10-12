@@ -1,0 +1,32 @@
+﻿<Window x:Class="TIMS_X.CloudAssistant.Views.LogView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TIMS_X.CloudAssistant.Views"
+        mc:Ignorable="d"
+        Title="TIMS Assistant Log"
+        WindowStartupLocation="CenterOwner"
+        Width="400"
+        Height="400">
+    <Window.Resources>
+        <Style x:Key="TextStyle" TargetType="{x:Type TextBox}">
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Background" Value="WhiteSmoke" />
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontFamily" Value="Consolas"/>
+            <Setter Property="Margin" Value="7,2"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Padding" Value="5,2"></Setter>
+        </Style>
+    </Window.Resources>
+
+    <TextBox Style="{StaticResource TextStyle}" 
+             Text="{Binding LogContents}" 
+             HorizontalAlignment="Stretch" 
+             VerticalAlignment="Stretch"
+             VerticalScrollBarVisibility="Visible"
+             HorizontalScrollBarVisibility="Auto"
+             Margin="15"/>
+</Window>

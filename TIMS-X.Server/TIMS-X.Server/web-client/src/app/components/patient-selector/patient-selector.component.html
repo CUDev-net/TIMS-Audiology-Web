@@ -1,0 +1,40 @@
+<div class="patient-panel" [formGroup]="censusForm">
+    <div class="input-group input-group-sm search">
+        <input type="text" formControlName="searchParameter" placeholder="Find patients.."
+            class="form-control form-control-sm focus-ring tims-input" (keyup)="onSearchValue($event)" />
+        <button [style.display]="isSearching ? 'flex' : 'none'" class="btn tims-button gradient" (click)="onSearch()"
+            type="button"><i class="bi bi-search"></i></button>
+        <button (click)="onAdd()" class="btn tims-button gradient" type="button" [disabled]="isdisabled"><i
+                class="bi bi-person-plus-fill"></i></button>
+    </div>
+
+    <app-patient-list header='Recent Patients' [style.display]="isSearching ? 'none' : 'flex'"
+        (patientSelected)="onPatientSelected($event)"></app-patient-list>
+
+    <div class="search-panel" [style.display]="isSearching ? 'flex' : 'none'">
+        <div class="form-check">
+            <input class="form-check-input" type="radio" formControlName="searchCriteria" value="lastname">
+            <label class="form-check-label">Last&nbsp;Name</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" formControlName="searchCriteria" value="firstname">
+            <label class="form-check-label">First&nbsp;Name</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" formControlName="searchCriteria" value="birthdate">
+            <label class="form-check-label">Birth&nbsp;Date</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" formControlName="searchCriteria" value="phone">
+            <label class="form-check-label">Phone&nbsp;Number</label>
+        </div>
+
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" formControlName="includeInactive">
+            <label class="form-check-label">Include inactive patients?</label>
+        </div>
+
+        <app-patient-list header='Patient Search Results' [isCensus]="true"
+            (patientSelected)="onPatientSelected($event)"></app-patient-list>
+    </div>
+</div>

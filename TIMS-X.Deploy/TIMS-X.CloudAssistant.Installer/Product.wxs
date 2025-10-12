@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+	<Product Id="*" Name="TIMS Assistant" Language="1033" Version="$(var.InstallVersion)" Manufacturer="Computers Unlimited" UpgradeCode="206af4ca-dd6e-4ae7-bc28-03a998115fbd">
+		<Package Id="*" InstallerVersion="200" Compressed="yes" InstallScope="perMachine" Keywords="Installer" Description="TIMS Assistant Installer" Manufacturer="Computers Unlimited" />
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." Schedule="afterInstallValidate" AllowSameVersionUpgrades="yes" />
+    <Media Id="1" Cabinet="Cab1.cab" EmbedCab="yes" />
+
+		<Feature Id="ProductFeature" Title="TIMS Assistant" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+      <ComponentGroupRef Id="SettingsComponents" />
+
+		</Feature>
+    <UI Id="UserInterface">
+      <Property Id="WIXUI_INSTALLDIR" Value="TARGETDIR" />
+      <Property Id="WixUI_Mode" Value="Custom" />
+
+      <TextStyle Id="WixUI_Font_Normal" FaceName="Tahoma" Size="8" />
+      <TextStyle Id="WixUI_Font_Bigger" FaceName="Tahoma" Size="9" Bold="yes" />
+      <TextStyle Id="WixUI_Font_Title"  FaceName="Tahoma" Size="9" Bold="yes" />
+
+      <Property Id="DefaultUIFont" Value="WixUI_Font_Normal" />
+
+      <DialogRef Id="ProgressDlg" />
+      <DialogRef Id="ErrorDlg" />
+      <DialogRef Id="FilesInUse" />
+      <DialogRef Id="MsiRMFilesInUse" />
+      <DialogRef Id="FatalError" />
+      <DialogRef Id="UserExit" />
+
+      <Publish Dialog="ExitDialog" Control="Finish" Event="EndDialog" Value="Return" Order="999">1</Publish>
+      <Publish Dialog="WelcomeDlg" Control="Next" Event="EndDialog" Value="Return" Order="2"></Publish>
+
+    </UI>
+    <UIRef Id="WixUI_Common" />
+    <WixVariable Id='WixUIDialogBmp' Value='TIMSDialog.bmp' />
+    <WixVariable Id='WixUIBannerBmp' Value='TIMSBanner.bmp' />
+    <Icon Id="TIMSIcon" SourceFile="$(var.TIMS-X.CloudAssistant.TargetPath)" />
+    <Property Id="ARPPRODUCTICON" Value="TIMSIcon" />
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+
+      <Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="TIMS" />
+			</Directory>
+
+      <Directory Id="DesktopFolder" Name="Desktop" />
+
+      <Directory Id="ProgramMenuFolder" Name="Programs">
+        <Directory Id="ProgramMenuDir" Name="TIMS">
+          <Component Id="ProgramMenuComponent" Guid="06450754-2B83-4E14-8BD5-993534A08103">
+            <RemoveFolder Id='ProgramMenuDir' On='uninstall'/>
+            <RegistryValue Root='HKCU' Key='Software\ComputersUnlimited\TIMS' Type='string' Value='' KeyPath='yes' />
+          </Component>
+        </Directory>
+      </Directory>
+      
+      <Directory Id="CommonAppDataFolder">
+        <Directory Id="CommonAppDataManufacturerFolder" Name="TIMS">
+        </Directory>
+      </Directory>
+
+		</Directory>
+
+
+	</Fragment>
+
+	<Fragment>
+
+    <ComponentGroup Id="SettingsComponents" Directory="CommonAppDataManufacturerFolder">
+      <Component Id="SettingsJson" Guid="FD8E075A-BF31-42D3-8097-7D0B454879E7" Permanent="yes">
+        <File Source="$(var.TIMS-X.CloudAssistant.ProjectDir)Settings.json" />
+      </Component>
+      <Component Id="ProgramDataFolderPermission" Guid="4AD0244E-C680-4384-AAAE-DA0B98CF5B52" Permanent="yes">
+        <CreateFolder>
+          <util:PermissionEx User="Users" GenericAll="yes"/>
+        </CreateFolder>
+      </Component>
+    </ComponentGroup>
+    
+    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+
+      <!-- Core Projects -->
+      <Component Id="CloudAssistant" Guid="A2C3A0A3-973B-428F-8B86-BF2EE2E2B5F8">
+        <RegistryKey Action="none" Key="TIMS" Root="HKCU" >
+          <RegistryValue Type="integer" Value="1" KeyPath="yes" />
+        </RegistryKey>
+        <File Source="$(var.TIMS-X.CloudAssistant.TargetPath)" KeyPath="no">
+          <Shortcut Id="startmenu" Directory="ProgramMenuDir" Name="TIMS Assistant" WorkingDirectory='INSTALLDIR' Icon="TIMSIcon" IconIndex="0" Advertise="no" />
+          <Shortcut Id="desktop" Directory="DesktopFolder" Name="TIMS Assistant" WorkingDirectory='INSTALLDIR' Icon="TIMSIcon" IconIndex="0" Advertise="no" />
+        </File>
+			 </Component>
+      <Component Id="Core">
+        <File Source="$(var.TIMS-X.Core.TargetPath)" />
+      </Component>
+      <Component Id="NoahDataInterface">
+        <File Source="$(var.TIMS-X.NoahDataInterface.TargetPath)" />
+      </Component>
+      <Component Id="NoahDataInterface412">
+        <File Source="$(var.TIMS-X.NoahDataInterface.4.12.TargetPath)" />
+      </Component>
+      <Component Id="NoahDataInterface413">
+        <File Source="$(var.TIMS-X.NoahDataInterface.4.13.TargetPath)" />
+      </Component>
+      <Component Id="CloudDataServices">
+        <File Source="$(var.TIMS-X.CloudDataServices.TargetPath)" />
+      </Component>
+      <Component Id="CoreServices">
+        <File Source="$(var.TIMS-X.CoreServices.TargetPath)" />
+      </Component>
+      <ComponentRef Id="ProgramMenuComponent"/>
+      
+
+      <!-- Dependencies -->
+      <Component Id="Autofac">
+        <File Source="$(var.TIMS-X.CloudAssistant.TargetDir)Autofac.dll" />
+      </Component>
+      <Component Id="ControlzEx">
+        <File Source="$(var.TIMS-X.CloudAssistant.TargetDir)ControlzEx.dll" />
+      </Component>
+      <Component Id="MahApps.Metro">
+        <File Source="$(var.TIMS-X.CloudAssistant.TargetDir)MahApps.Metro.dll" />
+      </Component>
+      <Component Id="MvvmDialogs">
+        <File Source="$(var.TIMS-X.CloudAssistant.TargetDir)MvvmDialogs.dll" />
+      </Component>
+      <Component Id="MvvmHelpers">
+        <File Source="$(var.TIMS-X.CloudAssistant.TargetDir)MvvmHelpers.dll" />
+      </Component>
+      <Component Id="Newtonsoft.Json">
+        <File Source="$(var.TIMS-X.CloudAssistant.TargetDir)Newtonsoft.Json.dll" />
+      </Component>
+      <Component Id="Serilog">
+        <File Source="$(var.TIMS-X.CloudAssistant.TargetDir)Serilog.dll" />
+      </Component>
+      <Component Id="Serilog.Sinks.Observable">
+        <File Source="$(var.TIMS-X.CloudAssistant.TargetDir)Serilog.Sinks.Observable.dll" />
+      </Component>
+      <Component Id="System.Reactive">
+        <File Source="$(var.TIMS-X.CloudAssistant.TargetDir)System.Reactive.dll" />
+      </Component>
+      <Component Id="System.Runtime.CompilerServices.Unsafe">
+        <File Source="$(var.TIMS-X.CloudAssistant.TargetDir)System.Runtime.CompilerServices.Unsafe.dll" />
+      </Component>
+      <Component Id="System.Threading.Tasks.Extensions">
+        <File Source="$(var.TIMS-X.CloudAssistant.TargetDir)System.Threading.Tasks.Extensions.dll" />
+      </Component>
+      <Component Id="System.ValueTuple">
+        <File Source="$(var.TIMS-X.CloudAssistant.TargetDir)System.ValueTuple.dll" />
+      </Component>
+      <Component Id="System.Windows.Interactivity">
+        <File Source="$(var.TIMS-X.CloudAssistant.TargetDir)System.Windows.Interactivity.dll" />
+      </Component>
+      <Component Id="WPFLocalizeExtension">
+        <File Source="$(var.TIMS-X.CloudAssistant.TargetDir)WPFLocalizeExtension.dll" />
+      </Component>
+      <Component Id="XAMLMarkupExtensions">
+        <File Source="$(var.TIMS-X.CloudAssistant.TargetDir)XAMLMarkupExtensions.dll" />
+      </Component>
+      <Component Id="Xceed.Wpf.AvalonDock">
+        <File Source="$(var.TIMS-X.CloudAssistant.TargetDir)Xceed.Wpf.AvalonDock.dll" />
+      </Component>
+      <Component Id="Xceed.Wpf.AvalonDock.Themes.Aero">
+        <File Source="$(var.TIMS-X.CloudAssistant.TargetDir)Xceed.Wpf.AvalonDock.Themes.Aero.dll" />
+      </Component>
+      <Component Id="Xceed.Wpf.AvalonDock.Themes.Metro">
+        <File Source="$(var.TIMS-X.CloudAssistant.TargetDir)Xceed.Wpf.AvalonDock.Themes.Metro.dll" />
+      </Component>
+      <Component Id="Xceed.Wpf.AvalonDock.Themes.VS2010">
+        <File Source="$(var.TIMS-X.CloudAssistant.TargetDir)Xceed.Wpf.AvalonDock.Themes.VS2010.dll" />
+      </Component>
+      <Component Id="Xceed.Wpf.DataGrid">
+        <File Source="$(var.TIMS-X.CloudAssistant.TargetDir)Xceed.Wpf.DataGrid.dll" />
+      </Component>
+      <Component Id="Xceed.Wpf.Toolkit">
+        <File Source="$(var.TIMS-X.CloudAssistant.TargetDir)Xceed.Wpf.Toolkit.dll" />
+      </Component>
+    </ComponentGroup>
+	</Fragment>
+</Wix>

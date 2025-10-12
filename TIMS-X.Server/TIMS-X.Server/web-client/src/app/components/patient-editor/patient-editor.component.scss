@@ -1,0 +1,102 @@
+@import '../../../tims-defaults.scss';
+
+.modal-body {
+    border-top-right-radius: 7px;
+    border-top-left-radius: 7px;
+    background: $form_background_color;
+    padding: 16px 8px 4px 8px;
+}
+
+.modal-footer {
+    padding: 2px 8px;
+}
+
+.patient-tab {
+    padding-top: 10px;
+}
+
+.patient-tabs ::ng-deep .nav-link {
+    background-color: lightgray;
+    padding: 4px 8px;
+}
+
+.patient-tabs ::ng-deep .nav-link.active {
+    background-color: $form_background_color;
+}
+
+fieldset {
+    margin: 2px;
+    border: 1px solid rgb(34, 0, 255);
+    padding: 3px;
+    border-radius: 4px;
+}
+
+legend {
+    font-style: italic;
+    color: rgb(34, 0, 255);
+    padding: 1px;
+    font-size: 14px;
+    margin-bottom: 2px;
+}
+
+.patient-cb {
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.patient-tabs ::ng-deep .tab-content {
+    background-color: $form_background_color;
+}
+
+.demographic-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px 0;
+}
+
+.btn-text {
+    color: black;
+    margin: 0 2px;
+}
+
+::ng-deep .ex-modal-dialog {
+    max-width: 1000px !important;
+    width: 1000px;
+}
+
+.item-divider {
+    margin: 5px;
+}
+
+.column-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+}
+
+.free-text {
+    resize: none;
+}
+
+::ng-deep .dropdown-btn {
+    padding: 4px 10px 4px 4px !important;
+}
+
+::ng-deep .selected-item {
+    border: 0 !important;
+}
+
+.multi-select {
+    font-size: 14px;
+    width: 200px;
+    display: inline-block;
+    float: right;
+}
+
+.inactive {
+    color: #585858;
+}

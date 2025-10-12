@@ -1,0 +1,92 @@
+﻿<Window x:Class="TIMS_X.CloudAssistant.Views.ManageNoahView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TIMS_X.CloudAssistant.Views"
+        xmlns:converters="clr-namespace:TIMS_X.CloudAssistant.Converters"
+        mc:Ignorable="d"
+        Title="Manage Noah" SizeToContent="WidthAndHeight"
+        WindowStartupLocation="CenterOwner">
+    <Window.Resources>
+        <Style x:Key="PromptTextStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="HeaderTextStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="ValueTextStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Margin" Value="7,2"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Padding" Value="5,2"></Setter>
+        </Style>
+        <Style x:Key="ValueTextStyle2" TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="#3D3D3D" />
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Margin" Value="7,2"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Padding" Value="5,2"></Setter>
+        </Style>
+        <Style x:Key="ContactTextStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+        </Style>
+        <converters:NoahButtonTextConverter x:Key="NoahButtonTextConverter" />
+        <converters:StatusColorConverter x:Key="StatusColorConverter" />
+        <converters:StatusTextConverter x:Key="StatusTextConverter" />
+    </Window.Resources>
+
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="25">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        
+        <TextBlock Text="Database Interface" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource HeaderTextStyle}" HorizontalAlignment="Left"/>
+        <TextBlock Text="{Binding CurrentDbInterface}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" 
+                   Style="{StaticResource ValueTextStyle2}" Margin="5" Width="550"/>
+        <Button Content="{Binding IsTIMSDBInterfaceConfigured, Converter={StaticResource NoahButtonTextConverter}}"
+                Grid.Row="2" Grid.Column="3" Command="{Binding ToggleDbInterfaceCommand}" HorizontalAlignment="Right" Margin="5" Width="160"/>
+        <Separator Grid.Row="3" Grid.ColumnSpan="4" Grid.Column="0" Margin="0,10"></Separator>
+        <TextBlock Text="Service" Grid.Row="4" Grid.Column="0" Style="{StaticResource HeaderTextStyle}"/>
+        <TextBlock Text="Status" Grid.Row="4" Grid.Column="1" Style="{StaticResource HeaderTextStyle}"/>
+        <TextBlock Text="Start Time" Grid.Row="4" Grid.Column="2" Style="{StaticResource HeaderTextStyle}"/>
+        <TextBlock Text="Noah Client" Grid.Row="5" Grid.Column="0" Style="{StaticResource PromptTextStyle}"/>
+        <TextBlock Text="{Binding NoahClientRunning, Converter={StaticResource StatusTextConverter}}" Grid.Row="5" Grid.Column="1" Style="{StaticResource ValueTextStyle}"
+                   Background="{Binding NoahClientRunning, Converter={StaticResource StatusColorConverter}}"/>
+        <TextBlock Text="{Binding NoahClientStartTime}" Grid.Row="5" Grid.Column="2" Style="{StaticResource ValueTextStyle2}" HorizontalAlignment="Center" Margin="5"/>
+
+        <TextBlock Text="Noah Server" Grid.Row="6" Grid.Column="0" Style="{StaticResource PromptTextStyle}"/>
+        <TextBlock Text="{Binding NoahServerRunning, Converter={StaticResource StatusTextConverter}}" Grid.Row="6" Grid.Column="1" Style="{StaticResource ValueTextStyle}"
+                   Background="{Binding NoahServerRunning, Converter={StaticResource StatusColorConverter}}"/>
+        <TextBlock Text="{Binding NoahServerStartTime}" Grid.Row="6" Grid.Column="2" Style="{StaticResource ValueTextStyle2}" HorizontalAlignment="Center" Margin="5"/>
+        <Button Content="Restart Services" Grid.Row="6" Grid.Column="3" Command="{Binding RestartNoahServicesCommand}" HorizontalAlignment="Right" Margin="5" Width="110"/>
+    </Grid>
+</Window>

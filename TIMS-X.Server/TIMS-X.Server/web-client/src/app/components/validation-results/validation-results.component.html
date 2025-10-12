@@ -1,0 +1,5 @@
+<fieldset style="display: inline-block;">
+    <div style="display: block;" *ngFor="let r of results">
+        <div [ngStyle]="{'color' : getTextColor(r)}">{{r.message}}</div>
+    </div>
+</fieldset>

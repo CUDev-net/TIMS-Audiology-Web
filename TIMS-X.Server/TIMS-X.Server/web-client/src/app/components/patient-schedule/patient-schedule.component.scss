@@ -1,0 +1,27 @@
+textarea {
+    resize: none;
+}
+
+.g-recaptcha {
+    transform: scale(0.77);
+    -webkit-transform: scale(0.77);
+    transform-origin: 0 0;
+    -webkit-transform-origin: 0 0;
+}
+
+.bad-date {
+    color: #F00;
+    font-size: 12px;
+}
+
+:host {
+    background-color: #1963a0;
+    height: 100vh;
+}
+
+.ps-row {
+    background-color: white;
+    margin-left: -12px;
+    margin-right: -12px;
+    padding: 5px;
+}

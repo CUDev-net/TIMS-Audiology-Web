@@ -1,0 +1,68 @@
+<div class="form-background">
+    <form [formGroup]="linkPatientForm" a autocomplete="off" novalidate class="modal-lg">
+        <div class="modal-body">
+            <ng-template #template>
+                <div class="modal-body text-center">
+                    <p>{{confirmMessage}}</p>
+                    <button type="button" class="btn btn-default" (click)="confirm()">Yes</button>
+                    <button type="button" class="btn btn-primary" (click)="decline()">No</button>
+                </div>
+            </ng-template>
+
+            <div><span>Name: {{appointment.lastName}}, {{appointment.firstName}} {{appointment.initial}}</span>
+                <span style="margin-left: 15px;">DOB: {{appointment.birthDate | dateTimeFromIso |
+                    date:'mediumDate'}}</span>
+                <span style="margin-left: 15px;">Email: {{appointment.email}}</span>
+                <span style="margin-left: 15px;">Phone: {{appointment.phone}}</span>
+            </div>
+            <div class="input-group input-group-sm search">
+                <input type="text" formControlName="searchParameter" placeholder="Find patients.."
+                    class="form-control form-control-sm focus-ring tims-input" (keyup)="onSearchValue($event)" />
+                <button class="btn tims-button gradient" (click)="onSearch()" type="button"><i
+                        class="bi bi-search"></i></button>
+            </div>
+
+            <div style="display: block;">
+                <table class="table">
+                    <thead>
+                        <tr class="list-header">
+                            <th class="header">Name</th>
+                            <th class="header">DOB</th>
+                            <th class="header">Email</th>
+                            <th class="header">Phone</th>
+                            <th class="header">Last Updated</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let a of ts.schedulerStore.patient_appointment_candidates;">
+                            <td class="patient" style="width: 200px;"><a class="patient-link"
+                                    (click)="selectPatient(a.patientId, template)">{{a.lastName}}, {{a.firstName}}
+                                    {{a.initial}}</a>
+                            </td>
+                            <td class="patient" style="width: 100px;"><a class="patient-link"
+                                    (click)="selectPatient(a.patientId, template)">{{
+                                    a.dateOfBirth |
+                                    dateTimeFromIso | date:'mediumDate'}}</a></td>
+                            <td class="patient" style="width: 200px;"><a class="patient-link"
+                                    (click)="selectPatient(a.patientId, template)">{{a.email}}</a></td>
+                            <td class="patient" style="width: 100px;"><a class="patient-link"
+                                    (click)="selectPatient(a.patientId, template)">{{a.phone}}</a></td>
+                            <td class="patient" style="width: 100px;"><a class="patient-link"
+                                    (click)="selectPatient(a.patientId, template)">{{a.dateLastUpdated |
+                                    dateTimeFromIso | date:'medium'}}</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <div style="width: auto;" class="input-group input-group-sm justify-content-end">
+                <button class="btn tims-button gradient" type="button" data-bs-toggle="tooltip" title="Create Patient"
+                    (click)="onCreatePatient()"><i class="dialog-button bi bi-person-fill-add"></i></button>
+                <button class="btn tims-button gradient" type="button" (click)="onCancel()" data-bs-toggle="tooltip"
+                    title="Close without saving"><i class="dialog-button bi bi-x-square-fill"></i></button>
+            </div>
+        </div>
+    </form>
+</div>

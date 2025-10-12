@@ -1,0 +1,171 @@
+﻿@page "{id:int}"
+@using Microsoft.CodeAnalysis.CSharp.Syntax
+@using TIMS_X.Server.Services
+@model Pages.PatientModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Patient";
+    var submitCommand = "return submitDocumentsV2('" + Model.Patient.Guid + "', " + Model.Patient.Id + ")";
+    var intakeCommand = "goToPatientIntake(" + Model.Patient.Id + ")";
+}
+
+
+<div class="container form-control">
+    <div class="row">
+        @*<div class="col-xs-6 pl-2">
+                <img class="patient-photo patient-photo-top" src='/web/Imaging/PatientPhoto?patientGuid=@Model.Patient.Guid' />
+            </div>*@
+        <div class="col-xs-6 pl-3">
+            <h4 class="h6 pt-1" style="font-weight:600;">@Model.Patient.LastFirstMiddle</h4>
+            <span class="h6 p-0">DOB: @Model.Patient.BirthDate?.ToString("dd MMM yyyy")</span>
+            <br />
+            <span class="h6 p-0">Sex: @Model.Patient.SexFull</span>
+            <br />
+        </div>
+    </div>
+    @if (Model.DigitalIntakeFormExists)
+    {
+        <div class="row">
+            <div class="col-sm-6">
+                <button type="button" class="btn btn-outline-primary mt-2 mb-2" onclick="@intakeCommand">Intake Form</button>
+            </div>
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group form-control">
+                <label style="font-weight:600;">Patient Photo</label>
+                <input id="patientPhotoInput" type="file" class="form-control-file" accept="image/*" onchange='uploadPhoto()' />
+                <div id="photoupload"></div>
+                <div id="patientPhotoControls"></div>
+
+            </div>
+            <div class="form-group form-control">
+                <label style="font-weight:600;">Insurance Card Front</label>
+                <div class="row mb-1">
+                    <div class="col-sm-1 mt-1">
+                        <label style="font-weight:600;">Slot</labelstyle="font-weight:600;">
+                    </div>
+                    <div class="col-sm-6">
+                        <select asp-for="InsuranceSlotFront" class="form-control">
+                            @foreach (var slot in Model.InsuranceSlots)
+                            {
+                                <option value="@slot">@slot.ToString()</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+
+                <input id="insCardFrontInput" type="file" class="form-control-file" accept="image/*" onchange='uploadInsFront()' />
+                <div id="frontinsupload"></div>
+                <div id="insFrontControls"></div>
+
+            </div>
+            <div class="form-group form-control">
+                <label style="font-weight:600;">Insurance Card Back</label>
+                <div class="row mb-1">
+                    <div class="col-sm-1 mt-1">
+                        <label style="font-weight:600;">Slot</labelstyle="font-weight:600;">
+                    </div>
+                    <div class="col-sm-6">
+                        <select asp-for="InsuranceSlotBack" class="form-control">
+                            @foreach (var slot in Model.InsuranceSlots)
+                            {
+                                <option value="@slot">@slot.ToString()</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <input id="insCardBackInput" type="file" class="form-control-file" accept="image/*" onchange='uploadInsBack()' />
+                <div id="backinsupload"></div>
+                <div id="insBackControls"></div>
+            </div>
+            @*<div class="form-group form-control">
+                    <label asp-for="DocumentUploads">Additional Documents</label>
+                    <input type="file" class="form-control-file" id="doc-upload" accept=".pdf" multiple onchange='uploadDocuments()'/>
+                </div>*@
+        </div>
+    </div>
+    <div class="row docList"></div>
+    <div class="row">
+        <div class="col-sm-6">
+            <a href="@Url.Page("/Patient", new {id=@Model.Patient.Id})" class="btn btn-outline-dark">Back</a>
+            <a class="btn btn-outline-primary" onclick="@submitCommand">Submit</a>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    <environment include="Development">
+        <script src="~/js/patient.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/js/patient.min.js"></script>
+    </environment>
+}
+
+@*<form id="uploadForm" method="post" enctype="multipart/form-data" class='@(Model.HasUpload ? "my-hidden" : string.Empty)' onsubmit='@(Model.HasUpload ? submitCommand : string.Empty)'>
+        <div class="row">
+            <div class="col-sm-6">
+                $1$<div class="form-group form-control">
+                    <label asp-for="PhotoUpload">Patient Photo</label>
+                    <input type="file" class="form-control-file" asp-for="PhotoUpload" accept="image/*" />
+                </div>#1#
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <input type="submit" class="btn btn-outline-primary" value="Next" />
+            </div>
+        </div>
+
+    </form>*@
+@*<form method="post" class="@(Model.HasUpload ? string.Empty : "my-hidden" )" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-sm-6">
+                @for (int i = 0; i < Model.PreparedDocuments.Count; ++i)
+                {
+                    var className = Model.PreparedDocuments[i].DocumentTypeId == ImagingService.PhotoDocumentType ? "disabled" : null;
+                    <div class="form-control mb-2">
+                        <label>@(i + 1). @Model.PreparedDocuments[i].Name</label>
+                        <div class="form-group">
+                            <label asp-for="@Model.PreparedDocuments[i].DocumentTypeId">Document Type</label>
+
+                            <input asp-for="@Model.PreparedDocuments[i].Image" type="hidden" />
+                            @if (Model.PreparedDocuments[i].DocumentTypeId == ImagingService.PhotoDocumentType)
+                            {
+                                <span class="form-control disabled">Patient Photo</span>
+                                <input asp-for="@Model.PreparedDocuments[i].DocumentTypeId" type="hidden" />
+                            }
+                            else
+                            {
+                                <select asp-for="@Model.PreparedDocuments[i].DocumentTypeId" class="form-control">
+                                    @foreach (var docType in Model.DocumentTypes)
+                                    {
+                                        <option value="@docType.Id">@docType.Name</option>
+                                    }
+                                </select>
+                            }
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="@Model.PreparedDocuments[i].Description">Description</label>
+                            <input class="form-control" asp-for="@Model.PreparedDocuments[i].Description" maxlength="50" />
+                            <span class="text-danger" asp-validation-for="@Model.PreparedDocuments[i].Description"></span>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <a href="@Url.Page("/Patient", new {id=@Model.Patient.Id})" class="btn btn-outline-dark">Back</a>
+                <input type="submit" value="Submit" class="btn btn-outline-primary" />
+            </div>
+        </div>
+    </form>*@

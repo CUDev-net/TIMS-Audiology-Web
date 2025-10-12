@@ -1,0 +1,11 @@
+<form [formGroup]="timeForm" autocomplete="off" novalidate>
+  <input style="margin-right: 3px;" (change)="updateModel()" type="text" NumberOnly="true" maxlength="2" min="00"
+    class="form-control form-control-sm d-inline number focus-ring tims-input" required [formControlName]="'hours'"
+    placeholder="hr">
+  <input style="margin: 0 3px;" (change)="updateModel()" type="text" NumberOnly="true" maxlength="2" min="00" max="59"
+    class="form-control form-control-sm d-inline number focus-ring tims-input" required placeholder="mn"
+    [formControlName]="'minutes'">
+  <label [hidden]="!isDisabled" style="margin-top: 6px;" class="col-form-label tims-label">{{amOrPm}}</label>
+  <button [hidden]="isDisabled" type="button" class="btn btn-sm" (click)="setAmPm()">{{amOrPm}}
+  </button>
+</form>

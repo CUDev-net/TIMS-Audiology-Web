@@ -1,0 +1,77 @@
+@import '../../../tims-defaults.scss';
+
+.nav-link {
+    padding: 4px 6px;
+    font-size: 13px;
+}
+
+.patient-summary {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 5px;
+}
+
+.patient-info-header {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.patient-info-summary-content {
+    background-color: #ffffff;
+    flex: 1 0;
+    flex-direction: column;
+    padding: 5px 0 0 5px;
+    font-size: 13px;
+    overflow-y: auto;
+}
+
+.patient-info-history-content {
+    background-color: #ffffff;
+    padding: 5px 0 0 5px;
+    font-size: 13px;
+    display: block;
+    overflow-y: auto;
+}
+
+.ot-status {
+    margin: 6px 5px;
+    padding: 2px 5px;
+    ;
+}
+
+.restrictions {
+    background-color: #f2dede;
+    color: #b94a48;
+    border-color: #eed3d7;
+    margin: 6px 5px;
+    border-radius: 4px;
+    padding: 4px 10px;
+}
+
+.inactive {
+    background-color: #e3e2e2;
+    color: #000;
+    border-color: #aeaeae;
+    margin: 6px 5px;
+    border-radius: 4px;
+    padding: 4px 10px;
+}
+
+.appointment-summary {
+    list-style-type: none;
+}
+
+.item-divider {
+    margin: 0 10px 0 0;
+}
+
+.summary-divider {
+    margin: 5px 10px 5px 0;
+}

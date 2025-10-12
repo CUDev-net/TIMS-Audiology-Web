@@ -1,0 +1,29 @@
+﻿@page
+@model TIMS_X.Server.Pages.ReportsModel
+@{
+    ViewData["Title"] = "Reports";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/lib/reportbro/reportbro.css" />
+}
+
+<h2>Reports</h2>
+<div id="reportbro"></div>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/autosize.js/3.0.20/autosize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.8.0/JsBarcode.all.min.js"></script>
+
+    <script src="~/js/reports.js"></script>
+
+    <environment include="Development">
+        <script src="~/lib/reportbro/reportbro.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/lib/reportbro/reportbro.min.js"></script>
+    </environment>
+}
+

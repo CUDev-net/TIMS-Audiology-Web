@@ -1,0 +1,22 @@
+<form [formGroup]="nameform" autocomplete="off" novalidate>
+    <div>
+        <div class="form-group row">
+            <div class="col-sm-5 pe-1 position-relative">
+                <input type="text" class="form-control form-control-sm focus-ring tims-input required-control"
+                    PatientName name="firstname" [formControlName]="'firstname'" placeholder="first name" required
+                    maxlength="25" [ngClass]="{ 'is-invalid': f['firstname'].touched && f['firstname'].errors }">
+                <div class="invalid-tooltip">Required</div>
+            </div>
+            <div class="col-sm-1 ps-1 pe-1 position-relative">
+                <input type="text" class="form-control form-control-sm focus-ring tims-input" name="middlename"
+                    PatientName maxlength="1" [formControlName]="'middlename'" placeholder="mi">
+            </div>
+            <div class="col-sm-6 ps-1 position-relative">
+                <input type="text" class="form-control form-control-sm focus-ring tims-input required-control"
+                    PatientName name="lastname" formControlName="lastname" placeholder="last name" required
+                    maxlength="35" [ngClass]="{ 'is-invalid': f['lastname'].touched && f['lastname'].errors }">
+                <div class="invalid-tooltip">Required</div>
+            </div>
+        </div>
+    </div>
+</form>

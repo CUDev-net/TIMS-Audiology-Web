@@ -1,0 +1,61 @@
+﻿@page
+@using System
+@model Pages.Support.CreatePermissionModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<h2 class="h2">Create Vendor Permission</h2>
+<form method="post" class="form-control" onsubmit="return submitPermissionForm()">
+    <div class="text-danger" asp-validation-summary="All"></div>
+    <input asp-for="VendorPermission.Id" type="hidden" value="0" />
+    <input asp-for="VendorPermission.DateCreated" type="hidden" value="@DateTime.Now" />
+    <input asp-for="VendorPermission.UrlsJson" type="hidden" id="urlList" value="" />
+    <div>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" asp-for="VendorPermission.Inactive" />
+            <label class="form-check-label" asp-for="VendorPermission.Inactive"></label>
+        </div>
+        <div class="form-group">
+            <label asp-for="VendorPermission.Name"></label>
+            <input class="form-control" asp-for="VendorPermission.Name" maxlength="64" />
+            <span class="text-danger" asp-validation-for="VendorPermission.Name"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="VendorPermission.Description"></label>
+            <textarea class="form-control" asp-for="VendorPermission.Description" maxlength="256" rows="3"></textarea>
+            <span class="text-danger" asp-validation-for="VendorPermission.Description"></span>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-auto">
+                    <label asp-for="VendorPermission.ApiUrls">API Endpoints</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <select multiple="multiple" id='dvpAssigned' class="form-control" size="5">
+                    </select>
+                </div>
+                <div class="col-auto text-center btn-group-vertical editPermissionsMode">
+                    <input type="button" id="btnallleft" data-assigned="dvpAssigned" data-unassigned="dvpUnassigned" value="<<" class="btn btn-sm btn-outline-secondary" />
+                    <input type="button" id="btnleft" data-assigned="dvpAssigned" data-unassigned="dvpUnassigned" value="<" class="btn btn-sm btn-outline-secondary" /><br />
+                    <input type="button" id="btnright" data-assigned="dvpAssigned" data-unassigned="dvpUnassigned" value=">" class="btn btn-sm btn-outline-secondary" /><br />
+                    <input type="button" id="btnallright" data-assigned="dvpAssigned" data-unassigned="dvpUnassigned" value=">>" class="btn btn-sm btn-outline-secondary" /><br />
+                </div>
+                <div class="col editPermissionsMode">
+                    <select multiple="multiple" id='dvpUnassigned' class="form-control" size="5">
+                        @foreach (var url in Model.ApiUrls)
+                        {
+                            <option value="@url.Id">@url.Url</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+</form>

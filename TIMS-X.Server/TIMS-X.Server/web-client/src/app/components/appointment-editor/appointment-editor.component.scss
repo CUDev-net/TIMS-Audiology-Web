@@ -1,0 +1,41 @@
+@import '../../../tims-defaults.scss';
+
+.modal-body {
+    border-top-right-radius: 7px;
+    border-top-left-radius: 7px;
+    background: $form_background_color;
+    padding: 16px 8px;
+}
+
+.modal-footer {
+    padding: 2px 8px;
+}
+
+fieldset {
+    margin: 2px;
+    border: 1px solid rgb(0, 0, 255);
+    padding: 3px;
+    border-radius: 4px;
+    background: #f9f9f9;
+}
+
+legend {
+    font-style: italic;
+    color: rgb(34, 0, 255);
+    padding: 1px;
+    font-size: 14px;
+    margin-bottom: 2px;
+}
+
+.appointment-time {
+    display: flex;
+    align-items: center;
+}
+
+:host ::ng-deep .btn {
+    font-size: 14px;
+}
+
+textarea {
+    resize: none;
+}

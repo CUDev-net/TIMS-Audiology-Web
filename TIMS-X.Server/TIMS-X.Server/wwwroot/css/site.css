@@ -1,0 +1,229 @@
+/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification 
+for details on configuring this project to bundle and minify static web assets. */
+body {
+    padding-top: 59px;
+    padding-bottom: 20px;
+    background-color: #F1F1F1;
+}
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Carousel */
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"] {
+    width: 100%;
+}
+
+/* QR code generator */
+#qrCode {
+    margin: 15px;
+}
+
+
+.patFormLogo {
+    
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+
+    .patFormLogo {
+        max-width: 100%;
+        max-height: 100%;
+        padding-left: 0px !important;
+    }
+}
+
+h3 {
+    text-align: center;
+}
+
+.disabled {
+    background-color: #E6E6E6;
+    color: #888;
+    font-style: italic;
+}
+
+.custom-nav {
+    background-color: #003768;
+}
+
+footer {
+    height: 40px;
+    width: 100%;
+    margin: auto;
+    margin-top: 20px;
+    text-align: center;
+    color: #888888;
+    background-color: transparent;
+}
+
+.colorit {
+    color: #888888;
+}
+
+.logout-btn {
+    width: 60px;
+    height: 25px;
+    font-size: 12px;
+    vertical-align: center;
+}
+
+body#SignIn {
+    /*background-image: url("../images/login_background2.jpg");*/
+    background-color: #E5E5E5;
+    /* Full height */
+    height: 100%;
+    /* Center and scale the image nicely */
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.login-card {
+    margin: 0 auto;
+    max-width: 100%;
+    width: 600px;
+}
+
+
+.btn-link-special {
+    color: black;
+}
+
+.loader {
+    border: 8px solid #f3f3f3; /* Light grey */
+    border-top: 8px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+.loader-sm {
+    border: 6px solid #f3f3f3; /* Light grey */
+    border-top: 6px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+code {
+    color: #434343;
+    white-space: nowrap;
+}
+
+.my-hidden {
+    display: none;
+}
+
+.patient-photo {
+    margin: 5px;
+    max-width: 105px;
+    height: auto;
+}
+
+
+.patient-photo-top {
+    border: 1px solid gray;
+    border-radius: 5%;
+}
+
+.insurance-photo {
+    margin: 5px;
+    max-width: 200px;
+    height: auto;
+}
+
+.rotatedLeft {
+    -ms-transform: rotate(90deg); /* IE 9 */
+    -moz-transform: rotate(90deg); /* Firefox */
+    -webkit-transform: rotate(90deg); /* Safari and Chrome */
+    -o-transform: rotate(90deg); /* Opera */
+    transform: rotate(90deg);
+}
+.rotatedRight {
+    -ms-transform: rotate(-90deg); /* IE 9 */
+    -moz-transform: rotate(-90deg); /* Firefox */
+    -webkit-transform: rotate(-90deg); /* Safari and Chrome */
+    -o-transform: rotate(-90deg); /* Opera */
+    transform: rotate(-90deg);
+}
+
+.checkable:hover {
+    cursor: pointer;
+}
+
+.scrollbox {
+    display: inline-block;
+    overflow-y: scroll;
+    max-height: 260px;
+}
+
+.section-header {
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: #CCCCCC;
+    margin-bottom: 15px;
+/*    color: #003768;
+    border-bottom-color: #003768;*/
+}
+
+.col-form-label {
+    font-weight: 600;
+}
+
+.required-field:after {
+    content: "*";
+    color: DarkRed;
+}
+
+.required-cb::before {
+    content: "*";
+    color: DarkRed;
+}
+
+.required-input {
+    background: #FFF7DD;
+}
+
+.missing-input {
+    border: 1px solid red;
+}
+
+.vert-max {
+    height: 100vh;
+}
+
+.nav-link:hover {
+    color: #0088cc !important;
+}
+
+.nav-link {
+    padding: 2px 8px;
+    color: #ffffff !important;
+}
+
+.navbar-brand {
+    line-height: 24px;
+}

@@ -1,0 +1,269 @@
+﻿@page
+@model Pages.AppointmentsModel
+@{
+    ViewData["Title"] = "Appointments";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+@section Styles {
+    <link rel="stylesheet" type="text/css" href="https://uicdn.toast.com/tui.time-picker/latest/tui-time-picker.css">
+    <link rel="stylesheet" type="text/css" href="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.css">
+    <link rel="stylesheet" href="~/lib/tui-calendar/tui-calendar.css" />
+    <link href="~/css/scheduler.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="~/css/icons.css" />
+}
+<div class="wrapper">
+    <!-- Sidebar  -->
+    <nav id="sidebar">
+        <div class="container filter-container">
+            <div class="row">
+                <div class="col">
+                    <button type="button" class="btn btn-default sidebar-button right-aligned" id="sidebarCollapse2">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                </div>
+            </div>
+            <br />
+
+            <div class="row">
+                <div class="col">
+                    <h5 class="h5">Providers</h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <input type="checkbox" onclick="filterChanged();" class="checkable ml-md-1" id="CheckAllProviders" />
+                    <label for="CheckAllProviders" class="checkable" style="font-weight: 600;">All Providers</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <nav class="scroll-nav">
+                        <ul>
+                            @for (var i = 0; i < Model.Providers.Count(); ++i)
+                            {
+                                <li>
+                                    <input id="Provider_@Model.Providers[i].Model.Id" class="provider-checkbox checkable" onclick="filterChanged();" asp-for="Providers[i].IsChecked" />
+                                    <label class="checkable" asp-for="Providers[i].IsChecked">@Model.Providers[i].Model.LastFirstMiddle</label>
+                                </li>
+                            }
+
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h5 class="h5">Sites</h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <input type="checkbox" onclick="filterChanged();" class="checkable ml-md-1" id="CheckAllSites" />
+                    <label for="CheckAllSites" class="checkable" style="font-weight: 600;">All Sites</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <nav class="scroll-nav">
+                        <ul>
+                            @for (var i = 0; i < Model.Sites.Count(); ++i)
+                            {
+                                <li class="site-item">
+                                    <span>
+                                        <input data-siteId="@Model.Sites[i].Id" id="Site_@Model.Sites[i].Id" class="site-checkbox checkable" onclick="filterChanged();" asp-for="Sites[i].IsChecked" />
+                                        <label class="checkable" asp-for="Sites[i].IsChecked">@Model.Sites[i].Name</label>
+                                    </span>
+                                </li>
+                            }
+
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <h5 class="h5">Resources</h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <input type="checkbox" onclick="filterChanged();" class="checkable ml-md-1" id="CheckAllResources" />
+                    <label for="CheckAllResources" class="checkable" style="font-weight: 600;">All Resouces</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <nav class="scroll-nav">
+                        <ul>
+                            @for (var i = 0; i < Model.Sites.Count(); ++i)
+                            {
+                                @for (var j = 0; j < Model.Sites[i].Resources.Count(); ++j)
+                                {
+                                    <li class="resource-item" style="display:none;" data-siteId="@Model.Sites[i].Id">
+                                        @{
+                                            var style = string.Empty;
+                                            if (!string.IsNullOrEmpty(Model.Sites[i].CheckableResources[j].Model.Color))
+                                            {
+                                                style = $"color: {Model.Sites[i].CheckableResources[j].Model.Color};";
+                                            }
+                                        }
+
+                                        <input id="Resource_@Model.Sites[i].CheckableResources[j].Model.Id" asp-for="Sites[i].CheckableResources[j].IsChecked" onclick="filterChanged();" class="resource-checkbox checkable" />
+                                        <i style="@style" class="fas fa-circle"></i>
+                                        <label class="checkable" asp-for="Sites[i].CheckableResources[j].IsChecked">@Model.Sites[i].CheckableResources[j].Model.Name</label>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col ml-5">
+                <button class="btn btn-dark filterButton" onclick="return cancelFilter()">Cancel</button>
+                <button id="SaveFilterButton" class="btn btn-primary filterButton" onclick="return saveFilter()" disabled>Save Changes</button>
+            </div>
+        </div>
+
+    </nav>
+
+    <!-- Page Content  -->
+    <div id="content">
+        <div class="container-fluid pt-3">
+            <div class="row no-gutters p-1 scheduler-header">
+                <div class="col">
+                    <span id="renderRange" class="render-range"></span>
+                </div>
+            </div>
+            <div class="row no-gutters p-1">
+                <div class="col-sm">
+                    <span id="calmenu">
+                        <button type="button" class="btn btn-default calbtn btn-sm move-today" id="sidebarCollapse">
+                            <i class="fas fa-align-left"></i>
+                        </button>
+                        <button type="button" class="btn btn-default calbtn btn-sm move-today" data-action="move-today">Today</button>
+                        <button type="button" class="btn btn-default calbtn btn-sm move-day" data-action="move-prev">
+                            <i class="calendar-icon ic-arrow-line-left" data-action="move-prev"></i>
+                        </button>
+                        <button type="button" class="btn btn-default  btn-sm calbtn move-day" data-action="move-next">
+                            <i class="calendar-icon ic-arrow-line-right" data-action="move-next"></i>
+                        </button>
+
+
+                    </span>
+                    <span class="dropdown right-aligned">
+                        <button id="dropdownMenu-calendarType" class="btn btn-default btn-sm dropdown-toggle calbtn" type="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="true">
+                            <i id="calendarTypeIcon" class="calendar-icon ic_view_month" style="margin-right: 4px;"></i>
+                            <span id="calendarTypeName">Dropdown</span>&nbsp;
+
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenu-calendarType">
+                            <a class="dropdown-item" role="menuitem" data-action="toggle-daily"><i class="calendar-icon ic_view_day mr-2"></i>Day</a>
+                            <a class="dropdown-item" role="menuitem" data-action="toggle-5-day"><i class="calendar-icon ic_view_week mr-2"></i>5 Day</a>
+                            <a class="dropdown-item" role="menuitem" data-action="toggle-weekly"><i class="calendar-icon ic_view_week mr-2"></i>Week</a>
+                            <a class="dropdown-item" role="menuitem" data-action="toggle-monthly"><i class="calendar-icon ic_view_month mr-2"></i>Month</a>
+                        </div>
+                    </span>
+                </div>
+            </div>
+            <div class="row no-gutters">
+                <div class="col" id="calendar" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="ApptWarningDialog" tabindex="-1" role="dialog" aria-labelledby="apptWarningTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="apptWarningTitle">Please Review the Following Warnings</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div>
+                <h5 class="m-3">Do you wish to continue?</h5>
+            </div>
+            <div class="modal-footer model-footer-centered">
+                <button type="button" class="btn btn-primary" onclick="handleWarningDlgYes();">Yes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal" id="ApptErrorDialog" tabindex="-1" role="dialog" aria-labelledby="apptErrorTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="apptErrorTitle">Appointment Save Error</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Okay</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="ConfirmDialog" tabindex="-1" role="dialog" aria-labelledby="confirmTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title" id="confirmTitle"></div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body container-fluid">
+                <div class="row">
+                    <span class="modal-body-text ml-2" />
+                </div>
+                <div class="row">
+                    <span class="modal-body-text2 ml-2" />
+                </div>
+                
+
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="handleConfirmUpdateYes();">Confirm</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://uicdn.toast.com/tui.code-snippet/v1.5.2/tui-code-snippet.min.js"></script>
+    <script src="https://uicdn.toast.com/tui.time-picker/v2.0.3/tui-time-picker.min.js"></script>
+    <script src="https://uicdn.toast.com/tui.date-picker/v4.0.3/tui-date-picker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chance/1.0.13/chance.min.js"></script>
+    
+
+
+    <environment include="Development">
+        <script src="~/lib/tui-calendar/tui-calendar.js"></script>
+        <script src="~/js/appointment_types.js"></script>
+        <script src="~/js/appointments.js"></script>
+        <script src="~/js/scheduler.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/lib/tui-calendar/tui-calendar.min.js"></script>
+        <script src="~/js/scheduler_bundle.min.js"></script>
+
+    </environment>
+}

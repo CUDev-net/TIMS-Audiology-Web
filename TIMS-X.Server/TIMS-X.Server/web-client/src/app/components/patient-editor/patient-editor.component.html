@@ -1,0 +1,620 @@
+<div class="form-background">
+    <form [formGroup]="patientForm" a autocomplete="off" novalidate class="modal-lg">
+        <div style="min-height: 620px;" class="modal-body">
+            <div class="row">
+                <div style="margin-right: -12px;" class="col-sm-6 pe-1">
+                    <app-name-entry [nameform]="patientForm"></app-name-entry>
+                </div>
+                <div class="col-sm-2 ps-1 pe-1">
+                    <div style="padding-left: 10px;" class="position-relative">
+                        <input class="form-control form-control-sm date-only focus-ring tims-input" BirthDate
+                            placeholder="birth date" bsDatepicker #dp="bsDatepicker" [bsConfig]="bsConfig"
+                            formControlName="birthdate" name="birthdate"
+                            [ngClass]="{ 'is-invalid': f['birthdate'].touched && f['birthdate'].errors, 'required-control': birthDateRequired }">
+                        <div class="invalid-tooltip">Required</div>
+                    </div>
+                </div>
+                <div class="col-sm-2 pe-1">
+                    <input type="text" class="form-control form-control-sm focus-ring tims-input" name="chart_acct_num"
+                        [formControlName]="'chart_acct_num'" placeholder="account num" maxlength="35">
+                </div>
+            </div>
+
+            <ul class="nav nav-tabs" style="margin: 5px -2px 0 -2px;">
+                <li class="nav-item" (click)="handlesDetailsClick()">
+                    <div class="nav-link" [ngClass]="{ 'active': isdetalsselected }">
+                        Details
+                    </div>
+                </li>
+                <li class="nav-item" (click)="handlesNotesClick()">
+                    <div class="nav-link" [ngClass]="{ 'active': !isdetalsselected }">
+                        Notes/Insurance</div>
+                </li>
+            </ul>
+
+            <!-- Notes/Insurance-->
+            <div [style.display]="isdetalsselected ? 'none' : 'block'">
+                <div style="margin-top: 5px;" class="row">
+                    <div class="col-sm-6">
+                        <textarea type="text" class="form-control form-control-sm focus-ring tims-input free-text"
+                            [formControlName]="'notes'" rows="7"></textarea>
+                    </div>
+                    <div class="col-sm-6">
+                        <fieldset style="margin: 0;">
+                            <legend>Name and Address for Invoicing</legend>
+                            <div style="margin: -28px 50px 0 0; float: right;">
+                                <label style="padding: 0 5px 0 0;" class="tims-label" for="genderid">Use</label>
+                                <input type="checkbox" class="form-check-input cb-1x focus-ring tims-input"
+                                    [formControlName]="'useinvoicingaddress'"
+                                    (change)="useInvoicingAddressChanged(f['useinvoicingaddress'].value)">
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-5 pe-1 position-relative">
+                                    <input type="text" class="form-control form-control-sm focus-ring tims-input"
+                                        PatientName [formControlName]="'invoicingfirstname'" placeholder="first name"
+                                        maxlength="12">
+                                </div>
+                                <div class="col-sm-1 ps-1 pe-1 position-relative">
+                                    <input type="text" class="form-control form-control-sm focus-ring tims-input"
+                                        PatientName maxlength="1" [formControlName]="'invoicingmiddlename'"
+                                        placeholder="mi">
+                                </div>
+                                <div class="col-sm-6 ps-1 position-relative">
+                                    <input type="text" class="form-control form-control-sm focus-ring tims-input"
+                                        PatientName [formControlName]="'invoicinglastname'" placeholder="last name"
+                                        maxlength="20">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-sm-6 position-relative">
+                                    <input type="text" class="form-control form-control-sm focus-ring tims-input"
+                                        [formControlName]="'invoicingaddreess1'" placeholder="street 1" maxlength="30">
+                                </div>
+                                <div class="col-sm-6 position-relative">
+                                    <input type="text" class="form-control form-control-sm focus-ring tims-input"
+                                        [formControlName]="'invoicingaddreess2'" placeholder="street 2" maxlength="30">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6 position-relative">
+                                    <input type="text" class="form-control form-control-sm focus-ring tims-input"
+                                        [formControlName]="'invoicingcity'" placeholder="city" maxlength="20">
+                                </div>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control form-control-sm focus-ring tims-input"
+                                        name="state2" maxlength="2" [formControlName]="'invoicingstate'" maxlength="3">
+                                </div>
+                                <div class="col-sm-4 position-relative">
+                                    <input type="text" class="form-control form-control-sm focus-ring tims-input"
+                                        name="addressline1" [formControlName]="'invoicingzip'" placeholder="zip"
+                                        maxlength="15" (input)="invoicingZipChanged($event)">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6">
+                                    <input type="tel" style="width: 110px;" NumberOnly PhoneMask
+                                        placeholder="###-###-####" [formControlName]="'invoicingphone'" maxlength="15"
+                                        class="form-control form-control-sm focus-ring tims-input">
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="row" style="margin-right: 0;">
+                    <div style="margin-top: 5px;" class="col-sm-3">
+                        <app-insurance-entry #primary header='Primary' />
+                    </div>
+                    <div style="margin-top: 5px;" class="col-sm-3">
+                        <app-insurance-entry #secondary header='Secondary' />
+                    </div>
+                    <div style="margin-top: 5px;" class="col-sm-3">
+                        <app-insurance-entry #tertiary header='Tertiary' />
+                    </div>
+
+                    <div class="col-sm-3" *ngIf="ts.practiceStore.businessRules.useApptAuthorizations">
+                        <fieldset style="height: 350px;">
+                            <legend>Authorizations<button
+                                    style="margin-left: 15px; height: 25px; width: 25px; padding: 0px;"
+                                    (click)="handlesAddAuthoriztion()" class="btn tims-button gradient"><i
+                                        class="bi bi-plus"></i></button></legend>
+                            <div *ngFor="let p of appointmentAuthorizations;">
+
+                                <a style="white-space: nowrap; overflow-x: hidden;" data-bs-toggle="tooltip"
+                                    class="patient-link" data-bs-toggle="tooltip" title="{{p.displayString}}"
+                                    [ngClass]="{'inactive': p.inactive}"
+                                    (click)="editApptAuthorization(p.id)"><span>{{p.displayString}}</span></a>
+                            </div>
+                        </fieldset>
+                        <div class="form-group row">
+                            <div class="col-sm-2">
+                                <input type="checkbox"
+                                    class="form-check-input cb-1x align-middle patient-cb focus-ring tims-input"
+                                    (change)="showinactiveapptauthorizationsChanged()">
+                            </div>
+                            <div class="col-sm-8">
+                                <label class="col-form-label tims-label" for="showInactiveAuth">Show Inactive</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Tab-->
+            <div [style.display]="isdetalsselected ? 'block' : 'none'">
+                <div style="margin-bottom: 2px; padding-left: 5px; margin-right: 5px;" class="demographic-row">
+                    <label style="padding-left: 0;" class="col-form-label tims-label" for="siteid">Site</label>
+                    <div class="position-relative">
+                        <select style="width: 120px; display: inline-block;"
+                            class="form-control form-control-sm focus-ring tims-input required-control" name="siteid"
+                            [formControlName]="'siteid'"
+                            [ngClass]="{ 'is-invalid': f['siteid'].touched && f['siteid'].errors }">
+                            <option *ngFor="let site of ts.siteStore.site_list" [value]="site.id">{{site.name}}</option>
+                        </select>
+                        <div class="invalid-tooltip">Required</div>
+                    </div>
+
+                    <label class="col-form-label tims-label" for="seenbyproviderid">Seen By</label>
+                    <div class="position-relative">
+                        <select style="width: 120px;" class="form-control form-control-sm focus-ring tims-input"
+                            name="seenbyproviderid" [formControlName]="'seenbyproviderid'"
+                            [ngClass]="{ 'is-invalid': f['seenbyproviderid'].touched && f['seenbyproviderid'].errors, 'required-control': seenbyProviderRequired }">
+                            <option [ngValue]="null">choose</option>
+                            <option *ngFor="let p of ts.providerStore.provider_summary_list" [value]="p.id">
+                                {{p.firstName}}
+                                {{p.lastName}}</option>
+                        </select>
+                        <div class="invalid-tooltip">Required</div>
+                    </div>
+
+                    <label class="col-form-label tims-label" for="mktcategoryid">Marketing</label>
+                    <div class="position-relative">
+                        <select style="width: 120px; display: inline-block;"
+                            class="form-control form-control-sm focus-ring tims-input"
+                            [formControlName]="'marketReferenceId'"
+                            [ngClass]="{ 'is-invalid': f['marketReferenceId'].touched && f['marketReferenceId'].errors, 'required-control': marketingRequired }">
+                            <option [ngValue]="null">choose</option>
+                            <optgroup *ngFor="let category of ts.lookupStore.marketcategory_list"
+                                label="{{category.name}}">
+                                <option *ngFor="let mktRef of category.marketingReferences" [value]="mktRef.id">
+                                    {{mktRef.name}}</option>
+                            </optgroup>
+                        </select>
+                        <div class="invalid-tooltip">Required</div>
+                    </div>
+
+                    <label style="padding-left: 0;" class="col-form-label tims-label" for="genderid">Gender</label>
+                    <div class="position-relative">
+                        <select style="width: 90px;" class="form-control form-control-sm focus-ring tims-input"
+                            [formControlName]="'genderid'"
+                            [ngClass]="{ 'is-invalid': f['genderid'].touched && f['genderid'].errors, 'required-control': genderRequired }">
+                            <option [ngValue]="null">choose</option>
+                            <option *ngFor="let p of ts.lookupStore.gender_list" [value]="p.name">{{p.description}}
+                            </option>
+                        </select>
+                        <div class="invalid-tooltip">Required</div>
+                    </div>
+
+                    <label style="margin-left: 3px;" class="col-form-label tims-label" for="primaryphone">Primary
+                        Phone</label>
+                    <select style="width: 120px;" class="form-control form-control-sm focus-ring tims-input"
+                        [formControlName]="'primaryphone'">
+                        <option *ngFor="let p of phones" [value]="p.value">{{p.display}}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="row">
+                    <div style="padding-right: 0;" class="col-sm-8">
+                        <fieldset>
+                            <legend>Address</legend>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <app-address-entry [addressLine1Required]="addressLine1Required"
+                                        [addressLine2Required]="addressLine2Required" [cityRequired]="cityRequired"
+                                        [stateRequired]="stateRequired" [zipCodeRequired]="zipCodeRequired"
+                                        [addressform]="patientForm">
+                                    </app-address-entry>
+                                </div>
+                                <div class="col-sm-6" style="margin-top: -28px;">
+                                    <label class="col-form-label tims-label" for="useSecondaryAddress"
+                                        style="padding: 2px 4px 3px 0 !important;">Use Secondary
+                                        Address</label>
+                                    <input type="checkbox" class="form-check-input cb-1x focus-ring tims-input"
+                                        name="useSecondaryAddress" [formControlName]="'useSecondaryAddress'"
+                                        (change)="useSecondaryAddressChanged(f['useSecondaryAddress'].value)">
+                                    <app-address-entry-2 (formReady)="addressForm2Ready()" [address2form]="patientForm">
+                                    </app-address-entry-2>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <div style="padding-left: 0;" class="col-sm-4">
+                        <fieldset>
+                            <legend>Phone</legend>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <label class="col-form-label tims-label" for="homephone">Home</label>
+                                </div>
+                                <div class="col-sm-7 position-relative">
+                                    <input type="tel" style="width: 110px;" NumberOnly PhoneMask
+                                        placeholder="###-###-####" [formControlName]="'homephone'" maxlength="15"
+                                        class="form-control form-control-sm focus-ring tims-input"
+                                        [ngClass]="{ 'is-invalid': f['homephone'].touched && f['homephone'].errors, 'required-control': homePhoneRequired }">
+                                    <div class="invalid-tooltip">Required</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <label class="col-form-label tims-label" for="mobilephone">Mobile</label>
+                                </div>
+                                <div class="col-sm-7 position-relative">
+                                    <input type="tel" style="width: 110px;" NumberOnly PhoneMask
+                                        placeholder="###-###-####" [formControlName]="'mobilephone'" maxlength="15"
+                                        class="form-control form-control-sm focus-ring tims-input"
+                                        [ngClass]="{ 'is-invalid': f['mobilephone'].touched && f['mobilephone'].errors, 'required-control': mobilePhoneRequired }">
+                                    <div class="invalid-tooltip">Required</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <label class="col-form-label tims-label" for="workphone">Work</label>
+                                </div>
+                                <div class="col-sm-7 position-relative">
+                                    <input type="tel" style="width: 110px;" NumberOnly PhoneMask
+                                        placeholder="###-###-####" [formControlName]="'workphone'" maxlength="15"
+                                        class="form-control form-control-sm focus-ring tims-input"
+                                        [ngClass]="{ 'is-invalid': f['workphone'].touched && f['workphone'].errors, 'required-control': workPhoneRequired }">
+                                    <div class="invalid-tooltip">Required</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <label class="col-form-label tims-label" for="otherphone">Other</label>
+                                </div>
+                                <div class="col-sm-7 position-relative">
+                                    <input type="tel" style="width: 110px;" NumberOnly PhoneMask
+                                        placeholder="###-###-####" [formControlName]="'otherphone'" maxlength="15"
+                                        class="form-control form-control-sm focus-ring tims-input"
+                                        [ngClass]="{ 'is-invalid': f['otherphone'].touched && f['otherphone'].errors, 'required-control': otherPhoneRequired }">
+                                    <div class="invalid-tooltip">Required</div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 demographic-row">
+                    <div style="margin-bottom: 2px; justify-content: start !important;" class="demographic-row">
+                        <label class="col-form-label tims-label" for="email">Email</label>
+                        <div class="position-relative">
+                            <input type="text" class="form-control form-control-sm focus-ring tims-input"
+                                name="emailaddress" [formControlName]="'emailaddress'" placeholder="email"
+                                maxlength="99"
+                                [ngClass]="{ 'is-invalid': f['emailaddress'].touched && f['emailaddress'].errors, 'required-control': emailRequired }">
+                            <div class="invalid-tooltip">Required</div>
+                        </div>
+                    </div>
+
+                    <label style="margin-left: 3px;" class="col-form-label tims-label" for="languageid">Language</label>
+                    <select style="max-width: 120px;" class="form-control form-control-sm focus-ring tims-input"
+                        [ngClass]="{ 'required-control': languageRequired }" [formControlName]="'languageid'">
+                        <option [ngValue]="null">choose</option>
+                        <option *ngFor="let p of ts.lookupStore.preferred_language_list" [value]="p.value">
+                            {{p.name}}
+                        </option>
+                    </select>
+                    <label style="margin-left: 3px;" class="col-form-label tims-label" for="raceid">Race</label>
+                    <select style="max-width: 120px;" class="form-control form-control-sm focus-ring tims-input"
+                        [ngClass]="{ 'required-control': raceRequired }" [formControlName]="'raceid'">
+                        <option [ngValue]="null">choose</option>
+                        <option *ngFor="let p of ts.lookupStore.race_list" [value]="p.value">{{p.name}}
+                        </option>
+                    </select>
+                    <label style="margin-left: 3px;" class="col-form-label tims-label"
+                        for="ethnicityid">Ethnicity</label>
+                    <select style="max-width: 120px;" class="form-control form-control-sm focus-ring tims-input"
+                        [ngClass]="{ 'required-control': ethnicityRequired }" [formControlName]="'ethnicityid'">
+                        <option [ngValue]="null">choose</option>
+                        <option *ngFor="let p of ts.lookupStore.ethnicity_list" [value]="p.value">{{p.name}}
+                        </option>
+                    </select>
+
+                    <div>
+                        <label class="col-form-label tims-label" for="deceaseddate">Deceased</label>
+                        <input type="checkbox"
+                            class="form-check-input cb-1x align-middle patient-cb focus-ring tims-input" id="isdeceased"
+                            name="isdeceased" [formControlName]="'isdeceased'"
+                            (change)="isdeceasedChanged(f['isdeceased'].value)">
+                        <input style="max-width: 100px; display: inline-block;"
+                            class="form-control form-control-sm date-only focus-ring tims-input" placeholder="date"
+                            bsDatepicker #dp="bsDatepicker" [bsConfig]="bsConfig" [formControlName]="'deceaseddate'"
+                            name="deceaseddate"
+                            [ngClass]="{ 'is-invalid': f['deceaseddate'].touched && f['deceaseddate'].errors }">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label class="col-form-label tims-label" for="alternateContact">Alternate Contact</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control form-control-sm focus-ring tims-input"
+                            name="alternateContact" [formControlName]="'alternateContact'" maxlength="50">
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="col-form-label tims-label" for="altphone">Alternate Phone</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="tel" style="width: 110px;" NumberOnly PhoneMask [formControlName]="'altphone'"
+                            placeholder="###-###-####" maxlength="15"
+                            class="form-control form-control-sm focus-ring tims-input">
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="col-form-label tims-label" for="responsibleparty">Responsible Party</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control form-control-sm focus-ring tims-input" maxlength="50"
+                            name="responsibleparty" [formControlName]="'responsibleparty'">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label class="col-form-label tims-label" for="primaryphysicianid">Primary Physician</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <select class="form-control form-control-sm focus-ring tims-input" name="primaryphysicianid"
+                            [formControlName]="'primaryphysicianid'"
+                            [ngClass]="{ 'is-invalid': f['primaryphysicianid'].touched && f['primaryphysicianid'].errors, 'required-control': primaryphysicianidRequired }">
+                            <option [ngValue]="null">choose</option>
+                            <option *ngFor="let p of ts.lookupStore.marketingphyscians_list" [value]="p.id">
+                                {{p.name}}</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="col-form-label tims-label" for="referringphysicianid">Referring Physician</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <select class="form-control form-control-sm focus-ring tims-input" name="referringphysicianid"
+                            [formControlName]="'referringphysicianid'"
+                            [ngClass]="{ 'is-invalid': f['referringphysicianid'].touched && f['referringphysicianid'].errors, 'required-control': referringphysicianidRequired }">
+                            <option [ngValue]="null">choose</option>
+                            <option *ngFor="let p of ts.lookupStore.marketingphyscians_list" [value]="p.id">
+                                {{p.name}}</option>
+                        </select>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <label class="col-form-label tims-label" for="qbcustomertypeid">QB Customer Type</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <select class="form-control form-control-sm focus-ring tims-input" name="qbcustomertypeid"
+                            [formControlName]="'qbcustomertypeid'">
+                            <option [ngValue]="null">choose</option>
+                            <option *ngFor="let p of ts.lookupStore.patienttypes_list" [value]="p.id">
+                                {{p.name}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label class="col-form-label tims-label" for="patientstatusid">Patient Status</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <select class="form-control form-control-sm focus-ring tims-input" name="patientstatusid"
+                            [formControlName]="'patientstatusid'">
+                            <option [ngValue]="null">choose</option>
+                            <option *ngFor="let p of ts.lookupStore.patientstatuses_list" [value]="p.id">
+                                {{p.name}}</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="col-form-label tims-label" for="selectedPatientTypes">Patient Types</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <ng-multiselect-dropdown style="font-size: 14px;" [placeholder]="'choose'"
+                            [settings]="multiSelectDropdownSettings" [formControlName]="'selectedPatientTypes'"
+                            [data]="ts.lookupStore.patienttypes_list">
+                        </ng-multiselect-dropdown>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <label class="col-form-label tims-label" for="studentstatusid">Student Status</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <select class="form-control form-control-sm focus-ring tims-input" name="studentstatusid"
+                            [formControlName]="'studentstatusid'">
+                            <option [ngValue]="null">choose</option>
+                            <option *ngFor="let p of ts.lookupStore.studentstatus_list" [value]="p.name">
+                                {{p.description}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label class="col-form-label tims-label" for="maritalstatusid">Marital Status</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <select class="form-control form-control-sm focus-ring tims-input" name="maritalstatusid"
+                            [formControlName]="'maritalstatusid'">
+                            <option [ngValue]="null">choose</option>
+                            <option *ngFor="let p of ts.lookupStore.maritalstatus_list" [value]="p.name">
+                                {{p.description}}</option>
+                        </select>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <label class="col-form-label tims-label" for="emplyomentstatusid">Employment Status</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <select class="form-control form-control-sm focus-ring tims-input" name="emplyomentstatusid"
+                            [formControlName]="'emplyomentstatusid'">
+                            <option [ngValue]="null">choose</option>
+                            <option *ngFor="let p of ts.lookupStore.emplstatus_list" [value]="p.name">
+                                {{p.description}}</option>
+                        </select>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <label class="col-form-label tims-label" for="isinactive">Inactive</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="position-relative">
+                            <input type="checkbox" style="margin-left: 0;"
+                                class="form-check-input cb-1x align-middle patient-cb focus-ring tims-input"
+                                name="isinactive" [formControlName]="'isinactive'">
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="item-divider" />
+
+                <div class="row" style="align-items: center;">
+                    <div class="col-sm-2">
+                        <label class="col-form-label tims-label" for="releasesignaturedate">Release Signature</label>
+                    </div>
+                    <div class="col-sm-2 column-row">
+                        <input type="checkbox"
+                            class="form-check-input cb-1x align-middle patient-cb focus-ring tims-input"
+                            name="hasreleasesignature" [formControlName]="'hasreleasesignature'"
+                            (change)="hasreleasesignatureChanged(f['hasreleasesignature'].value)">
+                        <div style="padding-left: 15px;" class="position-relative">
+                            <input class="form-control form-control-sm date-only focus-ring tims-input" BirthDate
+                                placeholder="date" bsDatepicker #dp="bsDatepicker" [bsConfig]="bsConfig"
+                                [formControlName]="'releasesignaturedate'" name="releasesignaturedate">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 column-row">
+                        <label class="col-form-label tims-label" for="assignmentdate">Assingnment of Benefits</label>
+                        <input type="checkbox"
+                            class="form-check-input cb-1x align-middle patient-cb focus-ring tims-input"
+                            name="hasassignment" [formControlName]="'hasassignment'"
+                            (change)="hasassignmentChanged(f['hasassignment'].value)">
+                        <div style="padding-left: 15px;" class="position-relative">
+                            <input style="max-width: 100px;"
+                                class="form-control form-control-sm date-only focus-ring tims-input" BirthDate
+                                placeholder="date" bsDatepicker #dp="bsDatepicker" [bsConfig]="bsConfig"
+                                [formControlName]="'assignmentdate'" name="assignmentdate">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2 pe-1">
+                        <label class="col-form-label tims-label" for="privacydate">Privacy Agreement</label>
+                    </div>
+                    <div class="col-sm-2 p[e-1] ps-1 column-row">
+                        <div style="padding-left: 15px;" class="position-relative">
+                            <input class="form-control form-control-sm date-only focus-ring tims-input" BirthDate
+                                placeholder="date" bsDatepicker #dp="bsDatepicker" [bsConfig]="bsConfig"
+                                formControlName="privacydate" name="privacydate">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="align-items: center;">
+
+                    <div class="col-sm-4 column-row">
+                        <label class="col-form-label tims-label" for="releaseofinfodate">Release of Information</label>
+                        <input type="checkbox"
+                            class="form-check-input cb-1x align-middle patient-cb focus-ring tims-input"
+                            name="hasreleaseofinfodate" [formControlName]="'hasreleaseofinfodate'"
+                            (change)="hasreleaseofinfodateChanged(f['hasreleaseofinfodate'].value)">
+                        <div style="padding-left: 15px;" class="position-relative">
+                            <input style="max-width: 100px;"
+                                class="form-control form-control-sm date-only focus-ring tims-input" BirthDate
+                                placeholder="date" bsDatepicker #dp="bsDatepicker" [bsConfig]="bsConfig"
+                                [formControlName]="'releaseofinfodate'" name="releaseofinfodate">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <label class="col-form-label tims-label" for="consentdate">Consent</label>
+                    </div>
+                    <div class="col-sm-2 column-row">
+                        <div style="padding-left: 15px;" class="position-relative">
+                            <input class="form-control form-control-sm date-only focus-ring tims-input" BirthDate
+                                placeholder="date" bsDatepicker #dp="bsDatepicker" [bsConfig]="bsConfig"
+                                formControlName="consentdate" name="consentdate">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 column-row">
+                        <label class="col-form-label tims-label" for="marketingauthorizationdate">Marketing
+                            Authorization</label>
+                        <input type="checkbox"
+                            class="form-check-input cb-1x align-middle patient-cb focus-ring tims-input"
+                            name="hasmarketingauthorizationdate" [formControlName]="'hasmarketingauthorizationdate'"
+                            (change)="hasmarketingauthorizationdateChanged(f['hasmarketingauthorizationdate'].value)">
+                        <div style="padding-left: 10px;" class="position-relative">
+                            <input style="max-width: 100px;"
+                                class="form-control form-control-sm date-only focus-ring tims-input" BirthDate
+                                placeholder="date" bsDatepicker #dp="bsDatepicker" [bsConfig]="bsConfig"
+                                [formControlName]="'marketingauthorizationdate'" name="marketingauthorizationdate">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row" style="align-items: center;">
+                    <div class="col-sm-4 column-row">
+                        <label class="col-form-label tims-label" for="authorizedparties">Authorized Parties</label>
+                        <textarea type="text" class="form-control form-control-sm focus-ring tims-input free-text"
+                            [formControlName]="'authorizedparties'" rows="2"></textarea>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <label class="col-form-label tims-label" for="selectedRestrictions">Restrictions</label>
+                        <ng-multiselect-dropdown style="font-size: 14px;" [placeholder]="'choose'" class="multi-select"
+                            [settings]="multiSelectDropdownSettings" [formControlName]="'selectedRestrictions'"
+                            [data]="communicationRestrictions">
+                        </ng-multiselect-dropdown>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <label class="col-form-label tims-label" for="authorizedparties">Authorizations</label>
+                        <ng-multiselect-dropdown style="font-size: 14px;" [placeholder]="'choose'" class="multi-select"
+                            [settings]="multiSelectDropdownSettings" [disabled]="marketingauthorizationDisabled"
+                            [formControlName]="'selectedAuthorizations'" [data]="ts.lookupStore.authorization_list">
+                        </ng-multiselect-dropdown>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 demographic-row">
+                    <label class="col-form-label tims-label" for="customtext1">{{customtext1label}}</label>
+                    <input style="max-width: 200px;" type="text"
+                        class="form-control form-control-sm focus-ring tims-input" name="customtext1"
+                        [formControlName]="'customtext1'" maxlength="100">
+                    <label class="col-form-label tims-label" for="customtext2">{{customtext2label}}</label>
+                    <input style="max-width: 200px;" type="text"
+                        class="form-control form-control-sm focus-ring tims-input" name="customtext2"
+                        [formControlName]="'customtext2'" maxlength="100">
+                    <label class="col-form-label tims-label" for="customdate1">{{customdate1label}}</label>
+                    <input style="max-width: 100px" class="form-control form-control-sm date-only focus-ring tims-input"
+                        BirthDate placeholder="date" bsDatepicker #dp="bsDatepicker"
+                        [bsConfig]="{ customTodayClass: 'tims-today-class', containerClass: 'theme-dark-blue', adaptivePosition: true, showWeekNumbers:false }"
+                        [formControlName]="'customdate1'" name="customdate1">
+                    <label class="col-form-label tims-label" for="customdate2">{{customdate2label}}</label>
+                    <input style="max-width: 100px" class="form-control form-control-sm date-only focus-ring tims-input"
+                        BirthDate placeholder="date" bsDatepicker #dp="bsDatepicker"
+                        [bsConfig]="{ customTodayClass: 'tims-today-class', containerClass: 'theme-dark-blue', adaptivePosition: true, showWeekNumbers:false }"
+                        [formControlName]="'customdate2'" name="customdate2">
+                </div>
+            </div>
+        </div>
+        <!-- End Main Tab-->
+
+
+        <div class="modal-footer">
+            <div class="input-group input-group-sm">
+                <button style="margin-left: auto;" class="btn tims-button gradient" type="button"
+                    (click)="onSubmit()"><i class="dialog-button bi bi-floppy-fill"></i></button>
+                <button class="btn tims-button gradient" type="button" (click)="onCancel()"><i
+                        class="dialog-button bi bi-x-square-fill"></i></button>
+            </div>
+        </div>
+    </form>
+</div>

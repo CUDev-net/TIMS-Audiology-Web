@@ -1,0 +1,83 @@
+﻿@page "{id:int}"
+@using System.Security.Claims
+@model Pages.Support.EditPermissionModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Edit Server";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col align-content-center">
+            <h3 class="h3">@Model.VendorPermission.Name</h3>
+            <form method="post" class="form-control" onsubmit="submitPermissionForm()">
+                <div class="text-danger" asp-validation-summary="All"></div>
+                <input asp-for="VendorPermission.Id" type="hidden" />
+                <input asp-for="VendorPermission.DateCreated" type="hidden" />
+                <input asp-for="VendorPermission.UrlsJson" type="hidden" id="urlList"/>
+                <div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" asp-for="VendorPermission.Inactive" />
+                        <label class="form-check-label" asp-for="VendorPermission.Inactive"></label>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="VendorPermission.Name"></label>
+                        <input class="form-control" asp-for="VendorPermission.Name" maxlength="64" />
+                        <span class="text-danger" asp-validation-for="VendorPermission.Name"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="VendorPermission.Description"></label>
+                        <textarea class="form-control" asp-for="VendorPermission.Description" maxlength="256" rows="3"></textarea>
+                        <span class="text-danger" asp-validation-for="VendorPermission.Description"></span>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-auto">
+                                <label asp-for="VendorPermission.ApiUrls">API Endpoints</label>
+                            </div>
+                            <div class="col mb-1">
+                                <button class="btn btn-link" style="margin-top:-6px" onclick="return toggleEditEditMode()" id="editPermissionsButton">edit</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <select multiple="multiple" id='dvpAssigned' class="form-control" size="5">
+                                    @foreach (var url in Model.VendorPermission.ApiUrls.OrderBy(o => o.ApiUrl.Url))
+                                    {
+                                        <option value="@url.ApiUrlId" title="@url.ApiUrl.Description">@url.ApiUrl.Url</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-auto text-center btn-group-vertical editPermissionsMode" style="display: none">
+                                <input type="button" id="btnallleft" data-assigned="dvpAssigned" data-unassigned="dvpUnassigned" value="<<" class="btn btn-sm btn-outline-secondary" />
+                                <input type="button" id="btnleft" data-assigned="dvpAssigned" data-unassigned="dvpUnassigned" value="<" class="btn btn-sm btn-outline-secondary" /><br />
+                                <input type="button" id="btnright" data-assigned="dvpAssigned" data-unassigned="dvpUnassigned" value=">" class="btn btn-sm btn-outline-secondary" /><br />
+                                <input type="button" id="btnallright" data-assigned="dvpAssigned" data-unassigned="dvpUnassigned" value=">>" class="btn btn-sm btn-outline-secondary" /><br />
+                            </div>
+                            <div class="col editPermissionsMode" style="display: none">
+                                <select multiple="multiple" id='dvpUnassigned' class="form-control" size="5">
+                                    @foreach (var url in Model.ApiUrls.Where(x => Model.VendorPermission.ApiUrls.OrderBy(o => o.ApiUrl.Url).All(p => p.ApiUrlId != x.Id)).ToList())
+                                    {
+                                        <option value="@url.Id" title="@url.Description">@url.Url</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+                <div>
+                    <button name="save" type="submit" class="btn btn-primary" onclick="submitFormClick(this)">Save</button>
+                    <a href="~/Support/Permissions" class="btn btn-dark">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+</div>
+

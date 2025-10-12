@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>TIMS_X.NoahDataInterface413</RootNamespace>
+    <ApplicationIcon />
+    <OutputType>Library</OutputType>
+    <StartupObject />
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <Configurations>Debug;Release;Test;Docker</Configurations>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\GlobalAssemblyInfo.cs" Link="GlobalAssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\TIMS-X.Core\TIMS-X.Core.csproj">
+      <Project>{9A19103F-16F7-4668-BE54-9A1E7A4F7556}</Project>
+      <Name>TIMS-X.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
+    <PackageReference Include="Microsoft.Win32.Registry" Version="4.5.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="interop.NoahErrorDef">
+      <HintPath>..\..\Dependencies\Noah-4.13\interop.NoahErrorDef.dll</HintPath>
+    </Reference>
+    <Reference Include="NoahDataInterfaces">
+      <HintPath>..\..\Dependencies\Noah-4.13\NoahDataInterfaces.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,30 @@
+<div *ngIf="!mobile" class="scheduler-host">
+    <app-schedule-filter-presenter>
+    </app-schedule-filter-presenter>
+
+    <div class="sidebar-and-scheduler">
+        <app-patient-selector class="patient-selector" (patientSelected)="onPatientSelected($event)"
+            [style.display]="isPatientListVisible ? 'flex' : 'none'">
+        </app-patient-selector>
+
+        <app-patient-summary class="patient-selector" [style.display]="isPatientSummaryVisible ? 'flex' : 'none'"
+            (cancel)="onSummaryCancel()">
+        </app-patient-summary>
+
+        <app-schedule (openCenter)="onOpenCenter($event)" #scheduleElement
+            [ngClass]="{'show-scheduler' : !ts.appointmentStore.isSearchForOpenings, 'hide-scheduler' : ts.appointmentStore.isSearchForOpenings}">
+        </app-schedule>
+
+        <app-search-results *ngIf="ts.appointmentStore.isSearchForOpenings" class="search-results">
+        </app-search-results>
+    </div>
+
+    <div [style.display]="isPatientAppointmentCenterVisible ? 'block' : 'none'" style="border-top: 1px solid #bbbbbb;">
+        <app-patient-appointment-center (schedulerGotoDate)="schedulerGotoDate($event)"
+            (updateEvent)="updateEvent($event)"></app-patient-appointment-center>
+    </div>
+</div>
+
+<div *ngIf="mobile" id="mobile-calendar" style="display: flex; flex-direction: column;">
+    <app-mobile-schedule></app-mobile-schedule>
+</div>

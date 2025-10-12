@@ -1,0 +1,56 @@
+﻿@page
+@model Pages.Support.CreateCustomerModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<h2 class="h2">Create Customer</h2>
+<form method="post" class="form-control">
+    <div class="text-danger" asp-validation-summary="All"></div>
+    <input asp-for="Customer.Id" type="hidden" value="0">
+    <input asp-for="Customer.DateCreated" type="hidden" value="@DateTime.Now" />
+    <input asp-for="Customer.DateUpdated" type="hidden" value="@DateTime.Now" />
+    <input asp-for="Customer.UpdatedBy" type="hidden" value="0" />
+    <input asp-for="Customer.PermissionList" value="" type="hidden" id="permissionList"/>
+    <input asp-for="Customer.VendorPermissions" type="hidden"/>
+    <div>
+        <div class="form-group">
+            <label asp-for="Customer.Name"></label>
+            <input class="form-control" asp-for="Customer.Name" maxlength="128" />
+            <span class="text-danger" asp-validation-for="Customer.Name"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Customer.OfficeCode">Office Code</label>
+            <input class="form-control" asp-for="Customer.OfficeCode" maxlength="16" />
+            <span class="text-danger" asp-validation-for="Customer.OfficeCode"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Customer.ServerId">Server</label>
+            <select asp-for="Customer.ServerId" class="form-control">
+
+                @foreach (var server in Model.Servers)
+                {
+                    <option value="@server.Id">@server.CombinedName</option>
+                }
+            </select>
+            <span class="text-danger" asp-validation-for="Customer.ServerId" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Customer.Database"></label>
+            <input class="form-control" asp-for="Customer.Database" maxlength="128" />
+            <span class="text-danger" asp-validation-for="Customer.Database"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Customer.Notes"></label>
+            <textarea class="form-control" asp-for="Customer.Notes" maxlength="256" rows="4"></textarea>
+            <span class="text-danger" asp-validation-for="Customer.Notes"></span>
+        </div>
+    </div>
+
+    <div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <a href="~/Support/Customers" class="btn btn-dark">Cancel</a>
+    </div>
+</form>

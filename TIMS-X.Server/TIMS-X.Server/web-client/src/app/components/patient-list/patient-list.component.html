@@ -1,0 +1,17 @@
+<div class="patient-list-wrapper">
+    <div class="patient-list">
+        <div class="list-header">{{header}}</div>
+        <ng-container *ngIf="ts.userstore.currentUser && PatientSummaries != null">
+            <div *ngIf="isCensus && PatientSummaries.length == 0">No Patients Found</div>
+            <div *ngFor="let p of PatientSummaries; last as islast;">
+                <div class="patient-link-housing" draggable="true" (mousedown)="cachePatientId(p.id)">
+                    <a class="patient-link" [ngClass]="{'inactive': p.inactive}"
+                        (click)="selectPatient(p.id)"><span>{{p.lastName}}, {{p.firstName}}
+                            {{p.initial}}</span></a>
+                    <!-- <app-census-result-row [patientSearchSummary]="p"></app-census-result-row> -->
+                </div>
+                <hr *ngIf="!islast" class="item-divider" />
+            </div>
+        </ng-container>
+    </div>
+</div>

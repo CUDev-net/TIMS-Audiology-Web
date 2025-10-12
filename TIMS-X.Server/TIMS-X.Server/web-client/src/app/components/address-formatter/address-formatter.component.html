@@ -1,0 +1,5 @@
+<div>
+    <div *ngIf="addressLine1">{{addressLine1}}</div>
+    <div *ngIf="addressLine2">{{addressLine2}}</div>
+    <div *ngIf="city || state || zipCode">{{city}}, {{state}} {{zipCode}}</div>
+</div>

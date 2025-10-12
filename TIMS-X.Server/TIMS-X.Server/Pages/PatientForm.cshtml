@@ -1,0 +1,849 @@
+﻿@page
+@model TIMS_X.Server.Pages.PatientFormModel
+@{
+    ViewData["Title"] = Model.FormType;
+    var allowTextNotifications = !Model.Patient.Restrictions.Any(x => x.CommunicationRestriction.Name == "No Text Notifications");
+    var allowVoiceNotifications = !Model.Patient.Restrictions.Any(x => x.CommunicationRestriction.Name == "No Voice Notifications");
+    var allowEmailNotifications = !Model.Patient.Restrictions.Any(x => x.CommunicationRestriction.Name == "No Email Notifications");
+}
+
+@section Styles {
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
+}
+
+<div class="container mt-2">
+
+    <h4 class="ml-2">@Model.FormTypeDesc</h4>
+
+    <div class="form-control" id="patientForm">
+        @if (Model.Form != null)
+        {
+            @Html.Raw(Model.Form.LiveForm)
+        }
+    </div>
+    <div class="row mt-2">
+        <div class="col text-center">
+            <form method="post" id="PatientIntakeForm" asp-page-handler="PatientForm">
+                <input asp-for="OfficeCode" type="hidden" />
+                <input asp-for="Url" type="hidden" />
+                <input asp-for="RequestingUserId" type="hidden" />
+                <input asp-for="FormType" type="hidden" />
+                <input asp-for="IntakeData.PatientId" type="hidden" />
+                <input asp-for="IntakeData.PatientFirstName" type="hidden" id="PatientFirstName_X" />
+                <input asp-for="IntakeData.PatientInitial" type="hidden" id="PatientInitial_X" />
+                <input asp-for="IntakeData.PatientLastName" type="hidden" id="PatientLastName_X" />
+                <input asp-for="IntakeData.PatientEmail" type="hidden" id="PatientEmail_X" />
+                <input asp-for="IntakeData.PatientDtOfBirth" type="hidden" id="PatientDtOfBirth_X" />
+                <input asp-for="IntakeData.PatientAddr1" type="hidden" id="PatientAddr1_X" />
+                <input asp-for="IntakeData.PatientAddr2" type="hidden" id="PatientAddr2_X" />
+                <input asp-for="IntakeData.PatientCity" type="hidden" id="PatientCity_X" />
+                <input asp-for="IntakeData.PatientState" type="hidden" id="PatientState_X" />
+                <input asp-for="IntakeData.PatientZip" type="hidden" id="PatientZip_X" />
+                <input asp-for="IntakeData.ResponsibleParty" type="hidden" id="PatientRespParty_X" />
+                <input asp-for="IntakeData.PatientPrimaryPhone" type="hidden" id="PatientPrimaryPhone_X" />
+                <input asp-for="IntakeData.PatientHomePhone" type="hidden" id="PatientHomePhone_X" />
+                <input asp-for="IntakeData.PatientMobilePhone" type="hidden" id="PatientMobilePhone_X" />
+                <input asp-for="IntakeData.PatientWorkPhone" type="hidden" id="PatientWorkPhone_X" />
+                <input asp-for="IntakeData.PatientOtherPhone" type="hidden" id="PatientOtherPhone_X" />
+                <input asp-for="IntakeData.MaritalStatusId" type="hidden" id="MaritalStatusId_X" />
+                <input asp-for="IntakeData.EmplStatusId" type="hidden" id="EmplStatusId_X" />
+                <input asp-for="IntakeData.Language" type="hidden" id="Language_X" />
+                <input asp-for="IntakeData.Race" type="hidden" id="Race_X" />
+                <input asp-for="IntakeData.Ethnicity" type="hidden" id="Ethnicity_X" />
+                <input asp-for="IntakeData.Sex" type="hidden" id="Sex_X" />
+                <input asp-for="IntakeData.Contact" type="hidden" id="Contact_X" />
+                <input asp-for="IntakeData.ContactPhone" type="hidden" id="ContactPhone_X" />
+                <input asp-for="IntakeData.EmailNotifications" type="hidden" id="EmailNotifications_X" />
+                <input asp-for="IntakeData.TextNotifications" type="hidden" id="TextNotifications_X" />
+                <input asp-for="IntakeData.VoiceNotifications" type="hidden" id="VoiceNotifications_X" />
+                <input asp-for="IntakeData.InsCoName" type="hidden" id="InsCoName_X" />
+                <input asp-for="IntakeData.InsIdNum" type="hidden" id="InsIdNum_X" />
+                <input asp-for="IntakeData.InsGroupNum" type="hidden" id="InsGroupNum_X" />
+                <input asp-for="IntakeData.RelationToInsured" type="hidden" id="RelationToInsured_X" />
+                <input asp-for="IntakeData.InsLastName" type="hidden" id="InsLastName_X" />
+                <input asp-for="IntakeData.InsInitial" type="hidden" id="InsInitial_X" />
+                <input asp-for="IntakeData.InsFirstName" type="hidden" id="InsFirstName_X" />
+                <input asp-for="IntakeData.InsAddress1" type="hidden" id="InsAddress1_X" />
+                <input asp-for="IntakeData.InsAddress2" type="hidden" id="InsAddress2_X" />
+                <input asp-for="IntakeData.InsCity" type="hidden" id="InsCity_X" />
+                <input asp-for="IntakeData.InsState" type="hidden" id="InsState_X" />
+                <input asp-for="IntakeData.InsZip" type="hidden" id="InsZip_X" />
+                <input asp-for="IntakeData.InsPhone" type="hidden" id="InsPhone_X" />
+                <input asp-for="IntakeData.InsSex" type="hidden" id="InsSex_X" />
+                <input asp-for="IntakeData.InsDtOfBirth" type="hidden" id="InsDtOfBirth_X" />
+                <input asp-for="IntakeData.SecInsCoName" type="hidden" id="SecInsCoName_X" />
+                <input asp-for="IntakeData.SecInsIdNum" type="hidden" id="SecInsIdNum_X" />
+                <input asp-for="IntakeData.SecInsGroupNum" type="hidden" id="SecInsGroupNum_X" />
+                <input asp-for="IntakeData.SecRelationToInsured" type="hidden" id="SecRelationToInsured_X" />
+                <input asp-for="IntakeData.SecInsLastName" type="hidden" id="SecInsLastName_X" />
+                <input asp-for="IntakeData.SecInsInitial" type="hidden" id="SecInsInitial_X" />
+                <input asp-for="IntakeData.SecInsFirstName" type="hidden" id="SecInsFirstName_X" />
+                <input asp-for="IntakeData.SecInsAddress1" type="hidden" id="SecInsAddress1_X" />
+                <input asp-for="IntakeData.SecInsAddress2" type="hidden" id="SecInsAddress2_X" />
+                <input asp-for="IntakeData.SecInsCity" type="hidden" id="SecInsCity_X" />
+                <input asp-for="IntakeData.SecInsState" type="hidden" id="SecInsState_X" />
+                <input asp-for="IntakeData.SecInsZip" type="hidden" id="SecInsZip_X" />
+                <input asp-for="IntakeData.SecInsPhone" type="hidden" id="SecInsPhone_X" />
+                <input asp-for="IntakeData.SecInsSex" type="hidden" id="SecInsSex_X" />
+                <input asp-for="IntakeData.SecInsDtOfBirth" type="hidden" id="SecInsDtOfBirth_X" />
+                <input asp-for="IntakeData.RefPhysician" type="hidden" id="RefPhysician_X" />
+                <input asp-for="IntakeData.ReleaseSignature" type="hidden" id="ReleaseSignature_X" />
+                <input asp-for="IntakeData.ReleaseSignatureDate" type="hidden" id="ReleaseSignatureDate_X" />
+                <input asp-for="IntakeData.AssignBenefits" type="hidden" id="AssignBenefits_X" />
+                <input asp-for="IntakeData.AssignBenefitsDate" type="hidden" id="AssignBenefitsDate_X" />
+
+                <!-- <input asp-for="FormPhoto" type="file" id="FormPhoto_X"/> -->
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+
+@* Yes/No Dialog *@
+<div class="modal fade" id="yesNoModal" tabindex="-1" role="dialog" aria-labelledby="yesNoModalHeader" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="yesNoModalHeader">Confirm Submit</h5>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <p id="yesNoModalDescription">Submit form to provider?</p>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary" onclick="yesNoModalConfirmed();">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* Missing Required Fields Prompt *@
+<div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="infoModalHeader" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="infoModalHeader">Validation Error</h5>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <div style="color: darkred;" id="infoModalDescription"></div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+
+    <environment include="Development">
+        <script src="~/lib/html2canvas/html2canvas.js"></script>
+        <script src="~/js/patientform.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/lib/html2canvas/html2canvas.min.js"></script>
+        <script src="~/js/patientform.min.js"></script>
+    </environment>
+    <script src="~/lib/sigpad/signature_pad.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+
+
+
+    <script type="text/javascript">
+
+
+    function fillFormDefaults() {
+        $("#PatientFirstName_X").val(`@Html.Raw(Model.Patient.FirstName)`);
+        $("#PatientInitial_X").val(`@Html.Raw(Model.Patient.Initial)`);
+        $("#PatientLastName_X").val(`@Html.Raw(Model.Patient.LastName)`);
+        $("#PatientEmail_X").val(`@Html.Raw(@Model.Patient.Email)`);
+
+        @if (Model.Patient.BirthDate.HasValue)
+        {
+            @:var dtStr = '@Model.Patient.BirthDate.Value.ToString("yyyy-MM-dd")';
+            @:$("#PatientDtOfBirth_X").val(dtStr);
+        }
+
+
+
+        $("#PatientAddr1_X").val(`@Html.Raw(Model.Patient.Address1)`);
+        $("#PatientAddr2_X").val(`@Html.Raw(Model.Patient.Address2)`);
+        $("#PatientCity_X").val(`@Html.Raw(Model.Patient.City)`);
+        $("#PatientState_X").val(`@Html.Raw(Model.Patient.State)`);
+        $("#PatientZip_X").val(`@Html.Raw(Model.Patient.ZipCode)`);
+        $("#PatientRespParty_X").val(`@Html.Raw(Model.Patient.ResponsibleParty)`);
+        $("#PatientPrimaryPhone_X").val(@((int)Model.Patient.PrimaryPhone));
+        $("#PatientHomePhone_X").val(`@Html.Raw(Model.Patient.HomePhone)`);
+        $("#PatientMobilePhone_X").val(`@Html.Raw(Model.Patient.MobilePhone)`);
+        $("#PatientWorkPhone_X").val(`@Html.Raw(Model.Patient.WorkPhone)`);
+        $("#PatientOtherPhone_X").val(`@Html.Raw(Model.Patient.OtherPhone)`);
+        $("#MaritalStatusId_X").val(`@Html.Raw(Model.Patient.MaritalStatusId)`);
+        $("#EmplStatusId_X").val(`@Html.Raw(Model.Patient.EmplStatusId)`);
+        $("#Sex_X").val(`@Html.Raw(Model.Patient.Sex)`);
+        $("#Contact_X").val(`@Html.Raw(Model.Patient.AlternateContact)`);
+        $("#ContactPhone_X").val(`@Html.Raw(Model.Patient.AlternateContactPhone)`);
+        @if (Model.Patient.Language.HasValue)
+        {
+            @:var languageInt = @((int)Model.Patient.Language.Value);
+            @:$("#Language_X").val(languageInt);
+        }
+
+        @if (Model.Patient.Race.HasValue)
+        {
+            @:var raceInt = @((int)Model.Patient.Race.Value);
+            @:$("#Race_X").val(raceInt);
+        }
+
+        @if (Model.Patient.Ethnicity.HasValue)
+        {
+            @:var ethnicityInt = @((int)Model.Patient.Ethnicity.Value);
+            @:$("#Ethnicity_X").val(ethnicityInt);
+        }
+
+        $("#ReleaseSignature_X").val(@Json.Serialize(Model.Patient.ReleaseSignature));
+        @if(Model.Patient.ReleaseSignatureDate.HasValue)
+        {
+            @:var dtStr = '@Model.Patient.ReleaseSignatureDate.Value.ToString("yyyy-MM-dd")';
+            @:$("#ReleaseSignatureDate_X").val(dtStr);
+        }
+
+        $("#AssignBenefits_X").val(@Json.Serialize(Model.Patient.AssignBenefits));
+        @if(Model.Patient.AssignBenefitsDate.HasValue)
+        {
+            @:var dtStr = '@Model.Patient.AssignBenefitsDate.Value.ToString("yyyy-MM-dd")';
+            @:$("#AssignBenefitsDate_X").val(dtStr);
+        }
+
+        $("#TextNotifications_X").val(@Json.Serialize(allowVoiceNotifications));
+        $("#VoiceNotifications_X").val(@Json.Serialize(allowVoiceNotifications));
+        $("#EmailNotifications_X").val(@Json.Serialize(allowEmailNotifications));
+
+        @if (Model.PrimaryInsurance != null)
+        {
+            @:$("#InsIdNum_X").val(`@Html.Raw(Model.PrimaryInsurance.IdNumber)`);
+            @:$("#InsGroupNum_X").val(`@Html.Raw(Model.PrimaryInsurance.PolicyGroupNum)`);
+            if(Model.PrimaryInsurance.InsurancePayer != null)
+            {
+                @:$("#InsCoName_X").val(`@Html.Raw(Model.PrimaryInsurance.InsurancePayer.Name)`);
+            }
+
+            @:$("#InsLastName_X").val(`@Html.Raw(Model.PrimaryInsurance.LastName)`);
+            @:$("#InsFirstName_X").val(`@Html.Raw(Model.PrimaryInsurance.FirstName)`);
+            @:$("#InsInitial_X").val(`@Html.Raw(Model.PrimaryInsurance.MiddleName)`);
+            @:$("#RelationToInsured_X").val( `@Html.Raw(Model.PrimaryInsurance.RelationtoInsured)`);
+            @:$("#InsAddress1_X").val(`@Html.Raw(Model.PrimaryInsurance.Address1)`);
+            @:$("#InsAddress2_X").val(`@Html.Raw(Model.PrimaryInsurance.Address2)`);
+            @:$("#InsCity_X").val(`@Html.Raw(Model.PrimaryInsurance.City)`);
+            @:$("#InsState_X").val(`@Html.Raw(Model.PrimaryInsurance.State)`);
+            @:$("#InsZip_X").val(`@Html.Raw(Model.PrimaryInsurance.ZipCode)`);
+            @:$("#InsPhone_X").val(`@Html.Raw(Model.PrimaryInsurance.Phone)`);
+            @:$("#InsSex_X").val(`@Html.Raw(Model.PrimaryInsurance.Sex)`);
+            if(Model.PrimaryInsurance.BirthDate.HasValue)
+            {
+                @:var dtStr2 = '@Model.PrimaryInsurance.BirthDate.Value.ToString("yyyy-MM-dd")';
+                @:$("#InsDtOfBirth_X").val(dtStr2);
+            }
+
+        }
+
+        @if (Model.SecondaryInsurance != null)
+        {
+            @:$("#SecInsIdNum_X").val(`@Html.Raw(Model.SecondaryInsurance.IdNumber)`);
+            @:$("#SecInsGroupNum_X").val(`@Html.Raw(Model.SecondaryInsurance.PolicyGroupNum)`);
+            if(Model.SecondaryInsurance.InsurancePayer != null)
+            {
+                @:$("#SecInsCoName_X").val(`@Html.Raw(Model.SecondaryInsurance.InsurancePayer.Name)`);
+            }
+
+            @:$("#SecInsLastName_X").val(`@Html.Raw(Model.SecondaryInsurance.LastName)`);
+            @:$("#SecInsFirstName_X").val(`@Html.Raw(Model.SecondaryInsurance.FirstName)`);
+            @:$("#SecInsInitial_X").val(`@Html.Raw(Model.SecondaryInsurance.MiddleName)`);
+            @:$("#SecRelationToInsured_X").val( `@Html.Raw(Model.SecondaryInsurance.RelationtoInsured)`);
+            @:$("#SecInsAddress1_X").val(`@Html.Raw(Model.SecondaryInsurance.Address1)`);
+            @:$("#SecInsAddress2_X").val(`@Html.Raw(Model.SecondaryInsurance.Address2)`);
+            @:$("#SecInsCity_X").val(`@Html.Raw(Model.SecondaryInsurance.City)`);
+            @:$("#SecInsState_X").val(`@Html.Raw(Model.SecondaryInsurance.State)`);
+            @:$("#SecInsZip_X").val(`@Html.Raw(Model.SecondaryInsurance.ZipCode)`);
+            @:$("#SecInsPhone_X").val(`@Html.Raw(Model.SecondaryInsurance.Phone)`);
+            @:$("#SecInsSex_X").val(`@Html.Raw(Model.SecondaryInsurance.Sex)`);
+            if(Model.SecondaryInsurance.BirthDate.HasValue)
+            {
+                @:var dtStr3 = '@Model.SecondaryInsurance.BirthDate.Value.ToString("yyyy-MM-dd")';
+                @:$("#SecInsDtOfBirth_X").val(dtStr2);
+            }
+
+        }
+
+        @if(Model.Patient.ReferringPhysician != null)
+        {
+            @:$("#RefPhysician_X").val(`@Html.Raw(Model.Patient.ReferringPhysician.Name)`);
+        }
+    }
+
+
+    $(document).ready(function () {
+        var initPhone = function (id) {
+            var phoneInput = window.intlTelInput(document.querySelector(id), {
+                utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+                preferredCountries: ["us", "ca", "nz", "gb", "au"]
+            });
+
+            var phoneJq = $(id)[0];
+
+            var handleChangeVerification = function () {
+                var number = phoneInput.getNumber();
+                var newNumber = intlTelInputUtils.formatNumber(number, null, intlTelInputUtils.numberFormat.NATIONAL);
+                phoneInput.setNumber(newNumber);
+            };
+            phoneJq.addEventListener('change', handleChangeVerification);
+            phoneJq.addEventListener('keyup', handleChangeVerification);
+        }
+
+        var siteLogo = $("#siteLogo");
+        if (siteLogo.length > 0) {
+            var siteLogo = $("#siteLogoPlaceholder");
+            siteLogo.prop('src', '@Html.Raw(@Url.Page("PatientForm", "SiteLogo", new { officeCode = Model.OfficeCode, patientId = Model.Patient.Id }))');
+            var paddingLeft = parseInt(siteLogo.css("padding-left"));
+            if (isNaN(paddingLeft))
+                paddingLeft = 0;
+            paddingLeft += 130;
+            siteLogo.css("padding-left", paddingLeft);
+            @*parentElem.append('<img class="mx-auto d-block" alt="" src="' + '@Html.Raw(@Url.Page("PatientForm", "SiteLogo", new { officeCode = Model.OfficeCode, patientId = Model.Patient.Id }))' + '"/>');*@
+        }
+
+        var siteDetails = $("#siteDetails");
+        if (siteDetails.length > 0) {
+            $("#siteName").text(`@Html.Raw(Model.Site.Name)`);
+            $("#siteAddr1").text(`@Html.Raw(Model.Site.Address1)`);
+            @if (!string.IsNullOrEmpty(Model.Site.Address2))
+            {
+                @:$("#siteAddr2").text(`@Html.Raw(Model.Site.Address2)`);
+                @:$("#siteAddr2").removeClass("hidden");
+            }
+            $("#siteCityStateZip").removeClass("hidden");
+            $("#siteCityStateZip").text(`@Html.Raw(Model.Site.CityStateZip)`);
+            $("#sitePhone").text(`@Html.Raw(Model.Site.Phone)`);
+        }
+
+        var patientName = $("#patientName");
+        if (patientName.length > 0) {
+            $("#patientFirstName").val(`@Html.Raw(Model.Patient.FirstName)`);
+            $("#patientMI").val(`@Html.Raw(Model.Patient.Initial)`);
+            $("#patientLastName").val(`@Html.Raw(Model.Patient.LastName)`);
+        }
+
+        var patientEmail = $("#patientEmail");
+        if (patientEmail.length > 0) {
+            $("#PatientEmailAddressInput").val(`@Html.Raw(Model.Patient.Email)`);
+        }
+
+        @if (Model.Patient.BirthDate.HasValue)
+        {
+            @:var patientDtOfBirth = $("#patientDOB");
+            @:if (patientDtOfBirth.length > 0)
+            @:{
+            @:var dtStr = `@Model.Patient.BirthDate.Value.ToString("yyyy-MM-dd")`;
+            @:var inputElement = $("#patientDtOfBirthInput");
+            @:inputElement.val(dtStr);
+            @:}
+        }
+
+        var patientAddr = $("#patientAddress");
+        if (patientAddr.length > 0) {
+            $("#patientAddress1").val(`@Html.Raw(Model.Patient.Address1)`);
+            $("#patientAddress2").val(`@Html.Raw(Model.Patient.Address2)`);
+            $("#patientAddressCity").val(`@Html.Raw(Model.Patient.City)`);
+
+            $("#patientAddressZipCode").val(`@Html.Raw(Model.Patient.ZipCode)`);
+
+
+
+        }
+
+        var stateCombo = $("#patientStateList");
+
+        if(stateCombo.length > 0) {
+            stateCombo.find('option').not(':first').remove();
+            var blankOption = new Option('', 0);
+            stateCombo.append(blankOption);
+            @foreach (var state in Model.StateList)
+            {
+                @:stateCombo.append(new Option('@state.Name', @state.Id, false, '@state.Name' == `@Html.Raw(Model.Patient.State)` ));
+            }
+
+        }
+
+
+        var respParty = $("#responsibleParty");
+        if (respParty.length > 0) {
+            $("#responsiblePartyInput").val(`@Html.Raw(@Model.Patient.ResponsibleParty)`);
+        }
+
+        var homePhone = $("#patientHomePhone");
+        if (homePhone.length > 0) {
+            initPhone("#patientHomePhoneInput");
+            $("#patientHomePhoneInput").val(`@Html.Raw(Model.Patient.HomePhone)`);
+
+        }
+        var mobilePhone = $("#patientMobilePhone");
+        if (mobilePhone.length > 0) {
+            initPhone("#patientMobilePhoneInput");
+            $("#patientMobilePhoneInput").val(`@Html.Raw(Model.Patient.MobilePhone)`);
+        }
+        var workPhone = $("#patientWorkPhone");
+        if (workPhone.length > 0) {
+            initPhone("#patientWorkPhoneInput");
+            $("#patientWorkPhoneInput").val(`@Html.Raw(Model.Patient.WorkPhone)`);
+        }
+        var otherPhone = $("#patientOtherPhone");
+        if (otherPhone.length > 0) {
+            initPhone("#patientOtherPhoneInput");
+            $("#patientOtherPhoneInput").val(`@Html.Raw(Model.Patient.OtherPhone)`);
+        }
+
+        @switch (Model.Patient.PrimaryPhone)
+        {
+            case TIMS_X.Core.Enums.PrimaryPhoneEnum.Home:
+                // Checked by default
+                break;
+            case TIMS_X.Core.Enums.PrimaryPhoneEnum.Mobile:
+                @:if ($("#PrimaryPhoneMobile").length > 0) $("#PrimaryPhoneMobile").prop("checked", true);
+                break;
+            case TIMS_X.Core.Enums.PrimaryPhoneEnum.Work:
+                @:if ($("#PrimaryPhoneWork").length > 0) $("#PrimaryPhoneWork").prop("checked", true);
+                break;
+            case TIMS_X.Core.Enums.PrimaryPhoneEnum.Other:
+                @:if ($("#PrimaryPhoneOther").length > 0) $("#PrimaryPhoneOther").prop("checked", true);
+                break;
+        }
+
+
+        var maritalStatus = $("#maritalStatus");
+        if (maritalStatus.length > 0) {
+            var maritalCombo = $("#maritalStatusInput");
+            @foreach (var status in Model.MaritalStatuses)
+            {
+                @:maritalCombo.append(new Option('@status.Description', '@status.Name', false, '@status.Name' == '@Model.Patient.MaritalStatusId' ));
+            }
+        }
+
+        var emplStatus = $("#emplStatus");
+        if (emplStatus.length > 0) {
+            var emplCombo = $("#emplStatusInput");
+            @foreach (var status in Model.EmploymentStatuses)
+            {
+                @:emplCombo.append(new Option('@status.Description', '@status.Name', false, '@status.Name' == '@Model.Patient.EmplStatusId'));
+            }
+        }
+
+        var preferredLang = $("#preferredLang");
+        if (preferredLang.length > 0) {
+            var preferredLangCombo = $("#preferredLangInput");
+            var selectedValue = 0;
+            @if (Model.Patient.Language.HasValue)
+            {
+                @:selectedValue = @((int)Model.Patient.Language.Value);
+            }
+            @foreach (var language in Model.Languages.Skip(1))
+            {
+                @:preferredLangCombo.append(new Option('@language.Name', @((int)language.Value), false, @((int)language.Value) == selectedValue));
+            }
+        }
+
+        var race = $("#race");
+        if (race.length > 0) {
+            var raceCombo = $("#raceInput");
+            var selectedValue = 0;
+            @if (Model.Patient.Race.HasValue)
+            {
+                @:selectedValue = @((int)Model.Patient.Race.Value);
+            }
+            @foreach (var race in Model.Races)
+            {
+                @:raceCombo.append(new Option('@race.Name', @((int)race.Value), false, @((int)race.Value) == selectedValue));
+            }
+        }
+
+        var ethnicity = $("#ethnicity");
+        if (ethnicity.length > 0) {
+            var ethnicityCombo = $("#ethnicityInput");
+            var selectedValue = 0;
+            @if (Model.Patient.Ethnicity.HasValue)
+            {
+                @:selectedValue = @((int)Model.Patient.Ethnicity.Value);
+            }
+            @foreach (var ethnicity in Model.Ethnicities)
+            {
+                @:ethnicityCombo.append(new Option('@ethnicity.Name', @((int)ethnicity.Value), false, @((int)ethnicity.Value) == selectedValue));
+            }
+        }
+
+        var sex = $("#sex");
+        if (sex.length > 0) {
+            var sexCombo = $("#sexInput");
+            @foreach (var sexItem in Model.Sexes)
+            {
+                @:sexCombo.append(new Option('@sexItem.Description', '@sexItem.Name', false, '@sexItem.Name' == '@Model.Patient.Sex'));
+            }
+        }
+
+        var contact = $("#contact");
+        if (contact.length > 0) {
+            $("#contactInput").val(`@Html.Raw(Model.Patient.AlternateContact)`);
+        }
+
+        var contactPhone = $("#contactPhone");
+        if (contactPhone.length > 0) {
+            initPhone("#contactPhoneInput");
+            $("#contactPhoneInput").val(`@Html.Raw(Model.Patient.AlternateContactPhone)`);
+        }
+
+        var releaseSig = $("#releaseSignature");
+        if (releaseSig.length > 0) {
+            var isChecked = @Json.Serialize(Model.Patient.ReleaseSignature);
+            $("#releaseSignatureCheck").prop('checked', isChecked);
+            $("#releaseSignatureDate").prop('disabled', !isChecked);
+            @if (Model.Patient.ReleaseSignatureDate.HasValue)
+            {
+                @:var dtStr = `@Model.Patient.ReleaseSignatureDate.Value.ToString("yyyy-MM-dd")`;
+                @:var inputElement = $("#releaseSignatureDate");
+                @:inputElement.val(dtStr);
+            }
+            $("#releaseSignatureCheck").change(function () {
+                var myValue = $(this).is(':checked');
+                $('#releaseSignatureDate').prop('disabled', !myValue);
+                if (!myValue) {
+                    $('#releaseSignatureDate').val('');
+                }
+            });
+        }
+
+        var assignBenefits = $("#assignBenefits");
+        if (assignBenefits.length > 0) {
+            var isChecked = @Json.Serialize(Model.Patient.AssignBenefits);
+            $("#assignBenefitsCheck").prop('checked', isChecked);
+            $("#assignBenefitsDate").prop('disabled', !isChecked);
+            @if (Model.Patient.AssignBenefitsDate.HasValue)
+            {
+                @:var dtStr = `@Model.Patient.AssignBenefitsDate.Value.ToString("yyyy-MM-dd")`;
+                @:var inputElement = $("#assignBenefitsDate");
+                @:inputElement.val(dtStr);
+            }
+            $("#assignBenefitsCheck").change(function () {
+                var myValue = $(this).is(':checked');
+                $('#assignBenefitsDate').prop('disabled', !myValue);
+                if (!myValue) {
+                    $('#assignBenefitsDate').val('');
+                }
+            });
+        }
+
+
+        var refPhys = $("#refPhys");
+        if (refPhys.length > 0) {
+            @if (Model.Patient.ReferringPhysician != null)
+            {
+                @:$("#refPhysInput").val(`@Html.Raw(Model.Patient.ReferringPhysician.Name)`);
+            }
+        }
+
+        var apptNotifications = $("#apptNotifications");
+        if (apptNotifications.length > 0) {
+            $("#apptNotifPhone").prop('checked', @Json.Serialize(allowVoiceNotifications));
+            $("#apptNotifText").prop('checked', @Json.Serialize(allowTextNotifications));
+            $("#apptNotifEmail").prop('checked', @Json.Serialize(allowEmailNotifications));
+        }
+        /**/
+
+        var relationToInsured = $("#insuredRelation");
+        if (relationToInsured.length > 0) {
+            @if (Model.PrimaryInsurance != null)
+            {
+                @:$('#insuredRelationInput option[value="@Model.PrimaryInsurance.RelationtoInsured"]').prop('selected', true);
+
+            }
+        }
+
+        var insCoName = $("#insCoName");
+        if (insCoName.length > 0) {
+            @if (Model.PrimaryInsurance != null && Model.PrimaryInsurance.InsurancePayer != null)
+            {
+                @:$("#insCoNameInput").val(`@Html.Raw(Model.PrimaryInsurance.InsurancePayer.Name)`);
+            }
+        }
+
+        var insIdNum = $("#insIdNum");
+        if (insIdNum.length > 0) {
+            @if (Model.PrimaryInsurance != null)
+            {
+                @:$("#insIdNumInput").val(`@Html.Raw(Model.PrimaryInsurance.IdNumber)`);
+            }
+        }
+
+        var insGroupNum = $("#insGroupNum");
+        if (insGroupNum.length > 0) {
+            @if (Model.PrimaryInsurance != null)
+            {
+                @:$("#insGroupNumInput").val(`@Html.Raw(Model.PrimaryInsurance.PolicyGroupNum)`);
+            }
+        }
+
+
+        var insuredName = $("#insuredName");
+        if (insuredName.length > 0) {
+            @if (Model.PrimaryInsurance != null)
+            {
+                @:$("#insuredFirstName").val(`@Html.Raw(Model.PrimaryInsurance.FirstName)`);
+                @:$("#insuredMI").val(`@Html.Raw(Model.PrimaryInsurance.MiddleName)`);
+                @:$("#insuredLastName").val(`@Html.Raw(Model.PrimaryInsurance.LastName)`);
+            }
+        }
+
+        var insuredAddress1 = $("#insuredAddress1");
+        if (insuredAddress1.length > 0) {
+            @if (Model.PrimaryInsurance != null)
+            {
+                @:insuredAddress1.val(`@Html.Raw(Model.PrimaryInsurance.Address1)`);
+            }
+        }
+
+        var insuredAddress2 = $("#insuredAddress2");
+        if (insuredAddress2.length > 0) {
+            @if (Model.PrimaryInsurance != null)
+            {
+                @:insuredAddress2.val(`@Html.Raw(Model.PrimaryInsurance.Address2)`);
+            }
+        }
+
+        var insuredCity = $("#insuredAddressCity");
+        if (insuredCity.length > 0) {
+            @if (Model.PrimaryInsurance != null)
+            {
+                @:insuredCity.val(`@Html.Raw(Model.PrimaryInsurance.City)`);
+            }
+        }
+
+        var insuredStateList = $("#insuredStateList");
+        if (insuredStateList.length > 0) {
+            insuredStateList.find('option').not(':first').remove();
+            var blankOption = new Option('', 0);
+            insuredStateList.append(blankOption);
+
+            @foreach (var state in Model.StateList)
+            {
+                @:insuredStateList.append(new Option('@state.Name', @state.Id, false, '@state.Name' == `@Html.Raw(Model.PrimaryInsurance?.State)` ));
+            }
+
+        }
+
+        var insuredZip = $("#insuredAddressZipCode");
+        if (insuredZip.length > 0) {
+            @if (Model.PrimaryInsurance != null)
+            {
+                @:insuredZip.val(`@Html.Raw(Model.PrimaryInsurance.ZipCode)`);
+            }
+        }
+
+        var insuredPhone = $("#insuredPhoneInput");
+        if (insuredPhone.length > 0) {
+            initPhone("#insuredPhoneInput");
+            @if (Model.PrimaryInsurance != null)
+            {
+                @:insuredPhone.val(`@Html.Raw(Model.PrimaryInsurance.Phone)`);
+            }
+        }
+
+        var insuredSex = $("#insuredSex");
+        if (insuredSex.length > 0) {
+            var insuredSexCombo = $("#insuredSexInput");
+            @foreach (var sexItem in Model.Sexes)
+            {
+                @:insuredSexCombo.append(new Option('@sexItem.Description', '@sexItem.Name', false, '@sexItem.Name' == '@Model.PrimaryInsurance?.Sex'));
+            }
+        }
+
+
+        @if (Model.PrimaryInsurance != null && Model.PrimaryInsurance.BirthDate.HasValue)
+        {
+            @:var insuredDOB = $("#insuredDOB");
+            @:if (insuredDOB.length > 0)
+            @:{
+            @:var dtStr1 = `@Model.PrimaryInsurance.BirthDate.Value.ToString("yyyy-MM-dd")`;
+            @:var inputElement1 = $("#insuredDOBInput");
+            @:inputElement1.val(dtStr1);
+            @:}
+        }
+
+
+
+        /**/
+
+        var relationToInsured2 = $("#insuredRelation2");
+        if (relationToInsured2.length > 0) {
+            @if (Model.SecondaryInsurance != null)
+            {
+                @:$('#insuredRelationInput2 option[value="@Model.SecondaryInsurance.RelationtoInsured"]').prop('selected', true);
+
+            }
+        }
+
+        var insCoName2 = $("#insCoName2");
+        if (insCoName2.length > 0) {
+            @if (Model.SecondaryInsurance != null && Model.SecondaryInsurance.InsurancePayer != null)
+            {
+                @:$("#insCoNameInput2").val(`@Html.Raw(Model.SecondaryInsurance.InsurancePayer.Name)`);
+            }
+        }
+
+        var insIdNum2 = $("#insIdNum2");
+        if (insIdNum2.length > 0) {
+            @if (Model.SecondaryInsurance != null)
+            {
+                @:$("#insIdNumInput2").val(`@Html.Raw(Model.SecondaryInsurance.IdNumber)`);
+            }
+        }
+
+        var insGroupNum2 = $("#insGroupNum2");
+        if (insGroupNum2.length > 0) {
+            @if (Model.SecondaryInsurance != null)
+            {
+                @:$("#insGroupNumInput2").val(`@Html.Raw(Model.SecondaryInsurance.PolicyGroupNum)`);
+            }
+        }
+
+
+        var insuredName2 = $("#insuredName2");
+        if (insuredName2.length > 0) {
+            @if (Model.SecondaryInsurance != null)
+            {
+                @:$("#insuredFirstName2").val(`@Html.Raw(Model.SecondaryInsurance.FirstName)`);
+                @:$("#insuredMI2").val(`@Html.Raw(Model.SecondaryInsurance.MiddleName)`);
+                @:$("#insuredLastName2").val(`@Html.Raw(Model.SecondaryInsurance.LastName)`);
+            }
+        }
+
+        var insuredAddress3 = $("#insuredAddress3");
+        if (insuredAddress3.length > 0) {
+            @if (Model.SecondaryInsurance != null)
+            {
+                @:insuredAddress3.val(`@Html.Raw(Model.SecondaryInsurance.Address1)`);
+            }
+        }
+
+        var insuredAddress4 = $("#insuredAddress4");
+        if (insuredAddress4.length > 0) {
+            @if (Model.SecondaryInsurance != null)
+            {
+                @:insuredAddress4.val(`@Html.Raw(Model.SecondaryInsurance.Address2)`);
+            }
+        }
+
+        var insuredCity2 = $("#insuredAddressCity2");
+        if (insuredCity2.length > 0) {
+            @if (Model.SecondaryInsurance != null)
+            {
+                @:insuredCity2.val(`@Html.Raw(Model.SecondaryInsurance.City)`);
+            }
+        }
+
+        var insuredStateList2 = $("#insuredStateList2");
+        if (insuredStateList2.length > 0) {
+            insuredStateList2.find('option').not(':first').remove();
+            var blankOption = new Option('', 0);
+            insuredStateList2.append(blankOption);
+
+            @foreach (var state in Model.StateList)
+            {
+                @:insuredStateList2.append(new Option('@state.Name', @state.Id, false, '@state.Name' == `@Html.Raw(Model.SecondaryInsurance?.State)` ));
+            }
+
+        }
+
+        var insuredZip2 = $("#insuredAddressZipCode2");
+        if (insuredZip2.length > 0) {
+            @if (Model.SecondaryInsurance != null)
+            {
+                @:insuredZip2.val(`@Html.Raw(Model.SecondaryInsurance.ZipCode)`);
+            }
+        }
+
+        var insuredPhone2 = $("#insuredPhoneInput2");
+        if (insuredPhone2.length > 0) {
+            initPhone("#insuredPhoneInput2");
+            @if (Model.SecondaryInsurance != null)
+            {
+                @:insuredPhone2.val(`@Html.Raw(Model.SecondaryInsurance.Phone)`);
+            }
+        }
+
+        var insuredSex2 = $("#insuredSex2");
+        if (insuredSex2.length > 0) {
+            var insuredSexCombo2 = $("#insuredSexInput2");
+            @foreach (var sexItem in Model.Sexes)
+            {
+                @:insuredSexCombo2.append(new Option('@sexItem.Description', '@sexItem.Name', false, '@sexItem.Name' == '@Model.SecondaryInsurance?.Sex'));
+            }
+        }
+
+
+        @if (Model.SecondaryInsurance != null && Model.SecondaryInsurance.BirthDate.HasValue)
+        {
+            @:var insuredDOB2 = $("#insuredDOB2");
+            @:if (insuredDOB2.length > 0)
+            @:{
+            @:var dtStr1 = `@Model.SecondaryInsurance.BirthDate.Value.ToString("yyyy-MM-dd")`;
+            @:var inputElement1 = $("#insuredDOBInput2");
+            @:inputElement1.val(dtStr1);
+            @:}
+        }
+
+
+
+
+
+        @*var hideInsFields = true;
+        var relationToInsured = $("#insuredRelation");
+        if (relationToInsured.length > 0) {
+            @if (Model.PrimaryInsurance != null)
+            {
+                @:$('#insuredRelationInput option[value="@Model.PrimaryInsurance.RelationtoInsured"]').prop('selected', true);
+
+                if(Model.PrimaryInsurance.RelationtoInsured != "01")
+                {
+                    @:hideInsFields = false;
+                }
+
+            }
+
+            $('.insured-info').each(function () { $(this).prop('hidden', hideInsFields); });
+
+            $("#insuredRelationInput").change(function () {
+                var isSelf = $(this).val() == "01";
+                $('.insured-info').each(function () {
+                    $(this).prop('hidden', isSelf);
+                });
+            });
+
+        }*@
+
+
+        fillFormDefaults();
+});
+    </script>
+
+}
+
+

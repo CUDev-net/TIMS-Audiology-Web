@@ -1,0 +1,346 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="generator" content="HelpNDoc Professional Edition 9.8.0.588">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="favicon.ico"/>
+
+  <title>E-Payment Processing in POS</title>
+  <meta name="description" content="" /> 
+  <meta name="keywords" content="E-Payments in POS,POS Module,E-Payment Processing Overview">
+
+
+
+  
+  
+
+  <!-- Twitter Card data -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="E-Payment Processing in POS">
+  <meta name="twitter:description" content="">
+
+  <!-- Open Graph data -->
+  <meta property="og:title" content="E-Payment Processing in POS" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="" />
+  <meta property="og:site_name" content="TIMS Audiology and SLP Version 6.08" /> 
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendors/bootstrap-3.4.1/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <link href="vendors/bootstrap-3.4.1/css/ie10-viewport-bug-workaround.css" rel="stylesheet"/>
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="vendors/html5shiv-3.7.3/html5shiv.min.js"></script>
+      <script src="vendors/respond-1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+  <!-- JsTree styles -->
+  <link href="vendors/jstree-3.3.10/themes/default/style.min.css" rel="stylesheet"/>
+
+  <!-- Hnd styles -->
+  <link href="css/layout.min.css" rel="stylesheet" />
+  <link href="css/effects.min.css" rel="stylesheet" />
+  <link href="css/theme-dark-blue.min.css" rel="stylesheet" />
+  <link href="css/print.min.css" rel="stylesheet" media="print" />
+  <style type="text/css">nav { width: 350px} @media screen and (min-width:769px) { body.md-nav-expanded div#main { margin-left: 350px} body.md-nav-expanded header { padding-left: 364px} }</style>
+  <style type="text/css">.navigation #inline-toc { width: auto !important}</style>
+
+  <!-- Content style -->
+  <link href="css/hnd.content.css" rel="stylesheet" />
+
+  
+
+
+
+</head>
+
+<body class="md-nav-expanded">
+
+
+
+  
+
+  <div id="skip-link">
+    <a href="#main-content" class="element-invisible">Skip to main content</a>
+  </div>
+
+  <header class="headroom">
+    <button class="hnd-toggle btn btn-default">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>        
+    </button>
+    <h1>TIMS Audiology and SLP Version 6.08</h1>
+    <a href="https://us.timsaudiology.com"><img src="_logo.png" alt="logo" class="logo"/></a>
+  </header>
+
+  <nav id="panel-left" class="md-nav-expanded">
+    <!-- Nav tabs -->
+    <ul class="tab-tabs nav nav-tabs" role="tablist">
+      <li id="nav-close" role="presentation"> 
+        <button class="hnd-toggle btn btn-default" aria-label="close">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+      </li>
+      
+	  
+        <li role="presentation" class="tab active">
+            <a href="#contents" id="tab-contents" aria-controls="contents" role="tab" data-toggle="tab">
+                <i class="glyphicon glyphicon-list"></i>
+                Contents
+            </a>
+        </li>
+      
+        <li role="presentation" class="tab">
+            <a href="#index" id="tab-index" aria-controls="index" role="tab" data-toggle="tab">
+                <i class="glyphicon glyphicon-asterisk"></i>
+                Index
+            </a>
+        </li>
+      
+        <li role="presentation" class="tab">
+            <a href="#search" id="tab-search" aria-controls="search" role="tab" data-toggle="tab">
+                <i class="glyphicon glyphicon-search"></i>
+                Search
+            </a>
+        </li>
+      
+    </ul>  <!-- /Nav tabs -->
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+	  
+      <div role="tabpanel" class="tab-pane active" id="contents">
+        <div id="toc" class="tree-container unselectable"
+            data-url="_toc.json"
+            data-openlvl="1"
+        >
+            
+        </div>
+      </div>  <!-- /contents-->
+      
+      <div role="tabpanel" class="tab-pane" id="index">
+        <div id="keywords" class="tree-container unselectable"
+            data-url="_keywords.json"
+            data-openlvl="2"
+        >
+            
+        </div>
+      </div>  <!-- /index-->
+      
+      <div role="tabpanel" class="tab-pane" id="search">
+        <div class="search-content">
+          <div class="search-input">
+            <form id="search-form">
+              <div class="form-group">
+                <div class="input-group">
+                  <input type="text" class="form-control" id="input-search" name="input-search" placeholder="Search..." aria-label="Search..." />
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit" aria-label="Search...">
+                      <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </button>
+                  </span>
+                </div>
+              </div>
+            </form>
+          </div>  <!-- /search-input -->
+          <div class="search-result">
+            <div id="search-info"></div>
+            <div class="tree-container unselectable" id="search-tree"></div>
+          </div>  <!-- /search-result -->
+        </div>  <!-- /search-content -->
+      </div>  <!-- /search-->
+      
+    </div>  <!-- /Tab panes -->
+
+  </nav>
+
+  <div id="main">
+
+    <article>
+        <div id="topic-content" class="container-fluid" 
+		  data-hnd-id="E-PaymentProcessinginPOS"
+		  data-hnd-context="287"
+		  data-hnd-title="E-Payment Processing in POS"
+		>
+            
+                <div class="navigation">
+                    <ol class="breadcrumb">
+                        <li>POS</li><li><a href="E-PaymentProcessingOverview.html">E-Payment Processing Overview</a></li>
+                    </ol>
+                    <div class="nav-arrows">
+                        <div class="btn-group btn-group" role="group"><div class="btn-group"><button type="button" title="In this page..." class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span></button><ul id="inline-toc" class="dropdown-menu dropdown-menu-right"></ul></div><a class="btn btn-default" href="E-PaymentProcessingOverview.html" title="E-Payment Processing Overview" role="button"><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span></a><a class="btn btn-default" href="E-PaymentProcessingOverview.html" title="E-Payment Processing Overview" role="button"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a><a class="btn btn-default" href="CareCreditTFinancing.html" title="CareCredit&trade; Financing" role="button"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></div>
+                    </div>
+                </div> 
+            
+
+            <a id="main-content"></a>
+
+            <h2>E-Payment Processing in POS</h2>
+
+            <div class="main-content">
+                
+<p class="rvps3"><span class="rvts8">E-Payments can be processed in the following POS areas:&nbsp;</span><span class="rvts15">&nbsp;Invoices</span><span class="rvts8"> and </span><span class="rvts15">Payments</span><span class="rvts8">.&nbsp;&nbsp;The functionality of E-Payment processing is largely the same for both areas.</span></p>
+<p class="rvps3"><span class="rvts8"><br/></span></p>
+<p class="rvps3"><span class="rvts8">Existing TIMS users should already be familiar with POS Payment Items.&nbsp;&nbsp;In the past, these payment items were simply a way of representing “manual” payments made outside of TIMS (i.e. actual payments made with third-party software or payment terminals).</span></p>
+<p class="rvps3"><span class="rvts8"><br/></span></p>
+<p class="rvps3"><span class="rvts8">Offices can continue to use the POS Payment items in this fashion, but can now also choose to process the payments directly through TIMS.&nbsp;&nbsp;</span></p>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/pos%20inv%20pmt%20types.gif"></p>
+<ul style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside; list-style-type: disc;">
+ <li class="rvps3 noindent"><span class="rvts15">Manual</span><span class="rvts8"> - Use this selection to retain traditional payment functionality in TIMS (i.e. if an office elects to continue to process E-payments outside of TIMS).</span></li>
+ <li class="rvps3 noindent"><span class="rvts15">Credit Card</span><span class="rvts8"> - Select this option if the office intends to process a credit or debit card through TIMS.</span></li>
+ <li class="rvps3 noindent"><span class="rvts15">E-check</span><span class="rvts8"> - Select this option if the office intends to process a check payment through TIMS.</span></li>
+ <li class="rvps3 noindent"><span class="rvts15">CareCredit</span><span class="rvts8"> - select this option to process the payment through the </span><a class="rvts16" href="CareCreditTPayments.html">CareCredit</a><a class="rvts20" href="CareCreditTFinancing.html">™</a><a class="rvts16" href="CareCreditTFinancing.html"> system</a><span class="rvts8">.</span></li>
+</ul>
+<p class="rvps3"><span class="rvts8"><br/></span></p>
+<p class="rvps3"><span class="rvts36">Steps for Manual:</span></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li class="rvps3 noindent"><span class="rvts8">Enter line items, including any relevant Payment Items (Payment Method and Reference are </span><span class="rvts15">required</span><span class="rvts8">).</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">Click </span><span class="rvts15">Finalize Document </span><img alt="" style="padding : 1px;" src="lib/pos%20final%20btn.gif"><span class="rvts8">, then </span><span class="rvts15">Yes</span><span class="rvts8"> to confirm.</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">Confirm Manual Payment type and amount, then click </span><span class="rvts15">OK</span><span class="rvts8">.</span></li>
+</ol>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/pos%20manual%20pmt.gif"></p>
+<p class="rvps3"><span class="rvts8"><br/></span></p>
+<p class="rvps3"><span class="rvts36">Steps for Credit Card</span></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li class="rvps3 noindent"><span class="rvts8">Enter line items, including the relevant Payment Items, and then select </span><span class="rvts15">Credit Card</span><span class="rvts8"> option.</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">Click </span><span class="rvts15">Finalize Document </span><img alt="" style="padding : 1px;" src="lib/pos%20final%20btn.gif"><span class="rvts8">, then </span><span class="rvts15">Yes</span><span class="rvts8"> to confirm.</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">The E-Payment Processing window will popup.</span></li>
+</ol>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/pos%20epmt%20proc.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li class="rvps6 noindent"><span class="rvts8">Select Manual Transmit to process the e-payments outside of TIMS.</span></li>
+ </ol>
+ <li value="4" class="rvps3 noindent"><span class="rvts8">Swipe Card, then confirm card number.&nbsp;</span></li>
+</ol>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/pos%20cc%20pmt.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="5" class="rvps3 noindent"><span class="rvts8">Click Card Transmit (an Approved/Denied window will then pop up)</span></li>
+</ol>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/pos%20cc%20response.gif"></p>
+<p class="rvps3"><span class="rvts8"><br/></span></p>
+<p class="rvps3"><img alt="" style="padding : 1px;" src="lib/important.gif"><span class="rvts8"> </span><span class="rvts15">Notes</span><span class="rvts8">:</span></p>
+<ul style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside; list-style-type: disc;">
+ <li class="rvps3 noindent"><span class="rvts8">“Please Swipe Card” must be flashing before the card is swiped.&nbsp;&nbsp;If this message is missing, click the Re-Swipe button before card is swiped.</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">If a POS Printer has been setup properly (i.e. using a valid local or network printer), two receipts will be automatically printed following the Approved/Denied window.&nbsp;</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">If no printer was setup (or setup incorrectly) a traditional Windows print screen will pop up asking the user to direct the printing to a valid source (a printer, Microsoft XPS Document Writer, etc.).</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">A similar process applies to POS Payment receipts. &nbsp;Select the Credit Card or E-Check option and continue on with the Payment, which will eventually lead you to the same Credit-Card or Electronic Check Processing windows that are described above.</span></li>
+</ul>
+<p class="rvps3"><span class="rvts8"><br/></span></p>
+<p class="rvps3"><span class="rvts36">Steps for E-Check</span></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li class="rvps3 noindent"><span class="rvts8">Enter line items, including the relevant Payment Items, and then select E-Check option.</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">Click </span><span class="rvts15">Save</span><span class="rvts8">.</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">Click </span><span class="rvts15">Finalize Document</span><span class="rvts8">, then </span><span class="rvts15">Yes</span><span class="rvts8"> to confirm.</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">Swipe check, and confirm </span><span class="rvts15">Bank, Account</span><span class="rvts8">, and </span><span class="rvts15">Check Number</span><span class="rvts8">.&nbsp;</span></li>
+</ol>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/pos%20echeck.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="5" class="rvps3 noindent"><span class="rvts8">Click Transmit (an Approved/Denied window will then pop up).&nbsp;</span></li>
+</ol>
+<h2 class="rvps29"><span class="rvts0"><span class="rvts82">Steps for CareCredit</span></span></h2>
+<ul style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside; list-style-type: disc;">
+ <li class="rvps29 noindent"><span class="rvts0"><span class="rvts83">See </span></span><span class="rvts0"><a class="rvts84" href="CareCreditTFinancing.html">CareCredit</a></span><span class="rvts0"><a class="rvts85" href="CareCreditTFinancing.html">™</a></span><span class="rvts0"><a class="rvts84" href="CareCreditTFinancing.html"> Financing</a></span></li>
+</ul>
+<h1 class="rvps5"><span class="rvts0"><span class="rvts13">Refunds</span></span></h1>
+<p class="rvps3"><span class="rvts8">TIMS E-Payment Processing also facilitates refunds. &nbsp;&nbsp;POS refunds for Credit Cards or E-Checks can be issued through the POS Payment window.&nbsp;&nbsp;In order to process a Credit, Debit, or E-Check refund, please note the following requirements for a </span><span class="rvts65">standard account</span><span class="rvts8"> setup with TransNational:</span></p>
+<p class="rvps3"><span class="rvts8"><br/></span></p>
+<ul style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside; list-style-type: disc;">
+ <li class="rvps3 noindent"><span class="rvts8">Refunds must be made against existing credit card or E-check payments</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">Refunds cannot exceed the amount of previous payments.</span></li>
+</ul>
+<p class="rvps3"><span class="rvts8"><br/></span></p>
+<p class="rvps3"><span class="rvts8">Users should also note that they do not need the credit card or check information to issue a refund.&nbsp;&nbsp;TIMS has a transaction history dropdown (titled Trans ID Lookup) that will provide users with the information they need to process refunds.</span></p>
+<p class="rvps3"><span class="rvts8"><br/></span></p>
+<p class="rvps3"><span class="rvts8">In addition to the standard setup above, customers </span><span class="rvts65">have the option to enable “Pure Credits” with TransNational</span><span class="rvts8">.&nbsp;&nbsp;A Pure Credit is the ability to issue a stand-alone credit to any credit card the customer wishes, regardless of any past or related TIMS POS transaction information.&nbsp;&nbsp;</span><span class="rvts65">This feature is not enabled by default on TransNational accounts</span><span class="rvts8">.</span></p>
+<h1 class="rvps5"><span class="rvts0"><span class="rvts13">POS Payment (Payment Reversal) - Standard Account</span></span></h1>
+<p class="rvps3"><span class="rvts8">To issue refunds (credits) through the POS Payment screen,&nbsp;&nbsp;these requirements apply:&nbsp;&nbsp;&nbsp;refunds must be made against existing credit card or E-check payments, and refunds cannot exceed the amount of previous payments.</span></p>
+<p class="rvps3"><span class="rvts8"><br/></span></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li class="rvps3 noindent"><span class="rvts8">Under </span><span class="rvts15">Payment Options</span><span class="rvts8">, select the </span><span class="rvts15">Credit Card</span><span class="rvts8"> or </span><span class="rvts15">E-Check</span><span class="rvts8"> option.</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">Enter </span><span class="rvts15">Payment Amount</span><span class="rvts8"> (the amount to be refunded, which is always positive).</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">Check the </span><span class="rvts15">Payment Reversal</span><span class="rvts8"> box.</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">Click </span><span class="rvts15">Save</span><span class="rvts8">, then</span><span class="rvts15"> Finalize Document</span><span class="rvts8">, then </span><span class="rvts15">Yes</span><span class="rvts8"> twice to confirm.</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">Click</span><span class="rvts15"> NO</span><span class="rvts8"> on the Credit Confirmation window, which automatically selects the Transaction-ID Credit, which is the credit &nbsp;type required for Standard Accounts.</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">Use the </span><span class="rvts15">Trans ID Lookup</span><span class="rvts8"> dropdown menu to identify a previous Transaction ID to apply the Credit to.</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">Click </span><span class="rvts15">Transmit</span><span class="rvts8"> (an Approved/Denied window will then pop up)</span></li>
+</ol>
+<p class="rvps3"><span class="rvts8"><br/></span></p>
+<p class="rvps3"><span class="rvts8">If a customer chooses to enable the “</span><span class="rvts15">Pure Credit</span><span class="rvts8">” feature with TransNational, then the following procedure applies when entering Pure Credits:</span></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li class="rvps3 noindent"><span class="rvts8">Choose Payment Option (ex. Credit Card).</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">Enter Payment Amount, and check Payment Reversal.</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">Click </span><span class="rvts15">Save</span><span class="rvts8">, then </span><span class="rvts15">Finalize Document</span><span class="rvts8">, and click YES twice to continue.</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">Click </span><span class="rvts15">YES</span><span class="rvts8"> on the Credit Confirmation window,, which automatically selects the PURE Credit option.&nbsp;&nbsp;This credit will not be tied to any previous POS transactions.&nbsp;&nbsp;It stands alone.</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">Enter the appropriate Card information.</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">Click </span><span class="rvts15">Transmit</span><span class="rvts8"> (an Approved/Denied window will then pop up)</span><span class="rvts8"></span></li>
+</ol>
+
+            </div>
+            
+            
+        </div>  <!-- /#topic-content -->
+    </article>
+
+    <footer></footer>
+
+  </div>  <!-- /#main -->
+
+  <div class="mask" data-toggle="sm-nav-expanded"></div>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="hndModal" tabindex="-1" role="dialog" aria-labelledby="hndModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="hndModalLabel"></h4>
+        </div>
+        <div class="modal-body">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary modal-btn-close" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Splitter -->
+  <div id="hnd-splitter" style="left: 350px"></div>  
+
+  <!-- Scripts -->
+  <script src="vendors/jquery-3.7.1/jquery.min.js"></script>
+  <script src="vendors/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+  <script src="vendors/bootstrap-3.4.1/js/ie10-viewport-bug-workaround.js"></script>
+  <script src="vendors/markjs-8.11.1/jquery.mark.min.js"></script>
+  <script src="vendors/uri-1.19.11/uri.min.js"></script>
+  <script src="vendors/imageMapResizer-1.0.10/imageMapResizer.min.js"></script>
+  <script src="vendors/headroom-0.11.0/headroom.min.js"></script>
+  <script src="vendors/jstree-3.3.10/jstree.min.js"></script>  
+  <script src="vendors/interactjs-1.9.22/interact.min.js"></script>  
+
+  <!-- HelpNDoc scripts -->
+  <script src="js/polyfill.object.min.js"></script>
+  <script src="_translations.js"></script>
+  <script src="js/hndsd.min.js"></script>
+  <script src="js/hndse.min.js"></script>
+  <script src="js/app.min.js"></script>
+
+  <!-- Init script -->
+  <script src="_topic_init.js"></script>
+
+
+
+</body>
+
+</html>
+

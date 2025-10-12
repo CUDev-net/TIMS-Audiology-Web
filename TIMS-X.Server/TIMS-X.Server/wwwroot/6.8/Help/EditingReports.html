@@ -1,0 +1,388 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="generator" content="HelpNDoc Professional Edition 9.8.0.588">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="favicon.ico"/>
+
+  <title>Editing Reports</title>
+  <meta name="description" content="" /> 
+  <meta name="keywords" content="add the merge fields,Designer Tips and Tricks">
+
+
+
+  
+  
+
+  <!-- Twitter Card data -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Editing Reports">
+  <meta name="twitter:description" content="">
+
+  <!-- Open Graph data -->
+  <meta property="og:title" content="Editing Reports" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="" />
+  <meta property="og:site_name" content="TIMS Audiology and SLP Version 6.08" /> 
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendors/bootstrap-3.4.1/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <link href="vendors/bootstrap-3.4.1/css/ie10-viewport-bug-workaround.css" rel="stylesheet"/>
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="vendors/html5shiv-3.7.3/html5shiv.min.js"></script>
+      <script src="vendors/respond-1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+  <!-- JsTree styles -->
+  <link href="vendors/jstree-3.3.10/themes/default/style.min.css" rel="stylesheet"/>
+
+  <!-- Hnd styles -->
+  <link href="css/layout.min.css" rel="stylesheet" />
+  <link href="css/effects.min.css" rel="stylesheet" />
+  <link href="css/theme-dark-blue.min.css" rel="stylesheet" />
+  <link href="css/print.min.css" rel="stylesheet" media="print" />
+  <style type="text/css">nav { width: 350px} @media screen and (min-width:769px) { body.md-nav-expanded div#main { margin-left: 350px} body.md-nav-expanded header { padding-left: 364px} }</style>
+  <style type="text/css">.navigation #inline-toc { width: auto !important}</style>
+
+  <!-- Content style -->
+  <link href="css/hnd.content.css" rel="stylesheet" />
+
+  
+
+
+
+</head>
+
+<body class="md-nav-expanded">
+
+
+
+  
+
+  <div id="skip-link">
+    <a href="#main-content" class="element-invisible">Skip to main content</a>
+  </div>
+
+  <header class="headroom">
+    <button class="hnd-toggle btn btn-default">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>        
+    </button>
+    <h1>TIMS Audiology and SLP Version 6.08</h1>
+    <a href="https://us.timsaudiology.com"><img src="_logo.png" alt="logo" class="logo"/></a>
+  </header>
+
+  <nav id="panel-left" class="md-nav-expanded">
+    <!-- Nav tabs -->
+    <ul class="tab-tabs nav nav-tabs" role="tablist">
+      <li id="nav-close" role="presentation"> 
+        <button class="hnd-toggle btn btn-default" aria-label="close">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+      </li>
+      
+	  
+        <li role="presentation" class="tab active">
+            <a href="#contents" id="tab-contents" aria-controls="contents" role="tab" data-toggle="tab">
+                <i class="glyphicon glyphicon-list"></i>
+                Contents
+            </a>
+        </li>
+      
+        <li role="presentation" class="tab">
+            <a href="#index" id="tab-index" aria-controls="index" role="tab" data-toggle="tab">
+                <i class="glyphicon glyphicon-asterisk"></i>
+                Index
+            </a>
+        </li>
+      
+        <li role="presentation" class="tab">
+            <a href="#search" id="tab-search" aria-controls="search" role="tab" data-toggle="tab">
+                <i class="glyphicon glyphicon-search"></i>
+                Search
+            </a>
+        </li>
+      
+    </ul>  <!-- /Nav tabs -->
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+	  
+      <div role="tabpanel" class="tab-pane active" id="contents">
+        <div id="toc" class="tree-container unselectable"
+            data-url="_toc.json"
+            data-openlvl="1"
+        >
+            
+        </div>
+      </div>  <!-- /contents-->
+      
+      <div role="tabpanel" class="tab-pane" id="index">
+        <div id="keywords" class="tree-container unselectable"
+            data-url="_keywords.json"
+            data-openlvl="2"
+        >
+            
+        </div>
+      </div>  <!-- /index-->
+      
+      <div role="tabpanel" class="tab-pane" id="search">
+        <div class="search-content">
+          <div class="search-input">
+            <form id="search-form">
+              <div class="form-group">
+                <div class="input-group">
+                  <input type="text" class="form-control" id="input-search" name="input-search" placeholder="Search..." aria-label="Search..." />
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit" aria-label="Search...">
+                      <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </button>
+                  </span>
+                </div>
+              </div>
+            </form>
+          </div>  <!-- /search-input -->
+          <div class="search-result">
+            <div id="search-info"></div>
+            <div class="tree-container unselectable" id="search-tree"></div>
+          </div>  <!-- /search-result -->
+        </div>  <!-- /search-content -->
+      </div>  <!-- /search-->
+      
+    </div>  <!-- /Tab panes -->
+
+  </nav>
+
+  <div id="main">
+
+    <article>
+        <div id="topic-content" class="container-fluid" 
+		  data-hnd-id="EditingReports"
+		  data-hnd-context="379"
+		  data-hnd-title="Editing Reports"
+		>
+            
+                <div class="navigation">
+                    <ol class="breadcrumb">
+                        <li>Analytics/Reporting</li><li>Patient Reports Designer</li><li><a href="DiagnosticReportDesigner.html">Diagnostic Report Designer</a></li>
+                    </ol>
+                    <div class="nav-arrows">
+                        <div class="btn-group btn-group" role="group"><div class="btn-group"><button type="button" title="In this page..." class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span></button><ul id="inline-toc" class="dropdown-menu dropdown-menu-right"></ul></div><a class="btn btn-default" href="DiagnosticReportDesigner.html" title="Diagnostic Report Designer" role="button"><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span></a><a class="btn btn-default" href="CreatingReports.html" title="Creating Reports" role="button"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a><a class="btn btn-default" href="SLPReportDesigner.html" title="SLP Report Designer" role="button"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></div>
+                    </div>
+                </div> 
+            
+
+            <a id="main-content"></a>
+
+            <h2>Editing Reports</h2>
+
+            <div class="main-content">
+                
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li class="rvps3 noindent"><span class="rvts8">The Report Designer </span><span class="rvts17">functions much like Microsoft® Word and other word processor programs.&nbsp;</span><span class="rvts8">&nbsp;</span></li>
+</ol>
+<p class="rvps11"><img alt="" style="padding : 1px;" src="lib/rpt%20des%20new.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li class="rvps6 noindent"><span class="rvts8">The font and other formatting tools are available in the </span><span class="rvts15">Home</span><span class="rvts8"> tab. (shown above)</span></li>
+  <li class="rvps6 noindent"><span class="rvts8">Change the margins, page size, column layout, etc in the </span><span class="rvts15">Page Layout</span><span class="rvts8"> tab.</span></li>
+ </ol>
+</ol>
+<p class="rvps15"><img alt="" style="padding : 1px;" src="lib/rpt%20des%20page%20layout.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li value="3" class="rvps6 noindent"><span class="rvts8">Insert tables, images, text boxes, headers, footers, and signature fields from the </span><span class="rvts15">Insert</span><span class="rvts8"> tab. </span><img alt="" style="padding : 1px;" src="lib/important.gif"><span class="rvts15">Hint</span><span class="rvts8"> - when designing reports, it is highly recommended to use the table function. This allows for better alignment and positioning of fields and graphics.</span></li>
+ </ol>
+</ol>
+<p class="rvps15"><img alt="" style="padding : 1px;" src="lib/rpt%20des%20insert.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-roman;">
+   <li class="rvps11 noindent"><img alt="" style="padding : 1px;" src="lib/important.gif"><span class="rvts8"> </span><span class="rvts15">New in version 6.08: </span><span class="rvts8">multiple </span><span class="rvts15">signature fields</span><span class="rvts8"> can now be entered on one document for the the patient or provider to sign. For example, an agreement form can be designed that requires several spots for initials and a full signature. To collect signatures, you must have a supported </span><span class="rvts15">Topaz</span><span class="rvts58">®</span><span class="rvts15"> signature pad</span><span class="rvts8">. </span><span class="rvts19">(contact TIMS Support for details) . &nbsp;</span><span class="rvts8">Position your cursor where you'd like insert the signature, then click the Insert tab, then Signature Field. You can resize the field to whatever size needed. &nbsp;(larger for a signature, smaller for initials, for example). Other formatting (text wrapping, size, alignment) can be done by right-clicking on the merge fields.</span></li>
+  </ol>
+ </ol>
+</ol>
+<p class="rvps26"><img alt="" style="padding : 1px;" src="lib/comm%20sig%201.gif"><span class="rvts8"> </span><img alt="" style="padding : 1px;" src="lib/comm%20sig%202.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li value="4" class="rvps6 noindent"><span class="rvts15">Also new in version 6.08</span><span class="rvts8">: </span><span class="rvts15">Check boxes</span><span class="rvts8"> and </span><span class="rvts15">date pickers</span><span class="rvts8"> can be added to a document that can be dynamically clicked while the letter is on the screen. The checked box and/or date selected will then printed and/or saved with the archived report.</span></li>
+ </ol>
+</ol>
+<p class="rvps12"><span class="rvts8">&nbsp;</span><img alt="" style="padding : 1px;" src="lib/rpt%20des%20form%20fields.gif"></p>
+<p class="rvps12"><img alt="" style="padding : 1px;" src="lib/comm%20letter%20form%20field2.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li value="5" class="rvps6 noindent"><span class="rvts8">Change how you view the report in the </span><span class="rvts15">View</span><span class="rvts8"> tab. For example, change the zoom, hide/view table gridlines and rulers, etc.</span></li>
+ </ol>
+</ol>
+<p class="rvps15"><img alt="" style="padding : 1px;" src="lib/rpt%20des%20view.gif"></p>
+<p class="rvps3"><span class="rvts8"><br/></span></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="2" class="rvps3 noindent"><span class="rvts8">To </span><span class="rvts15">add the merge fields</span><span class="rvts8"> from TIMS, click on either the Diagnostic Fields or SLP Fields tab.</span></li>
+</ol>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/rpt%20des%20add%20ins.gif"></p>
+<p class="rvps6"><span class="rvts8">You will see the merge field categories and drop downs. &nbsp;</span></p>
+<p class="rvps11"><img alt="" style="padding : 1px;" src="lib/rpt%20des%20add%20ins2.gif"></p>
+<p class="rvps6"><span class="rvts8">Position your cursor where you would like to insert the merge field, then select a Category and a Field to insert. &nbsp;</span></p>
+<p class="rvps11"><img alt="" style="padding : 1px;" src="lib/rpt%20des%20add%20ins3.gif"></p>
+<p class="rvps11"><span class="rvts8">Then click the plus sign to insert the field into the report.</span></p>
+<p class="rvps11"><img alt="" style="padding : 1px;" src="lib/rpt%20des%20add%20ins4.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li class="rvps6 noindent"><span class="rvts8">The list of the available merge fields are:</span></li>
+  <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-roman;">
+   <li class="rvps11 noindent"><a class="rvts16" href="DiagnosticReportSource.html">Diagnostic Report</a></li>
+   <li class="rvps11 noindent"><a class="rvts16" href="SLPReportSource.html">SLP Report</a></li>
+  </ol>
+ </ol>
+ <li value="3" class="rvps3 noindent"><span class="rvts15">Preview the layout</span><span class="rvts8"> of the diagnostic report as follows:&nbsp;</span></li>
+</ol>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li class="rvps6 noindent"><span class="rvts8">Create a "dummy" patient with a last name beginning with </span><span class="rvts15">three "Z"s</span><span class="rvts8">. &nbsp;Example: &nbsp;John ZZZSample</span></li>
+  <li class="rvps6 noindent"><span class="rvts8">Create a history record for that patient, along with an audiogram and all the diagnostic and/or speech data you wish to display on your diagnostic report.</span></li>
+  <li class="rvps6 noindent"><span class="rvts8">In the Patient Report Designer, select the name from the preview drop down, if not already selected.</span></li>
+ </ol>
+</ol>
+<p class="rvps15"><img alt="" style="padding : 1px;" src="lib/rpt_preview_name.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li value="4" class="rvps6 noindent"><span class="rvts8">Select the report you wish to preview from the Report Designer panel. Click the Merge button from the Home tab.</span></li>
+ </ol>
+</ol>
+<p class="rvps12"><img alt="" style="padding : 1px;" src="lib/rpt%20des%20merge.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li value="5" class="rvps6 noindent"><span class="rvts8">Your report layout with the dummy patient's data will be previewed on the right. (see example) &nbsp;</span></li>
+ </ol>
+</ol>
+<p class="rvps15"><img alt="" style="padding : 1px;" src="lib/rpt%20des%20preview.gif"></p>
+<p class="rvps15"><span class="rvts8">You cannot edit or print the report from here, only view it. &nbsp;To edit the report and make changes, click Designer to return to design mode.</span></p>
+<p class="rvps15"><img alt="" style="padding : 1px;" src="lib/rpt%20des%20designer%20btn.gif"><span class="rvts8">&nbsp;</span></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="4" class="rvps3 noindent"><span class="rvts8">When you have finishing creating your letter, click the </span><span class="rvts15">File</span><span class="rvts8"> tab, and then </span><span class="rvts15">Save</span><span class="rvts8">.</span></li>
+</ol>
+<p class="rvps11"><img alt="" style="padding : 1px;" src="lib/rpt%20des%20save.gif"></p>
+<h1 class="rvps5"><a name="InactivatingDeletingReports"></a><span class="rvts0"><span class="rvts13">Inactivating and Deleting Reports</span></span></h1>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="1" class="rvps3 noindent"><span class="rvts8">Select the report you wish to edit in the Report Designer Panel.</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">Click the Edit Patient Report icon </span><img alt="" style="padding : 1px;" src="lib/edit.gif"><span class="rvts8">.</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">The report information screen will popup, showing summary information.&nbsp;</span></li>
+</ol>
+<p class="rvps11"><img alt="" style="padding : 1px;" src="lib/rpt%20info%20screen2.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="4" class="rvps3 noindent"><span class="rvts8">Click the </span><span class="rvts15">Inactive</span><span class="rvts8"> checkbox.</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">Click the green </span><span class="rvts15">Save</span><span class="rvts8"> Button.</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">If Show Inactive Templates box is </span><span class="rvts25">not</span><span class="rvts8"> checked, the report will disappear from the panel.&nbsp;</span></li>
+</ol>
+<p class="rvps11"><img alt="" style="padding : 1px;" src="lib/rpt%20des%20show%20inactive.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="7" class="rvps3 noindent"><span class="rvts15">Delete</span><span class="rvts8"> a report template:</span></li>
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li class="rvps6 noindent"><span class="rvts8">A report </span><span class="rvts25">must first be inactive</span><span class="rvts8"> before it can be deleted.</span></li>
+  <li class="rvps6 noindent"><span class="rvts8">If the inactive report is not visible on the list, check the Show Inactive Templates checkbox. </span><img alt="" style="padding : 1px;" src="lib/rpt%20des%20show%20inactive.gif"></li>
+  <li class="rvps6 noindent"><span class="rvts8">Select the report, then click the Delete icon. </span><img alt="" style="padding : 1px;" src="lib/delete%20btn.gif"></li>
+  <li class="rvps6 noindent"><span class="rvts8">A confirmation will popup to confirm the deletion. &nbsp;Click </span><span class="rvts15">Yes</span><span class="rvts8"> to delete, No to cancel.</span></li>
+ </ol>
+</ol>
+<h1 class="rvps5"><a name="ReportDesigneTipsr"></a><span class="rvts0"><span class="rvts13">Designer Tips and Tricks</span></span></h1>
+<p class="rvps3"><span class="rvts15">General</span></p>
+<ul style="text-indent: 0px; padding: 0; margin: 0 0 0 40px; list-style-position: outside; list-style-type: disc;">
+ <li class="rvps3 noindent"><span class="rvts60">Merge fields need to be deleted one at a time. You can’t select multiple fields to delete at once.</span></li>
+ <li class="rvps3 noindent"><span class="rvts60">When setting margins, the number input needs to have a leading zero. &nbsp;For example "0.5" &nbsp;</span><span class="rvts61">not</span><span class="rvts60"> ".5".&nbsp;</span></li>
+ <li class="rvps3 noindent"><span class="rvts60">To increase the size of a check box field, highlight the box and change it to a </span><span class="rvts61">larger font size</span><span class="rvts60">.</span></li>
+ <li class="rvps3 noindent"><span class="rvts60">If words seem to be splitting excessively on lines (over-hyphenating), you can change the settings (per user). Right-click on a misspelled word, click Options, then </span><span class="rvts61">Hyphenation </span><span class="rvts60">to increase the number of characters. &nbsp;Other spell-checker options can be set in </span><span class="rvts61">Spell Checking Options</span><span class="rvts60">.</span></li>
+</ul>
+<p class="rvps11"><img alt="" style="padding : 1px;" src="lib/comm%20spell%20check%20options1.gif"></p>
+<p class="rvps3"><span class="rvts15">Images</span></p>
+<ul style="text-indent: 0px; padding: 0; margin: 0 0 0 40px; list-style-position: outside; list-style-type: disc;">
+ <li class="rvps3 noindent"><span class="rvts60">Inserted image bookmarks (signatures, logos, audiograms, etc.) should be formatted as “</span><span class="rvts61">Embed data in document</span><span class="rvts60">”. This is the default setting, but it can be double-checked here: Right-click – Format, then Saving Options, Saving Style.</span></li>
+</ul>
+<p class="rvps11"><img alt="" style="padding : 1px;" src="lib/comm%20embed%20image.gif"></p>
+<ul style="text-indent: 0px; padding: 0; margin: 0 0 0 40px; list-style-position: outside; list-style-type: disc;">
+ <li class="rvps3 noindent"><span class="rvts60">Text wrapping for images: when images are used in tables, it works best to use Top and Bottom or In Line wrapping.</span></li>
+</ul>
+<p class="rvps11"><img alt="" style="padding : 1px;" src="lib/comm%20text%20wrapping.gif"></p>
+<ul style="text-indent: 0px; padding: 0; margin: 0 0 0 40px; list-style-position: outside; list-style-type: disc;">
+ <li class="rvps3 noindent"><span class="rvts60">Image merge fields sometimes format better if a space is added after when inserted in a table.</span></li>
+ <li class="rvps3 noindent"><span class="rvts60">Vertical text boxes are not supported in the designer.&nbsp;</span></li>
+</ul>
+<p class="rvps3"><span class="rvts61">Tables</span></p>
+<ul style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside; list-style-type: disc;">
+ <li class="rvps3 noindent"><span class="rvts60">If grid lines are not displaying properly, it may help to remove then re-add them.</span></li>
+ <li class="rvps3 noindent"><span class="rvts60">For multi-line merge fields such as notes, diagnosis, etc. - uncheck "Allow row to break across pages" to keep the field together. You need to click the box once to select, then again to uncheck. Right-click - Format Table - Size and Formatting - Options.</span></li>
+</ul>
+<p class="rvps11"><img alt="" style="padding : 1px;" src="lib/comm%20format%20row.gif"></p>
+<ul style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside; list-style-type: disc;">
+ <li class="rvps3 noindent"><span class="rvts60">If a table is used in a header, and the cell is right-justified, it works best to increase the cell margins to 0.2</span><span class="rvts8"></span></li>
+</ul>
+
+            </div>
+            
+            
+        </div>  <!-- /#topic-content -->
+    </article>
+
+    <footer></footer>
+
+  </div>  <!-- /#main -->
+
+  <div class="mask" data-toggle="sm-nav-expanded"></div>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="hndModal" tabindex="-1" role="dialog" aria-labelledby="hndModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="hndModalLabel"></h4>
+        </div>
+        <div class="modal-body">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary modal-btn-close" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Splitter -->
+  <div id="hnd-splitter" style="left: 350px"></div>  
+
+  <!-- Scripts -->
+  <script src="vendors/jquery-3.7.1/jquery.min.js"></script>
+  <script src="vendors/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+  <script src="vendors/bootstrap-3.4.1/js/ie10-viewport-bug-workaround.js"></script>
+  <script src="vendors/markjs-8.11.1/jquery.mark.min.js"></script>
+  <script src="vendors/uri-1.19.11/uri.min.js"></script>
+  <script src="vendors/imageMapResizer-1.0.10/imageMapResizer.min.js"></script>
+  <script src="vendors/headroom-0.11.0/headroom.min.js"></script>
+  <script src="vendors/jstree-3.3.10/jstree.min.js"></script>  
+  <script src="vendors/interactjs-1.9.22/interact.min.js"></script>  
+
+  <!-- HelpNDoc scripts -->
+  <script src="js/polyfill.object.min.js"></script>
+  <script src="_translations.js"></script>
+  <script src="js/hndsd.min.js"></script>
+  <script src="js/hndse.min.js"></script>
+  <script src="js/app.min.js"></script>
+
+  <!-- Init script -->
+  <script src="_topic_init.js"></script>
+
+
+
+</body>
+
+</html>
+

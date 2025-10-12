@@ -1,0 +1,247 @@
+<div class="form-background">
+    <form [formGroup]="appointmentForm" a (ngSubmit)="onSubmit()" autocomplete="off" novalidate
+        (keyup.enter)="onSubmit()" class="modal-lg">
+        <div class="modal-body">
+            <!-- Patient -->
+            <fieldset style="background-color: white;">
+                <legend>Patient</legend>
+                <!-- Left -->
+                <div class="row">
+                    <div style="width: 30%">
+                        <label class="col-form-label tims-label">{{patientName}}</label>
+                    </div>
+                    <div style="width: 20%">
+                        <label class="col-form-label tims-label">DOB: {{dob}}</label>
+                    </div>
+                    <div style="width: 25%">
+                        <label class="col-form-label tims-label">Phone: {{displayPhone}}</label>
+                    </div>
+                    <div *ngIf="otStatusDescription" style="width: 18% !important; font-size: 14px;"
+                        [title]="otStatusDescription" [ngClass]="isOpportunity ? 'is-ot-status' : 'no-ot-status'"
+                        class="col-3 ot-status">
+                        <span>{{otStatus}}</span>
+                    </div>
+                </div>
+            </fieldset>
+            <!-- Details -->
+            <fieldset>
+                <legend><span>Details</span><span *ngIf="!canEditAppointment"
+                        style="font-size: 12px; color: #FF0000;">&nbsp;read only</span>
+                </legend>
+                <div class="row row-cols-2">
+                    <!-- Left -->
+                    <div class="col">
+                        <div class="row">
+                            <div class="col-6">
+                                <label class="col-form-label tims-label" for="providerId">Provider</label>
+                            </div>
+                            <div class="col-6 position-relative">
+                                <select class="form-control form-control-sm focus-ring tims-input required-control"
+                                    [formControlName]="'providerId'"
+                                    [ngClass]="{ 'is-invalid': f['providerId'].touched && f['providerId'].errors }">
+                                    <option [ngValue]="null">choose</option>
+                                    <option *ngFor="let p of ts.providerStore.provider_summary_list" [value]="p.id">
+                                        {{p.firstName}}
+                                        {{p.lastName}}</option>
+                                </select>
+                                <div class="invalid-tooltip">Required</div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6">
+                                <label class="col-form-label tims-label" for="appointmentTypeId">Appt Type</label>
+                            </div>
+                            <div class="col-6 position-relative">
+                                <select class="form-control form-control-sm focus-ring tims-input required-control"
+                                    name="appointmentTypeId" [formControlName]="'appointmentTypeId'"
+                                    (change)="onAppointmentTypeChanged()"
+                                    [ngClass]="{ 'is-invalid': f['appointmentTypeId'].touched && f['appointmentTypeId'].errors }">
+                                    <option [ngValue]="null">choose</option>
+                                    <option *ngFor="let p of ts.lookupStore.appointmentType_list" [value]="p.id">
+                                        {{p.name}}</option>
+                                </select>
+                                <div class="invalid-tooltip">Required</div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6">
+                                <label class="col-form-label tims-label" for="siteId">Site</label>
+                            </div>
+                            <div class="col-6 position-relative">
+                                <select class="form-control form-control-sm focus-ring tims-input required-control"
+                                    name="siteId" [formControlName]="'siteId'" (change)="onSiteChanged()"
+                                    [ngClass]="{ 'is-invalid': f['siteId'].touched && f['siteId'].errors }">
+                                    <option [ngValue]="null">choose</option>
+                                    <option *ngFor="let p of ts.siteStore.site_list" [value]="p.id">
+                                        {{p.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row" *ngIf="usesResources">
+                            <div class="col-6">
+                                <label class="col-form-label tims-label" for="resourceId">Resource</label>
+                            </div>
+                            <div class="col-6 position-relative">
+                                <select class="form-control form-control-sm focus-ring tims-input" name="resourceId"
+                                    [formControlName]="'resourceId'"
+                                    [ngClass]="{ 'is-invalid': f['resourceId'].touched && f['resourceId'].errors }">
+                                    <option [ngValue]="null">choose</option>
+                                    <option *ngFor="let p of resourceList" [value]="p.id">
+                                        {{p.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right -->
+                    <div class="col">
+                        <div class="row">
+                            <div class="col-6">
+                                <label class="col-form-label tims-label" for="statusId">Status</label>
+                            </div>
+                            <div class="col-6 position-relative">
+                                <select class="form-control form-control-sm focus-ring tims-input required-control"
+                                    name="statusId" [formControlName]="'statusId'"
+                                    [ngClass]="{ 'is-invalid': f['statusId'].touched && f['statusId'].errors }">
+                                    <option [ngValue]="null">choose</option>
+                                    <option *ngFor="let p of ts.lookupStore.appointmentStatus_list" [value]="p.id">
+                                        {{p.name}}</option>
+                                </select>
+                                <div class="invalid-tooltip">Required</div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6">
+                                <label class="col-form-label tims-label" for="marketingid">Marketing</label>
+                            </div>
+
+                            <div class="col-6 position-relative">
+                                <select class="form-control form-control-sm focus-ring tims-input"
+                                    [formControlName]="'marketingReferenceId'"
+                                    [ngClass]="{ 'is-invalid': f['marketingReferenceId'].touched && f['marketingReferenceId'].errors, 'required-control': marketingRequired }">
+                                    <option [ngValue]="null">choose</option>
+                                    <optgroup *ngFor="let category of ts.lookupStore.marketcategory_list"
+                                        label="{{category.name}}">
+                                        <option *ngFor="let mktRef of category.marketingReferences" [value]="mktRef.id">
+                                            {{mktRef.name}}</option>
+                                    </optgroup>
+                                </select>
+                                <div class="invalid-tooltip">Required</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <label class="col-form-label tims-label" for="nextContactDate">Next Contact</label>
+                            </div>
+                            <div class="col-6 position-relative">
+                                <input class="form-control form-control-sm focus-ring tims-input"
+                                    placeholder="next contact" bsDatepicker #dp="bsDatepicker" [bsConfig]="bsConfig"
+                                    [formControlName]="'nextContactDate'">
+                            </div>
+                        </div>
+
+                        <div class="row" *ngIf="ts.practiceStore.businessRules.useApptAuthorizations">
+                            <div class="col-6">
+                                <label class="col-form-label tims-label" for="authorization">Authorization</label>
+                            </div>
+                            <div class="col-6 position-relative">
+                                <select class="form-control form-control-sm focus-ring tims-input"
+                                    [formControlName]="'authorizationId'">
+                                    <option [ngValue]="0">choose</option>
+                                    <option *ngFor="let p of ts.apptAuthorizationStore.apptAuthorization_list"
+                                        [value]="p.id">
+                                        {{p.displayString}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-3">
+                        <label class="col-form-label tims-label" for="date">Date/Time</label>
+                    </div>
+                    <div class="col-3 position-relative">
+                        <input class="form-control form-control-sm focus-ring tims-input" placeholder="date"
+                            bsDatepicker #dp="bsDatepicker" [bsConfig]="bsConfig" [formControlName]="'date'" required
+                            [ngClass]="{ 'is-invalid': f['date'].touched && f['date'].errors }">
+                        <div class="invalid-tooltip">Required</div>
+                    </div>
+                    <div class="col-6">
+                        <div class="col" style="display: flex;">
+                            <label style="margin-top: 6px;" class="col-form-label tims-label">Start:</label>
+                            <app-time-entry #startElement class="d-inline" [(dateTime)]="startTime"></app-time-entry>
+                            <label style="margin-top: 6px;" class="col-form-label tims-label">End:</label>
+                            <app-time-entry #endElement class="d-inline" [(dateTime)]="endTime"></app-time-entry>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <label class="col-form-label tims-label">Duration</label>
+                    </div>
+                    <div class="col-3">
+                        <app-duration-entry [(minutes)]="duration"></app-duration-entry>
+                    </div>
+                </div>
+
+                <ul class="nav nav-tabs" style="margin: 0 -2px;">
+                    <li class="nav-item">
+                        <div class="nav-link" (click)="handlesNotesClick()" [ngClass]="{ 'active': isNotesSelected }">
+                            Notes
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="nav-link" (click)="handlesRecurrenceClick()"
+                            [ngClass]="{ 'active': !isNotesSelected }">
+                            Recurrence</div>
+                    </li>
+                </ul>
+                <div class="row">
+                    <div class="col-sm-12" style="height: 150px;">
+                        <textarea *ngIf="isNotesSelected" type="text"
+                            class="form-control form-control-sm focus-ring tims-input" [formControlName]="'notes'"
+                            rows="6"></textarea>
+                        <div style="padding-top: 3px;">
+                            <app-recurrence-editor [allowEndDate]="false" *ngIf="!isNotesSelected" #recurranceEditor
+                                [recurrenceForm]="appointmentForm"></app-recurrence-editor>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="!isNew()"
+                    style="margin-left: 10px; margin-top: 5px; font-size: 12px; font-style: italic; color: lightslategray;">
+                    <span>{{LastUpdate}}</span>
+                </div>
+            </fieldset>
+        </div>
+        <div style="align-items: flex-start;" class="modal-footer">
+            <div class="me-auto">
+                <app-validation-results *ngIf="hasValidationMessage()"
+                    [results]="ts.appointmentStore.validation_results"></app-validation-results>
+                <div *ngIf="displayDeleteMessage"><span style="color: #FF7700;">Delete
+                        patient appointment?</span></div>
+                <div *ngIf="displayEndSeriesMessage"><span style="color: #FF7700;">End the recurring series here? All
+                        future appointments will be deleted.</span></div>
+                <app-validation-results *ngIf="hasDeleteMessage()"
+                    [results]="ts.appointmentStore.delete_validation_results"></app-validation-results>
+            </div>
+
+            <div style="width: auto;" class="input-group input-group-sm justify-content-end">
+                <button *ngIf="showSave()" class="btn tims-button gradient" data-bs-toggle="tooltip" title="Save"
+                    type="button" (click)="onSubmit()"><i class="dialog-button bi bi-floppy-fill"></i></button>
+                <button *ngIf="showEndSeries()" type="button" class="btn tims-button gradient"
+                    title="End the recurring series" data-bs-toggle="tooltip" (click)="onEndSeries()"><i
+                        class="dialog-button bi bi-calendar2-x"></i></button>
+                <button *ngIf="showDelete()" type="button" class="btn tims-button gradient" data-bs-toggle="tooltip"
+                    title="Delete" (click)="onDelete()"><i class="dialog-button bi bi-trash-fill"></i></button>
+                <button class="btn tims-button gradient" data-bs-toggle="tooltip" title="Close without saving"
+                    type="button" (click)="onCancel()"><i class="dialog-button bi bi-x-square-fill"></i></button>
+            </div>
+
+        </div>
+    </form>
+</div>

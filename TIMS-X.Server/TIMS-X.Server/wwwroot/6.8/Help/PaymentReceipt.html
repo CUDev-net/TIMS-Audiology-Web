@@ -1,0 +1,440 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="generator" content="HelpNDoc Professional Edition 9.8.0.588">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="favicon.ico"/>
+
+  <title>Payment Receipt</title>
+  <meta name="description" content="" /> 
+  <meta name="keywords" content="POS Module,Payment Receipt">
+
+
+
+  
+  
+
+  <!-- Twitter Card data -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Payment Receipt">
+  <meta name="twitter:description" content="">
+
+  <!-- Open Graph data -->
+  <meta property="og:title" content="Payment Receipt" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="" />
+  <meta property="og:site_name" content="TIMS Audiology and SLP Version 6.08" /> 
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendors/bootstrap-3.4.1/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <link href="vendors/bootstrap-3.4.1/css/ie10-viewport-bug-workaround.css" rel="stylesheet"/>
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="vendors/html5shiv-3.7.3/html5shiv.min.js"></script>
+      <script src="vendors/respond-1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+  <!-- JsTree styles -->
+  <link href="vendors/jstree-3.3.10/themes/default/style.min.css" rel="stylesheet"/>
+
+  <!-- Hnd styles -->
+  <link href="css/layout.min.css" rel="stylesheet" />
+  <link href="css/effects.min.css" rel="stylesheet" />
+  <link href="css/theme-dark-blue.min.css" rel="stylesheet" />
+  <link href="css/print.min.css" rel="stylesheet" media="print" />
+  <style type="text/css">nav { width: 350px} @media screen and (min-width:769px) { body.md-nav-expanded div#main { margin-left: 350px} body.md-nav-expanded header { padding-left: 364px} }</style>
+  <style type="text/css">.navigation #inline-toc { width: auto !important}</style>
+
+  <!-- Content style -->
+  <link href="css/hnd.content.css" rel="stylesheet" />
+
+  
+
+
+
+</head>
+
+<body class="md-nav-expanded">
+
+
+
+  
+
+  <div id="skip-link">
+    <a href="#main-content" class="element-invisible">Skip to main content</a>
+  </div>
+
+  <header class="headroom">
+    <button class="hnd-toggle btn btn-default">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>        
+    </button>
+    <h1>TIMS Audiology and SLP Version 6.08</h1>
+    <a href="https://us.timsaudiology.com"><img src="_logo.png" alt="logo" class="logo"/></a>
+  </header>
+
+  <nav id="panel-left" class="md-nav-expanded">
+    <!-- Nav tabs -->
+    <ul class="tab-tabs nav nav-tabs" role="tablist">
+      <li id="nav-close" role="presentation"> 
+        <button class="hnd-toggle btn btn-default" aria-label="close">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+      </li>
+      
+	  
+        <li role="presentation" class="tab active">
+            <a href="#contents" id="tab-contents" aria-controls="contents" role="tab" data-toggle="tab">
+                <i class="glyphicon glyphicon-list"></i>
+                Contents
+            </a>
+        </li>
+      
+        <li role="presentation" class="tab">
+            <a href="#index" id="tab-index" aria-controls="index" role="tab" data-toggle="tab">
+                <i class="glyphicon glyphicon-asterisk"></i>
+                Index
+            </a>
+        </li>
+      
+        <li role="presentation" class="tab">
+            <a href="#search" id="tab-search" aria-controls="search" role="tab" data-toggle="tab">
+                <i class="glyphicon glyphicon-search"></i>
+                Search
+            </a>
+        </li>
+      
+    </ul>  <!-- /Nav tabs -->
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+	  
+      <div role="tabpanel" class="tab-pane active" id="contents">
+        <div id="toc" class="tree-container unselectable"
+            data-url="_toc.json"
+            data-openlvl="1"
+        >
+            
+        </div>
+      </div>  <!-- /contents-->
+      
+      <div role="tabpanel" class="tab-pane" id="index">
+        <div id="keywords" class="tree-container unselectable"
+            data-url="_keywords.json"
+            data-openlvl="2"
+        >
+            
+        </div>
+      </div>  <!-- /index-->
+      
+      <div role="tabpanel" class="tab-pane" id="search">
+        <div class="search-content">
+          <div class="search-input">
+            <form id="search-form">
+              <div class="form-group">
+                <div class="input-group">
+                  <input type="text" class="form-control" id="input-search" name="input-search" placeholder="Search..." aria-label="Search..." />
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit" aria-label="Search...">
+                      <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </button>
+                  </span>
+                </div>
+              </div>
+            </form>
+          </div>  <!-- /search-input -->
+          <div class="search-result">
+            <div id="search-info"></div>
+            <div class="tree-container unselectable" id="search-tree"></div>
+          </div>  <!-- /search-result -->
+        </div>  <!-- /search-content -->
+      </div>  <!-- /search-->
+      
+    </div>  <!-- /Tab panes -->
+
+  </nav>
+
+  <div id="main">
+
+    <article>
+        <div id="topic-content" class="container-fluid" 
+		  data-hnd-id="PaymentReceipt"
+		  data-hnd-context="291"
+		  data-hnd-title="Payment Receipt"
+		>
+            
+                <div class="navigation">
+                    <ol class="breadcrumb">
+                        <li>POS</li>
+                    </ol>
+                    <div class="nav-arrows">
+                        <div class="btn-group btn-group" role="group"><div class="btn-group"><button type="button" title="In this page..." class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span></button><ul id="inline-toc" class="dropdown-menu dropdown-menu-right"></ul></div><a class="btn btn-default" href="ApplyingCreditMemos.html" title="Applying Credit Memos" role="button"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a><a class="btn btn-default" href="InsuranceCoPayment.html" title="Insurance CoPayment" role="button"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></div>
+                    </div>
+                </div> 
+            
+
+            <a id="main-content"></a>
+
+            <h2>Payment Receipt</h2>
+
+            <div class="main-content">
+                
+<p class="rvps3"><span class="rvts8">Create a new Payment Receipt using the same steps as for Invoices and Credit Memos. Refer to the saving and printing information under the </span><a class="rvts16" href="Invoice.html">Invoice</a><span class="rvts8"> section for more clarity. You cannot finalize a payment with an amount of zero.</span></p>
+<p class="rvps3"><span class="rvts8"><br/></span></p>
+<p class="rvps3"><span class="rvts8">See </span><a class="rvts16" href="E-PaymentProcessingOverview.html">E-Payment Processing</a><span class="rvts8"> for processing credit, debit, and check payments directly through TIMS.</span></p>
+<p class="rvps3"><img alt="" style="padding : 1px;" src="lib/pos%20pmt%20open.gif"></p>
+<div class="rvps3">
+<table style="border-width: 0px; border-spacing: 2px;">
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 200px;">
+   <p class="rvps3"><span class="rvts15"><br/></span></p>
+   <p class="rvps3"><span class="rvts15">Select Source of Document</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Click New to create a new Payment. &nbsp;Click Open to select from a list of</span></p>
+   <p class="rvps3"><span class="rvts8">the patient's non-finalized payment receipts. &nbsp;Click All to select from a list of</span></p>
+   <p class="rvps3"><span class="rvts8">all the patient's payment receipts (finalized or open, regular or reversals).</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 200px;">
+   <p class="rvps3"><span class="rvts15">Patient</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">The name and active address of the selected patient.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 200px;">
+   <p class="rvps3"><span class="rvts15">Payment from Name and Address</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Will default to the patient’s name and active address in the </span><a class="rvts16" href="PatientDetails1.html">Patient details</a><span class="rvts8">. If</span></p>
+   <p class="rvps3"><span class="rvts8">an address is entered in </span><span class="rvts15">Name &amp; Address for Invoicing</span><span class="rvts8"> - this will be the default used.</span></p>
+   <p class="rvps3"><img alt="" style="padding : 1px;" src="lib/pos%20name%20and%20addr.gif"></p>
+   <p class="rvps3"><span class="rvts8">All fields can be edited as desired, and will be saved with the invoice only.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 200px;">
+   <p class="rvps3"><span class="rvts15">Payment Type</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Choose a type here, which will determine further processing after the payment receipt is finalized. &nbsp;The default is Manual.&nbsp;</span></p>
+   <p class="rvps3"><img alt="" style="padding : 1px;" src="lib/pos%20inv%20pmt%20types.gif"></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 200px;">
+   <p class="rvps3"><span class="rvts15">Document Information</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8"><br/></span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 200px;">
+   <p class="rvps3"><span class="rvts15">&nbsp;Payment Date</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Date of the payment receipt. Will default to the current date, but can be changed as needed.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 200px;">
+   <p class="rvps3"><span class="rvts15">&nbsp;Site</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">This will default to the site specified in the Patient details, but can be changed as needed.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 200px;">
+   <p class="rvps3"><span class="rvts15">&nbsp;Payment Method</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Choose from the payment methods previously entered in </span><a class="rvts16" href="PaymentMethods.html">Setup</a><span class="rvts8">. </span><span class="rvts15">This is a</span><span class="rvts8"> </span><span class="rvts15">required field</span><span class="rvts8">.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 200px;">
+   <p class="rvps3"><span class="rvts15">&nbsp;Payment Reference</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Check or Reference number. &nbsp;</span><span class="rvts15">This is required field.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 200px;">
+   <p class="rvps3"><span class="rvts15">&nbsp;Payment Amount</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Total amount of the payment.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 200px;">
+   <p class="rvps3"><span class="rvts15">&nbsp;Rev</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Check this box if you wish to post this payment as a reversal (refund). &nbsp;A negative payment (reversal) can be entered to correct a payment entered in error (for a wrong patient for example). &nbsp;This would generally be done when the prior payment has already been exported to QuickBooks</span><span class="rvts26">®</span><span class="rvts8"> and cannot be edited, deleted or voided.&nbsp;A payment reversal cannot be applied to an invoice or an existing payment. &nbsp;It will appear in the QuickBooks &nbsp;Patient Register as type "General Journal" and as a negative amount in the&nbsp;deposit report, dated as the date of export from TIMS. (</span><a class="rvts16" href="ExportingClaimPaymentstoQuickBoo.html#PmtReversals">see QuickBooks instructions</a><span class="rvts8"> for applying the reversal in QuickBooks)</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 200px;">
+   <p class="rvps3"><span class="rvts15">&nbsp;Applied Amount Remaining</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">The amount of the payment that has yet to be applied to an invoice.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 200px;">
+   <p class="rvps3"><span class="rvts15">Payment applied to Claim?</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Check this box if you wish to apply all or part of the payment to a current or future insurance claim generated in TIMS. (see below for more details)</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 200px;">
+   <p class="rvps3"><span class="rvts15">&nbsp;CoPayment Amount</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Enter the amount you wish to apply as a copayment.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 200px;">
+   <p class="rvps3"><span class="rvts15">&nbsp;Appointment</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Choose the appointment that the co-payment applies to.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 200px;">
+   <p class="rvps3"><span class="rvts15">&nbsp;CoPayment Applied</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">If the copayment has already been applied in Adjudication, the amount applied will be shown here. </span><span class="rvts15">Not editable.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 200px;">
+   <p class="rvps3"><span class="rvts15">&nbsp;Applied to Claim No</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">If the copayment has already been applied in Adjudication, the Claim it was applied to will be shown here. </span><span class="rvts15">Not editable.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 200px;">
+   <p class="rvps3"><span class="rvts15">Office Notes</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Open field for </span><span class="rvts15">internal notes</span><span class="rvts8"> only. &nbsp;These will </span><span class="rvts15">not</span><span class="rvts8"> be printed on the customer's receipt, or exported to QuickBooks</span><span class="rvts26">®</span><span class="rvts8">.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 200px;">
+   <p class="rvps3"><span class="rvts15">Customer Message&nbsp;</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Customer message that will print on the invoice. Messages can be added in </span><a class="rvts16" href="CustomerMessages.html">Setup</a><span class="rvts8">.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 200px;">
+   <p class="rvps3"><span class="rvts15">Memo</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Open field for memo notes. These can be included on a printed document if desired, and </span><span class="rvts15">will be exported</span><span class="rvts8"> to QuickBooks.</span></p>
+  </td>
+ </tr>
+</table>
+</div>
+<h1 class="rvps5"><span class="rvts0"><span class="rvts13">Document Commands</span></span></h1>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/pos%20pmt%20doc%20commands.gif"></p>
+<ul style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside; list-style-type: disc;">
+ <li class="rvps3 noindent"><span class="rvts15">Final</span><span class="rvts8"> - lock the payment so that it can no longer be edited. &nbsp;Only finalized credit memos will be exported to QuickBooks.</span></li>
+ <li class="rvps3 noindent"><span class="rvts15">Print</span><span class="rvts8"> - click once to open a preview window. &nbsp;Click the print icon </span><img alt="" style="padding : 1px;" src="lib/print%20icon%20crystal.gif"><span class="rvts8"> on the preview to print to printer. &nbsp; </span><span class="rvts15">Note</span><span class="rvts8">: Printing an open POS payment receipt will automatically finalize it.</span></li>
+ <li class="rvps3 noindent"><span class="rvts15">Delete/Void</span><span class="rvts8"> - If the payment receipt is still Open, this button will display "</span><span class="rvts15">Delete</span><span class="rvts8">". &nbsp;If finalized, it will display "</span><span class="rvts15">Void</span><span class="rvts8">". Deleting a payment receipt will remove it entirely from the database. &nbsp;This is only allowed with an open payment receipt. &nbsp;A finalized payment receipt can only be Voided. &nbsp;A payment receipt that has been exported to QuickBooks cannot be deleted or voided.</span></li>
+ <li class="rvps3 noindent"><span class="rvts15">Apply POS</span><span class="rvts8"> - click this button to apply the credit to a finalized invoice or payment reversal.</span></li>
+ <li class="rvps3 noindent"><span class="rvts15">Adjust CoPay - </span><span class="rvts8">This button will only appear when the payment has been finalized. &nbsp;Click here to change or remove the amount and/or appointment that the copay will be applied to. (see </span><a class="rvts16" href="InsuranceCoPayment.html#AdjustCopayments">Adjusting CoPayments</a><span class="rvts8">)</span></li>
+ <li class="rvps3 noindent"><span class="rvts15">Close</span><span class="rvts8"> - close the active payment receipt, but remain in the POS module. &nbsp;</span></li>
+ <li class="rvps3 noindent"><span class="rvts15">Exit</span><span class="rvts8"> - close the POS module entirely</span></li>
+</ul>
+<h1 class="rvps5"><span class="rvts0"><span class="rvts13">Insurance CoPayments</span></span></h1>
+<p class="rvps3"><span class="rvts8">You can designate </span><span class="rvts15">all or part</span><span class="rvts8"> of a POS payment as an Insurance Copayment. &nbsp;The payment will be linked to a specific appointment, which can then be carried over and applied to the claim generated. &nbsp;This will allow the recording (and exporting to QuickBooks) of a patient copayment before the claim is submitted. See </span><a class="rvts16" href="InsuranceCoPayment.html">Insurance CoPayment</a><span class="rvts8"> help for more information.</span></p>
+<p class="rvps3"><span class="rvts8"><br/></span></p>
+<p class="rvps3"><span class="rvts8">When the patient arrives for the appointment and pays a portion of the charges, you can immediately enter that payment in the POS module and record the transaction. &nbsp;Later, after a claim has been generated, submitted, and received back from the clearinghouse, the copayment can be applied directly to it in the </span><a class="rvts16" href="AddingPayments.html#CoPayments">Adjudication link</a><span class="rvts8">. &nbsp;If the payment has already been exported to QuickBooks , it will not export again.</span><span class="rvts8"></span></p>
+
+            </div>
+            
+            
+        </div>  <!-- /#topic-content -->
+    </article>
+
+    <footer></footer>
+
+  </div>  <!-- /#main -->
+
+  <div class="mask" data-toggle="sm-nav-expanded"></div>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="hndModal" tabindex="-1" role="dialog" aria-labelledby="hndModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="hndModalLabel"></h4>
+        </div>
+        <div class="modal-body">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary modal-btn-close" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Splitter -->
+  <div id="hnd-splitter" style="left: 350px"></div>  
+
+  <!-- Scripts -->
+  <script src="vendors/jquery-3.7.1/jquery.min.js"></script>
+  <script src="vendors/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+  <script src="vendors/bootstrap-3.4.1/js/ie10-viewport-bug-workaround.js"></script>
+  <script src="vendors/markjs-8.11.1/jquery.mark.min.js"></script>
+  <script src="vendors/uri-1.19.11/uri.min.js"></script>
+  <script src="vendors/imageMapResizer-1.0.10/imageMapResizer.min.js"></script>
+  <script src="vendors/headroom-0.11.0/headroom.min.js"></script>
+  <script src="vendors/jstree-3.3.10/jstree.min.js"></script>  
+  <script src="vendors/interactjs-1.9.22/interact.min.js"></script>  
+
+  <!-- HelpNDoc scripts -->
+  <script src="js/polyfill.object.min.js"></script>
+  <script src="_translations.js"></script>
+  <script src="js/hndsd.min.js"></script>
+  <script src="js/hndse.min.js"></script>
+  <script src="js/app.min.js"></script>
+
+  <!-- Init script -->
+  <script src="_topic_init.js"></script>
+
+
+
+</body>
+
+</html>
+

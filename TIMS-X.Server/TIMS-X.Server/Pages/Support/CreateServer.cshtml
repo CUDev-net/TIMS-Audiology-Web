@@ -1,0 +1,27 @@
+﻿@page
+@model Pages.Support.CreateServerModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<h2 class="h2">Create TIMS Server</h2>
+<form method="post" class="form-control">
+    <input asp-for="Server.Id" type="hidden" value="0">
+    <input asp-for="Server.DateCreated" type="hidden" value="@DateTime.Now" />
+    <input asp-for="Server.Inactive" type="hidden" value="false" />
+    <div>
+        <div class="form-group">
+            <label asp-for="Server.Name"></label>
+            <input class="form-control" asp-for="Server.Name" maxlength="64" />
+            <span class="text-danger" asp-validation-for="Server.Name"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Server.Address"></label>
+            <input class="form-control" asp-for="Server.Address" maxlength="64" />
+            <span class="text-danger" asp-validation-for="Server.Address"></span>
+        </div>
+    </div>
+
+    <div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>

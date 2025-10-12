@@ -1,0 +1,435 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="generator" content="HelpNDoc Professional Edition 9.8.0.588">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="favicon.ico"/>
+
+  <title>ERN Processing</title>
+  <meta name="description" content="" /> 
+  <meta name="keywords" content="Working in Adjudication,ERN Processing,Adjudication">
+
+
+
+  
+  
+
+  <!-- Twitter Card data -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="ERN Processing">
+  <meta name="twitter:description" content="">
+
+  <!-- Open Graph data -->
+  <meta property="og:title" content="ERN Processing" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="" />
+  <meta property="og:site_name" content="TIMS Audiology and SLP Version 6.08" /> 
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendors/bootstrap-3.4.1/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <link href="vendors/bootstrap-3.4.1/css/ie10-viewport-bug-workaround.css" rel="stylesheet"/>
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="vendors/html5shiv-3.7.3/html5shiv.min.js"></script>
+      <script src="vendors/respond-1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+  <!-- JsTree styles -->
+  <link href="vendors/jstree-3.3.10/themes/default/style.min.css" rel="stylesheet"/>
+
+  <!-- Hnd styles -->
+  <link href="css/layout.min.css" rel="stylesheet" />
+  <link href="css/effects.min.css" rel="stylesheet" />
+  <link href="css/theme-dark-blue.min.css" rel="stylesheet" />
+  <link href="css/print.min.css" rel="stylesheet" media="print" />
+  <style type="text/css">nav { width: 350px} @media screen and (min-width:769px) { body.md-nav-expanded div#main { margin-left: 350px} body.md-nav-expanded header { padding-left: 364px} }</style>
+  <style type="text/css">.navigation #inline-toc { width: auto !important}</style>
+
+  <!-- Content style -->
+  <link href="css/hnd.content.css" rel="stylesheet" />
+
+  
+
+
+
+</head>
+
+<body class="md-nav-expanded">
+
+
+
+  
+
+  <div id="skip-link">
+    <a href="#main-content" class="element-invisible">Skip to main content</a>
+  </div>
+
+  <header class="headroom">
+    <button class="hnd-toggle btn btn-default">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>        
+    </button>
+    <h1>TIMS Audiology and SLP Version 6.08</h1>
+    <a href="https://us.timsaudiology.com"><img src="_logo.png" alt="logo" class="logo"/></a>
+  </header>
+
+  <nav id="panel-left" class="md-nav-expanded">
+    <!-- Nav tabs -->
+    <ul class="tab-tabs nav nav-tabs" role="tablist">
+      <li id="nav-close" role="presentation"> 
+        <button class="hnd-toggle btn btn-default" aria-label="close">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+      </li>
+      
+	  
+        <li role="presentation" class="tab active">
+            <a href="#contents" id="tab-contents" aria-controls="contents" role="tab" data-toggle="tab">
+                <i class="glyphicon glyphicon-list"></i>
+                Contents
+            </a>
+        </li>
+      
+        <li role="presentation" class="tab">
+            <a href="#index" id="tab-index" aria-controls="index" role="tab" data-toggle="tab">
+                <i class="glyphicon glyphicon-asterisk"></i>
+                Index
+            </a>
+        </li>
+      
+        <li role="presentation" class="tab">
+            <a href="#search" id="tab-search" aria-controls="search" role="tab" data-toggle="tab">
+                <i class="glyphicon glyphicon-search"></i>
+                Search
+            </a>
+        </li>
+      
+    </ul>  <!-- /Nav tabs -->
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+	  
+      <div role="tabpanel" class="tab-pane active" id="contents">
+        <div id="toc" class="tree-container unselectable"
+            data-url="_toc.json"
+            data-openlvl="1"
+        >
+            
+        </div>
+      </div>  <!-- /contents-->
+      
+      <div role="tabpanel" class="tab-pane" id="index">
+        <div id="keywords" class="tree-container unselectable"
+            data-url="_keywords.json"
+            data-openlvl="2"
+        >
+            
+        </div>
+      </div>  <!-- /index-->
+      
+      <div role="tabpanel" class="tab-pane" id="search">
+        <div class="search-content">
+          <div class="search-input">
+            <form id="search-form">
+              <div class="form-group">
+                <div class="input-group">
+                  <input type="text" class="form-control" id="input-search" name="input-search" placeholder="Search..." aria-label="Search..." />
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit" aria-label="Search...">
+                      <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </button>
+                  </span>
+                </div>
+              </div>
+            </form>
+          </div>  <!-- /search-input -->
+          <div class="search-result">
+            <div id="search-info"></div>
+            <div class="tree-container unselectable" id="search-tree"></div>
+          </div>  <!-- /search-result -->
+        </div>  <!-- /search-content -->
+      </div>  <!-- /search-->
+      
+    </div>  <!-- /Tab panes -->
+
+  </nav>
+
+  <div id="main">
+
+    <article>
+        <div id="topic-content" class="container-fluid" 
+		  data-hnd-id="ERNProcessing"
+		  data-hnd-context="252"
+		  data-hnd-title="ERN Processing"
+		>
+            
+                <div class="navigation">
+                    <ol class="breadcrumb">
+                        <li>Claims</li><li>Adjudication</li><li><a href="WorkinginAdjudication.html">Working in Adjudication</a></li>
+                    </ol>
+                    <div class="nav-arrows">
+                        <div class="btn-group btn-group" role="group"><div class="btn-group"><button type="button" title="In this page..." class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span></button><ul id="inline-toc" class="dropdown-menu dropdown-menu-right"></ul></div><a class="btn btn-default" href="WorkinginAdjudication.html" title="Working in Adjudication" role="button"><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span></a><a class="btn btn-default" href="CopyingaClaim.html" title="Copying a Claim" role="button"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a><a class="btn btn-default" href="PrintingaClaimForm.html" title="Printing a Claim Form" role="button"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></div>
+                    </div>
+                </div> 
+            
+
+            <a id="main-content"></a>
+
+            <h2>ERN Processing</h2>
+
+            <div class="main-content">
+                
+<p class="rvps3"><span class="rvts8">Successful claims management requires a secure and reliable system to ensure your patients’ claims are processed quickly and correctly. Simply download and apply remittance amounts for rapid reimbursement. Specialized claims transmission technology assists in properly coding claims in accordance with Medicare and other third-party payer regulations. </span><span class="rvts15">Contact TIMS Support at 800-763-0308</span><span class="rvts8">, for details and assistance in setting up your practice to process ERNs&nbsp;(Electronic Remittance Notice).</span><span class="rvts19"> (fees applicable)</span></p>
+<h1 class="rvps5"><span class="rvts0"><span class="rvts13">Processing ERNs</span></span></h1>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li class="rvps3 noindent"><span class="rvts8">Click on the Process button in the ERNs &nbsp;section.&nbsp;&nbsp;</span></li>
+</ol>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/ern%20processing%20section.gif"></p>
+<p class="rvps6"><span class="rvts8">This brings up the </span><span class="rvts15">ERN Process Screen</span><span class="rvts8">.</span></p>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/ern%20process.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="2" class="rvps3 noindent"><span class="rvts8">Under </span><span class="rvts15">Download ERN Data 835 Transactions</span><span class="rvts8">, click on the </span><span class="rvts15">Download </span><span class="rvts8">button.&nbsp;&nbsp;This will connect to the clearinghouse and download a file of ERNs that contains many batches of claims from many Payers.&nbsp;&nbsp;Each of these batches contains many claim ERNs that are headed by a Check/ACH/NON number that was sent to the Bank or Practice.&nbsp;&nbsp;The name of the Batch will be placed in the Combo-Box under </span><span class="rvts15">Process Downloaded ERN 835 Data Files</span><span class="rvts8">.</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">Click on the </span><span class="rvts15">Process Selected Batch button</span><span class="rvts8">.&nbsp;&nbsp;</span></li>
+</ol>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/ern2.gif"></p>
+<p class="rvps6"><span class="rvts8">If you wish to process ALL the available ERN batches, click the </span><span class="rvts15">Process All Batches</span><span class="rvts8"> </span><span class="rvts15">button</span><span class="rvts8">.&nbsp;</span></p>
+<p class="rvps6"><span class="rvts8">This will break up the file into many groups headed by a Check header and Number.&nbsp;&nbsp;The batches are listed in the Combo-Box below the </span><span class="rvts15">Process ERN Transactions</span><span class="rvts8"> header.&nbsp;&nbsp;This Combo-Box is sorted by Payer and Date and contains three type of batches.&nbsp;&nbsp;The Combo-Box could contain batches from previous downloads that have not yet been processed.&nbsp;&nbsp;The three type of batches are:</span></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li class="rvps6 noindent"><span class="rvts67">RED – Payment Assignments Required</span><span class="rvts8">.&nbsp;&nbsp;These claim ERNs have a problem of some type that will not allow the individual transactions to be tagged to a claim line.</span></li>
+  <li class="rvps6 noindent"><span class="rvts80">BLUE – Payment Assignments Completed</span><span class="rvts8">.&nbsp;&nbsp;These are ERN transactions that have been tagged to a claim line and are ready to the posted (</span><span class="rvts15">see next section</span><span class="rvts8">).</span></li>
+  <li class="rvps6 noindent"><span class="rvts15">BLACK – ERN Posting Complete</span><span class="rvts8">.&nbsp;&nbsp;These are batches of ERNS that have been posted to claims. Click on the </span><span class="rvts15">Clear All Completes</span><span class="rvts8"> button </span><img alt="" style="padding : 1px;" src="lib/ern%20clear%20comp%20btn.gif"><span class="rvts8"> to remove the listings.&nbsp;&nbsp;The transactions are not deleted but are just set to a completed state.</span></li>
+ </ol>
+</ol>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="5" class="rvps3 noindent"><span class="rvts8">Click the drop down list, and a list of all the batches will display.&nbsp;&nbsp;These will be Red, Blue, and Black.&nbsp;&nbsp;The </span><span class="rvts15">Black</span><span class="rvts8"> lines have been completed and if you want to &nbsp;remove that line, just click on it and you will asked to remove it from the list.&nbsp;&nbsp;</span></li>
+</ol>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/ern%20complete%20msg1.gif"></p>
+<p class="rvps6"><span class="rvts8">The </span><span class="rvts15">Blue</span><span class="rvts8"> lines are ready to be posted and do not require any action in this stage of processing.</span></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="6" class="rvps3 noindent"><span class="rvts8">When you Click on a batch (Red or Blue), the Exception Window will appear with the Check Number, Date, and Payer in the title and a detail list of the individual claims with their detailed lines of Charges and Payments. &nbsp;The Exception Window displays the ERN Transactions that have been downloaded from the Payer through the Clearinghouse.&nbsp;&nbsp;The color of each line indicates the condition of the line.&nbsp;&nbsp;The colors are described in the lower left side of the Window.&nbsp;&nbsp;The total check amount in the title may not equal the total of the claims because some the claims have already been posted. The buttons are as follows.&nbsp;</span></li>
+</ol>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li class="rvps6 noindent"><img alt="" style="padding : 1px;" src="lib/ERN%20exc1.gif"></li>
+ </ol>
+</ol>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-roman;">
+   <li class="rvps11 noindent"><span class="rvts15">Easy Print</span><span class="rvts8"> -&nbsp;This creates a file on the local PC that can be displayed in the Easy Print program from CMS.&nbsp;</span></li>
+   <li class="rvps11 noindent"><span class="rvts15">Void All</span><span class="rvts8"> - This will void all transactions in the entire batch of ERN transactions.</span></li>
+   <li class="rvps11 noindent"><span class="rvts15">POS Posting</span><span class="rvts8"> - Shows a list of ERN payments to be created as POS payments.</span></li>
+   <li class="rvps11 noindent"><span class="rvts15">Close</span><span class="rvts8"> - Exit from the Exception window.</span></li>
+  </ol>
+ </ol>
+</ol>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li value="2" class="rvps6 noindent"><span class="rvts8">Clicking on an individual line will bring up an expanded view of the line with all its values.</span></li>
+ </ol>
+</ol>
+<p class="rvps15"><img alt="" style="padding : 1px;" src="lib/ERN%20exc2.gif"></p>
+<p class="rvps15"><span class="rvts8">There are two parameters that can be used to enhance the process.&nbsp;&nbsp;The Patient Lookup Method can be used to speed up the process by only including the single patient in the TIMS Name drop down field.&nbsp;This is the normal way to display the information.&nbsp;&nbsp;The Transaction Lookup Method is used to either show all the TIMS transactions in the claim or just the TIMS transactions that have not been assigned to the claim.&nbsp;&nbsp;The normal way is to just display the unapplied TIMS transactions.&nbsp;</span></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li value="3" class="rvps6 noindent"><span class="rvts8">The right hand side of the Exception Window can be used to show the history of the claims that belong to the selected patient.&nbsp;&nbsp;</span></li>
+ </ol>
+</ol>
+<p class="rvps15"><img alt="" style="padding : 1px;" src="lib/ERN%20exc4.gif"></p>
+<p class="rvps15"><span class="rvts8">This screen is useful when researching a patients claim history especially when claims have been resubmitted to the payer.&nbsp;&nbsp;The screen can be populated by clicking on the patient name on the left side screen.</span></p>
+<h1 class="rvps5"><span class="rvts0"><span class="rvts13">Examples</span></span></h1>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li class="rvps3 noindent"><span class="rvts8">The following screen shows the situation where a claim was resubmitted.</span></li>
+</ol>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/ERN%20exc5.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li class="rvps6 noindent"><span class="rvts8">The tooltip on the red box tells you the resubmitted claim number.&nbsp;</span></li>
+ </ol>
+</ol>
+<p class="rvps15"><img alt="" style="padding : 1px;" src="lib/ERN%20exc19.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li value="2" class="rvps6 noindent"><span class="rvts8">Click on each line to display the Processing ERN details.</span></li>
+ </ol>
+</ol>
+<p class="rvps15"><img alt="" style="padding : 1px;" src="lib/ERN%20exc20.gif"></p>
+<p class="rvps15"><span class="rvts8">&nbsp;</span><img alt="" style="padding : 1px;" src="lib/ERN%20exc21.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li value="3" class="rvps6 noindent"><span class="rvts8">From here you can select the correct new claim number.</span></li>
+  <li class="rvps6 noindent"><span class="rvts8">The corrected line looks like this.</span></li>
+ </ol>
+</ol>
+<p class="rvps15"><img alt="" style="padding : 1px;" src="lib/ern%20exc22.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="2" class="rvps3 noindent"><span class="rvts8">In the following screen, three claims are represented.&nbsp;</span></li>
+</ol>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/ern%20exc8.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li class="rvps6 noindent"><span class="rvts8">The second claim (6430) and lines represents a claim that has been denied by the payer by the symbol “</span><span class="rvts15">Dnl</span><span class="rvts8">”. The amount billed was $50.00 and the amount paid was $0.00. &nbsp;The third claim (6292) was paid a total of $55.86 by the primary payer. &nbsp;Both of these claims will be posted in the next phase of the processing.</span></li>
+ </ol>
+ <li value="3" class="rvps3 noindent"><span class="rvts8">Another example are claims displayed in Red.</span></li>
+</ol>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/ERN%20exc12.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li class="rvps6 noindent"><span class="rvts8">The error is caused because the sequence number of the claim line is wrong or zero.</span></li>
+  <li class="rvps6 noindent"><span class="rvts8">The sequence number can be changed by looking up the actual claim line item in TIMS.&nbsp;&nbsp;Click on the claim line item and the following window will appear:&nbsp;</span></li>
+ </ol>
+</ol>
+<p class="rvps11"><img alt="" style="padding : 1px;" src="lib/ERN%20exc13.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li value="3" class="rvps6 noindent"><span class="rvts8">Click on the ERN Claim Number to show the selection of all the line items.&nbsp;</span></li>
+  <li class="rvps6 noindent"><span class="rvts8">Select the claim line item that matches the error claim line item.</span></li>
+  <li class="rvps6 noindent"><span class="rvts8">Click OK and the claim line item will be updated.</span></li>
+ </ol>
+ <li value="4" class="rvps3 noindent"><span class="rvts8">The following screen shows the case where a patient claim has a payer payment that has been reduced and is not applied to a given line but to the overall claim.&nbsp;&nbsp;The Gold amount in the Payment Column shows the actual payment amount from the payer.&nbsp;&nbsp;The Gold amount in the adjacent column is the amount that has been applied to the claim lines.&nbsp;</span></li>
+</ol>
+<p class="rvps11"><img alt="" style="padding : 1px;" src="lib/ERN%20exc17.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li class="rvps6 noindent"><span class="rvts8">Click on the Gold amount and this window will popup</span></li>
+ </ol>
+</ol>
+<p class="rvps15"><img alt="" style="padding : 1px;" src="lib/ERN%20exc9.gif"></p>
+<p class="rvps11"><span class="rvts8">It will allow you to balance the claim completely and also insert the PR, PI, or OA amounts. &nbsp;The gold amount &nbsp;will turn to blue, the payment amount will be adjusted, and the claim will be posted on the next phase of the processing.</span></p>
+<p class="rvps11"><img alt="" style="padding : 1px;" src="lib/ERN%20exc18.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="5" class="rvps3 noindent"><span class="rvts8">Another situation is called “Payer Charge”.&nbsp;&nbsp;This is when the payer decides to change the total batch payment amount without identifying any particular claim.&nbsp;&nbsp;There are many reasons for this to occur, but the two most used are Interest on Payments (L6) and Overpayment Recovery (WO).&nbsp;&nbsp;The L6 case is usually in the pennies but the WO can be in the hundreds of dollars.</span></li>
+</ol>
+<p class="rvps11"><img alt="" style="padding : 1px;" src="lib/ern19.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li class="rvps6 noindent"><span class="rvts8">The case above is L6.&nbsp;&nbsp;The reason for this is that the Payer decides to give the Practice some money for interest on Claim Payments because they were slow in processing.&nbsp;&nbsp;The method to process the case is to Single Click on the “</span><span class="rvts15">Payer Charge</span><span class="rvts8">” word.&nbsp;&nbsp;This will bring up this display.</span></li>
+ </ol>
+</ol>
+<p class="rvps15"><img alt="" style="padding : 1px;" src="lib/ern20.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li value="2" class="rvps6 noindent"><span class="rvts8">Click Yes to this and the payment and reason for the payment will be posted to a Finalized POS Invoice or Credit Memo with a Patient Name of “PAYER CHARGE, INSURANCE”.&nbsp;&nbsp;The net amount of the Invoice or Credit Memo will equal zero.&nbsp;&nbsp;The information of the POS document will indicate the reason for the payment and the check number of the payment.&nbsp;&nbsp;This POS document will be synced to QuickBooks as a payment and a charge.</span></li>
+  <li class="rvps6 noindent"><span class="rvts8">The “Payer Charge” will then be removed from the screen.&nbsp;&nbsp;Perform this overall process for all Payer Charges in the batch.&nbsp;&nbsp;The POS Invoice that is created will look like this.&nbsp;</span></li>
+ </ol>
+</ol>
+<p class="rvps15"><img alt="" style="padding : 1px;" src="lib/ern21.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="6" class="rvps3 noindent"><span class="rvts8">An uncommon situation is when a payer sends a payment for a claim that was processed, but has been eliminated for some reason. There may be an insufficient balance on the claim to apply it to, but the practice has received the payment and it must be accounted for. &nbsp;This process will convert the ERN claim payment to a POS payment, where it can be applied elsewhere.</span></li>
+</ol>
+<p class="rvps11"><img alt="" style="padding : 1px;" src="lib/ern23.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li class="rvps6 noindent"><span class="rvts8">Double-click on the payment line to bring up the Processing ERN Lines screen. &nbsp;Check the POS Payment box. Click OK.</span></li>
+  <li class="rvps6 noindent"><span class="rvts8">The payment line will turn yellow.&nbsp;</span></li>
+ </ol>
+</ol>
+<p class="rvps15"><img alt="" style="padding : 1px;" src="lib/ern24.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li value="3" class="rvps6 noindent"><span class="rvts8">Repeat with any other payment lines that need to be converted to POS payments. When all have been entered, click the POS Posting button </span><img alt="" style="padding : 1px;" src="lib/ern25.gif"><span class="rvts8">. &nbsp;</span></li>
+  <li class="rvps6 noindent"><span class="rvts8">The ERN Payer Charge/POS Payments screen will popup. &nbsp;</span></li>
+ </ol>
+</ol>
+<p class="rvps15"><img alt="" style="padding : 1px;" src="lib/ern26.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li value="5" class="rvps6 noindent"><span class="rvts8">Click the Post Payments button </span><img alt="" style="padding : 1px;" src="lib/ern27.gif"><span class="rvts8">.</span></li>
+  <li class="rvps6 noindent"><span class="rvts8">A POS Payment will be created for the amount of the ERN payment, and the ERN payment line will be removed.</span></li>
+ </ol>
+</ol>
+<p class="rvps15"><img alt="" style="padding : 1px;" src="lib/ern28.gif"></p>
+<p class="rvps3"><span class="rvts8"><br/></span></p>
+<h1 class="rvps5"><span class="rvts0"><span class="rvts13">Print the ERN Information</span></span></h1>
+<p class="rvps3"><span class="rvts8">If needed, the ERN file received from the clearinghouse can be downloaded to your computer and printed using the </span><span class="rvts15">CMS EasyPrint</span><span class="rvts8"> software.</span></p>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/ern32.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li class="rvps3 noindent"><span class="rvts8">Select the data file from the drop down list. &nbsp;Files will be identified by date, file number, check amount and check number.</span></li>
+</ol>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/ern29.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="2" class="rvps3 noindent"><span class="rvts8">Click the Download ERN File button. </span><img alt="" style="padding : 1px;" src="lib/ern30.gif"></li>
+ <li class="rvps3 noindent"><span class="rvts8">A confirmation message will popup. Click </span><span class="rvts15">OK</span><span class="rvts8">.</span></li>
+</ol>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/ern33.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="4" class="rvps3 noindent"><span class="rvts8">Browse to the location on your computer where you wish to save the file. &nbsp;Click </span><span class="rvts15">Save</span><span class="rvts8">.</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">Another message will confirm the location of the saved file. Click </span><span class="rvts15">OK</span><span class="rvts8">.</span></li>
+</ol>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/ern34.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="6" class="rvps3 noindent"><span class="rvts8">The file can then be viewed and printed using CMS EasyPrint software. &nbsp;If you need to install a copy of the software, click the </span><span class="rvts15">Install CMS EasyPrint button</span><span class="rvts8"> to be directed to the </span><a class="rvts16" href="https://www.cms.gov/data-research/cms-information-technology/access-cms-data-application/medicare-remit-easy-print" target="_blank">CMS website</a><span class="rvts8">. &nbsp;From there you can download the software and instructions.</span></li>
+</ol>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/ern31.gif"></p>
+<p class="rvps3"><span class="rvts8">&nbsp;</span></p>
+<p class="rvps3"><span class="rvts8"></span><span class="rvts8"></span></p>
+
+            </div>
+            
+            
+        </div>  <!-- /#topic-content -->
+    </article>
+
+    <footer></footer>
+
+  </div>  <!-- /#main -->
+
+  <div class="mask" data-toggle="sm-nav-expanded"></div>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="hndModal" tabindex="-1" role="dialog" aria-labelledby="hndModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="hndModalLabel"></h4>
+        </div>
+        <div class="modal-body">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary modal-btn-close" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Splitter -->
+  <div id="hnd-splitter" style="left: 350px"></div>  
+
+  <!-- Scripts -->
+  <script src="vendors/jquery-3.7.1/jquery.min.js"></script>
+  <script src="vendors/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+  <script src="vendors/bootstrap-3.4.1/js/ie10-viewport-bug-workaround.js"></script>
+  <script src="vendors/markjs-8.11.1/jquery.mark.min.js"></script>
+  <script src="vendors/uri-1.19.11/uri.min.js"></script>
+  <script src="vendors/imageMapResizer-1.0.10/imageMapResizer.min.js"></script>
+  <script src="vendors/headroom-0.11.0/headroom.min.js"></script>
+  <script src="vendors/jstree-3.3.10/jstree.min.js"></script>  
+  <script src="vendors/interactjs-1.9.22/interact.min.js"></script>  
+
+  <!-- HelpNDoc scripts -->
+  <script src="js/polyfill.object.min.js"></script>
+  <script src="_translations.js"></script>
+  <script src="js/hndsd.min.js"></script>
+  <script src="js/hndse.min.js"></script>
+  <script src="js/app.min.js"></script>
+
+  <!-- Init script -->
+  <script src="_topic_init.js"></script>
+
+
+
+</body>
+
+</html>
+

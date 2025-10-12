@@ -1,0 +1,417 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="generator" content="HelpNDoc Professional Edition 9.8.0.588">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="favicon.ico"/>
+
+  <title>Stock on Hand</title>
+  <meta name="description" content="" /> 
+  <meta name="keywords" content="Stock Items Center,Stock on Hand">
+
+
+
+  
+  
+
+  <!-- Twitter Card data -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Stock on Hand">
+  <meta name="twitter:description" content="">
+
+  <!-- Open Graph data -->
+  <meta property="og:title" content="Stock on Hand" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="" />
+  <meta property="og:site_name" content="TIMS Audiology and SLP Version 6.08" /> 
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendors/bootstrap-3.4.1/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <link href="vendors/bootstrap-3.4.1/css/ie10-viewport-bug-workaround.css" rel="stylesheet"/>
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="vendors/html5shiv-3.7.3/html5shiv.min.js"></script>
+      <script src="vendors/respond-1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+  <!-- JsTree styles -->
+  <link href="vendors/jstree-3.3.10/themes/default/style.min.css" rel="stylesheet"/>
+
+  <!-- Hnd styles -->
+  <link href="css/layout.min.css" rel="stylesheet" />
+  <link href="css/effects.min.css" rel="stylesheet" />
+  <link href="css/theme-dark-blue.min.css" rel="stylesheet" />
+  <link href="css/print.min.css" rel="stylesheet" media="print" />
+  <style type="text/css">nav { width: 350px} @media screen and (min-width:769px) { body.md-nav-expanded div#main { margin-left: 350px} body.md-nav-expanded header { padding-left: 364px} }</style>
+  <style type="text/css">.navigation #inline-toc { width: auto !important}</style>
+
+  <!-- Content style -->
+  <link href="css/hnd.content.css" rel="stylesheet" />
+
+  
+
+
+
+</head>
+
+<body class="md-nav-expanded">
+
+
+
+  
+
+  <div id="skip-link">
+    <a href="#main-content" class="element-invisible">Skip to main content</a>
+  </div>
+
+  <header class="headroom">
+    <button class="hnd-toggle btn btn-default">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>        
+    </button>
+    <h1>TIMS Audiology and SLP Version 6.08</h1>
+    <a href="https://us.timsaudiology.com"><img src="_logo.png" alt="logo" class="logo"/></a>
+  </header>
+
+  <nav id="panel-left" class="md-nav-expanded">
+    <!-- Nav tabs -->
+    <ul class="tab-tabs nav nav-tabs" role="tablist">
+      <li id="nav-close" role="presentation"> 
+        <button class="hnd-toggle btn btn-default" aria-label="close">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+      </li>
+      
+	  
+        <li role="presentation" class="tab active">
+            <a href="#contents" id="tab-contents" aria-controls="contents" role="tab" data-toggle="tab">
+                <i class="glyphicon glyphicon-list"></i>
+                Contents
+            </a>
+        </li>
+      
+        <li role="presentation" class="tab">
+            <a href="#index" id="tab-index" aria-controls="index" role="tab" data-toggle="tab">
+                <i class="glyphicon glyphicon-asterisk"></i>
+                Index
+            </a>
+        </li>
+      
+        <li role="presentation" class="tab">
+            <a href="#search" id="tab-search" aria-controls="search" role="tab" data-toggle="tab">
+                <i class="glyphicon glyphicon-search"></i>
+                Search
+            </a>
+        </li>
+      
+    </ul>  <!-- /Nav tabs -->
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+	  
+      <div role="tabpanel" class="tab-pane active" id="contents">
+        <div id="toc" class="tree-container unselectable"
+            data-url="_toc.json"
+            data-openlvl="1"
+        >
+            
+        </div>
+      </div>  <!-- /contents-->
+      
+      <div role="tabpanel" class="tab-pane" id="index">
+        <div id="keywords" class="tree-container unselectable"
+            data-url="_keywords.json"
+            data-openlvl="2"
+        >
+            
+        </div>
+      </div>  <!-- /index-->
+      
+      <div role="tabpanel" class="tab-pane" id="search">
+        <div class="search-content">
+          <div class="search-input">
+            <form id="search-form">
+              <div class="form-group">
+                <div class="input-group">
+                  <input type="text" class="form-control" id="input-search" name="input-search" placeholder="Search..." aria-label="Search..." />
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit" aria-label="Search...">
+                      <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </button>
+                  </span>
+                </div>
+              </div>
+            </form>
+          </div>  <!-- /search-input -->
+          <div class="search-result">
+            <div id="search-info"></div>
+            <div class="tree-container unselectable" id="search-tree"></div>
+          </div>  <!-- /search-result -->
+        </div>  <!-- /search-content -->
+      </div>  <!-- /search-->
+      
+    </div>  <!-- /Tab panes -->
+
+  </nav>
+
+  <div id="main">
+
+    <article>
+        <div id="topic-content" class="container-fluid" 
+		  data-hnd-id="StockonHand"
+		  data-hnd-context="268"
+		  data-hnd-title="Stock on Hand"
+		>
+            
+                <div class="navigation">
+                    <ol class="breadcrumb">
+                        <li>Centers</li><li>Stock Items Center</li>
+                    </ol>
+                    <div class="nav-arrows">
+                        <div class="btn-group btn-group" role="group"><div class="btn-group"><button type="button" title="In this page..." class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span></button><ul id="inline-toc" class="dropdown-menu dropdown-menu-right"></ul></div><a class="btn btn-default" href="ReceiveStock.html" title="Receive Stock" role="button"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a><a class="btn btn-default" href="FaxStatusCenter.html" title="Fax Status Center" role="button"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></div>
+                    </div>
+                </div> 
+            
+
+            <a id="main-content"></a>
+
+            <h2>Stock on Hand</h2>
+
+            <div class="main-content">
+                
+<p class="rvps3"><span class="rvts8">Once items have been added to stock in the </span><a class="rvts16" href="ReceiveStock.html">Receive Stock</a><span class="rvts8"> tab, they can be viewed, edited, inactivated, or deleted in the Stock on Hand sub-tab, as long as they have not yet been assigned to a patient in HA History. Once an item has been assigned to a patient, it will no longer appear in this list. (see </span><a class="rvts16" href="AddingaNewHearingAidHistory.html">Add a New Hearing Aid History</a><span class="rvts8">)</span></p>
+<p class="rvps3"><span class="rvts8"><br/></span></p>
+<p class="rvps3"><span class="rvts8">The available stock items are listed in the Stock Items tree, sorted by Manufacturer.&nbsp;</span></p>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/stock%20item%20tree.gif"></p>
+<p class="rvps3"><span class="rvts8">The item name is followed by the serial number, if one has been entered. &nbsp;If the item is an accessory, and (A) will appear at the end. Inactive stock items will appear at the bottom. &nbsp;Beginning in version 6.07, you can now </span><span class="rvts15">search for a stock item</span><span class="rvts8"> by serial number. Type all or part of the serial number in the search box, then click the magnifying glass icon.&nbsp;</span></p>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/stock%20item%20search.gif"></p>
+<p class="rvps3"><span class="rvts8">After selecting an item from the tree, the details can be viewed on the screen to the right. &nbsp;</span></p>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/stock%20on%20hand.gif"></p>
+<p class="rvps3"><span class="rvts8">If needed, you can edit the PO Number, Invoice Number, Serial Number, Cost, Date Received, Site, Status, or Notes. &nbsp;You can also set a stock item to be inactive - which requires a reason to be entered. &nbsp;Inactive stock items can not be assigned to a patient.</span></p>
+<p class="rvps3"><span class="rvts8"><br/></span></p>
+<div class="rvps3">
+<table style="border-width: 0px; border-spacing: 2px;">
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 200px;">
+   <p class="rvps3"><span class="rvts15">Manufacturer</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">The manufacturer of the item, as selected in the Receive Stock tab. &nbsp;This field cannot be changed.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 200px;">
+   <p class="rvps3"><span class="rvts15">Model</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">The model name of the item, as selected in the Receive Stock tab. &nbsp;This field cannot be changed.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 200px;">
+   <p class="rvps3"><span class="rvts15">Style</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">The style of the model, as selected in the Receive Stock tab. When assigned to a patient, this price will be entered into the HA History record by default.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 200px;">
+   <p class="rvps3"><span class="rvts15">Price</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">The price that the item will be sold for. When assigned to a patient, this price</span></p>
+   <p class="rvps3"><span class="rvts8">will be entered into the HA History record by default.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 200px;">
+   <p class="rvps3"><span class="rvts15">Cost</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">The cost of the item. &nbsp;If this was entered in Receive Stock, it will be displayed</span></p>
+   <p class="rvps3"><span class="rvts8">here. &nbsp;Otherwise it can be entered or changed if needed.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 200px;">
+   <p class="rvps3"><span class="rvts15">Site</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">The site where the item is located, as selected in the Receive Stock tab. &nbsp;It can be changed here if needed.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 200px;">
+   <p class="rvps3"><span class="rvts15">P.O. No.</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">If Purchase Order number used for the purchase of the item. &nbsp;If this was entered in Receive Stock, it will be displayed here. &nbsp;Otherwise it can be entered or changed if needed.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 200px;">
+   <p class="rvps3"><span class="rvts15">Invoice Number</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">The invoice number for the purchase of the item. &nbsp;If this was entered in Receive Stock, it will be displayed here. &nbsp;Otherwise it can be entered or changed if needed. &nbsp;Some invoice numbers will auto-generated if the stock item was automatically entered because of a customer return. &nbsp;For example, if a patient returns a custom ordered hearing aid, it will automatically be placed into stock, before being returned to the manufacturer. The Invoice Number will show "HA Return", plus the original Order Number for the item.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 200px;">
+   <p class="rvps3"><span class="rvts15">Serial Number</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">The serial number of the item. &nbsp;If this was entered in Receive Stock, it will be</span></p>
+   <p class="rvps3"><span class="rvts8">displayed here. &nbsp;Otherwise it can be entered or changed if needed.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 200px;">
+   <p class="rvps3"><span class="rvts15">Date Received</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">The date the item was received into stock, as entered in Receive Stock. &nbsp;It can be changed here if needed.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 200px;">
+   <p class="rvps3"><span class="rvts15">Notes</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">A free form field for entering any notes associated with the item. &nbsp;If this was entered in Receive Stock, it will be displayed here. &nbsp;Otherwise it can be entered or changed if needed. </span><span class="rvts15">Note:</span><span class="rvts8">&nbsp;Some notes will auto-generated if the stock item was automatically entered because of a customer return. &nbsp;For example, if a patient returns a custom ordered hearing aid, it will automatically be placed into stock, before being returned to the manufacturer. &nbsp;A note such as "Custom order returned for resale from Patient Robert Erickson" will appear.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 200px;">
+   <p class="rvps3"><span class="rvts15">Status</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">When an item is Received into Stock, the default status will be "New". Standard statuses are "New", "Used", "Returned for Credit", "Returned for Repackaging", "Rebuilt", and "Damaged". &nbsp;Custom statuses can be </span><a class="rvts16" href="StockItemStatus.html">setup</a><span class="rvts8"> as needed. Certain statuses will automatically be set when an item is placed into stock because of a customer return. For a custom order or stock item return, the status will be set as "Used". &nbsp;For a custom order that was marked as "Returned to Manufacturer", the status will be set to "Returned for Credit". &nbsp;Only stock items with a status of "New" or "Used" can be issued to a patient.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 200px;">
+   <p class="rvps3"><span class="rvts15">Inactive</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Check this box to inactivate a stock item, so it will not be available to sell. &nbsp;A</span></p>
+   <p class="rvps3"><span class="rvts8">reason is required when Inactive is checked. &nbsp;When an item is returned in HAHistory, it can also be made inactive at that time.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 200px;">
+   <p class="rvps3"><span class="rvts15">Reason</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">A free form field to enter the reason the item was made inactive. &nbsp;This is </span><span class="rvts15">required</span><span class="rvts8"> when the Inactive checkbox is checked.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 200px;">
+   <p class="rvps3"><span class="rvts15">Options</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Optional add-ons for this item. &nbsp;When assigned to a patient, these options will be entered into the HA History record by default.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 200px;">
+   <p class="rvps3"><span class="rvts15">Scan Document</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">If you wish to scan in a document to be associated with the stock item, click the Scan Document button. &nbsp;The TIMS Document Capture System screen will popup. Document Type will default to "Stock Invoices". Follow the instructions in </span><a class="rvts16" href="AttachingDocumentstoaPatientReco.html">Attaching Documents to a Patient Record</a><span class="rvts8">. &nbsp;The difference is that the document will be associated with the stock item, and can only be viewed from the Stock Item screen or the </span><a class="rvts16" href="ImagingCenter.html">Imaging Center</a><span class="rvts8">. &nbsp;Once the document has been saved, the button will then read "View Document". </span><img alt="" style="padding : 1px;" src="lib/stock%20view%20doc%20btn.gif"><span class="rvts8">&nbsp;Click on the button to see the previously saved document. &nbsp;If a stock item is a returned custom order, any documents previously associated with the order will be available here. &nbsp;If a document was attached at the time the stock item was received, the button will also read "View Document".</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 200px;">
+   <p class="rvps3"><span class="rvts15">Updated</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">The date when the stock item information was last updated. This is automatically updated when the record has been changed and saved.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 200px;">
+   <p class="rvps3"><span class="rvts15">By User</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">The last User to update this stock item record.</span></p>
+  </td>
+ </tr>
+</table>
+</div>
+<h1 class="rvps5"><span class="rvts0"><span class="rvts13">Delete Stock Item</span></span></h1>
+<p class="rvps3"><span class="rvts8">To remove an item from stock completely, select it on the tree and then click the delete icon </span><img alt="" style="padding : 1px;" src="lib/delete%20btn.gif"><span class="rvts8">. &nbsp;A message will ask you to confirm the deletion.</span></p>
+<p class="rvps3"><img alt="" style="padding : 1px;" src="lib/stock%20delete%20msg.gif"></p>
+<p class="rvps3"><span class="rvts8">&nbsp;Click Yes to delete, or No to cancel.</span></p>
+<p class="rvps3"><span class="rvts8"></span><span class="rvts8"></span></p>
+
+            </div>
+            
+            
+        </div>  <!-- /#topic-content -->
+    </article>
+
+    <footer></footer>
+
+  </div>  <!-- /#main -->
+
+  <div class="mask" data-toggle="sm-nav-expanded"></div>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="hndModal" tabindex="-1" role="dialog" aria-labelledby="hndModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="hndModalLabel"></h4>
+        </div>
+        <div class="modal-body">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary modal-btn-close" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Splitter -->
+  <div id="hnd-splitter" style="left: 350px"></div>  
+
+  <!-- Scripts -->
+  <script src="vendors/jquery-3.7.1/jquery.min.js"></script>
+  <script src="vendors/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+  <script src="vendors/bootstrap-3.4.1/js/ie10-viewport-bug-workaround.js"></script>
+  <script src="vendors/markjs-8.11.1/jquery.mark.min.js"></script>
+  <script src="vendors/uri-1.19.11/uri.min.js"></script>
+  <script src="vendors/imageMapResizer-1.0.10/imageMapResizer.min.js"></script>
+  <script src="vendors/headroom-0.11.0/headroom.min.js"></script>
+  <script src="vendors/jstree-3.3.10/jstree.min.js"></script>  
+  <script src="vendors/interactjs-1.9.22/interact.min.js"></script>  
+
+  <!-- HelpNDoc scripts -->
+  <script src="js/polyfill.object.min.js"></script>
+  <script src="_translations.js"></script>
+  <script src="js/hndsd.min.js"></script>
+  <script src="js/hndse.min.js"></script>
+  <script src="js/app.min.js"></script>
+
+  <!-- Init script -->
+  <script src="_topic_init.js"></script>
+
+
+
+</body>
+
+</html>
+

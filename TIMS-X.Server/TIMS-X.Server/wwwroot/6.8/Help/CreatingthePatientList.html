@@ -1,0 +1,801 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="generator" content="HelpNDoc Professional Edition 9.8.0.588">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="favicon.ico"/>
+
+  <title>Creating the Patient List</title>
+  <meta name="description" content="" /> 
+  <meta name="keywords" content="Communications,Creating the Patient List">
+
+
+
+  
+  
+
+  <!-- Twitter Card data -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Creating the Patient List">
+  <meta name="twitter:description" content="">
+
+  <!-- Open Graph data -->
+  <meta property="og:title" content="Creating the Patient List" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="" />
+  <meta property="og:site_name" content="TIMS Audiology and SLP Version 6.08" /> 
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendors/bootstrap-3.4.1/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <link href="vendors/bootstrap-3.4.1/css/ie10-viewport-bug-workaround.css" rel="stylesheet"/>
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="vendors/html5shiv-3.7.3/html5shiv.min.js"></script>
+      <script src="vendors/respond-1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+  <!-- JsTree styles -->
+  <link href="vendors/jstree-3.3.10/themes/default/style.min.css" rel="stylesheet"/>
+
+  <!-- Hnd styles -->
+  <link href="css/layout.min.css" rel="stylesheet" />
+  <link href="css/effects.min.css" rel="stylesheet" />
+  <link href="css/theme-dark-blue.min.css" rel="stylesheet" />
+  <link href="css/print.min.css" rel="stylesheet" media="print" />
+  <style type="text/css">nav { width: 350px} @media screen and (min-width:769px) { body.md-nav-expanded div#main { margin-left: 350px} body.md-nav-expanded header { padding-left: 364px} }</style>
+  <style type="text/css">.navigation #inline-toc { width: auto !important}</style>
+
+  <!-- Content style -->
+  <link href="css/hnd.content.css" rel="stylesheet" />
+
+  
+
+
+
+</head>
+
+<body class="md-nav-expanded">
+
+
+
+  
+
+  <div id="skip-link">
+    <a href="#main-content" class="element-invisible">Skip to main content</a>
+  </div>
+
+  <header class="headroom">
+    <button class="hnd-toggle btn btn-default">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>        
+    </button>
+    <h1>TIMS Audiology and SLP Version 6.08</h1>
+    <a href="https://us.timsaudiology.com"><img src="_logo.png" alt="logo" class="logo"/></a>
+  </header>
+
+  <nav id="panel-left" class="md-nav-expanded">
+    <!-- Nav tabs -->
+    <ul class="tab-tabs nav nav-tabs" role="tablist">
+      <li id="nav-close" role="presentation"> 
+        <button class="hnd-toggle btn btn-default" aria-label="close">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+      </li>
+      
+	  
+        <li role="presentation" class="tab active">
+            <a href="#contents" id="tab-contents" aria-controls="contents" role="tab" data-toggle="tab">
+                <i class="glyphicon glyphicon-list"></i>
+                Contents
+            </a>
+        </li>
+      
+        <li role="presentation" class="tab">
+            <a href="#index" id="tab-index" aria-controls="index" role="tab" data-toggle="tab">
+                <i class="glyphicon glyphicon-asterisk"></i>
+                Index
+            </a>
+        </li>
+      
+        <li role="presentation" class="tab">
+            <a href="#search" id="tab-search" aria-controls="search" role="tab" data-toggle="tab">
+                <i class="glyphicon glyphicon-search"></i>
+                Search
+            </a>
+        </li>
+      
+    </ul>  <!-- /Nav tabs -->
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+	  
+      <div role="tabpanel" class="tab-pane active" id="contents">
+        <div id="toc" class="tree-container unselectable"
+            data-url="_toc.json"
+            data-openlvl="1"
+        >
+            
+        </div>
+      </div>  <!-- /contents-->
+      
+      <div role="tabpanel" class="tab-pane" id="index">
+        <div id="keywords" class="tree-container unselectable"
+            data-url="_keywords.json"
+            data-openlvl="2"
+        >
+            
+        </div>
+      </div>  <!-- /index-->
+      
+      <div role="tabpanel" class="tab-pane" id="search">
+        <div class="search-content">
+          <div class="search-input">
+            <form id="search-form">
+              <div class="form-group">
+                <div class="input-group">
+                  <input type="text" class="form-control" id="input-search" name="input-search" placeholder="Search..." aria-label="Search..." />
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit" aria-label="Search...">
+                      <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </button>
+                  </span>
+                </div>
+              </div>
+            </form>
+          </div>  <!-- /search-input -->
+          <div class="search-result">
+            <div id="search-info"></div>
+            <div class="tree-container unselectable" id="search-tree"></div>
+          </div>  <!-- /search-result -->
+        </div>  <!-- /search-content -->
+      </div>  <!-- /search-->
+      
+    </div>  <!-- /Tab panes -->
+
+  </nav>
+
+  <div id="main">
+
+    <article>
+        <div id="topic-content" class="container-fluid" 
+		  data-hnd-id="CreatingthePatientList"
+		  data-hnd-context="208"
+		  data-hnd-title="Creating the Patient List"
+		>
+            
+                <div class="navigation">
+                    <ol class="breadcrumb">
+                        <li>Communications</li>
+                    </ol>
+                    <div class="nav-arrows">
+                        <div class="btn-group btn-group" role="group"><div class="btn-group"><button type="button" title="In this page..." class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span></button><ul id="inline-toc" class="dropdown-menu dropdown-menu-right"></ul></div><a class="btn btn-default" href="CommunicationsOverview.html" title="Communications Overview" role="button"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a><a class="btn btn-default" href="AddinganInteraction.html" title="Adding an Interaction" role="button"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></div>
+                    </div>
+                </div> 
+            
+
+            <a id="main-content"></a>
+
+            <h2>Creating the Patient List</h2>
+
+            <div class="main-content">
+                
+<p class="rvps3"><span class="rvts8">Multiple criteria</span><span class="rvts8"> can be used to create a patient Call or Letter list filtered to your needs. &nbsp;</span></p>
+<p class="rvps3"><img alt="" style="padding : 1px;" src="lib/comm%20criteria%20all.gif"></p>
+<p class="rvps3"><span class="rvts8">By default, only </span><span class="rvts15">active</span><span class="rvts8"> and </span><span class="rvts15">non-deceased</span><span class="rvts8"> patients are included. &nbsp;Choose one or more of the following criteria, then click the </span><span class="rvts15">Build List</span><span class="rvts8"> button </span><img alt="" style="padding : 1px;" src="lib/comm%20build%20list%20btn.gif"><span class="rvts8"> to generate the resulting patient list. &nbsp;</span></p>
+<p class="rvps3"><img alt="" style="padding : 1px;" src="lib/important.gif"><span class="rvts8"> </span><span class="rvts15">Note: </span><span class="rvts8">If a Letter List is to be generated, you must </span><span class="rvts15">first select a letter</span><span class="rvts8"> before clicking Build List. (not necessary for a Call List only)</span></p>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/comm%20pat%20list.gif"></p>
+<p class="rvps3"><span class="rvts8"><br/></span></p>
+<p class="rvps3"><span class="rvts8">Criteria are separated by category. &nbsp;Choices can be made across multiple categories. To clear out all previously selected criteria, in order to start a new search - click the </span><span class="rvts15">Clear Criteria</span><span class="rvts8"> button </span><img alt="" style="padding : 1px;" src="lib/comm%20clear%20btn.gif"><span class="rvts8">. Once you've expanded the various criteria and made your selection, you can make more room on the screen to view letters and lists by clicking the </span><span class="rvts15">Collapse All</span><span class="rvts8"> button </span><img alt="" style="padding : 1px;" src="lib/comm%20collaspse%20btn.gif"><span class="rvts8">.&nbsp;</span></p>
+<p class="rvps3"><span class="rvts8"><br/></span></p>
+<p class="rvps3"><span class="rvts8">Once you have built a patient </span><span class="rvts15">letter</span><span class="rvts8"> list, a message will popup asking if you wish to save the criteria/parameters used. &nbsp;</span></p>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/comm%20save%20param%20msg.gif"></p>
+<p class="rvps3"><span class="rvts8">If you frequently use a certain set of criteria for a particular letter list, this can be very helpful. &nbsp;Once the parameters are saved, the next time the letter is selected the same criteria will be loaded. &nbsp;Previously saved&nbsp;</span></p>
+<p class="rvps3"><span class="rvts8">parameters can be cleared by clicking the Reset Stored Parameters button on the Letters Panel. &nbsp;</span><img alt="" style="padding : 1px;" src="lib/important.gif"><span class="rvts8"> </span><span class="rvts15">Note:</span><span class="rvts8"> - parameters are saved for letter lists only, not call lists.</span></p>
+<p class="rvps3"><span class="rvts8"><br/></span></p>
+<p class="rvps3"><span class="rvts52">These main criteria are expanded by clicking the </span><img alt="" style="padding : 1px;" src="lib/expand%20btn.gif"><span class="rvts52"> button:</span></p>
+<h1 class="rvps5"><span class="rvts0"><span class="rvts51">Patient Filter Criteria</span></span></h1>
+<div class="rvps3">
+<table style="border-width: 0px; border-spacing: 2px;">
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">OT Status</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Most recent Opportunity Status of patient - Re-Sell (1 or 2 ears), Tested Not Sold (1 or 2 ears), Other (1 or 2 ears aidable, or No Opportunity. &nbsp;See </span><a class="rvts16" href="OpportunityTrackinginAction.html">Opportunity Tracking</a><span class="rvts8"> for definitions.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Noah Mining Criteria</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Filter by criteria previously created in Noah Data Mining setup.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Site</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Include only patients who have the check Site as their default.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">County</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Include only patients who have the checked Counties (if used)</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Inc Patient Type</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Include only patients who have the checked Patient Types.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Exc Patient Type</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Exclude patients who have&nbsp;the checked Patient Types.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Exc Comm Restrictions</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Exclude patients who have the checked Communication Restrictions.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Insurance</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Include only patients who have the checked Insurance Payers (for </span><span class="rvts15">any level</span><span class="rvts8">, primary - quinary)</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Previous Medical History</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Include only patients who have the checked Previous History conditions.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Patient Marketing</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Include only patients who have the checked Marketing Source(s) in Patient details.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Language</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Include only patients who have the checked Language(s) in Patient Details.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Patient Age</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Range of patient ages to be included. &nbsp;Leave both at zero if not using.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Zip Code</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Range of patient zip codes.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Birthday</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Patient's Birthday Month. &nbsp;For example, choose September 01 to September 30 to include all patient's with a birthday in September, regardless of age.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">w/ Last Interaction</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Include patients who have had a last communication interaction in this date range.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">wo/ Last Interaction Date</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Include patients who have no recorded communication interactions in this date range.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Custom Date 1 and 2</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Include patients with Custom Dates 1 or 2 in this date range. The actual Custom Name as entered in </span><a class="rvts16" href="FieldDescriptions.html">Field Descriptions</a><span class="rvts8"> will be displayed here.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Custom Text 1 and 2</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Include patients with Custom Text 1 or 2 equal to this value. The actual Custom Name as entered in </span><a class="rvts16" href="FieldDescriptions.html">Field Descriptions</a><span class="rvts8"> will be displayed here.</span></p>
+  </td>
+ </tr>
+</table>
+</div>
+<h1 class="rvps5"><span class="rvts0"><span class="rvts51">Appointment Filter Criteria</span></span></h1>
+<div class="rvps3">
+<table style="border-width: 0px; border-spacing: 2px;">
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Filter Type</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Filter for Any, Last, First, or Next appointment.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Appt Date</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Date range of patient's appointment (last, next, or any, based on filter above).</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Appt Type</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">The type of the patient's appointment. (last, next, or any, based on filter above).</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Appt Status</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">The status of the patient's appointment. (last, next, or any, based on filter above).</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Appt Provider</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">The assigned provider for the patient's appointment. (last, next, or any, based on filter above)</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Next Contact Date</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Date range of the patient's Next Contact Date.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Appt Marketing</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">The marketing source of the patient's appointment. (last, next, or any, based on filter above)</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Future Appts</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Include patients with future appointments or no future appointments.</span></p>
+  </td>
+ </tr>
+</table>
+</div>
+<h1 class="rvps5"><span class="rvts0"><span class="rvts51">History Filter Criteria</span></span></h1>
+<div class="rvps3">
+<table style="border-width: 0px; border-spacing: 2px;">
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Filter Type</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Filter on Any History Date or Last History Date only.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">History Type</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">The type of the patient's History visit&nbsp;- either Any or Last, depending on what it chosen above.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">History Date</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Date range of patient's history visit - either Any or Last, depending on what it chosen above.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Severity</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Severity recorded in the patient's History visit&nbsp;- either Any or Last, depending on what it chosen above.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Configuration</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Configuration&nbsp;recorded in the patient's History visit&nbsp;- either Any or Last, depending on what it chosen above.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Type of Loss</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Type of Loss&nbsp;recorded in the patient's History visit&nbsp;- either Any or Last, depending on what it chosen above.</span></p>
+  </td>
+ </tr>
+</table>
+</div>
+<h1 class="rvps5"><span class="rvts0"><span class="rvts51">HA History Filter Criteria</span></span></h1>
+<div class="rvps3">
+<table style="border-width: 0px; border-spacing: 2px;">
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Filter Type</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Filter on Any HA History Date or Last HA History Date only.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Device Type</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Choose All, Hearing Aids only, Earmolds only, or Accessories only.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">HA Manufacturer</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Manufacturer of the device.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">HA Model</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Model name(s) of the device, from the above selected Manufacturer.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">HA Style</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">HA Style of the device(s) to include.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">HA Type</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">HA Type of the device(s) to include.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Hearing Aid Status</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">HA Status of the device(s) to include.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Provider</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">The Seen By Provider on the HA History.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Purchase Date</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Date range of the HA History Purchase Date.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Warranty Type</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Warranty type of the device.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Warranty Date</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Date range of the device's Warranty Date expiration.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Fit Date</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Date range of the HA History Fit Date.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">L/D Warranty Type</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Loss/Damage Warranty type of the device.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">L/D Date</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Date range of the HA History Loss/Damage Date.</span></p>
+  </td>
+ </tr>
+</table>
+</div>
+<p class="rvps3"><span class="rvts36"><br/></span></p>
+<p class="rvps3"><span class="rvts52">These criteria are expanded by clicking the appropriate button:</span></p>
+<h1 class="rvps5"><span class="rvts0"><span class="rvts51">Battery Criteria</span></span></h1>
+<div class="rvps3">
+<table style="border-width: 0px; border-spacing: 2px;">
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Date Started</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Date range of battery club start date.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Date Ending</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Date range of battery club ending date.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Next Action Date</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Date range of next scheduled Action Date.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Balance</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">The remaining battery balance of the club. Choose from Greater than, Less than, or Equal to.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Delivery Method</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Pickup or Mail Out</span></p>
+  </td>
+ </tr>
+</table>
+</div>
+<h1 class="rvps5"><span class="rvts0"><span class="rvts51">Loaners Criteria</span></span></h1>
+<div class="rvps3">
+<table style="border-width: 0px; border-spacing: 2px;">
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Date Out</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Date range of the HA Loaner date checked out.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Date Due Back</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Date range of the HA Loaner due date back.</span></p>
+  </td>
+ </tr>
+</table>
+</div>
+<h1 class="rvps5"><span class="rvts0"><span class="rvts51">Orders Criteria</span></span></h1>
+<div class="rvps3">
+<table style="border-width: 0px; border-spacing: 2px;">
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Order Date</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Date range of the date the HA Orders were placed.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Due Date</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Date range of the date the HA Orders are due in.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Date Received</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Date range of the date the HA Orders were received.</span></p>
+  </td>
+ </tr>
+</table>
+</div>
+<h1 class="rvps5"><span class="rvts0"><span class="rvts51">Repairs Criteria</span></span></h1>
+<div class="rvps3">
+<table style="border-width: 0px; border-spacing: 2px;">
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Date Received</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Date range of the date the Repairs were received.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Repair Warranty Date</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Date range of the device's Repair Warranty Date expiration.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Repair Type</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Payable or Warranty.</span></p>
+  </td>
+ </tr>
+</table>
+</div>
+<h1 class="rvps5"><span class="rvts0"><span class="rvts51">Returns Criteria</span></span></h1>
+<div class="rvps3">
+<table style="border-width: 0px; border-spacing: 2px;">
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Return Date</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Date range of the date the devices were returned</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Return Reason</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Reason for return</span></p>
+  </td>
+ </tr>
+</table>
+</div>
+<p class="rvps3"><span class="rvts36"><br/></span></p>
+<p class="rvps3"><span class="rvts8">The </span><a class="rvts35" href="PatientSummaryPanel.html">Patient Summary</a><span class="rvts8"> and </span><a class="rvts35" href="PatientActivityPanel.html">Patient Activity</a><span class="rvts8"> </span><span class="rvts15">panels</span><span class="rvts8"> will be displayed for each patient in the list, so that you can quickly check any details needed before you place your call, or print your letter.</span><span class="rvts8"></span></p>
+
+            </div>
+            
+            
+        </div>  <!-- /#topic-content -->
+    </article>
+
+    <footer></footer>
+
+  </div>  <!-- /#main -->
+
+  <div class="mask" data-toggle="sm-nav-expanded"></div>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="hndModal" tabindex="-1" role="dialog" aria-labelledby="hndModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="hndModalLabel"></h4>
+        </div>
+        <div class="modal-body">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary modal-btn-close" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Splitter -->
+  <div id="hnd-splitter" style="left: 350px"></div>  
+
+  <!-- Scripts -->
+  <script src="vendors/jquery-3.7.1/jquery.min.js"></script>
+  <script src="vendors/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+  <script src="vendors/bootstrap-3.4.1/js/ie10-viewport-bug-workaround.js"></script>
+  <script src="vendors/markjs-8.11.1/jquery.mark.min.js"></script>
+  <script src="vendors/uri-1.19.11/uri.min.js"></script>
+  <script src="vendors/imageMapResizer-1.0.10/imageMapResizer.min.js"></script>
+  <script src="vendors/headroom-0.11.0/headroom.min.js"></script>
+  <script src="vendors/jstree-3.3.10/jstree.min.js"></script>  
+  <script src="vendors/interactjs-1.9.22/interact.min.js"></script>  
+
+  <!-- HelpNDoc scripts -->
+  <script src="js/polyfill.object.min.js"></script>
+  <script src="_translations.js"></script>
+  <script src="js/hndsd.min.js"></script>
+  <script src="js/hndse.min.js"></script>
+  <script src="js/app.min.js"></script>
+
+  <!-- Init script -->
+  <script src="_topic_init.js"></script>
+
+
+
+</body>
+
+</html>
+

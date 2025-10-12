@@ -1,0 +1,483 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
+    <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
+    <UserSecretsId>5f29d4a2-9128-4d16-b3cc-7c98d4511209</UserSecretsId>
+    <RootNamespace>TIMS_X.Server</RootNamespace>
+    <AssemblyVersion>3.25.4.4</AssemblyVersion>
+    <FileVersion>3.25.4.4</FileVersion>
+    <Version>3.25.4.4</Version>
+    <SpaRoot>web-client\</SpaRoot>
+    <Configurations>Debug;Release;Test;Docker</Configurations>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>$(ProjectDir)TIMS-X.Server\TIMS-X.Server.xml</DocumentationFile>
+    <NoWarn>1701;1702;1591</NoWarn>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Generated2\**" />
+    <Compile Remove="Generated\**" />
+    <Content Remove="Generated2\**" />
+    <Content Remove="Generated\**" />
+    <EmbeddedResource Remove="Generated2\**" />
+    <EmbeddedResource Remove="Generated\**" />
+    <None Remove="Generated2\**" />
+    <None Remove="Generated\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="bundleconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="bundleconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="bundleconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AspNetCore.RouteAnalyzer" Version="0.5.3" />
+    <PackageReference Include="AWSSDK.PinpointSMSVoice" Version="3.7.400.36" />
+    <PackageReference Include="AWSSDK.PinpointSMSVoiceV2" Version="3.7.402" />
+    <PackageReference Include="Azure.Storage.Blobs" Version="12.19.1" />
+    <PackageReference Include="BCrypt-Core" Version="2.0.0" />
+    <PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.12" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Formatters.Json" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Protocols.Json" Version="5.0.12" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices" Version="3.1.32" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="7.0.15" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.12" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.12">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="5.0.12" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.12" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="5.0.0" />
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="5.4.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.0.2105168" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+    <PackageReference Include="Remotion.Linq" Version="2.2.0" />
+    <PackageReference Include="RestSharp" Version="110.2.0" />
+    <PackageReference Include="SharpZipLib" Version="1.4.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="7.0.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore.ReDoc" Version="6.5.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+    <PackageReference Include="Twilio" Version="5.30.0" />
+    <PackageReference Include="Twilio.AspNet.Core" Version="5.20.1" />
+    <PackageReference Include="Veldrid.ImageSharp" Version="4.8.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\TIMS-X.BLL\TIMS-X.BLL.csproj" />
+    <ProjectReference Include="..\..\TIMS-X.Core\TIMS-X.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Pages\Help.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Account\ChangePassword.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\FormSubmitted.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Account\SignIn.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Account\PasswordChanged.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Account\SignedOut.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\AuthSuccess.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\ZoomLauncher.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\SubmissionSuccess.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Patient.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Support\CreateCustomer.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Support\CreatePermission.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Support\CreateServer.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Support\CreateSupportUser.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Support\CreateVendor.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Support\Customers.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Support\EditCustomer.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Support\EditPermission.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Support\EditServer.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Support\EditSupportUser.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Support\EditVendor.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Error.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Index.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Support\Permissions.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Support\Servers.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Shared\_Layout.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Support\SupportUsers.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Support\Reports.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Support\Vendors.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\_LoginPartial.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\_ViewImports.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\_ViewStart.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="JsonModels\Appointment.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\Appointment.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\AppointmentDto.ts">
+      <CustomToolNamespace>..\..\TIMS-X.DAL\Dtos\AppointmentDto.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\AppointmentItemSummary.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\AppointmentItemSummary.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\AppointmentStatus.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\AppointmentStatus.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\AppointmentSummary.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\AppointmentSummary.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\AppointmentType.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\AppointmentType.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\ApptRecurringInterval.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\ApptRecurringInterval.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\Authorization.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\Authorization.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\BatterySize.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\BatterySize.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\BusinessRuleDto.ts">
+      <CustomToolNamespace>..\..\TIMS-X.DAL\Dtos\BusinessRuleDto.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\CalendarSummaryItem.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\CalendarSummaryItem.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\CommunicationRestriction.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\CommunicationRestriction.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\CustomerMessage.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\CustomerMessage.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\Entity.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\Base\Entity.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\HaComponent.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\HaComponent.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\HaHistory.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\HaHistory.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\HaModel.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\HaModel.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\HaOrder.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\HaOrder.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\HaRepairComplaint.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\HaRepairComplaint.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\HaStatus.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\HaStatus.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\HaStockItemStatus.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\HaStockItemStatus.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\HaStyle.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\HaStyle.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\HaType.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\HaType.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\HaWarrantyType.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\HaWarrantyType.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\History.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\History.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\HistoryType.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\HistoryType.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\InsurancePayer.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\InsurancePayer.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\KpiSiteTarget.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\KpiSiteTarget.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\LastPatientList.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\LastPatientList.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\Manufacturer.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\Manufacturer.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\MarketingReference.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\MarketingReference.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\MarketingReferenceCategory.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\MarketingReferenceCategory.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\MedicalCondition.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\MedicalCondition.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\Medication.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\Medication.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\OtStatusDescription.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\OtStatusDescription.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\Patient.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\Patient.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\PatientInsurance.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\PatientInsurance.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\PatientRequiredField.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\PatientRequiredField.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\PatientRequiredFieldEnum.ts">
+      <CustomToolNamespace>..\..\TIMS-X.BLL\Enums\PatientRequiredFieldEnum.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\PatientRestriction.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\PatientRestriction.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\PatientSearchCriteriaDto.ts">
+      <CustomToolNamespace>..\..\TIMS-X.DAL\Dtos\PatientSearchCriteriaDto.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\PatientSummary.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\PatientSummary.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\PaymentMethod.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\PaymentMethod.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\PosDocument.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\PosDocument.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\PosLineItem.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\PosLineItem.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\Practice.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\Practice.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\PracticeSummary.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\PracticeSummary.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\PreviousHistory.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\PreviousHistory.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\Provider.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\Provider.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\ProviderBlockSchedule.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\ProviderBlockSchedule.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\ProviderSummary.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\ProviderSummary.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\RecurringInterval.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\RecurringInterval.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\RecurringIntervalBase.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\Base\RecurringIntervalBase.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\RecurringIntervalRemoved.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\RecurringIntervalRemoved.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\RecurringIntervalRemovedBase.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\Base\RecurringIntervalRemovedBase.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\RepairComplaint.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\RepairComplaint.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\Resource.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\Resource.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\Restriction.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\Restriction.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\Result.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\Result.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\ResultType.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\ResultType.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\Schedule.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\Schedule.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\ScheduleBlock.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\ScheduleBlock.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\ScheduleDto.ts">
+      <CustomToolNamespace>..\..\TIMS-X.DAL\Dtos\ScheduleDto.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\ScheduleItemSummary.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\ScheduleItemSummary.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\ScheduleOpeningModel.ts">
+      <CustomToolNamespace>..\..\TIMS-X.DAL\Dtos\ScheduleOpeningModel.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\ScheduleOpeningsSearchModel.ts">
+      <CustomToolNamespace>..\..\TIMS-X.DAL\Dtos\ScheduleOpeningsSearchModel.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\ScheduleRecurringItemSummary.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\ScheduleRecurringItemSummary.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\ScheduleTimeSlot.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\ScheduleTimeSlot.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\Sex.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\Sex.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\Site.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\Site.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\TaxAgency.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\TaxAgency.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\TaxItem.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\TaxItem.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\TIMSUserSite.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\TIMSUserSite.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\User.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\User.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\UserDto.ts">
+      <CustomToolNamespace>..\..\TIMS-X.DAL\Dtos\UserDto.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\UserGroup.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\UserGroup.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\UserGroupAppSetting.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\UserGroupAppSetting.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\UserGroupReference.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\UserGroupReference.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\UserSiteHours.ts">
+      <CustomToolNamespace>..\..\TIMS-X.Core\Domain\UserSiteHours.cs</CustomToolNamespace>
+    </None>
+    <None Update="JsonModels\ValidationResult.ts">
+      <CustomToolNamespace>..\..\TIMS-X.BLL\Validation\ValidationResult.cs</CustomToolNamespace>
+    </None>
+  </ItemGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <TypeScriptTarget>ES2017</TypeScriptTarget>
+    <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
+    <TypeScriptModuleKind>AMD</TypeScriptModuleKind>
+    <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
+    <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
+    <TypeScriptOutFile />
+    <TypeScriptOutDir />
+    <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
+    <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
+    <TypeScriptSourceMap>True</TypeScriptSourceMap>
+    <TypeScriptMapRoot />
+    <TypeScriptSourceRoot />
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Docker|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+
+  <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
+    <!-- Ensure Node.js is installed -->
+    <Exec Command="node --version" ContinueOnError="true">
+      <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
+    </Exec>
+    <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
+    <Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
+  </Target>
+
+  <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
+    <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build --omit=dev" />
+
+    <!-- Include the newly-built files in the publish output -->
+    <ItemGroup>
+      <DistFiles Include="$(SpaRoot)dist\**; $(SpaRoot)dist-server\**" />
+      <!--<DistFiles Include="$(SpaRoot)dist\**" />-->
+      <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+        <RelativePath>wwwroot\%(RecursiveDir)%(FileName)%(Extension)</RelativePath>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      </ResolvedFileToPublish>
+    </ItemGroup>
+  </Target>
+
+</Project>

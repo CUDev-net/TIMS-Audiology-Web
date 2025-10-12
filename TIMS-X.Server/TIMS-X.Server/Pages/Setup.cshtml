@@ -1,0 +1,63 @@
+﻿@page
+@model Pages.SetupModel
+@{
+    ViewData["Title"] = "Setup";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+@using TIMS_X.Server.Extensions
+
+<div class="container">
+    <div class="row">
+        <div class="col align-content-center">
+            <h3 class="h3">Setup</h3>
+
+        </div>
+    </div>
+    @if (Model.CanUserModifySqlCredentials)
+    {
+        <div class="row">
+            <div class="col align-content-center">
+                <a class="btn btn-sm btn-outline-primary mb-2" data-toggle="collapse" href="#editSQLUser" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    Edit SQL User
+                </a>
+            </div>
+        </div>
+
+
+        <div class="row collapse mb-2" id="editSQLUser">
+            <div class="col">
+                <form method="post" class="form-control" onsubmit="submitForm()">
+                    <div>
+                        <div class="form-group">
+                            <label asp-for="ConnectionDetails.User">SQL User</label>
+                            <input asp-for="ConnectionDetails.User" class="form-control">
+
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ConnectionDetails.Password">SQL Password</label>
+                            <input asp-for="ConnectionDetails.Password" class="form-control">
+                            <span class="text-danger" asp-validation-for="ConnectionDetails.Password" class="text-danger"></span>
+                        </div>
+
+                    </div>
+
+                    <div>
+                        <button name="saveSqlUser" value="save" type="submit" class="btn btn-primary">Save</button>
+                        <a href="~/Setup" class="btn btn-dark">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col align-content-center">
+                @*@if (HtmlHelperExtensions.IsDebug())
+                {
+                    <a class="btn btn-sm btn-outline-primary mb-2" asp-page="/PatientFormEditor">
+                        Patient Form Editor
+                    </a>
+                }*@
+            </div>
+        </div>
+    }

@@ -1,0 +1,45 @@
+<div class="app-wrapper">
+
+  <nav *ngIf="isProviderLoggedIn" class="navbar navbar-expand-lg navbar-dark" style="padding: 0 1rem;">
+    <div style="padding-left: 0;" class="container-fluid">
+      <a class="navbar-brand">
+        <img style="height: 21px;" src="./images/navbar-logo2.png">
+      </a>
+
+      <div id="desktop-header" class="collapse navbar-collapse">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/scheduler">Appointments</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/PatientFormEditor">Patient Form Editor</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/Help/WhatsNewinVersion607.html">Help</a>
+          </li>
+        </ul>
+
+        <div style="font-size: 12px; margin: 0 5px;">
+          <span style="color: #cccccc">Signed into&nbsp;</span><span
+            style="font-weight: bolder; color: #ffffff;">{{practiceName}}</span><span
+            style="color: #cccccc">&nbsp;as&nbsp;</span><span
+            style="font-weight: bolder; color: #ffffff;">{{userName}}</span>
+          <a class="nav-link" style="margin: 0 5px; display: inline;" href="/web/user/SignOut">Sign Out</a>
+        </div>
+      </div>
+
+      <div id="mobile-header" style="display: none;">
+        <div style="font-size: 14px; margin: 0 0 0 5px;">
+          <span style="font-weight: bolder; color: #ffffff;">{{practiceName}}</span><span
+            style="color: #cccccc">&nbsp;as&nbsp;</span><span
+            style="font-weight: bolder; color: #ffffff;">{{userName}}</span>
+          <a class="nav-link" style="margin: 0 0 0 5px; display: inline; padding: 2px 3px;"
+            href="/web/user/SignOut">Sign Out</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <ngx-loading-bar [includeSpinner]="false"></ngx-loading-bar>
+  <router-outlet></router-outlet>
+</div>

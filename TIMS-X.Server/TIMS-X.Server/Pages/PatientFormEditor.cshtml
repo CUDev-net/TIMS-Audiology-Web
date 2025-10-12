@@ -1,0 +1,2004 @@
+﻿@page
+@model TIMS_X.Server.Pages.PatientFormEditorModel
+@{
+    ViewData["Title"] = "Patient Form Editor";
+}
+
+@using TIMS_X.Core.Enums;
+@*@using Microsoft.AspNetCore.Antiforgery;
+    @inject IAntiforgery AntiForgery;*@
+
+@section Styles {
+    <link href="~/css/patientformeditor.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
+}
+
+<svg style="display: none" version="2.0">
+    <defs>
+        <symbol fill="#666" color="#666" stroke="currentColor" id="custom-gripper"
+                stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical">
+            <circle cx="4" cy="5" r="2.5"></circle>
+            <circle cx="4" cy="15" r="2.5"></circle>
+            <circle cx="4" cy="25" r="2.5"></circle>
+            <circle cx="4" cy="35" r="2.5"></circle>
+
+            <circle cx="12" cy="5" r="2.5"></circle>
+            <circle cx="12" cy="15" r="2.5"></circle>
+            <circle cx="12" cy="25" r="2.5"></circle>
+            <circle cx="12" cy="35" r="2.5"></circle>
+        </symbol>
+    </defs>
+    <use href="#custom-gripper" />
+</svg>
+
+<div class="wrapper">
+
+    @if (Model.Form.FormType == PatientFormTypeEnum.Intake)
+    {
+        <div class="row mt-2">
+            <div class="col">
+                <h4>Edit Patient Intake Form</h4>
+            </div>
+        </div>
+        <div class="row flex-nowrap">
+            <div class="col container-fluid form-control mt-2 ml-2 mr-1">
+                <div class="row">
+                    <div class="col-auto">
+                        <h5 class="h5">Available Fields</h5>
+                    </div>
+                    <div class="col text-right">
+                        <div class="dropdown mb-2">
+                            <button class="btn btn-sm btn-outline-success dropdown-toggle" type="button" id="addFieldButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-plus"></i> Add New
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="addFieldButton">
+                                <button type="button" class="dropdown-item" data-toggle="modal" data-target="#sectionHeaderModal">Section Header</button>
+                                <button type="button" class="dropdown-item" data-toggle="modal" data-target="#checkboxModal">Checkbox</button>
+                                <button type="button" class="dropdown-item" data-toggle="modal" data-target="#textModal">Text</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        @* Available Fields *@
+                        <div class="list list-row card" style="min-height: 1000px; min-width: 810px;" id="availableFieldsList" data-sortable-id="0" aria-dropeffect="move">
+
+                            @* Site Logo *@
+                            <div class="list-item" id="siteLogo">
+                                <div class="col-sm-auto p-0 m-0">
+                                    <span class="grip-handle draggable">
+                                        <svg width="16" height="40"><use href="#custom-gripper" /></svg>
+                                    </span>
+                                </div>
+                                <div class="col" id="siteLogoContainer" style="max-width: 810px; overflow: hidden;">
+                                    <img id="siteLogoPlaceholder" class="mx-auto d-block patFormLogo" alt="" style="object-fit: contain; padding-left: 0px;" src="@Url.Page("PatientFormEditor", "SiteLogo")" />
+                                </div>
+                                <div class="col-sm-auto text-right m-0 p-0">
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveRightBtn" title="Move field to the right" onclick="moveRight('#siteLogo');">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveLeftBtn" title="Move field to the left" onclick="moveLeft('#siteLogo');" hidden>
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                    <button name="edit" class="btn btm-sm btn-link pl-0 pr-0" title="Edit" data-itemid="siteLogo" data-toggle="modal" data-target="#editSiteLogoModal">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+
+                            </div>
+
+                            @* Site Details *@
+                            <div class="list-item" id="siteDetails">
+                                <div class="col-sm-auto p-0 m-0">
+                                    <span class="grip-handle draggable">
+                                        <svg width="16" height="40"><use href="#custom-gripper" /></svg>
+                                    </span>
+                                </div>
+                                <div class="col">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h4 class="text-center mb-0" id="siteName">&lt;Practice Name&gt;</h4>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <h6 class="text-center mb-0" id="siteAddr1">&lt;Address&gt;</h6>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <h6 class="text-center mb-0 hidden" id="siteAddr2"></h6>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <h6 class="text-center mb-0 hidden" id="siteCityStateZip"></h6>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <h6 class="text-center mb-0" id="sitePhone">&lt;Phone&gt;</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-auto text-right m-0 p-0">
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveRightBtn" title="Move field to the right" onclick="moveRight('#siteDetails');">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveLeftBtn" title="Move field to the left" onclick="moveLeft('#siteDetails');" hidden>
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                    <button name="edit" class="btn btm-sm btn-link pl-0 pr-0" title="Edit" data-itemid="siteDetails" data-toggle="modal" data-target="#editSiteDetailsModal">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            @* Patient Name *@
+                            <div class="list-item" id="patientName">
+                                <div class="col-sm-auto p-0 m-0">
+                                    <span class="grip-handle draggable">
+                                        <svg width="16" height="40"><use href="#custom-gripper" /></svg>
+                                    </span>
+                                </div>
+                                <div class="col-sm-2 ml-0 mr-0">
+                                    <label class="col-form-label" for="patientFirstName">Patient</label>
+                                </div>
+                                <div class="col-sm">
+                                    <input class="form-control" id="patientFirstName" placeholder="First" maxlength="25">
+                                </div>
+                                <div class="col-sm-2">
+                                    <input class="form-control" placeholder="MI" maxlength="1" id="patientMI">
+                                </div>
+                                <div class="col-sm">
+                                    <input class="form-control ml-0" placeholder="Last" id="patientLastName" maxlength="35">
+                                </div>
+                                <div class="col-sm-auto text-right m-0 p-0">
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveRightBtn" title="Move field to the right" onclick="moveRight('#patientName');">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveLeftBtn" title="Move field to the left" onclick="moveLeft('#patientName');" hidden>
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                    <button name="edit" class="btn btm-sm btn-link pl-0 pr-0" title="Edit" data-itemid="patientName" data-toggle="modal" data-target="#editFieldModal">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="list-item" id="responsibleParty">
+                                <div class="col-sm-auto p-0 m-0">
+                                    <span class="grip-handle draggable">
+                                        <svg width="16" height="40"><use href="#custom-gripper" /></svg>
+                                    </span>
+                                </div>
+                                <div class="col-lg-auto">
+                                    <label class="col-form-label" for="ResponsibleParty">
+                                        Responsible Party
+                                        <small class="text-muted">(if patient is a child, Parent or Guardian)</small>
+                                    </label>
+                                </div>
+                                <div class="col">
+                                    <input id="responsiblePartyInput" class="form-control" maxlength="50">
+                                </div>
+                                <div class="col-sm-auto text-right m-0 p-0">
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveRightBtn" title="Move field to the right" onclick="moveRight('#responsibleParty');">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveLeftBtn" title="Move field to the left" onclick="moveLeft('#responsibleParty');" hidden>
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                    <button name="edit" class="btn btm-sm btn-link pl-0 pr-0" title="Edit" data-itemid="responsibleParty" data-toggle="modal" data-target="#editFieldModal">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            @* Patient Address *@
+                            <div class="list-item" id="patientAddress">
+                                <div class="col-sm-auto p-0 m-0">
+                                    <span class="grip-handle draggable">
+                                        <svg width="16" height="40"><use href="#custom-gripper" /></svg>
+                                    </span>
+                                </div>
+                                <div class="col-sm-2 ml-0 mr-0">
+                                    <label class="col-form-label" for="patientAddress1">Address</label>
+                                </div>
+                                <div class="col">
+                                    <div class="row">
+                                        <div class="col">
+                                            <input id="patientAddress1" class="form-control" maxlength="55" placeholder="Line 1">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <input id="patientAddress2" class="form-control" maxlength="55" placeholder="Line 2">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <input id="patientAddressCity" class="form-control" maxlength="20" placeholder="City">
+                                        </div>
+                                        <div class="col-sm-auto">
+                                            <select class="form-control" id="patientStateList">
+                                                <option value="" disabled selected hidden="hidden">State</option>
+                                                <option value="AK">AK</option>
+                                                <option value="AR">AR</option>
+                                                <option value="MT">MT</option>
+                                            </select>
+                                        </div>
+                                        <div class="col">
+                                            <input id="patientAddressZipCode" class="form-control" maxlength="15" placeholder="Zip Code">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1 text-right m-0 p-0">
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveRightBtn" title="Move field to the right" onclick="moveRight('#patientAddress');">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveLeftBtn" title="Move field to the left" onclick="moveLeft('#patientAddress');" hidden>
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                    <button name="edit" class="btn btm-sm btn-link pl-0 pr-0" title="Edit" data-itemid="patientAddress" data-toggle="modal" data-target="#editAddressModal">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            @* Patient Email *@
+                            <div class="list-item" id="patientEmail">
+                                <div class="col-sm-auto p-0 m-0">
+                                    <span class="grip-handle draggable">
+                                        <svg width="16" height="40"><use href="#custom-gripper" /></svg>
+                                    </span>
+                                </div>
+                                <div class="col-sm-2 ml-0 mr-0">
+                                    <label class="col-form-label" for="PatientEmailAddressInput">Email</label>
+                                </div>
+                                <div class="col-sm">
+                                    <input class="form-control" id="PatientEmailAddressInput" maxlength="99">
+                                </div>
+
+                                <div class="col-sm-auto text-right m-0 p-0">
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveRightBtn" title="Move field to the right" onclick="moveRight('#patientEmail');">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveLeftBtn" title="Move field to the left" onclick="moveLeft('#patientEmail');" hidden>
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                    <button name="edit" class="btn btm-sm btn-link pl-0 pr-0" title="Edit" data-itemid="patientEmail" data-toggle="modal" data-target="#editFieldModal">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            @* Home Phone *@
+                            <div class="list-item" id="patientHomePhone">
+                                <div class="col-sm-auto p-0 m-0">
+                                    <span class="grip-handle draggable">
+                                        <svg width="16" height="40"><use href="#custom-gripper" /></svg>
+                                    </span>
+                                </div>
+                                <div class="col-sm-2 ml-0 mr-0">
+                                    <label class="col-form-label" for="patientHomePhoneInput">Home Phone</label>
+                                </div>
+                                <div class="col-sm-auto">
+                                    <div class="form-check m-1">
+                                        <input class="form-check-input" type="radio" name="primaryPhoneGroup" id="PrimaryPhoneHome" checked>
+                                        <label class="form-check-label" for="PrimaryPhoneHome">
+                                            Primary
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <input id="patientHomePhoneInput" class="form-control" maxlength="15" type="tel" placeholder="Home">
+                                </div>
+                                <div class="col-sm-auto text-right m-0 p-0">
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveRightBtn" title="Move field to the right" onclick="moveRight('#patientHomePhone');">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveLeftBtn" title="Move field to the left" onclick="moveLeft('#patientHomePhone');" hidden>
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                    <button name="edit" class="btn btm-sm btn-link pl-0 pr-0" title="Edit" data-itemid="patientHomePhone" data-toggle="modal" data-target="#editFieldModal">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            @* Mobile Phone *@
+                            <div class="list-item" id="patientMobilePhone">
+                                <div class="col-sm-auto p-0 m-0">
+                                    <span class="grip-handle draggable">
+                                        <svg width="16" height="40"><use href="#custom-gripper" /></svg>
+                                    </span>
+                                </div>
+                                <div class="col-sm-2 ml-0 mr-0">
+                                    <label class="col-form-label" for="patientMobilePhoneInput">Mobile Phone</label>
+                                </div>
+                                <div class="col-sm-auto">
+                                    <div class="form-check m-1">
+                                        <input class="form-check-input" type="radio" name="primaryPhoneGroup" id="PrimaryPhoneMobile">
+                                        <label class="form-check-label" for="PrimaryPhoneMobile">
+                                            Primary
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <input id="patientMobilePhoneInput" class="form-control" maxlength="15" type="tel" placeholder="Mobile">
+                                </div>
+                                <div class="col-sm-auto text-right m-0 p-0">
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveRightBtn" title="Move field to the right" onclick="moveRight('#patientMobilePhone');">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveLeftBtn" title="Move field to the left" onclick="moveLeft('#patientMobilePhone');" hidden>
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                    <button name="edit" class="btn btm-sm btn-link pl-0 pr-0" title="Edit" data-itemid="patientMobilePhone" data-toggle="modal" data-target="#editFieldModal">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            @* Work Phone *@
+                            <div class="list-item" id="patientWorkPhone">
+                                <div class="col-sm-auto p-0 m-0">
+                                    <span class="grip-handle draggable">
+                                        <svg width="16" height="40"><use href="#custom-gripper" /></svg>
+                                    </span>
+                                </div>
+                                <div class="col-sm-2 ml-0 mr-0">
+                                    <label class="col-form-label" for="patientWorkPhoneInput">Work Phone</label>
+                                </div>
+                                <div class="col-sm-auto">
+                                    <div class="form-check m-1">
+                                        <input class="form-check-input" type="radio" name="primaryPhoneGroup" id="PrimaryPhoneWork">
+                                        <label class="form-check-label" for="PrimaryPhoneWork">
+                                            Primary
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <input id="patientWorkPhoneInput" class="form-control" maxlength="15" type="tel" placeholder="Work">
+                                </div>
+                                <div class="col-sm-auto text-right m-0 p-0">
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveRightBtn" title="Move field to the right" onclick="moveRight('#patientWorkPhone');">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveLeftBtn" title="Move field to the left" onclick="moveLeft('#patientWorkPhone');" hidden>
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                    <button name="edit" class="btn btm-sm btn-link pl-0 pr-0" title="Edit" data-itemid="patientWorkPhone" data-toggle="modal" data-target="#editFieldModal">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            @* Other Phone *@
+                            <div class="list-item" id="patientOtherPhone">
+                                <div class="col-sm-auto p-0 m-0">
+                                    <span class="grip-handle draggable">
+                                        <svg width="16" height="40"><use href="#custom-gripper" /></svg>
+                                    </span>
+                                </div>
+                                <div class="col-sm-2 ml-0 mr-0">
+                                    <label class="col-form-label" for="patientOtherPhoneInput">Other Phone</label>
+                                </div>
+                                <div class="col-sm-auto">
+                                    <div class="form-check m-1">
+                                        <input class="form-check-input" type="radio" name="primaryPhoneGroup" id="PrimaryPhoneOther">
+                                        <label class="form-check-label" for="PrimaryPhoneOther">
+                                            Primary
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <input id="patientOtherPhoneInput" class="form-control" maxlength="15" type="tel" placeholder="Other">
+                                </div>
+                                <div class="col-sm-auto text-right m-0 p-0">
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveRightBtn" title="Move field to the right" onclick="moveRight('#patientOtherPhone');">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveLeftBtn" title="Move field to the left" onclick="moveLeft('#patientOtherPhone');" hidden>
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                    <button name="edit" class="btn btm-sm btn-link pl-0 pr-0" title="Edit" data-itemid="patientOtherPhone" data-toggle="modal" data-target="#editFieldModal">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            @* DOB *@
+                            <div class="list-item" id="patientDOB">
+                                <div class="col-sm-auto p-0 m-0">
+                                    <span class="grip-handle draggable">
+                                        <svg width="16" height="40"><use href="#custom-gripper" /></svg>
+                                    </span>
+                                </div>
+                                <div class="col-sm-2 ml-0 mr-0">
+                                    <label class="col-form-label" for="patientDtOfBirthInput">Date of Birth</label>
+                                </div>
+                                <div class="col">
+                                    <input id="patientDtOfBirthInput" class="form-control" type="date">
+                                </div>
+                                <div class="col-sm-auto text-right m-0 p-0">
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveRightBtn" title="Move field to the right" onclick="moveRight('#patientDOB');">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveLeftBtn" title="Move field to the left" onclick="moveLeft('#patientDOB');" hidden>
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                    <button name="edit" class="btn btm-sm btn-link pl-0 pr-0" title="Edit" data-itemid="patientDOB" data-toggle="modal" data-target="#editFieldModal">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+
+                            @* Marital Status *@
+                            <div class="list-item" id="maritalStatus">
+                                <div class="col-sm-auto p-0 m-0">
+                                    <span class="grip-handle draggable">
+                                        <svg width="16" height="40"><use href="#custom-gripper" /></svg>
+                                    </span>
+                                </div>
+                                <div class="col-sm-2 ml-0 mr-0">
+                                    <label class="col-form-label" for="maritalStatusInput">Marital Status</label>
+                                </div>
+                                <div class="col-sm">
+                                    <select class="form-control" id="maritalStatusInput">
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+
+                                <div class="col-sm-auto text-right m-0 p-0">
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveRightBtn" title="Move field to the right" onclick="moveRight('#maritalStatus');">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveLeftBtn" title="Move field to the left" onclick="moveLeft('#maritalStatus');" hidden>
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                    <button name="edit" class="btn btm-sm btn-link pl-0 pr-0" title="Edit" data-itemid="maritalStatus" data-toggle="modal" data-target="#editFieldModal">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+
+                            @* Employment Status *@
+                            <div class="list-item" id="emplStatus">
+                                <div class="col-sm-auto p-0 m-0">
+                                    <span class="grip-handle draggable">
+                                        <svg width="16" height="40"><use href="#custom-gripper" /></svg>
+                                    </span>
+                                </div>
+                                <div class="col-sm-2 ml-0 mr-0">
+                                    <label class="col-form-label" for="emplStatusInput">Empl. Status</label>
+                                </div>
+                                <div class="col-sm">
+                                    <select class="form-control" id="emplStatusInput">
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+
+                                <div class="col-sm-auto text-right m-0 p-0">
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveRightBtn" title="Move field to the right" onclick="moveRight('#emplStatus');">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveLeftBtn" title="Move field to the left" onclick="moveLeft('#emplStatus');" hidden>
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                    <button name="edit" class="btn btm-sm btn-link pl-0 pr-0" title="Edit" data-itemid="emplStatus" data-toggle="modal" data-target="#editFieldModal">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            @* Preferred Language *@
+                            <div class="list-item" id="preferredLang">
+                                <div class="col-sm-auto p-0 m-0">
+                                    <span class="grip-handle draggable">
+                                        <svg width="16" height="40"><use href="#custom-gripper" /></svg>
+                                    </span>
+                                </div>
+                                <div class="col-sm-2 ml-0 mr-0">
+                                    <label class="col-form-label" for="preferredLangInput">Language</label>
+                                </div>
+                                <div class="col-sm">
+                                    <select class="form-control" id="preferredLangInput">
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+
+                                <div class="col-sm-auto text-right m-0 p-0">
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveRightBtn" title="Move field to the right" onclick="moveRight('#preferredLang');">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveLeftBtn" title="Move field to the left" onclick="moveLeft('#preferredLang');" hidden>
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                    <button name="edit" class="btn btm-sm btn-link pl-0 pr-0" title="Edit" data-itemid="preferredLang" data-toggle="modal" data-target="#editFieldModal">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+
+                            @* Race *@
+                            <div class="list-item" id="race">
+                                <div class="col-sm-auto p-0 m-0">
+                                    <span class="grip-handle draggable">
+                                        <svg width="16" height="40"><use href="#custom-gripper" /></svg>
+                                    </span>
+                                </div>
+                                <div class="col-sm-2 ml-0 mr-0">
+                                    <label class="col-form-label" for="raceInput">Race</label>
+                                </div>
+                                <div class="col-sm">
+                                    <select class="form-control" id="raceInput">
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+
+                                <div class="col-sm-auto text-right m-0 p-0">
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveRightBtn" title="Move field to the right" onclick="moveRight('#race');">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveLeftBtn" title="Move field to the left" onclick="moveLeft('#race');" hidden>
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                    <button name="edit" class="btn btm-sm btn-link pl-0 pr-0" title="Edit" data-itemid="race" data-toggle="modal" data-target="#editFieldModal">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+
+                            @* Ethnicity *@
+                            <div class="list-item" id="ethnicity">
+                                <div class="col-sm-auto p-0 m-0">
+                                    <span class="grip-handle draggable">
+                                        <svg width="16" height="40"><use href="#custom-gripper" /></svg>
+                                    </span>
+                                </div>
+                                <div class="col-sm-2 ml-0 mr-0">
+                                    <label class="col-form-label" for="ethnicityInput">Ethnicity</label>
+                                </div>
+                                <div class="col-sm">
+                                    <select class="form-control" id="ethnicityInput">
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+
+                                <div class="col-sm-auto text-right m-0 p-0">
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveRightBtn" title="Move field to the right" onclick="moveRight('#ethnicity');">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveLeftBtn" title="Move field to the left" onclick="moveLeft('#ethnicity');" hidden>
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                    <button name="edit" class="btn btm-sm btn-link pl-0 pr-0" title="Edit" data-itemid="ethnicity" data-toggle="modal" data-target="#editFieldModal">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            @* Sex *@
+                            <div class="list-item" id="sex">
+                                <div class="col-sm-auto p-0 m-0">
+                                    <span class="grip-handle draggable">
+                                        <svg width="16" height="40"><use href="#custom-gripper" /></svg>
+                                    </span>
+                                </div>
+                                <div class="col-sm-2 ml-0 mr-0">
+                                    <label class="col-form-label" for="sexInput">Gender</label>
+                                </div>
+                                <div class="col-sm">
+                                    <select class="form-control" id="sexInput">
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+
+                                <div class="col-sm-auto text-right m-0 p-0">
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveRightBtn" title="Move field to the right" onclick="moveRight('#sex');">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveLeftBtn" title="Move field to the left" onclick="moveLeft('#sex');" hidden>
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                    <button name="edit" class="btn btm-sm btn-link pl-0 pr-0" title="Edit" data-itemid="sex" data-toggle="modal" data-target="#editFieldModal">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            @* Emergency Contact *@
+                            <div class="list-item" id="contact">
+                                <div class="col-sm-auto p-0 m-0">
+                                    <span class="grip-handle draggable">
+                                        <svg width="16" height="40"><use href="#custom-gripper" /></svg>
+                                    </span>
+                                </div>
+                                <div class="col-sm-2 ml-0 mr-0">
+                                    <label class="col-form-label" for="contactInput">Emergency Contact</label>
+                                </div>
+                                <div class="col-sm">
+                                    <input class="form-control" id="contactInput" maxlength="50">
+                                </div>
+
+                                <div class="col-sm-auto text-right m-0 p-0">
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveRightBtn" title="Move field to the right" onclick="moveRight('#contact');">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveLeftBtn" title="Move field to the left" onclick="moveLeft('#contact');" hidden>
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                    <button name="edit" class="btn btm-sm btn-link pl-0 pr-0" title="Edit" data-itemid="contact" data-toggle="modal" data-target="#editFieldModal">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            @* Emergency Contact Phone *@
+                            <div class="list-item" id="contactPhone">
+                                <div class="col-sm-auto p-0 m-0">
+                                    <span class="grip-handle draggable">
+                                        <svg width="16" height="40"><use href="#custom-gripper" /></svg>
+                                    </span>
+                                </div>
+                                <div class="col-sm-2 ml-0 mr-0">
+                                    <label class="col-form-label" for="contactPhoneInput">Emergency Contact Phone</label>
+                                </div>
+                                <div class="col-sm">
+                                    <input class="form-control" id="contactPhoneInput" maxlength="15" type="tel" placeholder="Contact Phone">
+                                </div>
+
+                                <div class="col-sm-auto text-right m-0 p-0">
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveRightBtn" title="Move field to the right" onclick="moveRight('#contactPhone');">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveLeftBtn" title="Move field to the left" onclick="moveLeft('#contactPhone');" hidden>
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                    <button name="edit" class="btn btm-sm btn-link pl-0 pr-0" title="Edit" data-itemid="contactPhone" data-toggle="modal" data-target="#editFieldModal">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+
+                            @* Referring Physician *@
+                            <div class="list-item" id="refPhys">
+                                <div class="col-sm-auto p-0 m-0">
+                                    <span class="grip-handle draggable">
+                                        <svg width="16" height="40"><use href="#custom-gripper" /></svg>
+                                    </span>
+                                </div>
+                                <div class="col-sm-2 ml-0 mr-0">
+                                    <label class="col-form-label" for="refPhysInput">Ref. Physician</label>
+                                </div>
+                                <div class="col-sm">
+                                    <input class="form-control" id="refPhysInput" maxlength="99" placeholder="Last, First">
+                                </div>
+
+                                <div class="col-sm-auto text-right m-0 p-0">
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveRightBtn" title="Move field to the right" onclick="moveRight('#refPhys');">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveLeftBtn" title="Move field to the left" onclick="moveLeft('#refPhys');" hidden>
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                    <button name="edit" class="btn btm-sm btn-link pl-0 pr-0" title="Edit" data-itemid="refPhys" data-toggle="modal" data-target="#editFieldModal">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+
+
+                            @* Appt Notifications *@
+                            <div class="list-item" id="apptNotifications">
+                                <div class="col-sm-auto p-0 m-0">
+                                    <span class="grip-handle draggable">
+                                        <svg width="16" height="40"><use href="#custom-gripper" /></svg>
+                                    </span>
+                                </div>
+                                <div class="col-sm-auto ml-0 mr-0">
+                                    <label class="col-form-label">Appointment Reminders</label>
+                                </div>
+                                <div class="col-sm-auto">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="apptNotifPhone">
+                                        <label class="form-check-label" for="apptNotifPhone">Phone Call</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-auto">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="apptNotifText">
+                                        <label class="form-check-label" for="apptNotifText">Text</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-auto">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="apptNotifEmail">
+                                        <label class="form-check-label" for="apptNotifEmail">Email</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-auto text-right m-0 p-0">
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveRightBtn" title="Move field to the right" onclick="moveRight('#apptNotifications');">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveLeftBtn" title="Move field to the left" onclick="moveLeft('#apptNotifications');" hidden>
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                    <button name="edit" class="btn btm-sm btn-link pl-0 pr-0" title="Edit" data-hiderequired="true" data-itemid="apptNotifications" data-toggle="modal" data-target="#editFieldModal">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            @* Insurance Company Name *@
+                            <div class="list-item" id="insCoName">
+                                <div class="col-sm-auto p-0 m-0">
+                                    <span class="grip-handle draggable">
+                                        <svg width="16" height="40"><use href="#custom-gripper" /></svg>
+                                    </span>
+                                </div>
+                                <div class="col-sm-2 ml-0 mr-0">
+                                    <label class="col-form-label" for="insCoNameInput">Insurance Co. Name</label>
+                                </div>
+                                <div class="col-sm">
+                                    <input class="form-control" id="insCoNameInput" maxlength="50">
+                                </div>
+
+                                <div class="col-sm-auto text-right m-0 p-0">
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveRightBtn" title="Move field to the right" onclick="moveRight('#insCoName');">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveLeftBtn" title="Move field to the left" onclick="moveLeft('#insCoName');" hidden>
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                    <button name="edit" class="btn btm-sm btn-link pl-0 pr-0" title="Edit" data-itemid="insCoName" data-toggle="modal" data-target="#editFieldModal">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            @* Insurance ID Number *@
+                            <div class="list-item" id="insIdNum">
+                                <div class="col-sm-auto p-0 m-0">
+                                    <span class="grip-handle draggable">
+                                        <svg width="16" height="40"><use href="#custom-gripper" /></svg>
+                                    </span>
+                                </div>
+                                <div class="col-sm-2 ml-0 mr-0">
+                                    <label class="col-form-label" for="insIdNumInput">Subscriber ID Num</label>
+                                </div>
+                                <div class="col-sm">
+                                    <input class="form-control" id="insIdNumInput" maxlength="50">
+                                </div>
+
+                                <div class="col-sm-auto text-right m-0 p-0">
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveRightBtn" title="Move field to the right" onclick="moveRight('#insIdNum');">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveLeftBtn" title="Move field to the left" onclick="moveLeft('#insIdNum');" hidden>
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                    <button name="edit" class="btn btm-sm btn-link pl-0 pr-0" title="Edit" data-itemid="insIdNum" data-toggle="modal" data-target="#editFieldModal">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            @* Insurance Group Number *@
+                            <div class="list-item" id="insGroupNum">
+                                <div class="col-sm-auto p-0 m-0">
+                                    <span class="grip-handle draggable">
+                                        <svg width="16" height="40"><use href="#custom-gripper" /></svg>
+                                    </span>
+                                </div>
+                                <div class="col-sm-2 ml-0 mr-0">
+                                    <label class="col-form-label" for="insGroupNumInput">Group Number</label>
+                                </div>
+                                <div class="col-sm">
+                                    <input class="form-control" id="insGroupNumInput" maxlength="50">
+                                </div>
+
+                                <div class="col-sm-auto text-right m-0 p-0">
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveRightBtn" title="Move field to the right" onclick="moveRight('#insGroupNum');">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveLeftBtn" title="Move field to the left" onclick="moveLeft('#insGroupNum');" hidden>
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                    <button name="edit" class="btn btm-sm btn-link pl-0 pr-0" title="Edit" data-itemid="insGroupNum" data-toggle="modal" data-target="#editFieldModal">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+
+                            @* Relation to Insured *@
+                            <div class="list-item" id="insuredRelation">
+                                <div class="col-sm-auto p-0 m-0">
+                                    <span class="grip-handle draggable">
+                                        <svg width="16" height="40"><use href="#custom-gripper" /></svg>
+                                    </span>
+                                </div>
+                                <div class="col-sm-2 ml-0 mr-0">
+                                    <label class="col-form-label" for="insuredRelationInput">Relation to Insured</label>
+                                </div>
+                                <div class="col-sm">
+                                    <select class="form-control" id="insuredRelationInput">
+                                        <option value=""></option>
+                                        <option value="01">Self</option>
+                                        <option value="02">Spouse</option>
+                                        <option value="03">Child</option>
+                                        <option value="99">Other</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-sm-auto text-right m-0 p-0">
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveRightBtn" title="Move field to the right" onclick="moveRight('#insuredRelation');">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveLeftBtn" title="Move field to the left" onclick="moveLeft('#insuredRelation');" hidden>
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                    <button name="edit" class="btn btm-sm btn-link pl-0 pr-0" title="Edit" data-itemid="insuredRelation" data-toggle="modal" data-target="#editFieldModal">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            @* Insured's Name *@
+                            <div class="list-item insured-info" id="insuredName">
+                                <div class="col-sm-auto p-0 m-0">
+                                    <span class="grip-handle draggable">
+                                        <svg width="16" height="40"><use href="#custom-gripper" /></svg>
+                                    </span>
+                                </div>
+                                <div class="col-sm-2 ml-0 mr-0">
+                                    <label class="col-form-label" for="insuredFirstName">Insured's Name</label>
+                                </div>
+                                <div class="col-sm">
+                                    <input class="form-control" id="insuredFirstName" placeholder="First" maxlength="25">
+                                </div>
+                                <div class="col-sm-2">
+                                    <input class="form-control" placeholder="MI" maxlength="1" id="insuredMI">
+                                </div>
+                                <div class="col-sm">
+                                    <input class="form-control ml-0" placeholder="Last" id="insuredLastName" maxlength="35">
+                                </div>
+                                <div class="col-sm-auto text-right m-0 p-0">
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveRightBtn" title="Move field to the right" onclick="moveRight('#insuredName');">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveLeftBtn" title="Move field to the left" onclick="moveLeft('#insuredName');" hidden>
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                    <button name="edit" class="btn btm-sm btn-link pl-0 pr-0" title="Edit" data-itemid="insuredName" data-toggle="modal" data-target="#editFieldModal">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            @* Insured Address *@
+                            <div class="list-item insured-info" id="insuredAddress">
+                                <div class="col-sm-auto p-0 m-0">
+                                    <span class="grip-handle draggable">
+                                        <svg width="16" height="40"><use href="#custom-gripper" /></svg>
+                                    </span>
+                                </div>
+                                <div class="col-sm-2 ml-0 mr-0">
+                                    <label class="col-form-label" for="insuredAddress1">Insured's Address</label>
+                                </div>
+                                <div class="col">
+                                    <div class="row">
+                                        <div class="col-sm-auto mr-0 ml-0 pr-0 pb-0">
+                                            <button type="button" style="height:100%;" class="btn btn-sm btn-outline-primary" title="Copy address from patient" onclick="copyAddressFromPatient();">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                        </div>
+                                        <div class="col ml-0 pl-0">
+                                            <input id="insuredAddress1" class="form-control" maxlength="55" placeholder="Line 1">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <input id="insuredAddress2" class="form-control" maxlength="55" placeholder="Line 2">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <input id="insuredAddressCity" class="form-control" maxlength="20" placeholder="City">
+                                        </div>
+                                        <div class="col-sm-auto">
+                                            <select class="form-control" id="insuredStateList">
+                                                <option value="" disabled selected hidden="hidden">State</option>
+                                                <option value="AK">AK</option>
+                                                <option value="AR">AR</option>
+                                                <option value="MT">MT</option>
+                                            </select>
+                                        </div>
+                                        <div class="col">
+                                            <input id="insuredAddressZipCode" class="form-control" maxlength="15" placeholder="Zip Code">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1 text-right m-0 p-0">
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveRightBtn" title="Move field to the right" onclick="moveRight('#insuredAddress');">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveLeftBtn" title="Move field to the left" onclick="moveLeft('#insuredAddress');" hidden>
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                    <button name="edit" class="btn btm-sm btn-link pl-0 pr-0" title="Edit" data-itemid="insuredAddress" data-toggle="modal" data-target="#editAddressModal">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            @* Insured Phone *@
+                            <div class="list-item insured-info" id="insuredPhone">
+                                <div class="col-sm-auto p-0 m-0">
+                                    <span class="grip-handle draggable">
+                                        <svg width="16" height="40"><use href="#custom-gripper" /></svg>
+                                    </span>
+                                </div>
+                                <div class="col-sm-2 ml-0 mr-0">
+                                    <label class="col-form-label" for="insuredPhoneInput">Insured's Phone</label>
+                                </div>
+                                <div class="col-sm">
+                                    <input class="form-control" id="insuredPhoneInput" maxlength="15" type="tel" placeholder="Insured Phone">
+                                </div>
+
+                                <div class="col-sm-auto text-right m-0 p-0">
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveRightBtn" title="Move field to the right" onclick="moveRight('#insuredPhone');">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveLeftBtn" title="Move field to the left" onclick="moveLeft('#insuredPhone');" hidden>
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                    <button name="edit" class="btn btm-sm btn-link pl-0 pr-0" title="Edit" data-itemid="insuredPhone" data-toggle="modal" data-target="#editFieldModal">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            @* Insured Sex *@
+                            <div class="list-item insured-info" id="insuredSex">
+                                <div class="col-sm-auto p-0 m-0">
+                                    <span class="grip-handle draggable">
+                                        <svg width="16" height="40"><use href="#custom-gripper" /></svg>
+                                    </span>
+                                </div>
+                                <div class="col-sm-2 ml-0 mr-0">
+                                    <label class="col-form-label" for="insuredSexInput">Insured's Gender</label>
+                                </div>
+                                <div class="col-sm">
+                                    <select class="form-control" id="insuredSexInput">
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+
+                                <div class="col-sm-auto text-right m-0 p-0">
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveRightBtn" title="Move field to the right" onclick="moveRight('#insuredSex');">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveLeftBtn" title="Move field to the left" onclick="moveLeft('#insuredSex');" hidden>
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                    <button name="edit" class="btn btm-sm btn-link pl-0 pr-0" title="Edit" data-itemid="insuredSex" data-toggle="modal" data-target="#editFieldModal">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            @* Insured DOB *@
+                            <div class="list-item insured-info" id="insuredDOB">
+                                <div class="col-sm-auto p-0 m-0">
+                                    <span class="grip-handle draggable">
+                                        <svg width="16" height="40"><use href="#custom-gripper" /></svg>
+                                    </span>
+                                </div>
+                                <div class="col-sm-2 ml-0 mr-0">
+                                    <label class="col-form-label" for="insuredDOBInput">Insured's Date of Birth</label>
+                                </div>
+                                <div class="col">
+                                    <input id="insuredDOBInput" class="form-control" type="date">
+                                </div>
+                                <div class="col-sm-auto text-right m-0 p-0">
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveRightBtn" title="Move field to the right" onclick="moveRight('#insuredDOB');">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveLeftBtn" title="Move field to the left" onclick="moveLeft('#insuredDOB');" hidden>
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                    <button name="edit" class="btn btm-sm btn-link pl-0 pr-0" title="Edit" data-itemid="insuredDOB" data-toggle="modal" data-target="#editFieldModal">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+
+                            @* Secondary Insurance Company Name *@
+                            <div class="list-item" id="insCoName2">
+                                <div class="col-sm-auto p-0 m-0">
+                                    <span class="grip-handle draggable">
+                                        <svg width="16" height="40"><use href="#custom-gripper" /></svg>
+                                    </span>
+                                </div>
+                                <div class="col-sm-2 ml-0 mr-0">
+                                    <label class="col-form-label" for="insCoNameInput2">Sec. Insurance Co. Name</label>
+                                </div>
+                                <div class="col-sm">
+                                    <input class="form-control" id="insCoNameInput2" maxlength="50">
+                                </div>
+
+                                <div class="col-sm-auto text-right m-0 p-0">
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveRightBtn" title="Move field to the right" onclick="moveRight('#insCoName2');">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveLeftBtn" title="Move field to the left" onclick="moveLeft('#insCoName2');" hidden>
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                    <button name="edit" class="btn btm-sm btn-link pl-0 pr-0" title="Edit" data-itemid="insCoName2" data-toggle="modal" data-target="#editFieldModal">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            @* Secondary Insurance ID Number *@
+                            <div class="list-item" id="insIdNum2">
+                                <div class="col-sm-auto p-0 m-0">
+                                    <span class="grip-handle draggable">
+                                        <svg width="16" height="40"><use href="#custom-gripper" /></svg>
+                                    </span>
+                                </div>
+                                <div class="col-sm-2 ml-0 mr-0">
+                                    <label class="col-form-label" for="insIdNumInput2">Sec. Subscriber ID Num</label>
+                                </div>
+                                <div class="col-sm">
+                                    <input class="form-control" id="insIdNumInput2" maxlength="50">
+                                </div>
+
+                                <div class="col-sm-auto text-right m-0 p-0">
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveRightBtn" title="Move field to the right" onclick="moveRight('#insIdNum2');">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveLeftBtn" title="Move field to the left" onclick="moveLeft('#insIdNum2');" hidden>
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                    <button name="edit" class="btn btm-sm btn-link pl-0 pr-0" title="Edit" data-itemid="insIdNum2" data-toggle="modal" data-target="#editFieldModal">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            @* Secondary Insurance Group Number *@
+                            <div class="list-item" id="insGroupNum2">
+                                <div class="col-sm-auto p-0 m-0">
+                                    <span class="grip-handle draggable">
+                                        <svg width="16" height="40"><use href="#custom-gripper" /></svg>
+                                    </span>
+                                </div>
+                                <div class="col-sm-2 ml-0 mr-0">
+                                    <label class="col-form-label" for="insGroupNumInput2">Sec. Group Number</label>
+                                </div>
+                                <div class="col-sm">
+                                    <input class="form-control" id="insGroupNumInput2" maxlength="50">
+                                </div>
+
+                                <div class="col-sm-auto text-right m-0 p-0">
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveRightBtn" title="Move field to the right" onclick="moveRight('#insGroupNum2');">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveLeftBtn" title="Move field to the left" onclick="moveLeft('#insGroupNum2');" hidden>
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                    <button name="edit" class="btn btm-sm btn-link pl-0 pr-0" title="Edit" data-itemid="insGroupNum2" data-toggle="modal" data-target="#editFieldModal">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+
+                            @* Secondary Relation to Insured *@
+                            <div class="list-item" id="insuredRelation2">
+                                <div class="col-sm-auto p-0 m-0">
+                                    <span class="grip-handle draggable">
+                                        <svg width="16" height="40"><use href="#custom-gripper" /></svg>
+                                    </span>
+                                </div>
+                                <div class="col-sm-2 ml-0 mr-0">
+                                    <label class="col-form-label" for="insuredRelationInput">Sec. Relation to Insured</label>
+                                </div>
+                                <div class="col-sm">
+                                    <select class="form-control" id="insuredRelationInput2">
+                                        <option value=""></option>
+                                        <option value="01">Self</option>
+                                        <option value="02">Spouse</option>
+                                        <option value="03">Child</option>
+                                        <option value="99">Other</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-sm-auto text-right m-0 p-0">
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveRightBtn" title="Move field to the right" onclick="moveRight('#insuredRelation2');">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveLeftBtn" title="Move field to the left" onclick="moveLeft('#insuredRelation2');" hidden>
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                    <button name="edit" class="btn btm-sm btn-link pl-0 pr-0" title="Edit" data-itemid="insuredRelation2" data-toggle="modal" data-target="#editFieldModal">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            @* Secondary Insured's Name *@
+                            <div class="list-item insured-info" id="insuredName2">
+                                <div class="col-sm-auto p-0 m-0">
+                                    <span class="grip-handle draggable">
+                                        <svg width="16" height="40"><use href="#custom-gripper" /></svg>
+                                    </span>
+                                </div>
+                                <div class="col-sm-2 ml-0 mr-0">
+                                    <label class="col-form-label" for="insuredFirstName2">Sec. Insured's Name</label>
+                                </div>
+                                <div class="col-sm">
+                                    <input class="form-control" id="insuredFirstName2" placeholder="First" maxlength="25">
+                                </div>
+                                <div class="col-sm-2">
+                                    <input class="form-control" placeholder="MI" maxlength="1" id="insuredMI2">
+                                </div>
+                                <div class="col-sm">
+                                    <input class="form-control ml-0" placeholder="Last" id="insuredLastName2" maxlength="35">
+                                </div>
+                                <div class="col-sm-auto text-right m-0 p-0">
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveRightBtn" title="Move field to the right" onclick="moveRight('#insuredName2');">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveLeftBtn" title="Move field to the left" onclick="moveLeft('#insuredName2');" hidden>
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                    <button name="edit" class="btn btm-sm btn-link pl-0 pr-0" title="Edit" data-itemid="insuredName2" data-toggle="modal" data-target="#editFieldModal">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            @* Secondary Insured Address *@
+                            <div class="list-item insured-info" id="insuredAddressSec">
+                                <div class="col-sm-auto p-0 m-0">
+                                    <span class="grip-handle draggable">
+                                        <svg width="16" height="40"><use href="#custom-gripper" /></svg>
+                                    </span>
+                                </div>
+                                <div class="col-sm-2 ml-0 mr-0">
+                                    <label class="col-form-label" for="insuredAddress4">Sec. Insured's Address</label>
+                                </div>
+                                <div class="col">
+                                    <div class="row">
+                                        <div class="col-sm-auto mr-0 ml-0 pr-0 pb-0">
+                                            <button type="button" style="height:100%;" class="btn btn-sm btn-outline-primary" title="Copy address from patient" onclick="copySecAddressFromPatient();">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                        </div>
+                                        <div class="col ml-0 pl-0">
+                                            <input id="insuredAddress3" class="form-control" maxlength="55" placeholder="Line 1">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <input id="insuredAddress4" class="form-control" maxlength="55" placeholder="Line 2">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <input id="insuredAddressCity2" class="form-control" maxlength="20" placeholder="City">
+                                        </div>
+                                        <div class="col-sm-auto">
+                                            <select class="form-control" id="insuredStateList2">
+                                                <option value="" disabled selected hidden="hidden">State</option>
+                                                <option value="AK">AK</option>
+                                                <option value="AR">AR</option>
+                                                <option value="MT">MT</option>
+                                            </select>
+                                        </div>
+                                        <div class="col">
+                                            <input id="insuredAddressZipCode2" class="form-control" maxlength="15" placeholder="Zip Code">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1 text-right m-0 p-0">
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveRightBtn" title="Move field to the right" onclick="moveRight('#insuredAddressSec');">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveLeftBtn" title="Move field to the left" onclick="moveLeft('#insuredAddressSec');" hidden>
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                    <button name="edit" class="btn btm-sm btn-link pl-0 pr-0" title="Edit" data-itemid="insuredAddressSec" data-toggle="modal" data-target="#editAddressModal">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            @* Secondary Insured Phone *@
+                            <div class="list-item insured-info" id="insuredPhone2">
+                                <div class="col-sm-auto p-0 m-0">
+                                    <span class="grip-handle draggable">
+                                        <svg width="16" height="40"><use href="#custom-gripper" /></svg>
+                                    </span>
+                                </div>
+                                <div class="col-sm-2 ml-0 mr-0">
+                                    <label class="col-form-label" for="insuredPhoneInput2">Sec. Insured's Phone</label>
+                                </div>
+                                <div class="col-sm">
+                                    <input class="form-control" id="insuredPhoneInput2" maxlength="15" type="tel" placeholder="Insured Phone">
+                                </div>
+
+                                <div class="col-sm-auto text-right m-0 p-0">
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveRightBtn" title="Move field to the right" onclick="moveRight('#insuredPhone2');">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveLeftBtn" title="Move field to the left" onclick="moveLeft('#insuredPhone2');" hidden>
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                    <button name="edit" class="btn btm-sm btn-link pl-0 pr-0" title="Edit" data-itemid="insuredPhone2" data-toggle="modal" data-target="#editFieldModal">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            @* Secondary Insured Sex *@
+                            <div class="list-item insured-info" id="insuredSex2">
+                                <div class="col-sm-auto p-0 m-0">
+                                    <span class="grip-handle draggable">
+                                        <svg width="16" height="40"><use href="#custom-gripper" /></svg>
+                                    </span>
+                                </div>
+                                <div class="col-sm-2 ml-0 mr-0">
+                                    <label class="col-form-label" for="insuredSexInput2">Sec. Insured's Gender</label>
+                                </div>
+                                <div class="col-sm">
+                                    <select class="form-control" id="insuredSexInput2">
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+
+                                <div class="col-sm-auto text-right m-0 p-0">
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveRightBtn" title="Move field to the right" onclick="moveRight('#insuredSex2');">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveLeftBtn" title="Move field to the left" onclick="moveLeft('#insuredSex2');" hidden>
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                    <button name="edit" class="btn btm-sm btn-link pl-0 pr-0" title="Edit" data-itemid="insuredSex2" data-toggle="modal" data-target="#editFieldModal">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            @* Secondary Insured DOB *@
+                            <div class="list-item insured-info" id="insuredDOB2">
+                                <div class="col-sm-auto p-0 m-0">
+                                    <span class="grip-handle draggable">
+                                        <svg width="16" height="40"><use href="#custom-gripper" /></svg>
+                                    </span>
+                                </div>
+                                <div class="col-sm-2 ml-0 mr-0">
+                                    <label class="col-form-label" for="insuredDOBInput2">Sec. Insured's Date of Birth</label>
+                                </div>
+                                <div class="col">
+                                    <input id="insuredDOBInput2" class="form-control" type="date">
+                                </div>
+                                <div class="col-sm-auto text-right m-0 p-0">
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveRightBtn" title="Move field to the right" onclick="moveRight('#insuredDOB2');">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveLeftBtn" title="Move field to the left" onclick="moveLeft('#insuredDOB2');" hidden>
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                    <button name="edit" class="btn btm-sm btn-link pl-0 pr-0" title="Edit" data-itemid="insuredDOB2" data-toggle="modal" data-target="#editFieldModal">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            @* Release Signature *@
+                            <div class="list-item" id="releaseSignature">
+                                <div class="col-sm-auto p-0 m-0">
+                                    <span class="grip-handle draggable">
+                                        <svg width="16" height="40"><use href="#custom-gripper" /></svg>
+                                    </span>
+                                </div>
+                                <div class="col-sm-auto ml-0 mr-0">
+                                    <label class="col-form-label">Release Signature</label>
+                                </div>
+                                <div class="col-sm-auto ml-2 mb-4 mr-0 pr-0">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="releaseSignatureCheck">
+                                    </div>
+                                </div>
+                                <div class="col-sm-auto">
+                                    <input id="releaseSignatureDate" class="form-control" type="date">
+                                </div>
+                                <div class="col-sm-auto text-right m-0 p-0">
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveRightBtn" title="Move field to the right" onclick="moveRight('#releaseSignature');">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveLeftBtn" title="Move field to the left" onclick="moveLeft('#releaseSignature');" hidden>
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                    <button name="edit" class="btn btm-sm btn-link pl-0 pr-0" title="Edit" data-hiderequired="true" data-itemid="releaseSignature" data-toggle="modal" data-target="#editFieldModal">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            @* Assignment of Benefits *@
+                            <div class="list-item" id="assignBenefits">
+                                <div class="col-sm-auto p-0 m-0">
+                                    <span class="grip-handle draggable">
+                                        <svg width="16" height="40"><use href="#custom-gripper" /></svg>
+                                    </span>
+                                </div>
+                                <div class="col-sm-auto ml-0 mr-0">
+                                    <label class="col-form-label">Assignment of Benefits</label>
+                                </div>
+                                <div class="col-sm-auto ml-0 pl-0 mb-4 mr-0 pr-0">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="assignBenefitsCheck">
+                                    </div>
+                                </div>
+                                <div class="col-sm-auto">
+                                    <input id="assignBenefitsDate" class="form-control" type="date">
+                                </div>
+                                <div class="col-sm-auto text-right m-0 p-0">
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveRightBtn" title="Move field to the right" onclick="moveRight('#assignBenefits');">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveLeftBtn" title="Move field to the left" onclick="moveLeft('#assignBenefits');" hidden>
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                    <button name="edit" class="btn btm-sm btn-link pl-0 pr-0" title="Edit" data-hiderequired="true" data-itemid="assignBenefits" data-toggle="modal" data-target="#editFieldModal">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+
+                            @* Pat Signature *@
+                            <div class="list-item" id="patSignature">
+                                <div class="col-sm-auto p-0 m-0">
+                                    <span class="grip-handle draggable">
+                                        <svg width="16" height="40"><use href="#custom-gripper" /></svg>
+                                    </span>
+                                </div>
+                                <div class="col-sm-2 ml-0 mr-0">
+                                    <label class="col-form-label" for="signature-pad">Signature</label>
+                                </div>
+                                <div class="col">
+                                    <div class="row">
+                                        <div class="col">
+                                            <canvas id="signature-pad" style="height: 160px;" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <button type="button" class="btn btn-sm btn-outline-primary" title="Clear signature" onclick="clearSignature();">
+                                                Clear
+                                            </button>
+                                            <button type="button" class="btn btn-sm btn-outline-primary" title="Undo last stroke" onclick="undoSignatureStroke();">
+                                                Undo
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-sm-auto text-right m-0 p-0">
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveRightBtn" title="Move field to the right" onclick="moveRight('#patSignature');">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-link pl-0 pr-0 moveLeftBtn" title="Move field to the left" onclick="moveLeft('#patSignature');" hidden>
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                    <button name="edit" class="btn btm-sm btn-link pl-0 pr-0" title="Edit" data-itemid="patSignature" data-toggle="modal" data-target="#editFieldModal">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div> @* Available Fields List *@
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-sm-auto p-0 container mt-2 mr-0 ml-0">
+                <div class="row mb-2">
+                    <div class="col">
+                        <button type="button" class="btn btn-sm btn-outline-secondary ml-0 mr-0" style="height: 60px;" data-toggle="modal"
+                                data-target="#moveLeftModal" title="Move all fields to the left">
+                            <i class="fas fa-arrow-left"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <button type="button" class="btn btn-sm btn-outline-secondary ml-0 mr-0" style="height: 60px;" data-toggle="modal"
+                                data-target="#moveRightModal" title="Move all fields to the right">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="col container-fluid form-control mt-2 ml-1 mr-2">
+                <div class="row">
+                    <div class="col">
+                        <h5 class="h5">Current Form</h5>
+                    </div>
+                    <div class="col-sm-auto text-right mr-0 pr-2 mb-2">
+                        <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="modal" data-target="#previewFormModal" title="Preview the current form"><i class="fas fa-eye"></i>&nbsp;Preview</button>
+                    </div>
+                    <div class="col-sm-auto text-right ml-0 pl-0 mb-2">
+                        <form method="post" asp-page-handler="PatientFormEditor" id="postDataForm">
+                            <input asp-for="Form.FormType" type="hidden" id="FormType" />
+                            <input asp-for="Form.LiveForm" type="hidden" id="LiveForm" />
+                            <input asp-for="Form.EditableForm" type="hidden" id="EditableForm" />
+                            <button type="submit" class="btn btn-sm btn-outline-success"><i class="fas fa-save"></i>&nbsp;Save</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        @* Current Fields *@
+                        <div class="list list-row card" style="min-height: 1000px; min-width: 810px;" id="currentFieldList" data-sortable-id="0" aria-dropeffect="move">
+                            @Html.Raw(Model.Form.EditableForm)
+                        </div>
+                    </div>
+                </div>
+                @if (!string.IsNullOrEmpty(Model.Form.UpdatedUser))
+                {
+                    <div class="row">
+                        <div class="col text-right">
+                            <span><i>Last updated: @Model.Form.UpdatedDate by @Model.Form.UpdatedUser</i></span>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+
+    }
+    else
+    {
+        <div class="row">
+            <div class="container">
+                <h3 class="text-center mt-2">Select Form to Continue</h3>
+                <div class="row">
+                    <div class="col">
+                        <div class="mx-auto w-50 p-3 text-center">
+                            <select class="form-control" id="formList">
+                                <option value="" disabled selected hidden="hidden">Select Form</option>
+                                <option value="1">Patient Intake</option>
+                            </select>
+                            <a type="button" id="selectFormButton" href="/PatientFormEditor?formType=1" class="btn btn-primary mt-3 disabled" aria-label="Edit Form">
+                                Edit Form
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+
+</div>
+
+
+
+@* Edit Address Dialog *@
+<div class="modal fade" id="editAddressModal" tabindex="-1" role="dialog" aria-labelledby="editAddressModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editAddressModalLabel">Edit Address</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="editAddressRequiredCheck">
+                                    <label class="form-check-label" for="editAddressRequiredCheck">Required</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="editAddressHideLine2Check">
+                                    <label class="form-check-label" for="editAddressHideLine2Check">Hide Line 2</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="editAddressHideCityCheck">
+                                    <label class="form-check-label" for="editAddressHideCityCheck">Hide City</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="editAddressHideStateCheck">
+                                    <label class="form-check-label" for="editAddressHideStateCheck">Hide State</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="editAddressHideZipCheck">
+                                    <label class="form-check-label" for="editAddressHideZipCheck">Hide Zip Code</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="editAddressLabelText" class="col-form-label">Label Text:</label>
+                        <input type="text" class="form-control" id="editAddressLabelText">
+                    </div>
+                    <div class="form-group">
+                        <label for="editAddressLine1Placeholder" class="col-form-label">Line 1 Placeholder:</label>
+                        <input type="text" class="form-control" id="editAddressLine1Placeholder">
+                    </div>
+                    <div class="form-group">
+                        <label for="editAddressLine2Placeholder" class="col-form-label">Line 2 Placeholder:</label>
+                        <input type="text" class="form-control" id="editAddressLine2Placeholder">
+                    </div>
+                    <div class="form-group">
+                        <label for="editAddressCityPlaceholder" class="col-form-label">City Placeholder:</label>
+                        <input type="text" class="form-control" id="editAddressCityPlaceholder">
+                    </div>
+                    <div class="form-group">
+                        <label for="editAddressStatePlaceholder" class="col-form-label">State Placeholder:</label>
+                        <input type="text" class="form-control" id="editAddressStatePlaceholder">
+                    </div>
+                    <div class="form-group">
+                        <label for="editAddressZipCodePlaceholder" class="col-form-label">Zip Code Placeholder:</label>
+                        <input type="text" class="form-control" id="editAddressZipCodePlaceholder">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="saveAddress();">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@* Edit Site Details Dialog *@
+<div class="modal fade" id="editSiteDetailsModal" tabindex="-1" role="dialog" aria-labelledby="editSiteDetailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editSiteDetailsModalLabel">Edit Site Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="editSiteDetailsHidePracticeName">
+                                    <label class="form-check-label" for="editSiteDetailsHidePracticeName">Hide Practice Name</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="saveSiteDetails();">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@* Preview Form Dialog *@
+<div class="modal fade" id="previewFormModal" tabindex="-1" role="dialog" aria-labelledby="previewFormModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="previewFormModalLabel">Preview</h5>
+                <a class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </a>
+            </div>
+            <div class="modal-body">
+                <div class="form-control" style="overflow:hidden;" id="previewFormBody">
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* Edit Site Logo Dialog *@
+<div class="modal fade" id="editSiteLogoModal" tabindex="-1" role="dialog" aria-labelledby="editSiteLogoModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="max-width: 830px;" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editSiteLogoModalLabel">Edit Site Logo</h5>
+                <a class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </a>
+            </div>
+            <div class="modal-body">
+                <form onsubmit="saveSiteLogo(); return false;">
+                    <div class="form-group">
+                        <div id="editLogoContainer" class="row" style="min-width: 800px; min-height: 200px; border: 2px solid black; overflow: hidden;">
+                        </div>
+                        <div class="row mt-2 ml-2">
+                            <button type="button" class="btn btn-outline-primary mr-2" title="Move logo to the left" onclick="moveSiteLogo(-20);">
+                                <i class="fas fa-arrow-left"></i>
+                            </button>
+                            <button type="button" class="btn btn-outline-primary moveRightBtn" title="Move logo to the right" onclick="moveSiteLogo(20);">
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="saveSiteLogo();">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* Edit Field Dialog *@
+<div class="modal fade" id="editFieldModal" tabindex="-1" role="dialog" aria-labelledby="editFieldModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editFieldModalLabel">Edit Field</h5>
+                <a class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </a>
+            </div>
+            <div class="modal-body">
+                <form onsubmit="saveEditField(); return false;">
+                    <div class="form-group">
+                        <label for="editFieldDialogText" class="col-form-label">Label Text:</label>
+                        <input type="text" class="form-control" id="editFieldDialogText">
+                    </div>
+                    <div class="form-group" id="editFieldRequiredFormGroup">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="editFieldRequiredCheck">
+                            <label class="form-check-label" for="editFieldRequiredCheck">Required</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="saveEditField();">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* Delete Field Dialog *@
+<div class="modal fade" id="deleteFieldModal" tabindex="-1" role="dialog" aria-labelledby="deleteFieldModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteFieldModalLabel">Confirm Delete Field</h5>
+                <a class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </a>
+            </div>
+            <div class="modal-body">
+                <form onsubmit="deleteField(); return false;">
+                    <div class="form-group">
+                        <label for="sectionHeaderText" id="deleteFieldPrompt" class="col-form-label">Delete field?</label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary" onclick="deleteField();">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* Move Left Dialog *@
+<div class="modal fade" id="moveLeftModal" tabindex="-1" role="dialog" aria-labelledby="moveLeftModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="moveLeftModalLabel">Confirm Move</h5>
+                <a class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </a>
+            </div>
+            <div class="modal-body">
+                <form onsubmit="moveAllLeft(); return false;">
+                    <div class="form-group">
+                        <label class="col-form-label">Move all fields to the left?</label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary" onclick="moveAllLeft();">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* Move Right Dialog *@
+<div class="modal fade" id="moveRightModal" tabindex="-1" role="dialog" aria-labelledby="moveRightModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="moveRightModalLabel">Confirm Move</h5>
+                <a class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </a>
+            </div>
+            <div class="modal-body">
+                <form onsubmit="moveAllRight(); return false;">
+                    <div class="form-group">
+                        <label class="col-form-label">Move all fields to the right?</label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary" onclick="moveAllRight();">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@* Form Save *@
+<div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="infoModalHeader" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="infoModalHeader"></h5>
+            </div>
+            <div class="modal-body">
+                <form onsubmit="return false">
+                    <div class="form-group">
+                        <p id="infoModalDescription">Form saved successfully.</p>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* Add Section Header Dialog *@
+<div class="modal fade" id="sectionHeaderModal" tabindex="-1" role="dialog" aria-labelledby="sectionHeaderModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="sectionHeaderModalLabel">Add Section Header</h5>
+                <a class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </a>
+            </div>
+            <div class="modal-body">
+                <form onsubmit="addSectionHeader(); return false;">
+                    <div class="form-group">
+                        <label for="sectionHeaderTextInput" class="col-form-label">Text:</label>
+                        <input type="text" class="form-control" id="sectionHeaderTextInput">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="addSectionHeader();">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@* Add Text Dialog *@
+<div class="modal fade" id="textModal" tabindex="-1" role="dialog" aria-labelledby="textHeaderModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="textHeaderModal">New Text</h5>
+                <a class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </a>
+            </div>
+            <div class="modal-body">
+                <form onsubmit="addText(); return false">
+                    <div class="form-group">
+                        <label for="textText" class="col-form-label">Text:</label>
+                        <textarea class="form-control" id="textText"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="addText();">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@* Add Checkbox Dialog *@
+<div class="modal fade" id="checkboxModal" tabindex="-1" role="dialog" aria-labelledby="checkboxHeaderModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="checkboxHeaderModal">New Checkbox</h5>
+                <a class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </a>
+            </div>
+            <div class="modal-body">
+                <form onsubmit="addCheckbox(); return false">
+                    <div class="form-group">
+                        <label for="checkboxText" class="col-form-label">Text:</label>
+                        <textarea class="form-control" id="checkboxText"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="checkboxRequiredCheck">
+                            <label class="form-check-label" for="checkboxRequiredCheck">Required</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="addCheckbox();">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*<div id="lastForm" class="hidden">
+
+    </div>*@
+
+
+
+@section Scripts {
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+    <script src="~/js/patientformeditor.js"></script>
+    @*<environment include="Development">
+            <script src="~/js/patientformeditor.js"></script>
+        </environment>
+        <environment exclude="Development">
+            <script src="~/js/patientformeditor.min.js"></script>
+        </environment>*@
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+
+            var initPhone = function (id) {
+                var phoneInput = window.intlTelInput(document.querySelector(id), {
+                    utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+                    preferredCountries: ["us", "ca", "nz", "gb", "au"],
+                    autoPlaceholder: false
+                });
+
+                var phoneJq = $(id)[0];
+
+                var handleChangeVerification = function () {
+                    var number = phoneInput.getNumber();
+                    var newNumber = intlTelInputUtils.formatNumber(number, null, intlTelInputUtils.numberFormat.NATIONAL);
+                    phoneInput.setNumber(newNumber);
+                };
+                phoneJq.addEventListener('change', handleChangeVerification);
+                phoneJq.addEventListener('keyup', handleChangeVerification);
+            }
+
+            initPhone("#patientHomePhoneInput");
+            initPhone("#patientMobilePhoneInput");
+            initPhone("#patientWorkPhoneInput");
+            initPhone("#patientOtherPhoneInput");
+            initPhone("#contactPhoneInput");
+            initPhone("#insuredPhoneInput");
+
+            const postDataForm = document.getElementById('postDataForm');
+            postDataForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const postUrl = this.action;
+
+                var editableForm = $("#currentFieldList").html();
+
+                $("#releaseSignatureCheck").parent().parent().removeClass('mb-4');
+                $("#releaseSignatureCheck").parent().parent().addClass('mt-2');
+
+                $("#assignBenefitsCheck").parent().parent().removeClass('mb-4');
+                $("#assignBenefitsCheck").parent().parent().addClass('mt-2');
+
+                var liveForm = getFormPreview(true);
+
+                $("#releaseSignatureCheck").parent().parent().removeClass('mt-2');
+                $("#releaseSignatureCheck").parent().parent().addClass('mb-4');
+
+                $("#assignBenefitsCheck").parent().parent().removeClass('mt-2');
+                $("#assignBenefitsCheck").parent().parent().addClass('mb-4');
+
+                //todo: this does not work
+                //var formType = $('#formList :selected').val();
+                var formType = 1;
+                $("#FormType").val(formType);
+                $("#LiveForm").val(liveForm);
+                $("#EditableForm").val(editableForm);
+                const formData = new FormData(this);
+
+                fetch(postUrl, {
+                    method: 'post',
+                    body: formData
+                }).then(function (response) {
+                    if (response.status == 200) {
+                        $("#infoModalHeader").text("Success");
+                        $("#infoModalDescription").text("Form saved successfully.");
+                        $("#infoModal").modal('show');
+                    } else {
+                        $("#infoModalHeader").text("Error Saving Form");
+                        $("#infoModalDescription").text(response.statusText);
+                        $("#infoModal").modal('show');
+                    }
+                    console.log(response);
+                });
+            });
+        });
+
+    </script>
+
+
+
+}

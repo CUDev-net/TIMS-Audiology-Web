@@ -1,0 +1,101 @@
+﻿@page "{id:int}"
+@using System.Security.Claims
+@model Pages.Support.EditVendorModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Edit Server";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col align-content-center">
+            <h3 class="h3">@Model.Vendor.Name</h3>
+            <form method="post" class="form-control" onsubmit="return submitVendorForm()">
+                <div class="text-danger" asp-validation-summary="All"></div>
+                <input asp-for="Vendor.Id" type="hidden" />
+                <input asp-for="Vendor.DateCreated" type="hidden" />
+                <input asp-for="Vendor.DefaultPermissionsJson" type="hidden" id="permissionList" />
+                <div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" asp-for="Vendor.Inactive" />
+                        <label class="form-check-label" asp-for="Vendor.Inactive"></label>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Vendor.Name"></label>
+                        <input class="form-control" asp-for="Vendor.Name" maxlength="64" />
+                        <span class="text-danger" asp-validation-for="Vendor.Name"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Vendor.ApiKey"></label>
+                        <div class="input-group my-auto">
+                            <input class="form-control" asp-for="Vendor.ApiKey" maxlength="64" />
+                            <span class="input-group-append">
+                                <button class="btn btn-primary" onclick="return generateApiKey()" title="Re-generate key"><i class="fas fa-redo"></i></button>
+                            </span>
+                        </div>
+                        <span class="text-danger" asp-validation-for="Vendor.ApiKey"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-auto">
+                                <label asp-for="Vendor.DefaultPermissions">Default Permissions</label>
+                            </div>
+                            <div class="col mb-1">
+                                <button class="btn btn-link" style="margin-top:-6px" onclick="return toggleEditEditMode()" id="editPermissionsButton">edit</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <select multiple="multiple" id='dvpAssigned' class="form-control" size="5">
+                                    @foreach (var permission in Model.Vendor.DefaultPermissions)
+                                    {
+                                        <option value="@permission.PermissionId" title="@permission.Permission.Description">@permission.Permission.Name</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-auto text-center btn-group-vertical editPermissionsMode" style="display: none">
+                                <input type="button" id="btnallleft" data-assigned="dvpAssigned" data-unassigned="dvpUnassigned" value="<<" class="btn btn-sm btn-outline-secondary" />
+                                <input type="button" id="btnleft" data-assigned="dvpAssigned" data-unassigned="dvpUnassigned" value="<" class="btn btn-sm btn-outline-secondary" /><br />
+                                <input type="button" id="btnright" data-assigned="dvpAssigned" data-unassigned="dvpUnassigned" value=">" class="btn btn-sm btn-outline-secondary" /><br />
+                                <input type="button" id="btnallright" data-assigned="dvpAssigned" data-unassigned="dvpUnassigned" value=">>" class="btn btn-sm btn-outline-secondary" /><br />
+                            </div>
+                            <div class="col editPermissionsMode" style="display: none">
+                                <select multiple="multiple" id='dvpUnassigned' class="form-control" size="5">
+                                    @foreach (var permission in Model.VendorPermissions.Where(x => Model.Vendor.DefaultPermissions.All(p => p.PermissionId != x.Id)).ToList())
+                                    {
+                                        <option value="@permission.Id" title="@permission.Description">@permission.Name</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="customerList">Permissions (@Model.Vendor.CustomerPermissions.Count())</label>
+                        <select class="form-control" id="customerList" size="5">
+                            @foreach (var permission in Model.Vendor.CustomerPermissions)
+                            {
+                                <option value="@permission.Permission.Id">[@permission.Customer.Name] - @permission.Permission.Name</option>
+                            }
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <div>
+                    <button name="save" type="submit" class="btn btn-primary" onclick="submitVendorFormClick(this)">Save</button>
+                    <a href="~/Support/Vendors" class="btn btn-dark">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+</div>
+

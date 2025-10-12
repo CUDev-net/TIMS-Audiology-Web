@@ -1,0 +1,71 @@
+﻿@page "{id:int?}"
+@model Pages.Support.PermissionsModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewBag.Title = "Permissions";
+}
+<h3 class="h3 my-auto">Vendor Permissions</h3>
+<div class="container">
+    <div class="row">
+        @if (!string.IsNullOrEmpty(Model.DeleteError))
+        {
+            <div class="col my-auto alert alert-danger m-3">
+                <span>@Model.DeleteError</span>
+            </div>
+
+        }
+        <div class="form-check my-auto m-4">
+            <input type="checkbox" class="form-check-input" for="includeInactive" id="includeInactive" onchange="filterInactive()" />
+            <label class="form-check-label" for="includeInactive">Include Inactive</label>
+        </div>
+        <div class="col my-auto ">
+            <a class="btn btn-outline-success btn-sm float-right m-2" asp-page="./CreatePermission"><i class="fa fa-plus"></i> Add New</a>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col my-auto">
+            <form method="post">
+                <table class="table" id="dataTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>API Endpoints</th>
+                            <th>Date Created</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var permission in Model.VendorPermissions)
+                        {
+                            var className = permission.Inactive ? "disabled" : "";
+                            var styleName = permission.Inactive ? "display: none" : "";
+
+                            <tr class="@className" style="@styleName">
+                                <td class="@className">@permission.Id</td>
+                                <td class="@className"><a class="@className" asp-page="./EditPermission" asp-route-id="@permission.Id">@permission.Name</a></td>
+                                <td class="@className">@permission.Description</td>
+                                <td class="@className">
+                                    @foreach (var url in permission.ApiUrls.OrderBy(o => o.ApiUrl.Url))
+                                    {
+                                        <text><code title="@url.ApiUrl.Description">@url.ApiUrl.Url</code> <br /></text>
+                                    }
+                                </td>
+                                <td class="@className">@permission.DateCreated</td>
+                                <td class="@className">
+                                    <button disabled="@permission.DisableDelete" name="delete" type="submit" asp-page-handler="delete" asp-route-id="@permission.Id" class="btn btn-link" onclick="return confirm('Delete permission @permission.Name?')" title="Delete @permission.Name"><i class="fa fa-trash" aria-hidden="true"></i></button>
+
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </form>
+        </div>
+
+    </div>
+
+</div>
+

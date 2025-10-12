@@ -1,0 +1,79 @@
+<div id="scheduler" class="dhx_cal_container" style="width: 100%; height: 100%;">
+    <div id="calendar"
+        style="display: flex; flex-wrap: nowrap; vertical-align: middle; margin-left: 50px; padding: 10px 0;"
+        class="dhx_cal_navline">
+        <div class="dhx_cal_prev_button tims-button gradient"><i style="font-size: 18px; margin-left: 6px;"
+                class="bi bi-caret-left-fill"></i></div>
+        <div style="border-radius: 0; width: 45px;" class="dhx_cal_today_button tims-button gradient"></div>
+        <div class="dhx_cal_next_button tims-button gradient"><i style="font-size: 18px; margin-left: 6px;"
+                class="bi bi-caret-right-fill"></i></div>
+
+        <div style="margin-top: 0;" class="dhx_cal_date"></div>
+
+        <select style="max-width: 80px; padding: 0 5px; font-size: 13px;"
+            class="form-control focus-ring tims-input btn-group-change-view" [(ngModel)]="selectedView"
+            (change)='onViewSelected($event)'>
+            <option *ngFor="let v of views" [value]="v.id">{{v.name}}</option>
+        </select>
+
+        <div style="position: relative; float: right; top: 0;" class="cal-tab-container">
+            <div style="border-radius: 5px 0 0 5px !important;" class="dhx_cal_tab duration-button tims-button gradient"
+                name="provider_tab"></div>
+            <div class="dhx_cal_tab duration-button tims-button gradient" name="site_tab"></div>
+            <div class="dhx_cal_tab duration-button tims-button gradient" name="day_tab"></div>
+            <div class="dhx_cal_tab duration-button tims-button gradient" name="week_tab"></div>
+            <div style="border-radius: 0 5px 5px 0 !important;" class="dhx_cal_tab duration-button tims-button gradient"
+                name="month_tab"></div>
+        </div>
+
+        <ng-template #popTemplate>
+            <div style="position: static; width: 120px;" *ngFor="let b of ts.lookupStore.scheduleBlock_list;">
+                <span>{{b.name}}</span><span class="swatch" style="float: right; margin-top: 2px;"
+                    [style.background]="b.color_web"></span>
+                <div style="position: static; margin-left: 10px;" *ngFor="let a of b.appointmentTypes">
+                    <span>{{a}}</span>
+                </div>
+            </div>
+        </ng-template>
+        <div style="display: block; color: rgb(116, 116, 116); 
+        border-radius: 5px !important; 
+        margin-left: 5px; 
+        font-weight: 700; 
+        width: 50px; 
+        border-width: .8px; 
+        border-style: solid; 
+        text-align: center;" class="duration-button tims-button gradient" [popover]="popTemplate"
+            [placement]="'bottom left'" showArrow="false">
+            Blocks
+        </div>
+        <div *ngIf="usesPatientAppointments" style="display: block; color: rgb(116, 116, 116); 
+        border-radius: 5px !important; 
+        margin-left: 5px; 
+        font-weight: 700; 
+        width: 140px; 
+        border-width: .8px; 
+        border-style: solid; 
+        text-align: center;" class="duration-button tims-button gradient" (click)="onOpenCenter()">
+            Patient Appointments
+        </div>
+
+    </div>
+    <div class="dhx_cal_header"></div>
+    <div class="dhx_cal_data"></div>
+</div>
+
+<div id="calendar-browser-container"
+    style="width: 220px; display: inline-block; vertical-align: top; margin: 0 5px 5px 5px;">
+    <div class="navigation">
+        <button style="margin-right: 65px;" class="btn btn-sm tims-button gradient" tooltip="Previous month"
+            (click)="onPreviousMonth()">
+            <i class="bi bi-caret-left-fill"></i>
+        </button>
+        <button style="margin-left: 65px;" class="btn btn-sm tims-button gradient nav-button" tooltip="Next month"
+            (click)="onNextMonth()">
+            <i class="bi bi-caret-right-fill"></i>
+        </button>
+    </div>
+    <div id="calendar-browser"></div>
+    <div></div>
+</div>

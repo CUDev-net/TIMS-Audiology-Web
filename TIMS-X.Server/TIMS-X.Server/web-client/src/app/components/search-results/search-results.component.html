@@ -1,0 +1,34 @@
+<div class="schedule-openings">
+    <button style="height: 30px; width: 30px; padding: 0; float: right; margin: 0 0 5px 0;"
+        class="btn tims-button gradient" type="button" (click)="onCancel()"><i
+            class="dialog-button bi bi-x-square-fill"></i></button>
+    <div *ngFor="let m of ts.appointmentStore.months;">
+        <div>
+            <h3 class="month-name">{{m.label}}</h3>
+            <table class="table">
+                <thead>
+                    <tr class="month-header">
+                        <th>Date</th>
+                        <th>Day</th>
+                        <th>Time</th>
+                        <th>Provider</th>
+                        <th>Site</th>
+                        <th>Resource</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="search-row" attr.provider-id={{d.providerId}} attr.site-id={{d.siteId}}
+                        attr.starts-at={{d.startsAt}} attr.resource-id={{d.resourceId}} *ngFor="let d of m.openings;"
+                        (dblclick)="createSchedule(d)">
+                        <td>{{d.dayOfMonth}}</td>
+                        <td>{{d.dayOfWeek}}</td>
+                        <td>{{d.time}}</td>
+                        <td><span>{{d.providerLastName}}</span>,&nbsp;<span>{{d.providerFirstName}}</span></td>
+                        <td>{{d.siteName}}</td>
+                        <td>{{d.resourceName}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

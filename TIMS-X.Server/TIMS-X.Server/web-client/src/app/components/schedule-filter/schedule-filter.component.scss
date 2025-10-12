@@ -1,0 +1,52 @@
+@import '../../../tims-defaults.scss';
+
+::ng-deep .modal-dialog {
+    max-width: 1000px !important;
+    width: 1000px !important;
+}
+
+.modal-body {
+    border-top-right-radius: 7px;
+    border-top-left-radius: 7px;
+    background: $form_background_color;
+    padding: 16px 8px;
+}
+
+.modal-footer {
+    padding: 2px 8px;
+}
+
+fieldset {
+    margin: 2px;
+    border: 1px solid rgb(34, 0, 255);
+    padding: 3px;
+    border-radius: 4px;
+}
+
+.filters {
+    flex: 35%;
+    padding: 10px;
+}
+
+.openings-data {
+    flex: 30%;
+    padding: 10px;
+}
+
+.filter-row {
+    display: flex;
+}
+
+.error-message {
+    display: block;
+}
+
+.openings-label {
+    width: 80px;
+    display: inline-block;
+}
+
+.openings-date {
+    width: 100px;
+    display: inline-block;
+}

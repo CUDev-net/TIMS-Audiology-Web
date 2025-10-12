@@ -1,0 +1,69 @@
+﻿@page "{id:int?}"
+@model Pages.Support.VendorsModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewBag.Title = "Vendors";
+}
+<h3 class="h3 my-auto">Third Party Vendors</h3>
+<div class="container">
+    <div class="row">
+        @if (!string.IsNullOrEmpty(Model.DeleteError))
+        {
+            <div class="col my-auto alert alert-danger m-3">
+                <span>@Model.DeleteError</span>
+            </div>
+
+        }
+        <div class="form-check my-auto m-4">
+            <input type="checkbox" class="form-check-input" for="includeInactive" id="includeInactive" onchange="filterInactive()" />
+            <label class="form-check-label" for="includeInactive">Include Inactive</label>
+        </div>
+        <div class="col my-auto ">
+            <a class="btn btn-outline-success btn-sm float-right m-2" asp-page="./CreateVendor"><i class="fa fa-plus"></i> Add New</a>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col my-auto">
+            <form method="post" onsubmit="return submitForm()">
+                <table class="table" id="dataTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>API Key</th>
+                            <th>Date Created</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var vendor in Model.Vendors)
+                        {
+                            var className = vendor.Inactive ? "disabled" : "";
+                            var styleName = vendor.Inactive ? "display: none" : "";
+                            var deleteDisabled = vendor.CanDelete ? "" : "disabled";
+                            <tr class="@className" style="@styleName">
+                                <td class="@className">@vendor.Id</td>
+                                <td class="@className"><a class="@className" asp-page="./EditVendor" asp-route-id="@vendor.Id">@vendor.Name</a></td>
+                                <td class="@className">@vendor.ApiKey</td>
+                                <td class="@className">@vendor.DateCreated</td>
+                                <td class="@className">
+                                    <button name="delete" type="submit" asp-page-handler="delete" asp-route-id="@vendor.Id" class="btn btn-link" onclick="return confirm('Delete @vendor.Name?')" title="Delete @vendor.Name"
+                                            disabled="@vendor.DisableDelete">
+                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                    </button>
+
+                                </td>
+                            </tr>
+
+
+                        }
+                    </tbody>
+                </table>
+            </form>
+        </div>
+
+    </div>
+
+</div>
+

@@ -1,0 +1,117 @@
+/* Gets rid of Yellow background on Today */
+.dhx_scale_holder_now {
+    /* background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAsCAIAAAArRUU2AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAGUlEQVQI12P4//8/A7Xx69evGWhh7rlz5wAftYKuAmb8AgAAAABJRU5ErkJggg==) */
+    background-image: url("imgs/dhtmlxscheduler-scale-holder-now-84.png");
+}
+
+.dhx_scale_holder {
+    background-image: url("imgs/dhtmlxscheduler-scale-holder-84.png");
+}
+
+.dhx_cal_navline {
+    height: 45px !important;
+}
+
+.dhx_cal_next_button,
+.dhx_cal_prev_button {
+    background-color: #eeeeee;
+    color: black;
+    height: 25px;
+    line-height: 25px;
+    width: 30px;
+    position: static !important;
+}
+
+.dhx_cal_today_button {
+    background-color: #eeeeee;
+    color: black;
+    height: 25px;
+    line-height: 25px;
+    width: 80px;
+    position: static !important;
+}
+
+.dhx_cal_date {
+    margin-left: 10px !important;
+    color: black;
+    height: 30px;
+    width: 300px !important;
+    position: static !important;
+    font-weight: bolder !important;
+}
+
+.dhx_cal_header {
+    border-style: solid solid none none;
+    border-color: #cccccc;
+}
+
+.dhx_cal_header .dhx_scale_bar {
+    background-color: #eeeeee;
+    border-style: none none none solid;
+    border-color: #cccccc;
+}
+
+.dhx_cal_tab_first {
+    border-radius: 0;
+}
+
+.dhx_cal_tab_first {
+    border-radius: 0;
+}
+
+.dhx_cal_tab.active {
+    font-size: 12px;
+}
+
+.dhx_scale_hour_main {
+    float: left;
+    text-align: right;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.dhx_scale_hour_minute_cont {
+    float: left;
+    position: relative;
+    text-align: right;
+}
+
+.dhx_scale_hour_minute_top,
+.dhx_scale_hour_minute_bottom {
+    font-size: 11px;
+    padding-right: 3px;
+}
+
+.dhx_scale_hour_sep {
+    position: absolute;
+    height: 1px;
+    background-color: #ddd;
+    right: 0;
+    width: 20px;
+}
+
+.dhx_cal_event .dhx_header {
+    background-color: #f5f5f5 !important;
+    border-color: #777777;
+}
+
+.dhx_cal_event .dhx_title {
+    background-color: #f5f5f5 !important;
+    border-color: #777777;
+    color: #000000 !important;
+    border-bottom-width: 1px;
+}
+
+.dhx_cal_event .dhx_footer {
+    border-color: #777777;
+}
+
+.dhx_cal_event .dhx_body {
+    border-color: #777777;
+}
+
+/*** MINI CALENDAR ***/
+.dhx_mini_calendar {
+    font-family: inherit;
+    margin-top: 5px;
+}

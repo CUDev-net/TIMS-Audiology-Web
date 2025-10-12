@@ -1,0 +1,58 @@
+﻿@page "{id:int}"
+@using System.Security.Claims
+@model Pages.Support.EditServerModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Edit Server";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col align-content-center">
+            <h3 class="h3">@Model.Server.Name</h3>
+            <form method="post" class="form-control" onsubmit="submitForm()">
+                <div class="text-danger" asp-validation-summary="All"></div>
+                <input asp-for="Server.Id" type="hidden" />
+                <input asp-for="Server.DateCreated" type="hidden" />
+                <div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" asp-for="Server.Inactive" />
+                        <label class="form-check-label" asp-for="Server.Inactive"></label>
+                    </div>
+        
+                    <div class="form-group">
+                        <label asp-for="Server.Name"></label>
+                        <input class="form-control" asp-for="Server.Name" maxlength="64" />
+                        <span class="text-danger" asp-validation-for="Server.Name"></span>
+                    </div>
+        
+                    <div class="form-group">
+                        <label asp-for="Server.Address"></label>
+                        <input class="form-control" asp-for="Server.Address" maxlength="64" />
+                        <span class="text-danger" asp-validation-for="Server.Address"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="customerList">Customers (@Model.Server.Customers.Count())</label>
+                        <select class="form-control" id="customerList" size="5">
+                            @foreach (var customer in Model.Server.Customers)
+                            {
+                                <option value="@customer.Id">@customer.Name</option>
+                            }
+                        </select>
+                        
+                    </div>
+
+                </div>
+
+                <div>
+                    <button name="save" type="submit" class="btn btn-primary" onclick="submitFormClick(this)">Save</button>
+                    <a href="~/Support/Servers" class="btn btn-dark">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+</div>
+

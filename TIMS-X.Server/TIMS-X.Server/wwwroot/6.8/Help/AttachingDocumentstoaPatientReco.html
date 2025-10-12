@@ -1,0 +1,501 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="generator" content="HelpNDoc Professional Edition 9.8.0.588">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="favicon.ico"/>
+
+  <title>Attaching Documents to a Patient Record</title>
+  <meta name="description" content="" /> 
+  <meta name="keywords" content="Attach Documents to Patient Record,Scanning a Document,Attach Existing Document,Mobile Uploading,Inactivate Attached Document,Split Pages,Delete Page,Page Thumbnails,Rotate,flip,Crop,Edit Page,Scanning a Document,Attach Document">
+
+
+
+  
+  
+
+  <!-- Twitter Card data -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Attaching Documents to a Patient Record">
+  <meta name="twitter:description" content="">
+
+  <!-- Open Graph data -->
+  <meta property="og:title" content="Attaching Documents to a Patient Record" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="" />
+  <meta property="og:site_name" content="TIMS Audiology and SLP Version 6.08" /> 
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendors/bootstrap-3.4.1/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <link href="vendors/bootstrap-3.4.1/css/ie10-viewport-bug-workaround.css" rel="stylesheet"/>
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="vendors/html5shiv-3.7.3/html5shiv.min.js"></script>
+      <script src="vendors/respond-1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+  <!-- JsTree styles -->
+  <link href="vendors/jstree-3.3.10/themes/default/style.min.css" rel="stylesheet"/>
+
+  <!-- Hnd styles -->
+  <link href="css/layout.min.css" rel="stylesheet" />
+  <link href="css/effects.min.css" rel="stylesheet" />
+  <link href="css/theme-dark-blue.min.css" rel="stylesheet" />
+  <link href="css/print.min.css" rel="stylesheet" media="print" />
+  <style type="text/css">nav { width: 350px} @media screen and (min-width:769px) { body.md-nav-expanded div#main { margin-left: 350px} body.md-nav-expanded header { padding-left: 364px} }</style>
+  <style type="text/css">.navigation #inline-toc { width: auto !important}</style>
+
+  <!-- Content style -->
+  <link href="css/hnd.content.css" rel="stylesheet" />
+
+  
+
+
+
+</head>
+
+<body class="md-nav-expanded">
+
+
+
+  
+
+  <div id="skip-link">
+    <a href="#main-content" class="element-invisible">Skip to main content</a>
+  </div>
+
+  <header class="headroom">
+    <button class="hnd-toggle btn btn-default">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>        
+    </button>
+    <h1>TIMS Audiology and SLP Version 6.08</h1>
+    <a href="https://us.timsaudiology.com"><img src="_logo.png" alt="logo" class="logo"/></a>
+  </header>
+
+  <nav id="panel-left" class="md-nav-expanded">
+    <!-- Nav tabs -->
+    <ul class="tab-tabs nav nav-tabs" role="tablist">
+      <li id="nav-close" role="presentation"> 
+        <button class="hnd-toggle btn btn-default" aria-label="close">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+      </li>
+      
+	  
+        <li role="presentation" class="tab active">
+            <a href="#contents" id="tab-contents" aria-controls="contents" role="tab" data-toggle="tab">
+                <i class="glyphicon glyphicon-list"></i>
+                Contents
+            </a>
+        </li>
+      
+        <li role="presentation" class="tab">
+            <a href="#index" id="tab-index" aria-controls="index" role="tab" data-toggle="tab">
+                <i class="glyphicon glyphicon-asterisk"></i>
+                Index
+            </a>
+        </li>
+      
+        <li role="presentation" class="tab">
+            <a href="#search" id="tab-search" aria-controls="search" role="tab" data-toggle="tab">
+                <i class="glyphicon glyphicon-search"></i>
+                Search
+            </a>
+        </li>
+      
+    </ul>  <!-- /Nav tabs -->
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+	  
+      <div role="tabpanel" class="tab-pane active" id="contents">
+        <div id="toc" class="tree-container unselectable"
+            data-url="_toc.json"
+            data-openlvl="1"
+        >
+            
+        </div>
+      </div>  <!-- /contents-->
+      
+      <div role="tabpanel" class="tab-pane" id="index">
+        <div id="keywords" class="tree-container unselectable"
+            data-url="_keywords.json"
+            data-openlvl="2"
+        >
+            
+        </div>
+      </div>  <!-- /index-->
+      
+      <div role="tabpanel" class="tab-pane" id="search">
+        <div class="search-content">
+          <div class="search-input">
+            <form id="search-form">
+              <div class="form-group">
+                <div class="input-group">
+                  <input type="text" class="form-control" id="input-search" name="input-search" placeholder="Search..." aria-label="Search..." />
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit" aria-label="Search...">
+                      <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </button>
+                  </span>
+                </div>
+              </div>
+            </form>
+          </div>  <!-- /search-input -->
+          <div class="search-result">
+            <div id="search-info"></div>
+            <div class="tree-container unselectable" id="search-tree"></div>
+          </div>  <!-- /search-result -->
+        </div>  <!-- /search-content -->
+      </div>  <!-- /search-->
+      
+    </div>  <!-- /Tab panes -->
+
+  </nav>
+
+  <div id="main">
+
+    <article>
+        <div id="topic-content" class="container-fluid" 
+		  data-hnd-id="AttachingDocumentstoaPatientReco"
+		  data-hnd-context="158"
+		  data-hnd-title="Attaching Documents to a Patient Record"
+		>
+            
+                <div class="navigation">
+                    <ol class="breadcrumb">
+                        <li>Patients</li><li>Patient Details</li>
+                    </ol>
+                    <div class="nav-arrows">
+                        <div class="btn-group btn-group" role="group"><div class="btn-group"><button type="button" title="In this page..." class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span></button><ul id="inline-toc" class="dropdown-menu dropdown-menu-right"></ul></div><a class="btn btn-default" href="TakingaPatientPicture.html" title="Taking a Patient Picture" role="button"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a><a class="btn btn-default" href="PatientTextConversation.html" title="Patient Text Conversation" role="button"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></div>
+                    </div>
+                </div> 
+            
+
+            <a id="main-content"></a>
+
+            <h2>Attaching Documents to a Patient Record</h2>
+
+            <div class="main-content">
+                
+<p class="rvps3"><span class="rvts8">Scanned documents can be associated to a patient's record. &nbsp;If a scanner is attached to the computer, any document can be directly scanned in and linked to the patient. &nbsp;If there is no scanner attached, previously scanned PDF or image files can be associated. &nbsp;</span><span class="rvts15">New in version 6.07</span><span class="rvts8"> - practices whose databases are hosted with TIMS can now upload patient photos and insurance cards directly from their mobile device by scanning a QR code.</span></p>
+<h1 class="rvps5"><a name="Scanning"></a><span class="rvts0"><span class="rvts13">Scanning a Document</span></span></h1>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li class="rvps3 noindent"><span class="rvts8">Click the </span><span class="rvts15">Attach Document</span><span class="rvts8"> button </span><img alt="" style="padding : 1px;" src="lib/attach.gif"><span class="rvts8"> to open the TIMS Document Capture System screen.</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">The TIMS Document Capture System screen will popup.</span></li>
+</ol>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/image%20capture%20new.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="3" class="rvps3 noindent"><span class="rvts8">Choose the </span><span class="rvts15">Document Type</span><span class="rvts8"> - it is important to choose this first so the correct resolution </span><span class="rvts15">quality</span><span class="rvts8"> is used.</span></li>
+</ol>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/select%20doc%20type.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li class="rvps6 noindent"><span class="rvts8">Choose "Insurance Card" to upload an image of the insurance information that will be displayed in the </span><a class="rvts16" href="InsuranceEditor.html">Patient Insurance Editor screen</a><span class="rvts8">. &nbsp;If "Insurance Card" is selected, the Description field will be replaced by &nbsp;"Front" and "Back" checkboxes. &nbsp;You will also need to select the Payer Level in the "Slot" field.</span></li>
+ </ol>
+</ol>
+<p class="rvps15"><img alt="" style="padding : 1px;" src="lib/select%20doc%20type%20insur.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="4" class="rvps3 noindent"><span class="rvts8">If there is more than one choice, Select the </span><span class="rvts15">Scanner</span><span class="rvts8"> to be used. TIMS will only recognize a scanner with a TWAIN driver.</span></li>
+</ol>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/image%20select%20scanner.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li class="rvps6 noindent"><span class="rvts8">Scanner settings can be changed by clicking the </span><span class="rvts15">Settings</span><span class="rvts8"> icon. </span><img alt="" style="padding : 1px;" src="lib/image%20settings.gif"></li>
+ </ol>
+</ol>
+<p class="rvps15"><img alt="" style="padding : 1px;" src="lib/scanner%20settings.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li value="2" class="rvps6 noindent"><span class="rvts8">Select a different </span><span class="rvts15">Page Size</span><span class="rvts8">, if something other than the default is needed.</span></li>
+ </ol>
+</ol>
+<p class="rvps15"><img alt="" style="padding : 1px;" src="lib/image%20page%20size.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="5" class="rvps3 noindent"><span class="rvts8">Click the </span><span class="rvts15">Scan</span><span class="rvts8"> button. &nbsp;A message will indicate that the document is being scanned.</span></li>
+</ol>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/5%20Click%20to%20Scan%20Image.gif"><span class="rvts8"> &nbsp; &nbsp;</span><img alt="" style="padding : 1px;" src="lib/55%20Scanning.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="6" class="rvps3 noindent"><span class="rvts8">Once the document is scanned in, you can view and/or alter the image if you wish by using the built in editing tools</span><a name="editingtools"></a><span class="rvts8">.</span></li>
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li class="rvps6 noindent"><span class="rvts8">Click the </span><span class="rvts15">Zoom</span><span class="rvts8"> </span><span class="rvts15">In</span><span class="rvts8"> or </span><span class="rvts15">Out</span><span class="rvts8"> buttons to zoom incrementally. &nbsp;Click the </span><span class="rvts15">Zoom</span><span class="rvts8"> button to choose from standard views.</span></li>
+ </ol>
+</ol>
+<p class="rvps12"><span class="rvts8">&nbsp;</span><img alt="" style="padding : 1px;" src="lib/image%20zoom%20choices.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li value="2" class="rvps6 noindent"><span class="rvts8">If the document has multiple pages, you can navigate through the pages by clicking </span><span class="rvts15">Previous</span><span class="rvts8">, </span><span class="rvts15">Next</span><span class="rvts8"> or entering the </span><span class="rvts15">page number</span><span class="rvts8"> to jump to. You can also use the </span><span class="rvts15">Page Display</span><span class="rvts8"> choices to change how the pages are viewed.</span></li>
+ </ol>
+</ol>
+<p class="rvps12"><img alt="" style="padding : 1px;" src="lib/image%20navigation.gif"><span class="rvts8"> &nbsp; </span><img alt="" style="padding : 1px;" src="lib/image%20page%20display2.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li value="3" class="rvps6 noindent"><span class="rvts8">Click the </span><span class="rvts15">Edit Page</span><span class="rvts8"> icon to see a list of editing options.</span></li>
+ </ol>
+</ol>
+<p class="rvps22"><img alt="" style="padding : 1px;" src="lib/image%20edit%20page%20choices.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li value="4" class="rvps6 noindent"><span class="rvts8">Click </span><span class="rvts15">Crop</span><span class="rvts8"> </span><img alt="" style="padding : 1px;" src="lib/image%20crop2.gif"><span class="rvts8"> to open a separate cropping window. With the mouse, select the region you wish to crop out of the image, then click the green </span><span class="rvts15">Crop</span><span class="rvts8"> button at the bottom of the window. &nbsp;Click </span><span class="rvts15">Cancel</span><span class="rvts8"> to abandon and return to the original image. &nbsp;The cropped region will now be the entire page of the image. </span><img alt="" style="padding : 1px;" src="lib/important.gif"><span class="rvts15">Note</span><span class="rvts8"> - this cannot be undone once you click Crop. You will have to exit from the imaging window, abandon all changes, and start over.</span></li>
+ </ol>
+</ol>
+<p class="rvps12"><img alt="" style="padding : 1px;" src="lib/image%20crop3.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li value="5" class="rvps6 noindent"><span class="rvts15">Rotate</span><span class="rvts8"> the image to the left or right, or </span><span class="rvts15">flip</span><span class="rvts8"> by clicking any of these choices.</span></li>
+ </ol>
+</ol>
+<p class="rvps22"><img alt="" style="padding : 1px;" src="lib/image%20flip%20rotate.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li value="6" class="rvps6 noindent"><span class="rvts8">If there are multiple pages in the scan, and you wish to remove any of them, scroll or select that page in the </span><span class="rvts15">Page</span><span class="rvts8"> </span><span class="rvts15">Thumbnails</span><span class="rvts8"> panel to the left.</span></li>
+ </ol>
+</ol>
+<p class="rvps12"><img alt="" style="padding : 1px;" src="lib/image%20thumbnails2.gif"></p>
+<p class="rvps15"><span class="rvts8">Then click </span><span class="rvts15">Edit Page - Delete Page</span><span class="rvts8">. &nbsp;The selected page will be removed.</span></p>
+<p class="rvps12"><img alt="" style="padding : 1px;" src="lib/image%20edit%20delete%20page.gif"></p>
+<p class="rvps19"><span class="rvts8"><br/></span></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li value="7" class="rvps6 noindent"><span class="rvts8">If there are multiple pages in the scan, and you wish to split them into separate documents, click </span><span class="rvts15">Edit Page - Split Pages</span><span class="rvts8">. The Split Pages window will popup, with each page in a separate section. &nbsp;Each page can be assigned it's own document type and description (required). The descriptions will default to "Page 1", "Page 2", etc - but can be changed to something more meaningful. Click the green </span><span class="rvts15">Save</span><span class="rvts8"> button to save the separate pages, or </span><span class="rvts15">Cancel</span><span class="rvts8"> to abandon changes.</span></li>
+ </ol>
+</ol>
+<p class="rvps15"><img alt="" style="padding : 1px;" src="lib/image%20split%20pages%202.gif"></p>
+<p class="rvps15"><span class="rvts8">A confirmation message will popup, click Yes to save, No to cancel.</span></p>
+<p class="rvps22"><img alt="" style="padding : 1px;" src="lib/save%20indiv%20pages3.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="7" class="rvps3 noindent"><span class="rvts8">Type a </span><span class="rvts15">Description</span><span class="rvts8"> for the file.</span></li>
+</ol>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/image%20doc%20description.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="8" class="rvps3 noindent"><span class="rvts8">Click here see definitions of all </span><a class="rvts16" href="ImagingIcons.html">Capture System icons</a><span class="rvts8">.</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">Click the </span><span class="rvts15">Save and Close </span><span class="rvts8">icon.</span></li>
+</ol>
+<p class="rvps3"><span class="rvts8">&nbsp;</span><span class="rvts8"> &nbsp; &nbsp; &nbsp; &nbsp;</span><img alt="" style="padding : 1px;" src="lib/image%20save1.gif"></p>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/important.gif"><span class="rvts15">Note</span><span class="rvts8">: - once the image is saved to TIMS, the imaging screen will close.</span></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="10" class="rvps3 noindent"><span class="rvts8">The document will now appear in the patient's Activity Panel under Imported Documents, under the Document Type selected. Double-click on the line to view or print the document. &nbsp;You can also edit and change the document type or description if needed. &nbsp;Right click on the line to modify the date if needed.</span></li>
+</ol>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/document%20tree.gif"><span class="rvts8"> &nbsp; </span><img alt="" style="padding : 1px;" src="lib/document%20tree%20modify.gif"></p>
+<h1 class="rvps5"><span class="rvts0"><span class="rvts13">Attaching an Existing Document to a Patient</span></span></h1>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li class="rvps3 noindent"><span class="rvts8">Click the </span><span class="rvts15">Attach Document to Patient</span><span class="rvts8"> button </span><img alt="" style="padding : 1px;" src="lib/attach.gif"><span class="rvts8"> to open the TIMS Document Capture System screen.</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">The TIMS Document Capture System screen will popup.</span></li>
+</ol>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/image%20capture%20new.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="3" class="rvps3 noindent"><span class="rvts8">Click the </span><span class="rvts15">Open Document</span><span class="rvts8"> button.</span></li>
+</ol>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/load%20document.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="4" class="rvps3 noindent"><span class="rvts8">Browse to the location where your PDF or image file is located, and select the file. See below for the types of files that can be used. &nbsp;Select the desired document and click Open.</span></li>
+</ol>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/image%20types1.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="5" class="rvps3 noindent"><span class="rvts8">Choose the </span><span class="rvts15">Document Type</span><span class="rvts8">. &nbsp;&nbsp;</span></li>
+</ol>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/image%20doc%20types.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li class="rvps6 noindent"><span class="rvts8">Select "</span><span class="rvts15">Patient Photo</span><span class="rvts8">" to upload an image of the patient that will be displayed in the Patient Summary panel.</span></li>
+  <li class="rvps6 noindent"><span class="rvts8">Choose "</span><span class="rvts15">Insurance Card</span><span class="rvts8">" to upload an image of the insurance information that will be displayed in the </span><a class="rvts16" href="InsuranceEditor.html">Patient Insurance Editor screen</a><span class="rvts8">. &nbsp;If "Insurance Card" is selected, the Description field will be replaced by &nbsp;"Front" and "Back" checkboxes. &nbsp;You will also need to select the Payer Level.</span></li>
+ </ol>
+</ol>
+<p class="rvps15"><img alt="" style="padding : 1px;" src="lib/select%20doc%20type%20insur.gif"></p>
+<p class="rvps18"><span class="rvts8"><br/></span></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="6" class="rvps3 noindent"><span class="rvts8">Once the document has been uploaded, you can alter the image if you wish by using the built in editing tools. Click the </span><span class="rvts15">Edit Page</span><span class="rvts8"> icon to see a list of editing options. You can also delete or split the individual pages if desired. &nbsp;</span><a class="rvts16" href="AttachingDocumentstoaPatientReco.html#editingtools">See above</a><span class="rvts8"> for editing tips.</span></li>
+</ol>
+<p class="rvps15"><img alt="" style="padding : 1px;" src="lib/image%20edit%20page%20choices.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="7" class="rvps3 noindent"><span class="rvts8">Type a </span><span class="rvts15">Description</span><span class="rvts8"> for the file.&nbsp;</span></li>
+</ol>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/image%20doc%20description.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="8" class="rvps3 noindent"><span class="rvts8">Click the </span><span class="rvts15">Save and Close </span><span class="rvts8">icon.</span></li>
+</ol>
+<p class="rvps3"><span class="rvts8">&nbsp;</span><span class="rvts8"> &nbsp; &nbsp; &nbsp; &nbsp;</span><img alt="" style="padding : 1px;" src="lib/image%20save1.gif"></p>
+<p class="rvps18"><span class="rvts8">&nbsp;&nbsp;</span></p>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/important.gif"><span class="rvts15">Note</span><span class="rvts8">: - once the image is saved to TIMS, the imaging screen will close.</span></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="9" class="rvps3 noindent"><span class="rvts8">The document will now appear in the patient's Activity tree under a category of the Imported Documents, then the Document Type selected. Double-click on the line to view, print, email, fax, or save the document as an external file. You can also edit and change the document type or description if needed. Right click on the line to modify the date if needed.&nbsp;If a document of type "Patient Image" is uploaded, the picture will be displayed in the </span><a class="rvts16" href="PatientSummaryPanel.html">Patient Summary panel</a><span class="rvts8"> (not under Patient Documents).</span></li>
+</ol>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/document%20tree.gif"><span class="rvts8"> &nbsp;</span><img alt="" style="padding : 1px;" src="lib/document%20tree%20modify.gif"></p>
+<p class="rvps3"><span class="rvts8"><br/></span></p>
+<h1 class="rvps5"><span class="rvts0"><span class="rvts13">Mobile Uploading of Photo or Insurance Card</span></span><a name="MobileUploading"></a><span class="rvts0"><span class="rvts13"> &nbsp;</span></span><img alt="" style="padding : 1px;" src="lib/QR%20btn.gif"></h1>
+<p class="rvps3"><span class="rvts15">From Patient Summary Panel</span></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li class="rvps3 noindent"><span class="rvts8">Click the down arrow next to QR Code</span></li>
+</ol>
+<p class="rvps11"><img alt="" style="padding : 1px;" src="lib/QR%20code%20dropdown.gif"></p>
+<p class="rvps3"><span class="rvts8">&nbsp; </span><span class="rvts15">OR</span></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li class="rvps6 noindent"><span class="rvts8">Click the </span><span class="rvts15">Attach Document</span><span class="rvts8"> button </span><img alt="" style="padding : 1px;" src="lib/attach.gif"><span class="rvts8"> to open the TIMS Document Capture System screen.</span></li>
+  <li class="rvps6 noindent"><span class="rvts8">Click the QR Code icon on the toolbar.</span></li>
+ </ol>
+</ol>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/mobile%20upload16.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="2" class="rvps3 noindent"><span class="rvts17">A large QR Code will display on the screen.</span></li>
+</ol>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/QR%20code.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="3" class="rvps3 noindent"><span class="rvts8">Using a QR scanner on your mobile device, scan the code on the screen. &nbsp;This will produce a URL link. &nbsp;Click on the link to go to the TIMS website.</span></li>
+</ol>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/mobile%20upload2.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="4" class="rvps3 noindent"><span class="rvts8">Enter your practice Office Code, then select the User and enter a Password. &nbsp;Click Sign in button.</span></li>
+</ol>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/mobile%20upload3.gif"><span class="rvts8"> &nbsp;</span><img alt="" style="padding : 1px;" src="lib/mobile%20upload4.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="5" class="rvps3 noindent"><span class="rvts8">The patient Name, DOB, and gender will be displayed on the Upload screen. This is where you will upload or take a photo of the patient and/or their insurance card.</span></li>
+</ol>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/mobile%20upload5.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="6" class="rvps3 noindent"><span class="rvts8">Under Patient Photo click the </span><span class="rvts15">Choose File</span><span class="rvts8"> button </span><img alt="" style="padding : 1px;" src="lib/mobile%20upload10.gif"><span class="rvts8">. Under Insurance Card Front or Back, choose the desired </span><span class="rvts15">Payer Slot</span><span class="rvts8"> (Primary, Secondary, etc) then click the </span><span class="rvts15">Choose File</span><span class="rvts8"> button. On the Select an image screen, choose a recent photo or click </span><span class="rvts15">Browse</span><span class="rvts8"> to find another one.&nbsp;</span></li>
+</ol>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/mobile%20upload6.gif"></p>
+<p class="rvps18"><span class="rvts8">To take a picture, click </span><span class="rvts15">Camera</span><span class="rvts8">.&nbsp;</span></p>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/mobile%20upload11.gif"></p>
+<p class="rvps19"><span class="rvts8">Take a photo of the patient or insurance card. If the photo is satisfactory click OK, otherwise click Cancel and try again.</span></p>
+<p class="rvps18"><span class="rvts8">&nbsp; </span><img alt="" style="padding : 1px;" src="lib/mobile%20upload7.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="7" class="rvps3 noindent"><span class="rvts8">The insurance card photos can be rotated by clicking the right and left arrows under the image.&nbsp;</span></li>
+</ol>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/mobile%20upload14.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="8" class="rvps3 noindent"><span class="rvts8">When all desired photos are uploaded click the Submit button. &nbsp;&nbsp;You will receive a confirmation message, and see a </span><span class="rvts15">Return to Patient</span><span class="rvts8"> button. Close the mobile application.</span></li>
+</ol>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/mobile%20upload15.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="9" class="rvps3 noindent"><span class="rvts8">Click </span><span class="rvts15">Close</span><span class="rvts8"> on the QR code on the TIMS software screen.&nbsp;</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">After a refresh period, the Patient Summary panel will be updated with the new patient picture.</span></li>
+</ol>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/mobile%20upload1.gif"></p>
+<p class="rvps3"><span class="rvts8"><br/></span></p>
+<p class="rvps3"><span class="rvts15">From the </span><a class="rvts35" href="InsuranceEditor.html">Patient Insurance Editor screen</a></p>
+<p class="rvps3"><span class="rvts8"><br/></span></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li class="rvps3 noindent"><span class="rvts8">Insurance information can be accessed by clicking the Insurance Payers button </span><img alt="" style="padding : 1px;" src="lib/ins%20payers%20btn.gif"><span class="rvts8"> in the Patient Details, the Edit Insurance icon </span><img alt="" style="padding : 1px;" src="lib/edit.gif"><span class="rvts8"> in the Patient Summary Panel, or the Insurance Payers button</span><img alt="" style="padding : 1px;" src="lib/ins%20payers%20btn%20green.gif"><span class="rvts8"> in the Claims Processing page.</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">Click the down arrow next to Insurance Card Photos at the top of the screen.</span></li>
+</ol>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/current%20ins%20card.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="3" class="rvps3 noindent"><span class="rvts8">Click the Use Mobile Device icon </span><img alt="" style="padding : 1px;" src="lib/QR%20btn.gif"><span class="rvts8">.</span></li>
+</ol>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/mobile%20upload12.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="4" class="rvps3 noindent"><span class="rvts8">A large QR Code will display on the screen.&nbsp;</span></li>
+</ol>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/QR%20code.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="5" class="rvps3 noindent"><span class="rvts8">Proceed as above, steps 3 - 7.</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">After a refresh period, the new insurance card images will appear in the </span><span class="rvts15">Front and Back</span><span class="rvts8"> boxes under the selected Payer Slot.</span></li>
+</ol>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/mobile%20upload13.gif"><span class="rvts8">&nbsp;</span></p>
+<p class="rvps6"><span class="rvts8">Click on the </span><span class="rvts15">Front or Back</span><span class="rvts8"> window to see a larger view of the photo. Photos can also be viewed from the Patient Activity Panel under Patient Documents - Insurance Card.</span></p>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/manual%20upload4.gif"></p>
+<h1 class="rvps5"><span class="rvts0"><span class="rvts13">Inactivating an Attached Document</span></span></h1>
+<p class="rvps3"><span class="rvts8">If a document was accidentally attached to a wrong patient, or it is incorrect in some way - you can inactivate it so that it no longer appears in the patient's activity tree. &nbsp;Follow these steps:</span></p>
+<p class="rvps3"><span class="rvts8"><br/></span></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li class="rvps3 noindent"><span class="rvts8">Locate the document in the patient's&nbsp;Activity tree under a category of the Document Type that was previously saved.</span></li>
+</ol>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/document%20tree.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="2" class="rvps3 noindent"><span class="rvts8">Double-click on the line to open the document.</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">Click the Inactive check box.&nbsp;</span></li>
+</ol>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/image%20inactive%20box1.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="4" class="rvps3 noindent"><span class="rvts8">Click </span><span class="rvts15">Save</span><span class="rvts8">.</span></li>
+</ol>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/save%20image.gif"><span class="rvts8"> &nbsp;</span></p>
+<p class="rvps6"><span class="rvts8">You will be required to enter a </span><span class="rvts15">reason</span><span class="rvts8"> why the image is being made inactive. Enter the reason and click OK.</span></p>
+<p class="rvps6"><img alt="" style="padding : 1px;" src="lib/image%20inactive%20reason.gif"></p>
+<p class="rvps6"><span class="rvts8">The TIMS Document Capture System screen will close.</span></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="5" class="rvps3 noindent"><span class="rvts8">The document will disappear from the patient's Activity tree.</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">The inactive document can still be viewed, however by going to the&nbsp;Imaging Center.</span></li>
+</ol>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/imaging%20center%20link.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="7" class="rvps3 noindent"><span class="rvts8">Locate the patient name, then expand the tree. &nbsp;The inactive document will be listed under the original category, with a lighter colored icon to the left of the date. (see example below). Hover over the document to see a tooltip of the inactive reason. Double-click on the line to view it.</span></li>
+</ol>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/imaging%20center%20inactive.gif"></p>
+<p class="rvps3"><span class="rvts8"><br/></span></p>
+<p class="rvps3"><img alt="" style="padding : 1px;" src="lib/important.gif"><span class="rvts15"> Note</span><span class="rvts8">: The Imaging Center is also the place to view Special Orders and Stock Item invoices, sorted by date, PO Number, or serial number.</span></p>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/imaging%20center2.gif"><span class="rvts8"> &nbsp;</span><img alt="" style="padding : 1px;" src="lib/imaging%20center3.gif"></p>
+<p class="rvps18"><span class="rvts8">&nbsp;&nbsp;</span></p>
+<p class="rvps18"><span class="rvts8"></span><span class="rvts8"></span></p>
+
+            </div>
+            
+            
+        </div>  <!-- /#topic-content -->
+    </article>
+
+    <footer></footer>
+
+  </div>  <!-- /#main -->
+
+  <div class="mask" data-toggle="sm-nav-expanded"></div>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="hndModal" tabindex="-1" role="dialog" aria-labelledby="hndModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="hndModalLabel"></h4>
+        </div>
+        <div class="modal-body">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary modal-btn-close" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Splitter -->
+  <div id="hnd-splitter" style="left: 350px"></div>  
+
+  <!-- Scripts -->
+  <script src="vendors/jquery-3.7.1/jquery.min.js"></script>
+  <script src="vendors/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+  <script src="vendors/bootstrap-3.4.1/js/ie10-viewport-bug-workaround.js"></script>
+  <script src="vendors/markjs-8.11.1/jquery.mark.min.js"></script>
+  <script src="vendors/uri-1.19.11/uri.min.js"></script>
+  <script src="vendors/imageMapResizer-1.0.10/imageMapResizer.min.js"></script>
+  <script src="vendors/headroom-0.11.0/headroom.min.js"></script>
+  <script src="vendors/jstree-3.3.10/jstree.min.js"></script>  
+  <script src="vendors/interactjs-1.9.22/interact.min.js"></script>  
+
+  <!-- HelpNDoc scripts -->
+  <script src="js/polyfill.object.min.js"></script>
+  <script src="_translations.js"></script>
+  <script src="js/hndsd.min.js"></script>
+  <script src="js/hndse.min.js"></script>
+  <script src="js/app.min.js"></script>
+
+  <!-- Init script -->
+  <script src="_topic_init.js"></script>
+
+
+
+</body>
+
+</html>
+

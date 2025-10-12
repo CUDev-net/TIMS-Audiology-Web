@@ -1,0 +1,88 @@
+﻿@page "{id:int?}"
+@using Microsoft.AspNetCore.Builder
+@model Pages.Support.CustomersModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewBag.Title = "Customers";
+}
+
+<div class="container">
+    <h3 class="h3 my-auto" id="customersDefaultTitle">
+        @if (Model.ServerName != null && Model.Customers != null)
+        {
+            <span>@Model.Customers.Count(x => !x.Inactive) Active Customers on @Model.ServerName</span>
+        }
+        else if (Model.Customers != null)
+        {
+            <span>@Model.Customers.Count(x => !x.Inactive) Active Customers</span>
+        }
+    </h3>
+    <h3 class="h3 my-auto" id="filteredTitle" style="display: none;">
+    </h3>
+    <br />
+    <div class="row">
+        <div class="input-group col my-auto">
+            <span class="input-group-prepend ml-2 mt-2 mb-2">
+                <div class="input-group-text bg-transparent"><i class="fa fa-search"></i></div>
+            </span>
+            <input class="form-control border-left-0 border mr-2 mt-2 mb-2"
+                   type="search" placeholder="Search Customers..."
+                   id="customerSearchInput" onkeyup="searchCustomers()">
+            <div class="form-check my-auto m-2">
+                <input type="checkbox" class="form-check-input" for="includeInactive" id="includeInactiveCustomers" onchange="searchCustomers()" />
+                <label class="form-check-label" for="includeInactiveCustomers">Include Inactive</label>
+            </div>
+
+        </div>
+        <div class="col my-auto m2">
+            <a class="btn btn-outline-success btn-sm float-right" asp-page="./CreateCustomer"><i class="fa fa-plus"></i> Add New</a>
+
+        </div>
+    </div>
+
+    <form method="post">
+        <table class="table" id="customerTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+
+                    <th>Name</th>
+                    <th>Office Code</th>
+                    <th>Server</th>
+                    <th>Database</th>
+                    <th>Date Created</th>
+                    <th>Test Connection</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Customers != null)
+                {
+                    foreach (var customer in Model.Customers)
+                    {
+                        var className = customer.Inactive ? "disabled" : "";
+                        var serverClassName = customer.Server.Inactive ? "disabled" : className;
+                        var styleName = customer.Inactive ? "display: none" : "";
+                        <tr class="@className" style="@styleName">
+                            <td class="@className">@customer.Id</td>
+                            <td class="@className"><a class="@className" asp-page="./EditCustomer" asp-route-id="@customer.Id">@customer.Name</a></td>
+                            <td class="@className">@customer.OfficeCode</td>
+                            <td class="@serverClassName" id="@customer.Server.Id"><a class="@className" href="~/Customers?serverId=@customer.ServerId">@customer.Server.Name</a></td>
+                            <td class="@className">@customer.Database</td>
+                            <td class="@className">@customer.DateCreated.ToShortDateString()</td>
+                            <td class="@className">
+
+                                <a class="btn btn-link btn-link-special" onclick="return runTest2(@customer.ServerId, '@customer.Database', this)"><i class="fas fa-circle"></i></a>
+                            </td>
+                            <td class="@className">
+                                <button name="delete" type="submit" asp-page-handler="delete" asp-route-id="@customer.Id" class="btn btn-link" onclick="return confirm('Delete @customer.Name?')" title="Delete @customer.Name"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                            </td>
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+    </form>
+</div>
+

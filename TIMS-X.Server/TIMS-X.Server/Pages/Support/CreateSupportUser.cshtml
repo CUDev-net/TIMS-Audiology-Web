@@ -1,0 +1,28 @@
+﻿@page
+@model Pages.Support.CreateSupportUserModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<h2 class="h2">Create Support User</h2>
+<form method="post" class="form-control">
+    <div class="text-danger" asp-validation-summary="All"></div>
+    <input asp-for="SupportUser.Id" type="hidden" value="0">
+    <input asp-for="SupportUser.DateCreated" type="hidden" value="@DateTime.Now" />
+    <input asp-for="SupportUser.Password" type="hidden" value="password" />
+    <div>
+        <div class="form-group">
+            <label asp-for="SupportUser.Name"></label>
+            <input class="form-control" asp-for="SupportUser.Name" maxlength="64" />
+            <span class="text-danger" asp-validation-for="SupportUser.Name"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="SupportUser.Email"></label>
+            <input class="form-control" asp-for="SupportUser.Email" maxlength="128" />
+            <span class="text-danger" asp-validation-for="SupportUser.Email"></span>
+        </div>
+    </div>
+
+    <div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>

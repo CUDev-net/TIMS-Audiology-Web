@@ -1,0 +1,71 @@
+<div class="form-background">
+    <form [formGroup]="authform" a autocomplete="off" novalidate>
+        <div class="modal-body">
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <label class="col-form-label tims-label" for="name">Name</label>
+                </div>
+                <div class="col-sm-6 position-relative">
+                    <input type="text" class="form-control form-control-sm focus-ring tims-input" name="name"
+                        [formControlName]="'name'" maxlength="20"
+                        [ngClass]="{ 'is-invalid': f['name'].touched && f['name'].errors}">
+                    <div class="invalid-tooltip">Required</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <label class="col-form-label tims-label" for="authorizations">Authorizations</label>
+                </div>
+                <div class="col-sm-6 position-relative">
+                    <input step="width60px" type="text" class="form-control form-control-sm focus-ring tims-input"
+                        name="authorizations" [formControlName]="'authorizations'" min="1" NumberOnly maxlength="3">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <label class="col-form-label tims-label" for="expirationdate">Expires</label>
+                </div>
+                <div class="col-sm-6">
+                    <input class="form-control form-control-sm date-only focus-ring tims-input" BirthDate
+                        placeholder="date" bsDatepicker #dp="bsDatepicker" [bsConfig]="bsConfig"
+                        [formControlName]="'expirationdate'" name="expirationdate">
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <label class="col-form-label tims-label" for="isinactive">Inactive</label>
+                </div>
+                <div class="col-sm-6">
+                    <div class="position-relative">
+                        <input type="checkbox" style="margin-left: 0;"
+                            class="form-check-input cb-1x align-middle patient-cb focus-ring tims-input"
+                            name="isinactive" [formControlName]="'isinactive'">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <label class="col-form-label tims-label" for="notes">Notes</label>
+                </div>
+            </div>
+            <div class="row">
+                <textarea type="text" class="form-control form-control-sm focus-ring tims-input free-text" name="notes"
+                    [formControlName]="'notes'" rows="5"></textarea>
+            </div>
+        </div>
+
+        <div style="align-items: flex-start;" class="modal-footer">
+            <div style="width: auto;" class="input-group input-group-sm justify-content-end">
+                <button class="btn tims-button gradient" type="button" data-bs-toggle="tooltip" title="Save"
+                    (click)="onSubmit()"><i class="dialog-button bi bi-floppy-fill"></i></button>
+                <button *ngIf="showDelete()" type="button" class="btn tims-button gradient" data-bs-toggle="tooltip"
+                    title="Delete" (click)="onDelete()"><i class="dialog-button bi bi-trash-fill"></i></button>
+                <button class="btn tims-button gradient" type="button" (click)="onCancel()" data-bs-toggle="tooltip"
+                    title="Close without saving"><i class="dialog-button bi bi-x-square-fill"></i></button>
+            </div>
+        </div>
+    </form>
+</div>

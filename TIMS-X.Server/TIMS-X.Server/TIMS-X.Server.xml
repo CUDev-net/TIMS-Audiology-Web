@@ -1,0 +1,3008 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TIMS-X.Server</name>
+    </assembly>
+    <members>
+        <member name="M:TIMS_X.Server.Controllers.ApiV1Controller.GetPracticeAsync">
+            <summary>
+            Get Practice
+            </summary>
+            <remarks>
+            Returns general information (name, address, hours of operation) about the practice and each site.<br/>
+            <fieldset><legend>Example</legend><code>curl -X GET "https<span>:</span>//64.25.128.238/api/v1/GetPractice"<br/>
+            -H "accept: application/json" -H "OfficeCode: Sales" -H "Authorization: your-api-key"</code></fieldset>
+            </remarks>
+            <response code="200">Practice and site information is returned</response>
+            <response code="500">An error occurred</response>
+        </member>
+        <member name="M:TIMS_X.Server.Controllers.ApiV1Controller.GetProviderAsync(System.Int32)">
+            <summary>
+            Get Provider
+            </summary>
+            <remarks>
+            Returns a single provider by id.<br/>
+             <fieldset><legend>Example</legend><code>curl -X GET "https<span>:</span>//64.25.128.238/api/v1/GetProvider?providerId=2"<br/>
+            -H "accept: application/json" -H "OfficeCode: Sales" -H "Authorization: your-api-key"</code></fieldset>
+            </remarks>
+            <param name="providerId">The id of the provider</param>
+            <response code="200">A provider is returned</response>
+            <response code="500">An error occurred</response>
+        </member>
+        <member name="M:TIMS_X.Server.Controllers.ApiV1Controller.GetProvidersAsync(System.Boolean)">
+            <summary>
+            Get Providers
+            </summary>
+            <remarks>
+            Returns all providers<br/>
+             <fieldset><legend>Example</legend><code>curl -X GET "https<span>:</span>//64.25.128.238/api/v1/GetProviders?includeInactive=true"<br/>
+            -H "accept: application/json" -H "OfficeCode: Sales" -H "Authorization: your-api-key"</code></fieldset>
+            </remarks>
+            <response code="200">A list of providers is returned</response>
+            <response code="500">An error occurred</response>
+            <param name="includeInactive">If true, inactive providers are included</param>
+        </member>
+        <member name="M:TIMS_X.Server.Controllers.ApiV1Controller.GetPatientAsync(System.Int32)">
+            <summary>
+            Get Patient
+            </summary>
+            <remarks>
+            Returns a single patient by id.<br/>
+             <fieldset><legend>Example</legend><code>curl -X GET "https<span>:</span>//64.25.128.238/api/v1/GetPatient?patientId=22"<br/>
+            -H "accept: application/json" -H "OfficeCode: Sales" -H "Authorization: your-api-key"</code></fieldset>
+            </remarks>
+            <response code="200">If exists, the patient record is returned, otherwise null</response>
+            <response code="500">An error occurred</response>
+            <param name="patientId">the id of the patient</param>
+        </member>
+        <member name="M:TIMS_X.Server.Controllers.ApiV1Controller.GetUpdatedPatientsAsync(System.DateTime)">
+            <summary>
+            Get Updated Patients
+            </summary>
+            <remarks>
+             Returns patients that have been created/updated since <i>cutoffDate</i>.<br/>
+             <fieldset><legend>Example</legend><code>curl -X GET "https<span>:</span>//64.25.128.238/api/v1/GetUpdatedPatients?cutoffDate=2019-06-11"<br/>
+            -H "accept: application/json" -H "OfficeCode: Sales" -H "Authorization: your-api-key"</code></fieldset>
+            </remarks>
+            <param name="cutoffDate">The cut off date</param>
+            <response code="200">A list of patients is returned</response>
+            <response code="400">Parameters are invalid</response>
+            <response code="500">An error occurred</response>
+        </member>
+        <member name="M:TIMS_X.Server.Controllers.ApiV1Controller.FindPatientAsync(System.String,System.String,System.String,System.String,System.String,System.Nullable{System.DateTime},System.Boolean)">
+            <summary>
+            Find Patient
+            </summary>
+            <remarks>
+            Search for a patient.<br/>
+            At least one of <i>email</i>, <i>homePhone</i>, <i>mobilePhone</i>, <i>email</i>, or <i>birthDate</i> are required.<br/>
+            Returns a single patient record. If existing record is not found, a new one can be created.<br/>
+            <fieldset><legend>Example</legend><code>curl -X GET "https<span>:</span>//64.25.128.238/api/v1/FindPatient?<br/>
+            firstName=Test&amp;lastName=ExamplePatient&amp;email=examplepatient%40email.com&amp;createIfNotExists=true"<br/>
+            -H "accept: application/json" -H "OfficeCode: Sales" -H "Authorization: your-api-key"</code></fieldset>
+            </remarks>
+            <param name="firstName">Patient's first name</param>
+            <param name="lastName">Patient's last name</param>
+            <param name="email">Patient's email address</param>
+            <param name="mobilePhone">Patient's mobile phone number</param>
+            <param name="homePhone">Patient's home phone number</param>
+            <param name="birthDate">Patient's date of birth</param>
+            <param name="createIfNotExists">Create a new record if a match is not found</param>
+            <response code="200">The matching/created patient is returned</response>
+            <response code="400">Parameters are invalid</response>
+            <response code="500">An error occurred</response>
+        </member>
+        <member name="M:TIMS_X.Server.Controllers.ApiV1Controller.CalculatePatientBatchesAsync(System.Int32)">
+            <summary>
+            Calculate Patient Batches
+            </summary>
+            <remarks>
+            Calculates the id range pairs required to retrieve all patient records in batches.<br/>
+            Returns a list of id range pairs each with <i>batchSize</i> records between them, spanning the entire patient table.<br />
+             <fieldset><legend>Example</legend><code>curl -X GET "https<span>:</span>//64.25.128.238/api/v1/CalculatePatientBatches?batchSize=30"<br/>
+            -H "accept: application/json" -H "OfficeCode: Sales" -H "Authorization: your-api-key"</code></fieldset>
+            </remarks>
+            <param name="batchSize">How many records to return between each id range</param>
+            <response code="200">A list of id pairs is returned</response>
+            <response code="400">Parameters are invalid</response>
+            <response code="500">An error occurred</response>
+        </member>
+        <member name="M:TIMS_X.Server.Controllers.ApiV1Controller.GetPatientBatchAsync(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Get Patient Batch
+            </summary>
+            <remarks>
+            Returns all patient records with id in the specified id range.<br/>
+             <fieldset><legend>Example</legend><code>curl -X GET "https<span>:</span>//64.25.128.238/api/v1/GetPatientBatch?fromId=1&amp;toId=27"<br/>
+            -H "accept: application/json" -H "OfficeCode: Sales" -H "Authorization: your-api-key"</code></fieldset>
+            </remarks>
+            <param name="fromId">The smallest id in the batch (inclusive)</param>
+            <param name="toId">The largest id in the batch (inclusive)</param>
+            <param name="includeInactive">If true, inactive patients are included</param>
+            <response code="200">A list of patients is returned</response>
+            <response code="400">Parameters are invalid</response>
+            <response code="500">An error occurred</response>
+        </member>
+        <member name="M:TIMS_X.Server.Controllers.ApiV1Controller.FindAppointmentOpeningsAsync(System.DateTime,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Find Appointment Openings
+            </summary>
+            <remarks>
+            Search for appointment openings on a particular day.<br/>
+            To filter out openings outside of the provider's block scheduling setup,<br/>
+            pass both a provider id and an appt id.<br/>
+            Returns a list of opening time slots.<br/>
+             <fieldset><legend>Example</legend><code>curl -X GET "https<span>:</span>//64.25.128.238/api/v1/FindAppointmentOpenings?<br/>
+            date=2019-06-07&amp;interval=15&amp;siteId=2&amp;providerId=2&amp;apptTypeId=8"<br/>
+            -H "accept: application/json" -H "OfficeCode: Sales" -H "Authorization: your-api-key"</code></fieldset>
+            </remarks>
+            <param name="date">The date to search</param>
+            <param name="interval">The amount of time between each opening, in minutes</param>
+            <param name="siteId">The id of the site to filter on</param>
+            <param name="providerId">The id of the provider to filter on</param>
+            <param name="apptTypeId">The id of the appt type to filter on</param>
+            <response code="200">A list of time slots is returned</response>
+            <response code="400">Parameters are invalid</response>
+            <response code="500">An error occurred</response>
+        </member>
+        <member name="M:TIMS_X.Server.Controllers.ApiV1Controller.GetAppointmentStatusesAsync(System.Boolean)">
+            <summary>
+            Get Appointment Statuses
+            </summary>
+            <remarks>
+            Returns all appointment statuses.<br/>
+             <fieldset><legend>Example</legend><code>curl -X GET "https<span>:</span>//64.25.128.238/api/v1/GetAppointmentStatuses"<br/>
+            -H "accept: application/json" -H "OfficeCode: Sales" -H "Authorization: your-api-key"</code></fieldset>
+            </remarks>
+            <response code="200">A list of appointment statuses is returned</response>
+            <response code="500">An error occurred</response>
+            <param name="includeInactive">If true, inactive appt statuses are included</param>
+        </member>
+        <member name="M:TIMS_X.Server.Controllers.ApiV1Controller.GetAppointmentTypesAsync(System.Boolean)">
+            <summary>
+            Get Appointment Types
+            </summary>
+            <remarks>
+            Returns all appointment types.<br/>
+             <fieldset><legend>Example</legend><code>curl -X GET "https<span>:</span>//64.25.128.238/api/v1/GetAppointmentTypes"<br/>
+            -H "accept: application/json" -H "OfficeCode: Sales" -H "Authorization: your-api-key"</code></fieldset>
+            </remarks>
+            <response code="200">A list of appointment types is returned</response>
+            <response code="500">An error occurred</response>
+            <param name="includeInactive">If true, inactive appt types are included</param>
+        </member>
+        <member name="M:TIMS_X.Server.Controllers.ApiV1Controller.GetUpdatedAppointmentsAsync(System.DateTime,System.Int32,System.Int32)">
+            <summary>
+            Get Updated Appointments
+            </summary>
+            <remarks>
+            Returns appointments that have been created/updated since <i>cutoffDate</i>.<br/>
+             <fieldset><legend>Example</legend><code>curl -X GET "https<span>:</span>//64.25.128.238/api/v1/GetUpdatedAppointments?cutoffDate=2019-06-06&amp;siteId=2&amp;providerId=1"<br/>
+            -H "accept: application/json" -H "OfficeCode: Sales" -H "Authorization: your-api-key" </code></fieldset>
+            </remarks>
+            <param name="cutoffDate">The cut off date</param>
+            <param name="siteId">The site Id</param>
+            <param name="providerId">The provider Id</param>
+            <response code="200">A list of appointments is returned</response>
+            <response code="400">Parameters are invalid</response>
+            <response code="500">An error occurred</response>
+        </member>
+        <member name="M:TIMS_X.Server.Controllers.ApiV1Controller.CreateAppointmentAsync(TIMS_X.Core.Models.Api.CreateAppointmentModel)">
+            <summary>
+            Create Appointment
+            </summary>
+            <remarks>
+            Create a patient appointment.<br/>
+             <fieldset><legend>Example</legend><code>curl -X PUT "https<span>:</span>//64.25.128.238/api/v1/CreateAppointment"<br/>
+            -H "accept: application/json" -H "OfficeCode: Sales" -H "Authorization: your-api-key" -H "Content-Type: application/json-patch+json"<br/>
+            -d "{  \"patientId\": 2,  \"appointmentTypeId\": 3,  \"providerId\": 1,  \"siteId\": 1,  \"startsAt\": \"2019-06-28T09:30:00-06:00\",  \"endsAt\": \"2019-06-28T10:00:00-06:00\"}" </code></fieldset>
+            </remarks>
+            <param name="appointment">The appointment object</param>
+            <response code="200">The appointment was created</response>
+            <response code="500">An error occurred</response>
+        </member>
+        <member name="T:TIMS_X.Server.Controllers.CustomerController">
+            <summary>
+            The customer controller provides API endpoints for querying the internal TIMS database for customers and vendor permissions
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Controllers.CustomerController.GetConnectionInfoAsync">
+            <summary>
+            Retrieves the customer server IP address and database name
+            </summary>
+            <returns>{IpAddress, Server}</returns>
+        </member>
+        <member name="M:TIMS_X.Server.Controllers.CustomerController.Ping">
+            <summary>
+            Allows client to ensure it can reach this server.
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Controllers.CustomerController.ValidateCustomerAsync">
+            <summary>
+            Tests a customer database connection. Returns true if it can connect, false otherwise.
+            </summary>
+        </member>
+        <member name="T:TIMS_X.Server.Controllers.InternalController">
+            <summary>
+            This controller provides helper API endpoints for the Customer Portal
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Controllers.InternalController.SignOut">
+            <summary>
+            This gets called when the user clicks on the sign out button in the navigation bar.
+            It removes the browser cookie and redirects to the sign in screen
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Controllers.InternalController.ValidateApiUrl(System.Int32,System.String)">
+            <summary>
+            Remote validation endpoint. Ensures api url is unique
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Controllers.InternalController.ValidateDatabaseConnectionAsync(System.Int32,System.String)">
+            <summary>
+            Remote validation endpoint. Ensures customer server/database combination is unique
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Controllers.InternalController.ValidateCustomerDatabase(System.Int32,System.Int32,System.String)">
+            <summary>
+            Remote validation endpoint. Ensures customer server/database combination is unique
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Controllers.InternalController.ValidateCustomerOfficeCode(System.Int32,System.String)">
+            <summary>
+            Remote validation endpoint. Ensures customer office code is unique
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Controllers.InternalController.ValidateServerAddress(System.Int32,System.String)">
+            <summary>
+            Remote validation endpoint. Ensures server ip address is unique
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Controllers.InternalController.ValidateServerName(System.Int32,System.String)">
+            <summary>
+            Remote validation endpoint. Ensures server name is unique
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Controllers.InternalController.ValidateSupportUserEmail(System.Int32,System.String)">
+            <summary>
+            Remote validation endpoint. Ensures support user email is unique
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Controllers.InternalController.ValidateSupportUserName(System.Int32,System.String)">
+            <summary>
+            Remote validation endpoint. Ensures support user name is unique
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Controllers.InternalController.ValidateVendorApiKey(System.Int32,System.String)">
+            <summary>
+            Remote validation endpoint. Ensures vendor api key is unique
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Controllers.InternalController.ValidateVendorName(System.Int32,System.String)">
+            <summary>
+            Remote validation endpoint. Ensures vendor name is unique
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Controllers.InternalController.ValidateVendorPermissionName(System.Int32,System.String)">
+            <summary>
+            Remote validation endpoint. Ensures vendor permission name is unique
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Controllers.SchedulerController.GetPatientsScheduledAsync(System.DateTime,System.DateTime,System.Int32[])">
+            <summary>
+            Returns a list of all patients scheduled in the provided date range at the provided sites.
+            If no sites (sid) are provided, all sites are queried.
+            </summary>
+            <param name="from"></param>
+            <param name="to"></param>
+            <param name="sid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TIMS_X.Server.Controllers.WebHooksController.GetCallScriptAsync(TIMS_X.Core.Enums.MessageTemplateType,System.String,System.String,TIMS_X.Server.Models.TwilioCallScriptRequest)">
+            <summary>
+            application/x-www-form-urlencoded
+            </summary>
+            <param name="templateType"></param>
+            <param name="officeCode"></param>
+            <param name="key"></param>
+            <param name="callScriptRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TIMS_X.Server.Data.TimsInternalDbContext">
+            <summary>
+            DbContext for the TIMSInternal database
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Data.TimsInternalDbContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            Here we map all the tables out. In other db contexts, the mapping is done in ModelConfigurator.cs and shared among data services.
+            Since we only ever need one db context to connect to TIMSInternal, the mapping is done here. The mapping was originally generated with
+            the command "dotnet ef dbcontext scaffold" then copied over
+            </summary>
+            <param name="modelBuilder"></param>
+        </member>
+        <member name="M:TIMS_X.Server.Extensions.FormattingExtensions.ToE164Format(System.String)">
+            <summary>
+            Formats a phone number in E164 format; eg: 406-370-7959 --> +14063707959
+            </summary>
+            <param name="phoneNumber">The phone number to format.</param>
+            <returns>An e164 formatted phone number.</returns>
+        </member>
+        <member name="T:TIMS_X.Server.Filters.ChangePasswordFilter">
+            <summary>
+            This filter gets injected into the Http request pipeline and every request runs through it.
+            It won't let the user continue until they change their password.
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Filters.ChangePasswordFilter.OnAuthorization(Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext)">
+            <summary>
+            Checks if the user cookie contains claim "CP" (Change Password).
+            If true, forces user to change password page.
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:TIMS_X.Server.Legacy.Noah.TestSide">
+            <summary>
+            Side the audiogram should display on
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.TestSide.Left">
+            <summary>
+            Left side
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.TestSide.Right">
+            <summary>
+            Right
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.TestSide.Both">
+            <summary>
+            Both
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.TestSide.Unknown">
+            <summary>
+            Unknown
+            </summary>
+        </member>
+        <member name="T:TIMS_X.Server.Legacy.Noah.AbmConst">
+            <summary>
+            Static class for the audiogram constants
+            </summary>
+        </member>
+        <member name="T:TIMS_X.Server.Legacy.Noah.AudiogramImportBase">
+            <summary>
+            Base class to import data from Audbase
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.AudiogramImportBase.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.AudiogramImportBase.N500Audiogram">
+            <summary>
+            The Audiogram
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.AudiogramImportBase.BuildN500Audiogram">
+            <summary>
+            Builds an N500 Audiogram from audbase data
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.AudiogramImportBase._CreatePureToneAudiogram(TIMS_X.Server.Legacy.Noah.Enums.SignalOutputEnum,TIMS_X.Server.Legacy.Noah.Enums.SignalOutputEnum)">
+            <summary>
+            Creates a new pure tone audiogram
+            </summary>
+            <param name="signalOutputType"></param>
+            <param name="maskedSignalOutputType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.AudiogramImportBase._CreateTonePoint(System.Int32,System.Decimal,System.Boolean,TIMS_X.Server.Legacy.Noah.Enums.PointStatusEnum)">
+            <summary>
+            Create new tone point
+            </summary>
+            <param name="frequency"></param>
+            <param name="level"></param>
+            <param name="masked"></param>
+            <param name="status"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.AudiogramImportBase._GetACAudiogram(System.Boolean)">
+            <summary>
+            Gets the AC Audiogram
+            </summary>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.AudiogramImportBase._GetBCAudiogram(System.Boolean)">
+            <summary>
+            Gets the AC Audiogram
+            </summary>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.AudiogramImportBase._GetMCLAudiogram(TIMS_X.Server.Legacy.Noah.AudiogramImportBase.Side)">
+            <summary>
+            Gets the MCL Audiogram
+            </summary>
+            <param name="side"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.AudiogramImportBase._GetSFAAudiogram(TIMS_X.Server.Legacy.Noah.AudiogramImportBase.Side)">
+            <summary>
+            Gets soundfield aided Audiogram
+            </summary>
+            <param name="side"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.AudiogramImportBase._GetSFAudiogram(TIMS_X.Server.Legacy.Noah.AudiogramImportBase.Side)">
+            <summary>
+            Gets soundfield Audiogram
+            </summary>
+            <param name="side"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.AudiogramImportBase._GetUCLAudiogram(TIMS_X.Server.Legacy.Noah.AudiogramImportBase.Side)">
+            <summary>
+            Gets the UCL Audiogram
+            </summary>
+            <param name="side"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.AudiogramImportBase._ResetAudiograms">
+            <summary>
+            Resets the audigram arrays
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.AudiogramImportBase.BuildAudioData">
+            <summary>
+            Builds the Audio data
+            </summary>
+            <remarks>Make sure audiogram data has been processed and audiogram filled before calling this</remarks>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.AudiogramImportBase.BuildSpeechData">
+            <summary>
+            Build the speech data
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.AudiogramImportBase.BuildTympanograms">
+            <summary>
+            Build left and right tympanograms
+            </summary>
+        </member>
+        <member name="T:TIMS_X.Server.Legacy.Noah.AudiogramImportBase.Side">
+            <summary>
+            Side of data
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.AudiogramImportBase.Side.Right">
+            <summary>
+            Right
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.AudiogramImportBase.Side.Left">
+            <summary>
+            Left
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.AudiogramImportBase.Side.Binaural">
+            <summary>
+            Binaural
+            </summary>
+        </member>
+        <member name="T:TIMS_X.Server.Legacy.Noah.AudiogramTestResults">
+            <summary>
+            An audiogram test results
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.AudiogramTestResults.BothResults">
+            <summary>
+            Gets the both test results
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.AudiogramTestResults.LeftResults">
+            <summary>
+            Gets the left results
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.AudiogramTestResults.RightResults">
+            <summary>
+            Gets the right results
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.AudiogramTestResults.GetTestResults(TIMS_X.Server.Legacy.Noah.TestSide)">
+            <summary>
+            Gets a specific side test results
+            </summary>
+            <param name="side">Side to get</param>
+            <returns>Test results</returns>
+        </member>
+        <member name="T:TIMS_X.Server.Legacy.Noah.Enums.AudiogramTypeEnum">
+            <summary>
+            Audiogram types
+            </summary>
+        </member>
+        <member name="T:TIMS_X.Server.Legacy.Noah.Enums.HearingTestConditionEnum">
+            <summary>
+            Hearing Instrument Condition for the test
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.HearingTestConditionEnum.Unknown">
+            <summary>
+            HI Condition for test unknown
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.HearingTestConditionEnum.NoCondition">
+            <summary>
+            HI Condition unavailable
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.HearingTestConditionEnum.UnAided">
+            <summary>
+            Measured without HI
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.HearingTestConditionEnum.Aided1">
+            <summary>
+            Measured with HI 1
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.HearingTestConditionEnum.Aided2">
+            <summary>
+            Measured with HI 2
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.HearingTestConditionEnum.User1">
+            <summary>
+            User defined value 1
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.HearingTestConditionEnum.User2">
+            <summary>
+            User defined value 2
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.HearingTestConditionEnum.User3">
+            <summary>
+            User defined value 3
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.HearingTestConditionEnum.NotSet">
+            <summary>
+            Not set yet
+            </summary>
+        </member>
+        <member name="T:TIMS_X.Server.Legacy.Noah.Enums.PointStatusEnum">
+            <summary>
+            Stats of an audigram point
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.PointStatusEnum.Unknown">
+            <summary>
+            Unknown
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.PointStatusEnum.Normal">
+            <summary>
+            Nothing
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.PointStatusEnum.AlwaysResponse">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.PointStatusEnum.NoResponse">
+            <summary>
+            No response
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.PointStatusEnum.NotMeasurable">
+            <summary>
+            Unmeasurable
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.PointStatusEnum.DidNotTest">
+            <summary>
+            Did not test
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.PointStatusEnum.CouldNotTest">
+            <summary>
+            Could not test
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.PointStatusEnum.User1">
+            <summary>
+            User 1
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.PointStatusEnum.User2">
+            <summary>
+            User 2
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.PointStatusEnum.User3">
+            <summary>
+            User 3
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.PointStatusEnum.NotSet">
+            <summary>
+            Not set
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.SignalOutputEnum.NotSet">
+            <summary>
+            Not Set
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.SignalOutputEnum.Unknown">
+            <summary>
+            Unknown
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.SignalOutputEnum.NoSignalOutput">
+            <summary>
+            No signal
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.SignalOutputEnum.AirConductorLeft">
+            <summary>
+            AC Left
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.SignalOutputEnum.AirConductorRight">
+            <summary>
+            AC right
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.SignalOutputEnum.AirConductorBinaural">
+            <summary>
+            AC Binaural
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.SignalOutputEnum.BoneConductorLeft">
+            <summary>
+            BC Left
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.SignalOutputEnum.BoneConductorRight">
+            <summary>
+            BC Right
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.SignalOutputEnum.BoneConductorBinaural">
+            <summary>
+            BC Binaural
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.SignalOutputEnum.FreeFieldLeft">
+            <summary>
+            SF Left
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.SignalOutputEnum.FreeFieldRight">
+            <summary>
+            SF Right
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.SignalOutputEnum.FreeFieldBinaural">
+            <summary>
+            SF Binaural
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.SignalOutputEnum.InsertPhoneLeft">
+            <summary>
+            IP Left
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.SignalOutputEnum.InsertPhoneRight">
+            <summary>
+            IP Right
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.SignalOutputEnum.InsertPhoneBinaural">
+            <summary>
+            IP Binaural
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.SignalOutputEnum.User1">
+            <summary>
+            IP Left
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.SignalOutputEnum.User2">
+            <summary>
+            User 2
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.SignalOutputEnum.User3">
+            <summary>
+            User 3
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.SignalTypeEnum.Unknown">
+            <summary>
+            Unknown
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.SignalTypeEnum.NoSignalApplied">
+            <summary>
+            No signal
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.SignalTypeEnum.PureTone">
+            <summary>
+            Pure TOne
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.SignalTypeEnum.Warble">
+            <summary>
+            Warble
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.SignalTypeEnum.NarrowBandNoise">
+            <summary>
+            Narrow band
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.SignalTypeEnum.SpeechNoise">
+            <summary>
+            Speech
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.SignalTypeEnum.WhiteNoise">
+            <summary>
+            White noise
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.SignalTypeEnum.PinkNoise">
+            <summary>
+            Pink noise
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.SignalTypeEnum.AuxiliarySignal">
+            <summary>
+            Aux
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.SignalTypeEnum.Microphone">
+            <summary>
+            Mic
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.SignalTypeEnum.User1">
+            <summary>
+            User 1
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.SignalTypeEnum.User2">
+            <summary>
+            User 2
+            </summary>
+        </member>
+        <member name="F:TIMS_X.Server.Legacy.Noah.Enums.SignalTypeEnum.User3">
+            <summary>
+            User 3
+            </summary>
+        </member>
+        <member name="T:TIMS_X.Server.Legacy.Noah.Extended.Point">
+            <summary>
+            Point on the curve
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Extended.Point.Frequency">
+            <summary>
+            Frequency
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Extended.Point.Level">
+            <summary>
+            Level
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Extended.Point.Masked">
+            <summary>
+            Is point masked
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Extended.Point.Status">
+            <summary>
+            Status
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Extended.Point.DeSerialize(System.Xml.Linq.XElement)">
+            <summary>
+            Deserialize object
+            </summary>
+            <param name="xPoint"></param>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Extended.Point.Serialize">
+            <summary>
+            Serialize to XML
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:TIMS_X.Server.Legacy.Noah.Extended.ExtendedCurve">
+            <summary>
+            Extended curve
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Extended.ExtendedCurve.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Extended.ExtendedCurve.Condition1">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Extended.ExtendedCurve.Condition2">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Extended.ExtendedCurve.Side1">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Extended.ExtendedCurve.Side2">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Extended.ExtendedCurve.DeSerialize(System.Xml.Linq.XElement)">
+            <summary>
+            DeSerialize object
+            </summary>
+            <param name="xCurve"></param>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Extended.ExtendedCurve.Serialize">
+            <summary>
+            Serialize to XML
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Extended.ExtendedData.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Extended.ExtendedData.ExtendedCurves">
+            <summary>
+            Gets curves
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Extended.ExtendedData.DeSerialize(System.String)">
+            <summary>
+            Deserialize data
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Extended.ExtendedData.Serialize">
+            <summary>
+            Serialize to XML
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:TIMS_X.Server.Legacy.Noah.Format500.Audiogram">
+            <summary>
+            500 Format Audiogram
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.Audiogram.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.Audiogram.Curve">
+            <summary>
+            Curve for Audiogram
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.Audiogram.MeasurementCondition">
+            <summary>
+            Gets the measurement condition
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.Audiogram.Serialize(System.String)">
+            <summary>
+            Serialize to XML
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.IMeasurementAudiogram.MeasurementCondition">
+            <summary>
+            Gets the measurement condition
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.MeasurementCondition.#ctor">
+            <summary>
+            Condition
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.MeasurementCondition.AuxiliaryParameterDescription">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.MeasurementCondition.HearingInstrument_1_Condition">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.MeasurementCondition.HearingInstrument_2_Condition">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.MeasurementCondition.HearingInstrumentDescription">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.MeasurementCondition.MaskingAmplitudeModulation">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.MeasurementCondition.MaskingAuxiliary">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.MeasurementCondition.MaskingdBWeighting">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.MeasurementCondition.MaskingFrequencyModulation">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.MeasurementCondition.MaskingOffTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.MeasurementCondition.MaskingOnTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.MeasurementCondition.MaskingPresentationType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.MeasurementCondition.MaskingPulseCycle">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.MeasurementCondition.MaskingPulseModulation">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.MeasurementCondition.MaskingSignalOutput">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.MeasurementCondition.MaskingSignalType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.MeasurementCondition.MaskingSiSiParameter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.MeasurementCondition.MaskingTransducerCalibrationStandard">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.MeasurementCondition.MaskingTransducerType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.MeasurementCondition.MaskingWarbleModulation">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.MeasurementCondition.MaskingWarbleModulationSize">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.MeasurementCondition.SpeechThresholdType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.MeasurementCondition.StimulusAmplitudeModulation">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.MeasurementCondition.StimulusAuxiliary">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.MeasurementCondition.StimulusdBWeighting">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.MeasurementCondition.StimulusFrequencyModulation">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.MeasurementCondition.StimulusOffTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.MeasurementCondition.StimulusOnTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.MeasurementCondition.StimulusPresentationType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.MeasurementCondition.StimulusPulseCycle">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.MeasurementCondition.StimulusPulseModulation">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.MeasurementCondition.StimulusSignalOutput">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.MeasurementCondition.StimulusSignalType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.MeasurementCondition.StimulusSiSiParameter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.MeasurementCondition.StimulusTransducerCalibrationStandard">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.MeasurementCondition.StimulusTransducerType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.MeasurementCondition.StimulusWarbleModulation">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.MeasurementCondition.StimulusWarbleModulationSize">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.MeasurementCondition.TransducerDescription">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.MeasurementCondition.WordListName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.MeasurementCondition.Serialize">
+            <summary>
+            Serialize to XML
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.MeasurementNotes.AudiometerLastCalibration">
+            <summary>
+            Calibration date
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.MeasurementNotes.AudiometerMakeModel">
+            <summary>
+            Audiometer make and model
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.MeasurementNotes.AudiometerSerialNumber">
+            <summary>
+            SN
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.MeasurementNotes.TestMethod">
+            <summary>
+            Test method
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.MeasurementNotes.TestReliability">
+            <summary>
+            Test reliability
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.MeasurementNotes.Serialize">
+            <summary>
+            Serialize to XML
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram.MCLBinural">
+            <summary>
+            Gets MCL results for binural
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram.MCLLeft">
+            <summary>
+            Gets MCL results for left
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram.MCLRight">
+            <summary>
+            Gets MCL results for right
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram.MCLToneAudiogram">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram.MeasurementNotes">
+            <summary>
+            Measurement notes
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram.PureToneData">
+            <summary>
+            Pure Tone data for this audiogram
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram.SpeechDiscriminationAudiogram">
+            <summary>
+            Speech Discriminagion
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram.SpeechMostComfortableLevel">
+            <summary>
+            Speech Discriminagion
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram.SpeechReceptionThresholdAudiogram">
+            <summary>
+            Speech Discriminagion
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram.SpeechUncomfortableLevel">
+            <summary>
+            Speech Discriminagion
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram.SRTBinural">
+            <summary>
+            Gets SRT results for Binural
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram.SRTLeft">
+            <summary>
+            Gets SRT results for left
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram.SRTRight">
+            <summary>
+            Gets SRT results for right
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram.ThreshodToneAudiogram">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram.UCLBinural">
+            <summary>
+            Gets MCL results for binural
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram.UCLLeft">
+            <summary>
+            Gets MCL results for left
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram.UCLRight">
+            <summary>
+            Gets MCL results for right
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram.UCLToneAudiogram">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram.WR1Binural">
+            <summary>
+            Gets results for WR1 Binural
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram.WR1Left">
+            <summary>
+            Gets results for WR1 Left
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram.WR1Right">
+            <summary>
+            Gets results for WR1 Right
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram.WR1LeftAided">
+            <summary>
+            Gets results for WR1 Left
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram.WR1RightAided">
+            <summary>
+            Gets results for WR1 Right
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram.WR1BinuralList">
+            <summary>
+            Gets results for WR1 Binural
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram.WR1LeftList">
+            <summary>
+            Gets results for WR1 Left
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram.WR1RightList">
+            <summary>
+            Gets results for WR1 Right
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram.WR1BinuralAidedList">
+            <summary>
+            Gets results for WR1 Binural
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram.WR1LeftAidedList">
+            <summary>
+            Gets results for WR1 Left
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram.WR1RightAidedList">
+            <summary>
+            Gets results for WR1 Right
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram.WR2Binural">
+            <summary>
+            Gets results for WR1 Binural
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram.WR2Left">
+            <summary>
+            Gets results for WR1 Left
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram.WR2Right">
+            <summary>
+            Gets results for WR1 Right
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram.WR2BinuralList">
+            <summary>
+            Gets results for WR1 Binural
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram.WR2LeftList">
+            <summary>
+            Gets results for WR1 Left
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram.WR2RightList">
+            <summary>
+            Gets results for WR1 Right
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram.WR2BinuralAided">
+            <summary>
+            Gets results for WR1 Binural
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram.WR2LeftAided">
+            <summary>
+            Gets results for WR1 Left
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram.WR2RightAided">
+            <summary>
+            Gets results for WR1 Right
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram.WR2BinuralAidedList">
+            <summary>
+            Gets results for WR1 Binural
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram.WR2LeftAidedList">
+            <summary>
+            Gets results for WR1 Left
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram.WR2RightAidedList">
+            <summary>
+            Gets results for WR1 Right
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram.CreateElementWithNamespace(System.String,System.String)">
+            <summary>
+            Creates an element with the namespace
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram.GetResults">
+            <summary>
+            Reads the results into result object
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram.Load(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="n500Xml"></param>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram.Serialize">
+            <summary>
+            Serialize to XML string
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram._BuildAudiograms(System.Collections.Generic.IEnumerable{System.Xml.Linq.XElement},System.Collections.Generic.List{TIMS_X.Server.Legacy.Noah.Format500.Audiogram})">
+            <summary>
+            Builds audiogram
+            </summary>
+            <param name="nodes"></param>
+            <param name="audiograms"></param>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram._BuildSpeechAudiograms(System.Collections.Generic.IEnumerable{System.Xml.Linq.XElement},System.String,System.Collections.Generic.List{TIMS_X.Server.Legacy.Noah.Format500.SpeechAudiogram})">
+            <summary>
+            Build speech audiograms
+            </summary>
+            <param name="nodes"></param>
+            <param name="pointName"></param>
+            <param name="speechAudiograms"></param>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram._BuildSpeechPoint(TIMS_X.Server.Legacy.Noah.Format500.SpeechScorePoint)">
+            <summary>
+            Fills the speech score point
+            </summary>
+            <param name="scorePoint"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram._BuildSpeechScorePoint(System.Xml.Linq.XElement)">
+            <summary>
+            Builds speech points
+            </summary>
+            <param name="xSpeechPoint"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram._BuildTonePoint(System.Xml.Linq.XElement)">
+            <summary>
+            Builds the tone point from the node
+            </summary>
+            <param name="xTonePoint"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram._BuildWordRecognitionPoint(TIMS_X.Server.Legacy.Noah.SpeechResult,TIMS_X.Server.Legacy.Noah.Format500.SpeechScorePoint)">
+            <summary>
+            Builds a WR Point
+            </summary>
+            <param name="wordPoint"></param>
+            <param name="scorePoint"></param>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram._GetFrequencyPosition(System.Int32)">
+            <summary>
+            Gets the frequency position on the graph
+            </summary>
+            <param name="frequency"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram._GetMCLAudiogramResults">
+            <summary>
+            Gets the threshold audiogram results
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram._GetTestDetails(TIMS_X.Server.Legacy.Noah.Format500.Audiogram,TIMS_X.Server.Legacy.Noah.TestSide@,System.Int32@,System.Int32@)">
+            <summary>
+            Gets side and type for a test
+            </summary>
+            <param name="audiogram"></param>
+            <param name="side"></param>
+            <param name="testType"></param>
+            <param name="maskTestType"></param>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram._GetThresholdAudiogramResults">
+            <summary>
+            Gets the threshold audiogram results
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram._GetUCLAudiogramResults">
+            <summary>
+            Gets the threshold audiogram results
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram._ParseMeasurementCondition(System.Xml.Linq.XElement,TIMS_X.Server.Legacy.Noah.Format500.IMeasurementAudiogram)">
+            <summary>
+            Parses the measurement condition
+            </summary>
+            <param name="parent"></param>
+            <param name="audiogram"></param>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram._ProcessSpeechAudiogram(System.Collections.Generic.IEnumerable{TIMS_X.Server.Legacy.Noah.Format500.SpeechAudiogram},System.String)">
+            <summary>
+            Processes Speech Audiograms
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.N500Audiogram._ProcessWordRecognitionAudiogram(System.Collections.Generic.IEnumerable{TIMS_X.Server.Legacy.Noah.Format500.SpeechAudiogram})">
+            <summary>
+            Process the word recogntion data
+            </summary>
+            <param name="speechAudiograms"></param>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.SpeechAudiogram.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.SpeechAudiogram.MeasurementCondition">
+            <summary>
+            Measurement condition
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.SpeechAudiogram.Points">
+            <summary>
+            Points on the curve
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.SpeechScorePoint.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.SpeechScorePoint.MaskingLevel">
+            <summary>
+            Masking level
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.SpeechScorePoint.NumberOfWords">
+            <summary>
+            Number of words
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.SpeechScorePoint.ScorePercent">
+            <summary>
+            Score percent
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.SpeechScorePoint.StimulusLevel">
+            <summary>
+            Stimulus level
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.TonePoint.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.TonePoint.MaskingFrequency">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.TonePoint.MaskingLevel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.TonePoint.StimulusFrequency">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.TonePoint.StimulusLevel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.TonePoint.TonePointStatus">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.TonePoint.Serialize">
+            <summary>
+            Serialize to XMl
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.Tympanometry.ComplianceCurveType.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.Tympanometry.ComplianceType.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.Tympanometry.ComplianceType.ComplianceValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.Tympanometry.ComplianceType.Serialize(System.String)">
+            <summary>
+            Serialize
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.Tympanometry.ComplianceUnitType.ArgumentUnit1">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.Tympanometry.ComplianceUnitType.ArgumentUnit2">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.Tympanometry.ComplianceValueType.Serialize">
+            <summary>
+            Serialize object
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:TIMS_X.Server.Legacy.Noah.Format500.Tympanometry.Enums.UnitTypeEnum">
+            <summary>
+            Unit Type
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.Tympanometry.EustachianTubeFunctionIntactEarDrumTest.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.Tympanometry.EustachianTubeFunctionIntactEarDrumTest.CanalVolume">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.Tympanometry.EustachianTubeFunctionIntactEarDrumTest.ComplianceCurve">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.Tympanometry.EustachianTubeFunctionIntactEarDrumTest.MeasurementCondition">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.Tympanometry.EustachianTubeFunctionIntactEarDrumTest.Pressure">
+            <summary>
+            Pressure
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.Tympanometry.EustachianTubeFunctionPerforatedEarDrumTest.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.Tympanometry.EustachianTubeFunctionPerforatedEarDrumTest.ClosePoints">
+            <summary>
+            Open opoint
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.Tympanometry.EustachianTubeFunctionPerforatedEarDrumTest.OpenPoints">
+            <summary>
+            Open opoint
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.Tympanometry.EustachianTubeFunctionPerforatedEarDrumTest.PressurePoints">
+            <summary>
+            Pressure points
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.Tympanometry.EustachianTubeFunctionPerforatedEarDrumTest.TimeBase">
+            <summary>
+            Time base
+            </summary>
+        </member>
+        <member name="T:TIMS_X.Server.Legacy.Noah.Format500.Tympanometry.N500Tympanogram">
+            <summary>
+            500 format tympanogram
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.Tympanometry.N500Tympanogram.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.Tympanometry.N500Tympanogram.EustachianTubeFunctionIntactEarDrumTest">
+            <summary>
+            Ear drum intact test
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.Tympanometry.N500Tympanogram.EustachianTubeFunctionPerforatedEarDrumTest">
+            <summary>
+            EustachianTubeFunctionPerforatedEarDrumTest
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.Tympanometry.N500Tympanogram.ReflexTests">
+            <summary>
+            Up to 16
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.Tympanometry.N500Tympanogram.TympanogramTests">
+            <summary>
+            Up to 3
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.Tympanometry.N500Tympanogram.CreateElementWithNamespace(System.String,System.String)">
+            <summary>
+            Creates an element with the namespace
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.Tympanometry.N500Tympanogram.Load(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="n500Xml"></param>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.Tympanometry.N500Tympanogram.Load100(System.Int16[])">
+            <summary>
+            
+            </summary>
+            <param name="n500Xml"></param>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.Tympanometry.N500Tympanogram.Serialize">
+            <summary>
+            Serialize to XML string
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.Tympanometry.N500Tympanogram._ParseCompliance(System.Xml.Linq.XElement)">
+            <summary>
+            Parses compliance 
+            </summary>
+            <param name="xElement"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.Tympanometry.N500Tympanogram._ParseComplianceCurve(System.Xml.Linq.XElement)">
+            <summary>
+            Parses compliance node
+            </summary>
+            <param name="complianceNode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.Tympanometry.N500Tympanogram._ParseCompliancePoint(System.Xml.Linq.XElement)">
+            <summary>
+            Parse compliance point
+            </summary>
+            <param name="pointNode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.Tympanometry.N500Tympanogram._ParseComplianceUnit(System.Xml.Linq.XElement)">
+            <summary>
+            Parses complicance unit
+            </summary>
+            <param name="complianceUnitNode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.Tympanometry.N500Tympanogram._ParseGradientUnit(System.Xml.Linq.XElement)">
+            <summary>
+            Parses complicance unit
+            </summary>
+            <param name="complianceUnitNode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.Tympanometry.N500Tympanogram._ParseComplianceValue(System.Xml.Linq.XElement)">
+            <summary>
+            Parse compliance value node
+            </summary>
+            <param name="complianceValueNode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.Tympanometry.N500Tympanogram._ParseEustachianTubeFunctionIntactEarDrumTest(System.Xml.Linq.XElement)">
+            <summary>
+            Parse EustachianTubeFunctionIntactEarDrumTest
+            </summary>
+            <param name="xElement"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.Tympanometry.N500Tympanogram._ParseEustachianTubeFunctionPerforatedEarDrumTest(System.Xml.Linq.XElement)">
+            <summary>
+            Parses EustachianTubeFunctionPerforatedEarDrumTest
+            </summary>
+            <param name="xElement"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.Tympanometry.N500Tympanogram._ParseImpedanceMeasurementCondition(System.Xml.Linq.XElement)">
+            <summary>
+            Parses impedance m condition
+            </summary>
+            <param name="xElement"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.Tympanometry.N500Tympanogram._ParseMeasurementCondition(System.Xml.Linq.XElement)">
+            <summary>
+            Parse measurement condition
+            </summary>
+            <param name="xElement"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.Tympanometry.N500Tympanogram._ParsePressurePoint(System.Xml.Linq.XElement)">
+            <summary>
+            Parse pressurepoint
+            </summary>
+            <param name="xElement"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.Tympanometry.N500Tympanogram._ParseReflexCurve(System.Xml.Linq.XElement)">
+            <summary>
+            Parse the reflex curve
+            </summary>
+            <param name="xElement"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.Tympanometry.N500Tympanogram._ParseReflexPoint(System.Xml.Linq.XElement)">
+            <summary>
+            
+            </summary>
+            <param name="xElement"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.Tympanometry.N500Tympanogram._ParseReflexTest(System.Xml.Linq.XElement)">
+            <summary>
+            Parse reflex test
+            </summary>
+            <param name="xElement"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.Tympanometry.N500Tympanogram._ParseTympanogramTestType(System.Xml.Linq.XElement)">
+            <summary>
+            Parses Tympanogram test
+            </summary>
+            <param name="xElement"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TIMS_X.Server.Legacy.Noah.Format500.Tympanometry.N500Tympanogram.TympData">
+            <summary>
+            The class for the set of points.
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.Tympanometry.PressurePointType.Pressure">
+            <summary>
+            Pressure
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Format500.Tympanometry.PressurePointType.Time">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.Tympanometry.ReflexTestType.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.Tympanometry.TympanogramMeasurementConditionsType.Serialize">
+            <summary>
+            Serailize to XML
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.Tympanometry.TympanogramTestType.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Format500.Tympanometry.TympanogramTestType.Serialize(System.String)">
+            <summary>
+            Serilize the node
+            </summary>
+            <param name="rootName"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TIMS_X.Server.Legacy.Noah.IPureToneAudioSupport">
+            <summary>
+            Support pure tone averages
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.IPureToneAudioSupport.PureToneData">
+            <summary>
+            Gets the pure tone data
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.ISpeechSupport.MCLBinural">
+            <summary>
+            Gets MCL results for binural
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.ISpeechSupport.MCLLeft">
+            <summary>
+            Gets MCL results for left
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.ISpeechSupport.MCLRight">
+            <summary>
+            Gets MCL results for right
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.ISpeechSupport.SRTBinural">
+            <summary>
+            Gets SRT results for Binural
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.ISpeechSupport.SRTLeft">
+            <summary>
+            Gets SRT results for left
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.ISpeechSupport.SRTRight">
+            <summary>
+            Gets SRT results for right
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.ISpeechSupport.UCLBinural">
+            <summary>
+            Gets MCL results for binural
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.ISpeechSupport.UCLLeft">
+            <summary>
+            Gets MCL results for left
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.ISpeechSupport.UCLRight">
+            <summary>
+            Gets MCL results for right
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.ISpeechSupport.WR1Binural">
+            <summary>
+            Gets results for WR1 Binural
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.ISpeechSupport.WR1Left">
+            <summary>
+            Gets results for WR1 Left
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.ISpeechSupport.WR1Right">
+            <summary>
+            Gets results for WR1 Right
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.ISpeechSupport.WR2Binural">
+            <summary>
+            Gets results for WR1 Binural
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.ISpeechSupport.WR2Left">
+            <summary>
+            Gets results for WR1 Left
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.ISpeechSupport.WR2Right">
+            <summary>
+            Gets results for WR1 Right
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.ISpeechSupport.WR1BinuralAided">
+            <summary>
+            Gets results for WR1 Binural
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.ISpeechSupport.WR1LeftAided">
+            <summary>
+            Gets results for WR1 Left
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.ISpeechSupport.WR1RightAided">
+            <summary>
+            Gets results for WR1 Right
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.ISpeechSupport.WR2BinuralAided">
+            <summary>
+            Gets results for WR1 Binural
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.ISpeechSupport.WR2LeftAided">
+            <summary>
+            Gets results for WR1 Left
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.ISpeechSupport.WR2RightAided">
+            <summary>
+            Gets results for WR1 Right
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.MaskingResult.Description">
+            <summary>
+            Gets the description
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.MaskingResult.XMLTag">
+            <summary>
+            Gets the XML tag
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.MCLResult.Description">
+            <summary>
+            Gets the description
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.MCLResult.XMLTag">
+            <summary>
+            Gets the XML tag
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.MeasCond.TransducerDescription">
+            <summary>
+            Gets the transducer description
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.MeasurementNotes.LastCalibrationDate">
+            <summary>
+            Gets the last calibration date
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.MeasurementNotes.MakeModel">
+            <summary>
+            Gets the make and model
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.MeasurementNotes.SerialNumber">
+            <summary>
+            Gets the make and model
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.MeasurementNotes.TestMethod">
+            <summary>
+            Gets the make and model
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.MeasurementNotes.TestReliability">
+            <summary>
+            Gets the make and model
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.MeasurementNotes.SetData(System.IO.MemoryStream)">
+            <summary>
+            Sets the data from the blob to the properties
+            </summary>
+            <param name="src"></param>
+        </member>
+        <member name="T:TIMS_X.Server.Legacy.Noah.N100">
+            <summary>
+            Class for storing the audiogram results for the N100 tests
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.N100.#ctor(System.IO.MemoryStream)">
+            <summary>
+            Contructor
+            </summary>
+            <param name="src">Noah stream with results</param>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.N100.MCLToneAudiogram">
+            <summary>
+            MCL Tone audiograms
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.N100.ThreshodToneAudiogram">
+            <summary>
+            Threshold Tone audiograms
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.N100.UCLToneAudiogram">
+            <summary>
+            UCL Tone audiograms
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.N100.GetResults">
+            <summary>
+            Gets the audiogram test results from the memory stream
+            </summary>
+            <returns>Audiogram test results</returns>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.N100._GetSide(System.Int32,System.Int32)">
+            <summary>
+            Gets the side for this test
+            </summary>
+            <param name="idx"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.N100._GetTest(System.Int32)">
+            <summary>
+            Gets the test type
+            </summary>
+            <param name="idx">Index</param>
+            <returns>Test type</returns>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.N100._WriteAudiogramToResults(TIMS_X.Server.Legacy.Noah.TestSide,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Writes the audiogram to the results object
+            </summary>
+            <param name="side">Which side the results are for</param>
+            <param name="test">Test</param>
+            <param name="idx">Index</param>
+            <param name="off">Offset</param>
+            <param name="which">Which type of test results to store this in</param>
+        </member>
+        <member name="T:TIMS_X.Server.Legacy.Noah.SpeechResult">
+            <summary>
+            Internal class for speech results
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.SpeechResult.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="T:TIMS_X.Server.Legacy.Noah.N200">
+            <summary>
+            Noah 200 Audiogram test results
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.N200.#ctor(System.IO.MemoryStream)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="src">Memory stream</param>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.N200.DLAudiograms">
+            <summary>
+            Gets the DLAudiograms
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.N200.MCLAudiograms">
+            <summary>
+            Gets the MCLAudiograms
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.N200.MCLBinural">
+            <summary>
+            Gets MCL results for binural
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.N200.MCLLeft">
+            <summary>
+            Gets MCL results for left
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.N200.MCLRight">
+            <summary>
+            Gets MCL results for right
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.N200.MCLToneAudiogram">
+            <summary>
+            MCL Tone
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.N200.MeasurementNotes">
+            <summary>
+            Gets the device notes
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.N200.PureToneData">
+            <summary>
+            Pure Tone data for this audiogram
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.N200.SRTAudiograms">
+            <summary>
+            Gets the SRTAudiogramS
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.N200.SRTBinural">
+            <summary>
+            Gets SRT results for Binural
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.N200.SRTLeft">
+            <summary>
+            Gets SRT results for left
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.N200.SRTRight">
+            <summary>
+            Gets SRT results for right
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.N200.ThreshodToneAudiogram">
+            <summary>
+            Threshold Tone
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.N200.UCLAudiograms">
+            <summary>
+            Gets the UCLAudiograms
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.N200.UCLBinural">
+            <summary>
+            Gets MCL results for binural
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.N200.UCLLeft">
+            <summary>
+            Gets MCL results for left
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.N200.UCLRight">
+            <summary>
+            Gets MCL results for right
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.N200.UCLToneAudiogram">
+            <summary>
+            UCL Tone
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.N200.WR1Binural">
+            <summary>
+            Gets results for WR1 Binural
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.N200.WR1Left">
+            <summary>
+            Gets results for WR1 Left
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.N200.WR1Right">
+            <summary>
+            Gets results for WR1 Right
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.N200.WR2Binural">
+            <summary>
+            Gets results for WR1 Binural
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.N200.WR2Left">
+            <summary>
+            Gets results for WR1 Left
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.N200.WR2Right">
+            <summary>
+            Gets results for WR1 Right
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.N200.WR1BinuralAided">
+            <summary>
+            Gets results for WR1 Binural
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.N200.WR1LeftAided">
+            <summary>
+            Gets results for WR1 Left
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.N200.WR1RightAided">
+            <summary>
+            Gets results for WR1 Right
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.N200.WR2BinuralAided">
+            <summary>
+            Gets results for WR1 Binural
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.N200.WR2LeftAided">
+            <summary>
+            Gets results for WR1 Left
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.N200.WR2RightAided">
+            <summary>
+            Gets results for WR1 Right
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.N200.GetResults">
+            <summary>
+            Reads the results into result object
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.N200._AudiogramToResultsRow(TIMS_X.Server.Legacy.Noah.TestSide,System.Int32,System.Int32,System.Int32,TIMS_X.Server.Legacy.Noah.Enums.AudiogramTypeEnum)">
+            <summary>
+            Writes the audigram results from the memory stream to the results object
+            </summary>
+            <param name="side">Side the test results are for</param>
+            <param name="test">Test</param>
+            <param name="idx">Index</param>
+            <param name="off">Offset</param>
+            <param name="which">Which audio gram test results this if for</param>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.N200._ProcessMCLAudiogram(TIMS_X.Server.Legacy.Noah.Speech.MCLAudiogram)">
+            <summary>
+            Processes MCL Speech audiogram
+            </summary>
+            <param name="audiogram"></param>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.N200._ProcessSRTAudiogram(TIMS_X.Server.Legacy.Noah.Speech.SRTAudiogram)">
+            <summary>
+            Processes SRT audiogram
+            </summary>
+            <param name="audiogram"></param>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.N200._ProcessUCLAudiogram(TIMS_X.Server.Legacy.Noah.Speech.UCLAudiogram)">
+            <summary>
+            Processes UCL Speech Audiogram
+            </summary>
+            <param name="audiogram"></param>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.N200._ProcessWRAudiogram(TIMS_X.Server.Legacy.Noah.Speech.DLAudiogram)">
+            <summary>
+            Process word recognition audiogram
+            </summary>
+            <param name="audiogram"></param>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.NoahDateTime.Date">
+            <summary>
+            Gets the date piece
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.NoahDateTime.SetData(System.IO.MemoryStream)">
+            <summary>
+            Sets the data in the properties
+            </summary>
+            <param name="src"></param>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.PureToneData.PTA2FrequencyLeft">
+            <summary>
+            Gets PTA Left 2 frequencey test results
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.PureToneData.PTA2FrequencyRight">
+            <summary>
+            Gets PTA Right 2 frequencey test results
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.PureToneData.PTA3FrequencyLeft">
+            <summary>
+            Gets PTA Left 3 frequencey test results
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.PureToneData.PTA3FrequencyRight">
+            <summary>
+            Gets PTA Right 3 frequencey test results
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.PureToneData.PTA4FrequencyLeft">
+            <summary>
+            Gets PTA Left 4 frequencey test results
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.PureToneData.PTA4FrequencyRight">
+            <summary>
+            Gets PTA Right 4 frequencey test results
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.PureToneData.SetPTAData(TIMS_X.Server.Legacy.Noah.TestSide,System.Int32,System.Int32)">
+            <summary>
+            Sets the data
+            </summary>
+            <param name="side"></param>
+            <param name="frequency"></param>
+            <param name="intensity"></param>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.SATResult.Description">
+            <summary>
+            Gets the description
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.SATResult.XMLTag">
+            <summary>
+            Gets the XML tag
+            </summary>
+        </member>
+        <member name="T:TIMS_X.Server.Legacy.Noah.SignalTest">
+            <summary>
+            Encapsulates the date for a signal test
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.SignalTest.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.SignalTest.Item(System.Int32)">
+            <summary>
+            Gets or sets a specic test point
+            </summary>
+            <param name="index">Index of the test to access</param>
+            <returns>Test</returns>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.SpeechData.#ctor">
+            <summary>
+            Construcot
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.SpeechData.MaskingData">
+            <summary>
+            Gets Masking data
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.SpeechData.MCLData">
+            <summary>
+            Gets MCL data
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.SpeechData.SATData">
+            <summary>
+            Gets SAT data
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.SpeechData.SRTData">
+            <summary>
+            Gets SRT data
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.SpeechData.UCLData">
+            <summary>
+            Gets UCL data
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.SpeechData.DeSerialize(System.Xml.Linq.XElement)">
+            <summary>
+            Takes the data from the XML element and exports it to the task
+            </summary>
+            <param name="xElement"></param>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.SpeechData.Serialize">
+            <summary>
+            Serializes the XML element
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.SpeechResultBase.Binural">
+            <summary>
+            Gets or sets binural results
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.SpeechResultBase.BinuralAided">
+            <summary>
+            Gets or sets binural results
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.SpeechResultBase.Description">
+            <summary>
+            Gets or sets binural results
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.SpeechResultBase.Left">
+            <summary>
+            Gets or sets binural results
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.SpeechResultBase.Right">
+            <summary>
+            Gets or sets binural results
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.SpeechResultBase.LeftAided">
+            <summary>
+            Gets or sets binural results
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.SpeechResultBase.RightAided">
+            <summary>
+            Gets or sets binural results
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.SpeechResultBase.Soudfield">
+            <summary>
+            Gets or sets binural results
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.SpeechResultBase.SoudfieldAided">
+            <summary>
+            Gets or sets binural results
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.SpeechResultBase.XMLTag">
+            <summary>
+            Gets the XMLTag used in serialization
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.SpeechResultBase.BeginEdit">
+            <summary>
+            Begins an edit on an object.
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.SpeechResultBase.CancelEdit">
+            <summary>
+            Discards changes since the last <see cref="M:System.ComponentModel.IEditableObject.BeginEdit"/> call.
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.SpeechResultBase.DeSerialize(System.Xml.Linq.XElement)">
+            <summary>
+            Takes the data from the XML element and exports it to the task
+            </summary>
+            <param name="xElement"></param>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.SpeechResultBase.EndEdit">
+            <summary>
+            Pushes changes since the last <see cref="M:System.ComponentModel.IEditableObject.BeginEdit"/> or <see cref="M:System.ComponentModel.IBindingList.AddNew"/> call into the underlying object.
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.SpeechResultBase.Serialize">
+            <summary>
+            Serializes the XML element
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:TIMS_X.Server.Legacy.Noah.Speech.DLAudiogram">
+            <summary>
+            Contains the Word recognition data
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Speech.DLAudiogram.NumberOfPoints">
+            <summary>
+            Gets the number of points on the curve
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Speech.MCLAudiogram.NumberOfPoints">
+            <summary>
+            Gets the number of points on the curve
+            </summary>
+        </member>
+        <member name="T:TIMS_X.Server.Legacy.Noah.Speech.SpeechAudiogram">
+            <summary>
+            Base Speech Audiogram
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Speech.SpeechAudiogram.NumberOfPoints">
+            <summary>
+            Gets the number of points on the curve
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Speech.SpeechAudiogram.SetData(System.IO.MemoryStream)">
+            <summary>
+            Loads data from blob
+            </summary>
+            <param name="src"></param>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Speech.SpeechAudiogram.Curve">
+            <summary>
+            Gets the list of curves
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Speech.SpeechAudiogram.MeasuringCondition">
+            <summary>
+            Gets the measuring condition
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.Speech.SpeechPoint.SetData(System.IO.MemoryStream)">
+            <summary>
+            Loads data from blob
+            </summary>
+            <param name="src"></param>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Speech.SpeechPoint.Intensity1">
+            <summary>
+            Gets the intensity of stimulus channel
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Speech.SpeechPoint.Intensity2">
+            <summary>
+            Gets the intensity of masking channel
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Speech.SpeechPoint.ScorePercent">
+            <summary>
+            Gets the score percent
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Speech.SpeechPoint.Words">
+            <summary>
+            Gets the number of words
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Speech.SRTAudiogram.NumberOfPoints">
+            <summary>
+            Gets the number of points on the curve
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Speech.UCLAudiogram.NumberOfPoints">
+            <summary>
+            Gets the number of points on the curve
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.SRTResult.Description">
+            <summary>
+            Gets the description
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.SRTResult.XMLTag">
+            <summary>
+            Gets the XML tag
+            </summary>
+        </member>
+        <member name="T:TIMS_X.Server.Legacy.Noah.Test">
+            <summary>
+            Results of one specific test
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Test.Condition1">
+            <summary>
+            Condition 1, determines the difference between a SFA and SFA 2 test
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Test.Frequency1">
+            <summary>
+            Gets or sets the frequency of the test
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Test.Intensity1">
+            <summary>
+            Gets or sets the Intensity of the test
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Test.SignalOutput">
+            <summary>
+            Gets or sets the status of the test
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.Test.Status">
+            <summary>
+            Gets or sets the status of the test
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.TestData.BeginEdit">
+            <summary>
+            Begins an edit on an object.
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.TestData.CancelEdit">
+            <summary>
+            Discards changes since the last <see cref="M:System.ComponentModel.IEditableObject.BeginEdit"/> call.
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.TestData.DeSerialize(System.Xml.Linq.XElement)">
+            <summary>
+            Takes the data from the XML element and exports it to the task
+            </summary>
+            <param name="xElement"></param>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.TestData.EndEdit">
+            <summary>
+            Pushes changes since the last <see cref="M:System.ComponentModel.IEditableObject.BeginEdit"/> or <see cref="M:System.ComponentModel.IBindingList.AddNew"/> call into the underlying object.
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.TestData.Serialize">
+            <summary>
+            Serializes the XML element
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.TestResults.ACMTest">
+            <summary>
+            Gets the AC masked test array 
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.TestResults.ACTest">
+            <summary>
+            Gets the AC test array
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.TestResults.ARTTest">
+            <summary>
+            Gets the ART test array
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.TestResults.BCMTest">
+            <summary>
+            Gets the BC masked test array
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.TestResults.BCTest">
+            <summary>
+            Gets the BC test array
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.TestResults.IPTest">
+            <summary>
+            Gets the Inser Phones test array
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.TestResults.MCLTest">
+            <summary>
+            Gets the MCL test array
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.TestResults.SFATest">
+            <summary>
+            Gets the SFA test array
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.TestResults.SFTest">
+            <summary>
+            Gets the SF test array
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.TestResults.UCLTest">
+            <summary>
+            Gets the UCL test array
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.TestResults.GetTest(System.Int32)">
+            <summary>
+            Gets a specific test from the resutls
+            </summary>
+            <param name="testType">Test type to get</param>
+            <returns>Test(array of Test objects, each representing a position)</returns>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.TestResults.SetTestCondition1(System.Int32,System.Int32,TIMS_X.Server.Legacy.Noah.Enums.HearingTestConditionEnum,System.Int32)">
+            <summary>
+            Sets a test intensity
+            </summary>
+            <param name="testType">Test type to set</param>
+            <param name="position">Position in test array</param>
+            <param name="condition1">Condition to set</param>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.TestResults.SetTestFrequency(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Sets a test frequencey
+            </summary>
+            <param name="testType">Test type to set</param>
+            <param name="position">Position in test array</param>
+            <param name="frequency">Frequency to set</param>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.TestResults.SetTestIntensity(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Sets a test intensity
+            </summary>
+            <param name="testType">Test type to set</param>
+            <param name="position">Position in test array</param>
+            <param name="intensity">Intensity to set</param>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.TestResults.SetTestSignalOutput(System.Int32,System.Int32,TIMS_X.Server.Legacy.Noah.Enums.SignalOutputEnum,System.Int32)">
+            <summary>
+            Sets a test intensity
+            </summary>
+            <param name="testType">Test type to set</param>
+            <param name="position">Position in test array</param>
+            <param name="signalOutput">Intensity to set</param>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.TestResults.SetTestStatus(System.Int32,System.Int32,TIMS_X.Server.Legacy.Noah.Enums.PointStatusEnum,System.Int32)">
+            <summary>
+            Sets a specific tests status
+            </summary>
+            <param name="testType">Test type to set</param>
+            <param name="position">Position in test array</param>
+            <param name="status">Status</param>
+        </member>
+        <member name="T:TIMS_X.Server.Legacy.Noah.THRAudiogram">
+            <summary>
+            Threshold Audiogram, 24 points on a curve designating frequency and intensity and a measuring condition
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.THRAudiogram.Condition1">
+            <summary>
+            Gets the Hearing test condition
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.THRAudiogram.MeasuringCondition">
+            <summary>
+            Gets the measuring condition
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.THRAudiogram.TPFreq1(System.Int32)">
+            <summary>
+            Frequency of stimules channel
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.THRAudiogram.TPFreq2(System.Int32)">
+            <summary>
+            Frequency of masking channel
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.THRAudiogram.TPIntensity1(System.Int32)">
+            <summary>
+            SPL of stimules channel X 10
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.THRAudiogram.TPIntensity2(System.Int32)">
+            <summary>
+            SPL of masking channel X 10
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.TonePoint.TFreq1">
+            <summary>
+            Frequency of stimulus channel
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.TonePoint.TFreq2">
+            <summary>
+            Frequency of masking channel
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.TonePoint.TIntensity1">
+            <summary>
+            SPL of stimulus channel
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.TonePoint.TIntensity2">
+            <summary>
+            SPL of masking channel
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.UCLResult.Description">
+            <summary>
+            Gets the description
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.UCLResult.XMLTag">
+            <summary>
+            Gets the XML tag
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.WordRecognitionData.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.WordRecognitionData.WRResult1">
+            <summary>
+            WR result 1
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.WordRecognitionData.WRResult2">
+            <summary>
+            WR result 2
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.WordRecognitionData.DeSerialize(System.Xml.Linq.XElement)">
+            <summary>
+            Takes the data from the XML element and exports it to the task
+            </summary>
+            <param name="xElement"></param>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.WordRecognitionData.Serialize">
+            <summary>
+            Serializes the XML element
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.WRDBHLResult.Description">
+            <summary>
+            Gets the description
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.WRDBHLResult.XMLTag">
+            <summary>
+            Gets the XML tag
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.WRMaskingResult.Description">
+            <summary>
+            Gets the description
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.WRMaskingResult.XMLTag">
+            <summary>
+            Gets the XML tag
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.WRNumberOfWordsResult.Description">
+            <summary>
+            Gets the description
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.WRNumberOfWordsResult.XMLTag">
+            <summary>
+            Gets the XML tag
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.WRPercentResult.Description">
+            <summary>
+            Gets the description
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.WRPercentResult.XMLTag">
+            <summary>
+            Gets the XML tag
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.WRResult.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Legacy.Noah.WRResult.Name">
+            <summary>
+            Gets the name for this result
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.WRResult.DeSerialize(System.Xml.Linq.XElement)">
+            <summary>
+            Takes the data from the XML element and exports it to the task
+            </summary>
+            <param name="xElement"></param>
+        </member>
+        <member name="M:TIMS_X.Server.Legacy.Noah.WRResult.Serialize">
+            <summary>
+            Serializes the XML element
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:TIMS_X.Server.Middleware.ApiKeyMiddleware">
+            <summary>
+            This class gets inserted into the request pipeline and validates all requests that require an api key.
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Middleware.ApiKeyMiddleware.Invoke(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            Invoke the middleware on a request to require api key authentication
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="P:TIMS_X.Server.Models.TwilioCallResponse.CallSid">
+            <summary>
+            The id of the Call as provided by Twilio.
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Models.TwilioCallResponse.CallStatus">
+            <summary>
+            The Call status.
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Models.TwilioCallResponse.Digits">
+            <summary>
+            The digits that the user pressed, including the termination symbol (*, #, etc...).
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Models.TwilioCallScriptRequest.CallSid">
+            <summary>
+            The id of the Call as provided by Twilio.
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Models.TwilioSmsResponse.SmsStatus">
+            <summary>
+            The sms status.
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Models.TwilioSmsResponse.AccountSid">
+            <summary>
+            The 34 character id of the Account this message is associated with.
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Models.TwilioSmsResponse.Body">
+            <summary>
+            The text body of the SMS message. Up to 160 characters long.
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Models.TwilioSmsResponse.From">
+            <summary>
+            The phone number that sent this message.
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Models.TwilioSmsResponse.SmsSid">
+            <summary>
+            A 34 character unique identifier for the message. 
+            May be used to later retrieve this message from the REST API.
+            </summary>
+        </member>
+        <member name="P:TIMS_X.Server.Models.TwilioSmsResponse.To">
+            <summary>
+            The phone number of the recipient.
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Pages.Account.ChangePasswordModel.OnPostAsync">
+            <summary>
+            User is submitting password change
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Pages.Account.LoginModel.OnPostAsync(System.String)">
+            <summary>
+            User is attempting to log in
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Pages.Account.LoginModel._AuthenticateUser(System.Int32,System.String)">
+            <summary>
+            Checks user password
+            </summary>
+        </member>
+        <member name="M:TIMS_X.Server.Queries.PatientQuery.CalculateBatchesAsync(System.Int32)">
+            <summary>
+            Given a batch size n, this routine will return a list of Patient ID Pairs.
+            Each ID Pair has n records between them, including themselves.
+            </summary>
+            <param name="batchSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TIMS_X.Server.Services.OpportunityTrackingService._IsAudiogramTestAboveThreshold(System.Int32,TIMS_X.Server.Legacy.Noah.TestSide,TIMS_X.Server.Legacy.Noah.AudiogramTestResults,TIMS_X.Core.Models.OpportunityTrackingRules)">
+            <summary>
+            Gets if the audiogram is above the thresholds for the test
+            </summary>
+            <param name="test"></param>
+            <param name="side"></param>
+            <param name="testResults"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TIMS_X.Server.Services.OpportunityTrackingService._GetTestFrequency(System.Int32,TIMS_X.Server.Legacy.Noah.TestSide,TIMS_X.Server.Legacy.Noah.AudiogramTestResults,System.Int32)">
+            <summary>
+            Gets the actual frequency for a test
+            </summary>
+            <param name="test"></param>
+            <param name="side"></param>
+            <param name="testResults"></param>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TIMS_X.Server.Services.PatientMessagingService._GetSmsBodyChunked(TIMS_X.Core.Enums.MessageTemplateType,TIMS_X.Core.Domain.MessageTemplate,System.String,System.String,TIMS_X.Core.Models.PatientNotification)">
+            <summary>
+            
+            </summary>
+            <param name="templateType"></param>
+            <param name="messageTemplate"></param>
+            <param name="officeCode"></param>
+            <param name="key"></param>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TIMS_X.Server.Services.PatientMessagingService._HandlePatientNotificationResponseAsync(TIMS_X.Core.Enums.MessageDeliveryMethod,TIMS_X.Core.Enums.PatientNotificationResponse,System.Int32,System.String,System.String,System.String)">
+            <summary>
+            Responsible for parsing the patient's voice notification response
+            and updating the associated appointment's status.
+            </summary>
+            <param name="callResponse">The call response model</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

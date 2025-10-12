@@ -1,0 +1,48 @@
+@media (max-width: 500px) {
+    #desktop-header {
+        display: none !important;
+    }
+
+    #mobile-header {
+        display: block !important;
+    }
+}
+
+:host {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /* border: solid 3px yellow; */
+}
+
+.app-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.navbar {
+    background-color: #003768;
+}
+
+.navbar-brand {
+    line-height: 24px;
+    color: #fff;
+}
+
+.nav-link:hover {
+    color: #0088cc !important;
+}
+
+.nav-link {
+    padding: 2px 8px;
+    color: #ffffff !important;
+}
+
+a:hover {
+    cursor: pointer;
+}

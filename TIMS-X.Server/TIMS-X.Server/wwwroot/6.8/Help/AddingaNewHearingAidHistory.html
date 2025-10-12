@@ -1,0 +1,360 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="generator" content="HelpNDoc Professional Edition 9.8.0.588">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="favicon.ico"/>
+
+  <title>Adding a New Hearing Aid History</title>
+  <meta name="description" content="" /> 
+  <meta name="keywords" content="Hearing Aid History,Add a New HA History">
+
+
+
+  
+  
+
+  <!-- Twitter Card data -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Adding a New Hearing Aid History">
+  <meta name="twitter:description" content="">
+
+  <!-- Open Graph data -->
+  <meta property="og:title" content="Adding a New Hearing Aid History" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="" />
+  <meta property="og:site_name" content="TIMS Audiology and SLP Version 6.08" /> 
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendors/bootstrap-3.4.1/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <link href="vendors/bootstrap-3.4.1/css/ie10-viewport-bug-workaround.css" rel="stylesheet"/>
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="vendors/html5shiv-3.7.3/html5shiv.min.js"></script>
+      <script src="vendors/respond-1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+  <!-- JsTree styles -->
+  <link href="vendors/jstree-3.3.10/themes/default/style.min.css" rel="stylesheet"/>
+
+  <!-- Hnd styles -->
+  <link href="css/layout.min.css" rel="stylesheet" />
+  <link href="css/effects.min.css" rel="stylesheet" />
+  <link href="css/theme-dark-blue.min.css" rel="stylesheet" />
+  <link href="css/print.min.css" rel="stylesheet" media="print" />
+  <style type="text/css">nav { width: 350px} @media screen and (min-width:769px) { body.md-nav-expanded div#main { margin-left: 350px} body.md-nav-expanded header { padding-left: 364px} }</style>
+  <style type="text/css">.navigation #inline-toc { width: auto !important}</style>
+
+  <!-- Content style -->
+  <link href="css/hnd.content.css" rel="stylesheet" />
+
+  
+
+
+
+</head>
+
+<body class="md-nav-expanded">
+
+
+
+  
+
+  <div id="skip-link">
+    <a href="#main-content" class="element-invisible">Skip to main content</a>
+  </div>
+
+  <header class="headroom">
+    <button class="hnd-toggle btn btn-default">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>        
+    </button>
+    <h1>TIMS Audiology and SLP Version 6.08</h1>
+    <a href="https://us.timsaudiology.com"><img src="_logo.png" alt="logo" class="logo"/></a>
+  </header>
+
+  <nav id="panel-left" class="md-nav-expanded">
+    <!-- Nav tabs -->
+    <ul class="tab-tabs nav nav-tabs" role="tablist">
+      <li id="nav-close" role="presentation"> 
+        <button class="hnd-toggle btn btn-default" aria-label="close">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+      </li>
+      
+	  
+        <li role="presentation" class="tab active">
+            <a href="#contents" id="tab-contents" aria-controls="contents" role="tab" data-toggle="tab">
+                <i class="glyphicon glyphicon-list"></i>
+                Contents
+            </a>
+        </li>
+      
+        <li role="presentation" class="tab">
+            <a href="#index" id="tab-index" aria-controls="index" role="tab" data-toggle="tab">
+                <i class="glyphicon glyphicon-asterisk"></i>
+                Index
+            </a>
+        </li>
+      
+        <li role="presentation" class="tab">
+            <a href="#search" id="tab-search" aria-controls="search" role="tab" data-toggle="tab">
+                <i class="glyphicon glyphicon-search"></i>
+                Search
+            </a>
+        </li>
+      
+    </ul>  <!-- /Nav tabs -->
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+	  
+      <div role="tabpanel" class="tab-pane active" id="contents">
+        <div id="toc" class="tree-container unselectable"
+            data-url="_toc.json"
+            data-openlvl="1"
+        >
+            
+        </div>
+      </div>  <!-- /contents-->
+      
+      <div role="tabpanel" class="tab-pane" id="index">
+        <div id="keywords" class="tree-container unselectable"
+            data-url="_keywords.json"
+            data-openlvl="2"
+        >
+            
+        </div>
+      </div>  <!-- /index-->
+      
+      <div role="tabpanel" class="tab-pane" id="search">
+        <div class="search-content">
+          <div class="search-input">
+            <form id="search-form">
+              <div class="form-group">
+                <div class="input-group">
+                  <input type="text" class="form-control" id="input-search" name="input-search" placeholder="Search..." aria-label="Search..." />
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit" aria-label="Search...">
+                      <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </button>
+                  </span>
+                </div>
+              </div>
+            </form>
+          </div>  <!-- /search-input -->
+          <div class="search-result">
+            <div id="search-info"></div>
+            <div class="tree-container unselectable" id="search-tree"></div>
+          </div>  <!-- /search-result -->
+        </div>  <!-- /search-content -->
+      </div>  <!-- /search-->
+      
+    </div>  <!-- /Tab panes -->
+
+  </nav>
+
+  <div id="main">
+
+    <article>
+        <div id="topic-content" class="container-fluid" 
+		  data-hnd-id="AddingaNewHearingAidHistory"
+		  data-hnd-context="176"
+		  data-hnd-title="Adding a New Hearing Aid History"
+		>
+            
+                <div class="navigation">
+                    <ol class="breadcrumb">
+                        <li>Patients</li><li>Hearing Aid History</li>
+                    </ol>
+                    <div class="nav-arrows">
+                        <div class="btn-group btn-group" role="group"><div class="btn-group"><button type="button" title="In this page..." class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span></button><ul id="inline-toc" class="dropdown-menu dropdown-menu-right"></ul></div><a class="btn btn-default" href="HAHistoryOverview.html" title="HA History Overview" role="button"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a><a class="btn btn-default" href="Orders.html" title="Orders" role="button"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></div>
+                    </div>
+                </div> 
+            
+
+            <a id="main-content"></a>
+
+            <h2>Adding a New Hearing Aid History</h2>
+
+            <div class="main-content">
+                
+<p class="rvps3"><span class="rvts8">A Hearing Aid History can be for a </span><span class="rvts15">Custom Ordered</span><span class="rvts8"> device, a </span><span class="rvts15">Stock</span><span class="rvts8"> device, or to indicate a </span><span class="rvts15">Purchased Elsewhere</span><span class="rvts8"> (Previously Owned)</span><span class="rvts15"> </span><span class="rvts8">device.&nbsp;</span></p>
+<h1 class="rvps7"><span class="rvts0"><span class="rvts24">Add a New Hearing Aid History</span></span></h1>
+<p class="rvps3"><span class="rvts8"><br/></span></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li class="rvps3 noindent"><span class="rvts8">Click on the Patient Tree and choose the desired patient (searching first if necessary).</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">Once you have chosen the patient, click on the Add New icon </span><img alt="" style="padding : 1px;" src="lib/add%20new.gif"><span class="rvts8">. The Create New popup appears.</span></li>
+</ol>
+<p class="rvps3"><span class="rvts8">&nbsp;</span><span class="rvts8"> &nbsp; &nbsp; &nbsp; &nbsp;</span><img alt="" style="padding : 1px;" src="lib/ha%20create%20new.gif"></p>
+<p class="rvps6"><span class="rvts8">Choose which type of device history you want to create by clicking the </span><span class="rvts15">Hearing Aid, Earmold </span><span class="rvts8">or</span><span class="rvts15"> Accessory</span><span class="rvts8"> button. Choosing Cancel will close the screen with no action taken.</span></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="3" class="rvps3 noindent"><span class="rvts8">For hearing aids or earmolds choose which Side you want to create by clicking the </span><span class="rvts15">Right</span><span class="rvts8"> or </span><span class="rvts15">Left</span><span class="rvts8"> buttons.</span></li>
+</ol>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/ha%20new%20side.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="4" class="rvps3 noindent"><span class="rvts8">Select the type of history - </span><span class="rvts15">New Order, Stock, </span><span class="rvts8">or</span><span class="rvts15"> Purchased Elsewhere</span><span class="rvts8">.&nbsp;</span></li>
+</ol>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/ha%20new%20type.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="5" class="rvps3 noindent"><span class="rvts15">New Order Hearing Aid History</span><span class="rvts8">: a blank Order screen will appear.</span></li>
+</ol>
+<p class="rvps19"><img alt="" style="padding : 1px;" src="lib/ha%20order%20new.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li class="rvps6 noindent"><span class="rvts15">Manufacturer</span><span class="rvts8">, </span><span class="rvts15">Model</span><span class="rvts8"> and </span><span class="rvts15">Expected In</span><span class="rvts8"> date are required fields and highlighted in yellow. Only active models marked as Available for Sale will be shown.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>
+  <li class="rvps6 noindent"><span class="rvts15">Ordered</span><span class="rvts8"> date defaults to current date but can be changed as needed.</span></li>
+  <li class="rvps6 noindent"><span class="rvts15">P.O. No</span><span class="rvts8">. is auto created by TIMS when the record is saved and will sync to QuickBooks.</span></li>
+  <li class="rvps6 noindent"><span class="rvts8">Enter the </span><span class="rvts15">Vendor's Invoice</span><span class="rvts8"> and </span><span class="rvts15">Tracking Numbers</span><span class="rvts8"> if available.</span></li>
+  <li class="rvps6 noindent"><span class="rvts8">Order information can be scanned into the hearing aid records and will be saved in the imaging center under the patient name. Click the </span><span class="rvts15">Doc Scan</span><span class="rvts8"> button </span><img alt="" style="padding : 1px;" src="lib/doc%20scan%20btn.gif"><span class="rvts8"> to open the </span><a class="rvts16" href="AttachingDocumentstoaPatientReco.html">Imaging system</a><span class="rvts8">. Previously scanned/attached documents will be listed in the Documents section.</span></li>
+ </ol>
+</ol>
+<p class="rvps19"><img alt="" style="padding : 1px;" src="lib/ha%20order%20docs.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li value="6" class="rvps6 noindent"><span class="rvts15">Notes</span><span class="rvts8"> can be added in the notes field.</span></li>
+  <li class="rvps6 noindent"><span class="rvts8">Click </span><span class="rvts15">OK</span><span class="rvts8"> to save order and the Hearing Aid Details screen will automatically open.</span></li>
+  <li class="rvps6 noindent"><span class="rvts8">See </span><a class="rvts16" href="Orders.html">Orders</a><span class="rvts8"> for more details.</span></li>
+ </ol>
+ <li value="6" class="rvps3 noindent"><span class="rvts15">Stock Item Hearing Aid History</span><span class="rvts8">: the Stock Item selection tree will popup.&nbsp;</span></li>
+</ol>
+<p class="rvps19"><img alt="" style="padding : 1px;" src="lib/ha%20stock%20selection.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li class="rvps6 noindent"><span class="rvts8">A list of available stock hearing aids for the current site will be listed on the tree. Only stock items with a stock status of "New" or "Used" will be available. The Style, Serial Number, Status, Date Received, and Price will be shown. &nbsp;Hold the mouse cursor over the model to see a tooltip of the options attached. &nbsp;Double-click to select the specific model you want.</span></li>
+ </ol>
+</ol>
+<p class="rvps19"><img alt="" style="padding : 1px;" src="lib/ha%20stock%20option%20tooltip.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li value="2" class="rvps6 noindent"><span class="rvts8">The Manufacturer, Model, Serial Number, Price, and Options will be automatically copied to the HA History fields. &nbsp;The manufacturer and model fields will then become non-editable.</span></li>
+  <li class="rvps6 noindent"><span class="rvts8">The Status will automatically be set to "In Use".</span></li>
+  <li class="rvps6 noindent"><span class="rvts8">Fill in any other available information. The Invoice box will be checked automatically. Un-check if you do not wish to create an invoice. (see </span><a class="rvts16" href="AutomatedInvoicing.html">Automated Invoicing</a><span class="rvts8"> for more information) &nbsp;For information on the definition of a specific field, refer to the overview section of </span><a class="rvts16" href="HAHistoryOverview.html">Hearing Aid History</a><span class="rvts8">.</span></li>
+  <li class="rvps6 noindent"><span class="rvts8">Click OK to save.</span></li>
+  <li class="rvps6 noindent"><span class="rvts8">See </span><a class="rvts16" href="StockItems.html">Stock Items</a><span class="rvts8"> for more details.</span></li>
+ </ol>
+ <li value="7" class="rvps3 noindent"><span class="rvts15">Purchased Elsewhere Hearing Aid History</span><span class="rvts8">: the Hearing Aid History details screen will popup.</span></li>
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li class="rvps6 noindent"><span class="rvts8">Select a Manufacturer and Model. &nbsp;Only active models will be shown.&nbsp;</span></li>
+  <li class="rvps6 noindent"><span class="rvts8">The Status will automatically be set to "Purchased Elsewhere".</span></li>
+  <li class="rvps6 noindent"><span class="rvts8">Fill in any available information. For information on the definition of a specific field, refer to the overview section of </span><a class="rvts16" href="HAHistoryOverview.html">Hearing Aid History</a><span class="rvts8">. &nbsp;</span></li>
+  <li class="rvps6 noindent"><span class="rvts8">The Invoice box will be </span><span class="rvts15">not</span><span class="rvts8"> be checked by default.</span></li>
+  <li class="rvps6 noindent"><span class="rvts8">Click OK to save.</span></li>
+ </ol>
+</ol>
+<p class="rvps3"><span class="rvts8"><br/></span></p>
+<h1 class="rvps7"><span class="rvts0"><span class="rvts24">Earmold History</span></span></h1>
+<ul style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside; list-style-type: disc;">
+ <li class="rvps3 noindent"><span class="rvts8">Follow the instructions above for either a Custom Order, Stock Item, or Purchased Elsewhere device.</span></li>
+</ul>
+<p class="rvps3"><span class="rvts8"><br/></span></p>
+<h1 class="rvps7"><span class="rvts0"><span class="rvts24">Accessory History</span></span><span class="rvts0"><span class="rvts8"> &nbsp;</span></span></h1>
+<ul style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside; list-style-type: disc;">
+ <li class="rvps3 noindent"><span class="rvts8">Follow the instructions above for either a Custom Order, Stock Item, or Purchased Elsewhere device.</span></li>
+ <li class="rvps3 noindent"><img alt="" style="padding : 1px;" src="lib/important.gif"><span class="rvts8"> </span><span class="rvts15">Note</span><span class="rvts8">: There are </span><span class="rvts15">no sides(ears)</span><span class="rvts8"> for an Accessory - that step will be skipped.</span></li>
+</ul>
+<p class="rvps3"><span class="rvts8"><br/></span></p>
+<h1 class="rvps7"><span class="rvts0"><span class="rvts24">Binaural Hearing Aids</span></span></h1>
+<p class="rvps3"><span class="rvts8">A binaural hearing aid or earmold fitting can be created several ways.</span></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li class="rvps3 noindent"><span class="rvts8">After creating the Hearing Aid History in one of the 3 ways above, Click the </span><span class="rvts15">Create Binaural</span><span class="rvts8"> button </span><img alt="" style="padding : 1px;" src="lib/ha%20create%20binaural.gif"><span class="rvts8"> to add a hearing aid record for the other ear.</span></li>
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li class="rvps6 noindent"><span class="rvts8">Select the type of the other side history - </span><span class="rvts15">New Order, Stock, </span><span class="rvts8">or</span><span class="rvts15"> Purchased Elsewhere</span><span class="rvts8">.</span></li>
+  <li class="rvps6 noindent"><span class="rvts8">Follow the instructions above for the type chosen. If the the new side is a New Order or Purchased Elsewhere, the Manufacturer and Model will be copied over (but can be changed if needed).</span></li>
+ </ol>
+ <li class="rvps3 noindent"><span class="rvts8">To combine two already existing hearing aid records into a binaural fitting, click on the </span><span class="rvts15">Link HA Records</span><span class="rvts8"> icon </span><img alt="" style="padding : 1px;" src="lib/link.gif"><span class="rvts8"> on either side.</span></li>
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li class="rvps6 noindent"><span class="rvts8">A confirmation message will popup. Click Yes to proceed, No to Cancel.</span></li>
+ </ol>
+</ol>
+<p class="rvps19"><img alt="" style="padding : 1px;" src="lib/ha%20link%20msg.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li value="2" class="rvps6 noindent"><span class="rvts8">A list of other side histories available to be linked will popup. &nbsp;Select the one you want to link, then click OK.</span></li>
+ </ol>
+</ol>
+<p class="rvps19"><img alt="" style="padding : 1px;" src="lib/ha%20link%20selection.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li value="3" class="rvps6 noindent"><span class="rvts8">The two hearing aid histories are now linked. &nbsp;</span></li>
+ </ol>
+</ol>
+<p class="rvps3"><span class="rvts8">&nbsp;</span></p>
+<p class="rvps3"><span class="rvts15">Unlink Hearing Aid Histories</span></p>
+<p class="rvps3"><span class="rvts8">The sides of a binaural fitting can be un-linked </span><span class="rvts15">only if one or both sides have a </span><a class="rvts35" href="Status.html">Status</a><span class="rvts15"> that is not active</span><span class="rvts8">. (Not Used, Lost, Void, etc). If that is the case, the Unlink icon </span><img alt="" style="padding : 1px;" src="lib/unlink.gif"><span class="rvts8"> will be available.</span></p>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/ha%20unlink.gif"></p>
+<p class="rvps3"><span class="rvts8">When you click the Unlink icon, a confirmation message will popup. Click Yes to Unlink, No to Cancel.</span></p>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/ha%20unlink%20msg.gif"></p>
+<p class="rvps3"><span class="rvts15"><br/></span></p>
+<p class="rvps3"><span class="rvts15">Copying Information from Either Side</span></p>
+<p class="rvps3"><span class="rvts8">Click on the </span><span class="rvts15">Copy To Left</span><span class="rvts8"> </span><img alt="" style="padding : 1px;" src="lib/ha%20copy%20btn.gif"><span class="rvts8"> or </span><span class="rvts15">Copy To Right</span><span class="rvts8"> buttons to copy information from one binaural hearing aid record to another without having to re-enter the same information. If you’re entering something unique to that side, such as a note that applies to the right side only, do not click the Copy To button.</span></p>
+<p class="rvps6"><span class="rvts8"></span><span class="rvts8"></span></p>
+
+            </div>
+            
+            
+        </div>  <!-- /#topic-content -->
+    </article>
+
+    <footer></footer>
+
+  </div>  <!-- /#main -->
+
+  <div class="mask" data-toggle="sm-nav-expanded"></div>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="hndModal" tabindex="-1" role="dialog" aria-labelledby="hndModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="hndModalLabel"></h4>
+        </div>
+        <div class="modal-body">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary modal-btn-close" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Splitter -->
+  <div id="hnd-splitter" style="left: 350px"></div>  
+
+  <!-- Scripts -->
+  <script src="vendors/jquery-3.7.1/jquery.min.js"></script>
+  <script src="vendors/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+  <script src="vendors/bootstrap-3.4.1/js/ie10-viewport-bug-workaround.js"></script>
+  <script src="vendors/markjs-8.11.1/jquery.mark.min.js"></script>
+  <script src="vendors/uri-1.19.11/uri.min.js"></script>
+  <script src="vendors/imageMapResizer-1.0.10/imageMapResizer.min.js"></script>
+  <script src="vendors/headroom-0.11.0/headroom.min.js"></script>
+  <script src="vendors/jstree-3.3.10/jstree.min.js"></script>  
+  <script src="vendors/interactjs-1.9.22/interact.min.js"></script>  
+
+  <!-- HelpNDoc scripts -->
+  <script src="js/polyfill.object.min.js"></script>
+  <script src="_translations.js"></script>
+  <script src="js/hndsd.min.js"></script>
+  <script src="js/hndse.min.js"></script>
+  <script src="js/app.min.js"></script>
+
+  <!-- Init script -->
+  <script src="_topic_init.js"></script>
+
+
+
+</body>
+
+</html>
+

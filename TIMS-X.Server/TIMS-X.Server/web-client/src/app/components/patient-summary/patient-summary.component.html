@@ -1,0 +1,94 @@
+<div class="patient-summary">
+    <div class="header">
+        <button style="height: 30px; width: 30px; padding: 0;" class="btn btn-sm tims-button gradient"
+            (click)="handlesCancelPreview()">
+            <i style="margin-right: 0px; font-size: 16px; color: #000;" class="bi bi-caret-left-fill"></i>
+        </button>
+        <app-patient-name-formatter style="font-weight: bolder; margin-left: 5px; cursor: pointer;" draggable="true"
+            [firstname]="CurrentPatient.firstName" [lastname]="CurrentPatient.lastName"></app-patient-name-formatter>
+
+        <button style="height: 30px; width: 30px; padding: 0; margin-left: auto; margin-right: 5px;"
+            class="btn btn-sm tims-button gradient" (click)="handlesEditPatient()">
+            <i style="margin-right: 0px; font-size: 16px; color: #000;" class="bi bi-pencil-fill"></i>
+        </button>
+    </div>
+    <div class="patient-info-header">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <div class="nav-link" (click)="handlesSummaryClick()" [ngClass]="{ 'active': isSummarySelected }">Info
+                </div>
+            </li>
+            <li class="nav-item">
+                <div class="nav-link" (click)="handlesAppointmentsClick()" [ngClass]="{ 'active': !isSummarySelected }">
+                    Appt History</div>
+            </li>
+        </ul>
+        <div class="patient-info-summary-content" #patientSummaryElement
+            [style.display]="isSummarySelected ? 'flex' : 'none'">
+
+            <div class="inactive" *ngIf="CurrentPatient.inactive">Inactive</div>
+
+            <div *ngIf="CurrentPatient.communicationRestrictions && CurrentPatient.communicationRestrictions.length > 0"
+                class="restrictions">
+                <ul style="margin: 0; padding-left: 10px;">
+                    <div *ngFor="let r of CurrentPatient.communicationRestrictions;">
+                        <li>{{r.name}}</li>
+                    </div>
+                </ul>
+            </div>
+
+            <div *ngIf="CurrentPatient.opportunityDescription"
+                [ngClass]="isOpportunity ? 'is-ot-status' : 'no-ot-status'" class="ot-status"
+                [title]="CurrentPatient.opportunityDescription">
+                {{CurrentPatient.opportunity}}</div>
+
+            <div style="margin-left: 10px;">
+                <app-address-formatter [addressLine1]="CurrentPatient.address1" [city]="CurrentPatient.city"
+                    [state]="CurrentPatient.state" [zipCode]="CurrentPatient.zipCode" />
+                <hr class="summary-divider" />
+
+                <div *ngIf="CurrentPatient.homePhone" style="margin-top: 5px;">
+                    <span>Home:&nbsp;</span>{{CurrentPatient.homePhone}}
+                </div>
+                <div *ngIf="CurrentPatient.workPhone">
+                    <span>Work:&nbsp;</span>{{CurrentPatient.workPhone}}
+                </div>
+                <div *ngIf="CurrentPatient.mobilePhone">
+                    <span>Mobile:&nbsp;</span>{{CurrentPatient.mobilePhone}}
+                </div>
+
+                <hr *ngIf="hasPhone" class="summary-divider" />
+            </div>
+
+            <div style="margin-left: 10px; margin-top: 5px;">
+                <span>Next&nbsp;Appointment:&nbsp;</span>{{NextAppointment}}
+            </div>
+            <div style="margin-left: 10px;">
+                <span>Last&nbsp;Appointment:&nbsp;</span>{{LastAppointment}}
+            </div>
+
+            <div
+                style="margin-left: 10px; margin-top: 5px; font-size: 12px; font-style: italic; color: lightslategray;">
+                <span>{{LastUpdate}}</span>
+            </div>
+        </div>
+
+        <div class="patient-info-history-content" [style.display]="isSummarySelected ? 'none' : 'block'"
+            [style.max-height.px]="containerHeight">
+            <ul style="margin: 0; padding-left: 5px;">
+                <div *ngFor="let a of CurrentPatient.appointments; last as islast;">
+                    <li class="appointment-summary" (click)="handlesDisplayAppointmentClick(a.id)">
+                        <p><strong>
+                                {{a.appointmentType}}&nbsp;with&nbsp;{{a.providerFirstName}}&nbsp;{{a.providerLastName}}&nbsp;at&nbsp;{{a.site}}&nbsp;-&nbsp;{{a.appointmentStatus}}
+                            </strong>&nbsp;({{a.startsAt.toString() | dateTimeFromIso | dateTimeToFormat: 'D @
+                            t'
+                            }})
+                        </p>
+
+                    </li>
+                    <hr *ngIf="!islast" class="item-divider" />
+                </div>
+            </ul>
+        </div>
+    </div>
+</div>

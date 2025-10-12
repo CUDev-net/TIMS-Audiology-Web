@@ -1,0 +1,727 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="generator" content="HelpNDoc Professional Edition 9.8.0.588">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="favicon.ico"/>
+
+  <title>Patient Details</title>
+  <meta name="description" content="" /> 
+  <meta name="keywords" content="Patient Details">
+
+
+
+  
+  
+
+  <!-- Twitter Card data -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Patient Details">
+  <meta name="twitter:description" content="">
+
+  <!-- Open Graph data -->
+  <meta property="og:title" content="Patient Details" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="" />
+  <meta property="og:site_name" content="TIMS Audiology and SLP Version 6.08" /> 
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendors/bootstrap-3.4.1/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <link href="vendors/bootstrap-3.4.1/css/ie10-viewport-bug-workaround.css" rel="stylesheet"/>
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="vendors/html5shiv-3.7.3/html5shiv.min.js"></script>
+      <script src="vendors/respond-1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+  <!-- JsTree styles -->
+  <link href="vendors/jstree-3.3.10/themes/default/style.min.css" rel="stylesheet"/>
+
+  <!-- Hnd styles -->
+  <link href="css/layout.min.css" rel="stylesheet" />
+  <link href="css/effects.min.css" rel="stylesheet" />
+  <link href="css/theme-dark-blue.min.css" rel="stylesheet" />
+  <link href="css/print.min.css" rel="stylesheet" media="print" />
+  <style type="text/css">nav { width: 350px} @media screen and (min-width:769px) { body.md-nav-expanded div#main { margin-left: 350px} body.md-nav-expanded header { padding-left: 364px} }</style>
+  <style type="text/css">.navigation #inline-toc { width: auto !important}</style>
+
+  <!-- Content style -->
+  <link href="css/hnd.content.css" rel="stylesheet" />
+
+  
+
+
+
+</head>
+
+<body class="md-nav-expanded">
+
+
+
+  
+
+  <div id="skip-link">
+    <a href="#main-content" class="element-invisible">Skip to main content</a>
+  </div>
+
+  <header class="headroom">
+    <button class="hnd-toggle btn btn-default">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>        
+    </button>
+    <h1>TIMS Audiology and SLP Version 6.08</h1>
+    <a href="https://us.timsaudiology.com"><img src="_logo.png" alt="logo" class="logo"/></a>
+  </header>
+
+  <nav id="panel-left" class="md-nav-expanded">
+    <!-- Nav tabs -->
+    <ul class="tab-tabs nav nav-tabs" role="tablist">
+      <li id="nav-close" role="presentation"> 
+        <button class="hnd-toggle btn btn-default" aria-label="close">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+      </li>
+      
+	  
+        <li role="presentation" class="tab active">
+            <a href="#contents" id="tab-contents" aria-controls="contents" role="tab" data-toggle="tab">
+                <i class="glyphicon glyphicon-list"></i>
+                Contents
+            </a>
+        </li>
+      
+        <li role="presentation" class="tab">
+            <a href="#index" id="tab-index" aria-controls="index" role="tab" data-toggle="tab">
+                <i class="glyphicon glyphicon-asterisk"></i>
+                Index
+            </a>
+        </li>
+      
+        <li role="presentation" class="tab">
+            <a href="#search" id="tab-search" aria-controls="search" role="tab" data-toggle="tab">
+                <i class="glyphicon glyphicon-search"></i>
+                Search
+            </a>
+        </li>
+      
+    </ul>  <!-- /Nav tabs -->
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+	  
+      <div role="tabpanel" class="tab-pane active" id="contents">
+        <div id="toc" class="tree-container unselectable"
+            data-url="_toc.json"
+            data-openlvl="1"
+        >
+            
+        </div>
+      </div>  <!-- /contents-->
+      
+      <div role="tabpanel" class="tab-pane" id="index">
+        <div id="keywords" class="tree-container unselectable"
+            data-url="_keywords.json"
+            data-openlvl="2"
+        >
+            
+        </div>
+      </div>  <!-- /index-->
+      
+      <div role="tabpanel" class="tab-pane" id="search">
+        <div class="search-content">
+          <div class="search-input">
+            <form id="search-form">
+              <div class="form-group">
+                <div class="input-group">
+                  <input type="text" class="form-control" id="input-search" name="input-search" placeholder="Search..." aria-label="Search..." />
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit" aria-label="Search...">
+                      <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </button>
+                  </span>
+                </div>
+              </div>
+            </form>
+          </div>  <!-- /search-input -->
+          <div class="search-result">
+            <div id="search-info"></div>
+            <div class="tree-container unselectable" id="search-tree"></div>
+          </div>  <!-- /search-result -->
+        </div>  <!-- /search-content -->
+      </div>  <!-- /search-->
+      
+    </div>  <!-- /Tab panes -->
+
+  </nav>
+
+  <div id="main">
+
+    <article>
+        <div id="topic-content" class="container-fluid" 
+		  data-hnd-id="PatientDetails1"
+		  data-hnd-context="156"
+		  data-hnd-title="Patient Details"
+		>
+            
+                <div class="navigation">
+                    <ol class="breadcrumb">
+                        <li>Patients</li><li>Patient Details</li>
+                    </ol>
+                    <div class="nav-arrows">
+                        <div class="btn-group btn-group" role="group"><div class="btn-group"><button type="button" title="In this page..." class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span></button><ul id="inline-toc" class="dropdown-menu dropdown-menu-right"></ul></div><a class="btn btn-default" href="ConfirmingAppointmentRequests.html" title="Confirming Appointment Requests" role="button"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a><a class="btn btn-default" href="TakingaPatientPicture.html" title="Taking a Patient Picture" role="button"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></div>
+                    </div>
+                </div> 
+            
+
+            <a id="main-content"></a>
+
+            <h2>Patient Details</h2>
+
+            <div class="main-content">
+                
+<p class="rvps3"><span class="rvts8">The Patient detail screen contains the office management information that pertains to the patient. From the </span><span class="rvts15">Patient Summary panel</span><span class="rvts8">, click the Edit Patient icon </span><img alt="" style="padding : 1px;" src="lib/edit.gif"><span class="rvts8"> to display and edit details.</span></p>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/panel14.gif"></p>
+<h1 class="rvps5"><span class="rvts0"><span class="rvts13">Patient Information</span></span></h1>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/pat%20details.gif"></p>
+<p class="rvps3"><span class="rvts8"><br/></span></p>
+<p class="rvps3"><span class="rvts8">The Patient Details screen contains demographic information about the patient. &nbsp;To access this information, click in the field. Information can be typed as text or click on the down arrow or calendar icon where available. The down arrow will show a list of available field choices and the calendar icon will popup a date picker.</span></p>
+<p class="rvps3"><span class="rvts8"> &nbsp; &nbsp; &nbsp; &nbsp;</span><img alt="" style="padding : 1px;" src="lib/calendar%20popup.gif"></p>
+<p class="rvps3"><span class="rvts8"><br/></span></p>
+<p class="rvps3"><span class="rvts8">Fields highlighted in yellow are </span><span class="rvts15">required</span><span class="rvts8"> fields. &nbsp;&nbsp;</span></p>
+<p class="rvps3"><img alt="" style="padding : 1px;" src="lib/important.gif"><span class="rvts8"> </span><span class="rvts15">Note</span><span class="rvts8">: Beginning in version 6.07, the practice can </span><span class="rvts15">customize which fields should be required</span><span class="rvts8">. &nbsp;See </span><a class="rvts16" href="Practice.html">Practice Setup</a><span class="rvts8"> for details.</span></p>
+<div class="rvps3">
+<table style="border-width: 0px; border-spacing: 2px;">
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 200px;">
+   <p class="rvps3"><span class="rvts15">Chart/Acct#</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">An optional unique number assigned by the provider. &nbsp;Up to 35 alpha-numeric characters can be entered. Depending on practice settings, this number can be automatically generated and also set to read only.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Site</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">The default office site for this patient. *Required field. Choose site by typing the first letter or click on the down arrow and choose from the site list. Setup site choices in the Setup Link.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Seen By</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">The default provider for this patient. If entered, this default will be used for any new Appointments, HA History, History, &nbsp;or POS document created for the patient.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Inactive</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Check this box if you no longer wish to work with this patient. &nbsp;The patient and his or her data will not be removed from the database. A patient cannot be inactivated if there are outstanding appointments, claims, orders, repairs, or loaners.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Deceased</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Check this box if the patient is deceased. Patients marked in this way are automatically filtered out of standard mailing label and mail merge reports.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Date of Death</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">If Deceased is checked, the Date of Death must also be filled out if an insurance claim is submitted for the patient.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Digital Intake</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Click here to generate a message to the patient (Email and/or Text). &nbsp;</span></p>
+   <p class="rvps3"><img alt="" style="padding : 1px;" src="lib/dig%20intake%20message.gif"></p>
+   <p class="rvps3"><span class="rvts8">The message will contain a link for the patient to click on. &nbsp;This will take them to the online digital intake form where they can submit their demographic information. See </span><a class="rvts16" href="DigitalIntakeForm.html">Digital Intake Form</a><span class="rvts8"> for more information.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Name</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8"><br/></span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">&nbsp; Salutation, First, Initial, Last</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">The salutation, first name, middle initial and last name of the patient. &nbsp;</span><span class="rvts15">*First and Last name are required fields</span><span class="rvts8">.&nbsp;</span></p>
+   <p class="rvps3"><span class="rvts15">Note</span><span class="rvts8">:If the patient uses a different name for insurance purposes, it can be entered</span></p>
+   <p class="rvps3"><span class="rvts8">in the </span><a class="rvts16" href="InsuranceCoverage.html">Insurance Coverage</a><span class="rvts8"> section. &nbsp;Choose Self-Other as the Relationship, and enter the legal name used for insurance.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Address</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">The primary mailing address of the patient.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">County</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">If desired, the patient's county can be selected here. &nbsp;Counties can be setup in Setup - Patient Setup. &nbsp;</span><span class="rvts15">This field will only be visible if at least one county has</span></p>
+   <p class="rvps3"><span class="rvts15">been entered in </span><a class="rvts35" href="Counties.html">Setup</a><span class="rvts8">.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Secondary Address</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">If the patient has a secondary address (such as a vacation address), it can be entered here. &nbsp;</span><span class="rvts15">Check the Use Secondary Address box</span><span class="rvts8"> to display this address on the Patient Summary panel or to use in mailings. &nbsp;Uncheck the box to revert to using the primary address.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">Primary Phone</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">Select the phone number to be used as the Primary contact number: Home, Work, Mobile, or Other.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 250px;">
+   <p class="rvps3"><span class="rvts15">&nbsp; Home</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px;">
+   <p class="rvps3"><span class="rvts8">The home telephone number, including area code, at which the patient may be contacted.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 174px;">
+   <p class="rvps3"><span class="rvts15">&nbsp; Work</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 568px;">
+   <p class="rvps3"><span class="rvts8">The work number and extension, including area code.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 174px;">
+   <p class="rvps3"><span class="rvts15">&nbsp; Mobile</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 568px;">
+   <p class="rvps3"><span class="rvts8">Cell or mobile phone number, including area code. &nbsp;Required if the patient is to receive appointment text notifications or for text conversations.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 174px;">
+   <p class="rvps3"><span class="rvts15">&nbsp; Other</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 568px;">
+   <p class="rvps3"><span class="rvts8">Additional phone number, if needed. Enter an extension if needed.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 174px;">
+   <p class="rvps3"><span class="rvts15">Email</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 568px;">
+   <p class="rvps3"><span class="rvts8">The patient's email address. Required if the patient is to receive appointment email notifications, or to email directly from TIMS.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 174px;">
+   <p class="rvps3"><span class="rvts15">Birth date</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 568px;">
+   <p class="rvps3"><span class="rvts8">The patient's date of birth. The date of birth can be typed in or click on the calendar icon and choose from the calendar. Dates must be entered as MM/DD/YYYY.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 174px;">
+   <p class="rvps3"><span class="rvts15">Gender</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 568px;">
+   <p class="rvps3"><span class="rvts8">The gender of the patient. The single letter abbreviation can be typed in or click on the down arrow and choose the patient's gender. (Female, Male, Unknown, Trans, GNC, or Other)</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 174px;">
+   <p class="rvps3"><span class="rvts15">SSN</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 568px;">
+   <p class="rvps3"><span class="rvts8">The Social Security Number (SSN) of the patient. (not required for claims) The visibility of the number can be toggled off and on by clicking the "eye" icon. Default is off.</span></p>
+   <p class="rvps6"><img alt="" style="padding : 1px;" src="lib/ssn%20toggle.gif"></p>
+   <p class="rvps6"><img alt="" style="padding : 1px;" src="lib/ssn%20toggle2.gif"></p>
+   <p class="rvps3"><span class="rvts8"><br/></span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 174px;">
+   <p class="rvps3"><span class="rvts15">Name &amp; Address for Invoicing</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 568px;">
+   <p class="rvps3"><span class="rvts8">If a different and and/or address should be used as a default Bill To Address for POS transactions and statements, it can be entered here. &nbsp;Check the box and a details window will popup. &nbsp;Enter the name and address of the default POS Bill To.</span></p>
+   <p class="rvps3"><span class="rvts8">&nbsp; &nbsp;</span><img alt="" style="padding : 1px;" src="lib/bill%20to%20popup.gif"></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 174px;">
+   <p class="rvps3"><span class="rvts15">Appt Authorizations</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 568px;">
+   <p class="rvps3"><span class="rvts8">If the Appointment Authorization module has been enabled, this is where you can view, add, and edit authorizations. Click on the plus sign to add new or double-click on existing line to edit.&nbsp;</span></p>
+   <p class="rvps3"><span class="rvts8">&nbsp; </span><img alt="" style="padding : 1px;" src="lib/appt%20auth4.gif"></p>
+   <p class="rvps3"><span class="rvts8">The authorization details will popup. &nbsp;</span></p>
+   <p class="rvps3"><span class="rvts8">&nbsp; </span><img alt="" style="padding : 1px;" src="lib/appt%20auth2.gif"></p>
+   <p class="rvps3"><span class="rvts8">Enter the Name, number of visits authorized and &nbsp;expiration date if applicable. Check the "Show Inactive" box to display inactive (expired) authorizations. &nbsp;See </span><a class="rvts16" href="AppointmentAuthorizations.html">Appointment Authorizations</a><span class="rvts8"> for more details.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 174px;">
+   <p class="rvps3"><span class="rvts15">Alternate Contact</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 568px;">
+   <p class="rvps3"><span class="rvts8">Free form field for additional patient contact information.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 174px;">
+   <p class="rvps3"><span class="rvts15">Alternate Phone</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 568px;">
+   <p class="rvps3"><span class="rvts8">The phone number of the alternate contact person.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 174px;">
+   <p class="rvps3"><span class="rvts15">Primary care Physician</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 568px;">
+   <p class="rvps3"><span class="rvts8">The name of the physician who provides the patient's primary care.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 174px;">
+   <p class="rvps3"><span class="rvts15">Referring Physician</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 568px;">
+   <p class="rvps3"><span class="rvts8">The name of the physician who referred the patient to your office. (This physician will be the default one sent with claims, if needed)</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 174px;">
+   <p class="rvps3"><span class="rvts15">Responsible Party</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 568px;">
+   <p class="rvps3"><span class="rvts8">The name of the parent/guardian or other responsible party for the patient.</span></p>
+   <p class="rvps3"><span class="rvts8">It can also be used for QuickBooks</span><span class="rvts26">®</span><span class="rvts8"> export, if you wish another name to be entered as a "c/o" underneath the patient name in the QuickBooks Bill To address.&nbsp;</span></p>
+   <p class="rvps3"><span class="rvts8">&nbsp; </span><img alt="" style="padding : 1px;" src="lib/qb%20bill%20to%20name.gif"></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 174px;">
+   <p class="rvps3"><span class="rvts15">QB Customer Type</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 568px;">
+   <p class="rvps3"><span class="rvts8">Used </span><span class="rvts15">only</span><span class="rvts8"> for QuickBooks export. &nbsp;If you wish to sync a Customer Type to QuickBooks, it can be selected here. &nbsp;Available choices are the same as Patient Types.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 174px;">
+   <p class="rvps3"><span class="rvts15">Language</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 568px;">
+   <p class="rvps3"><span class="rvts8">The patient's primary language. If Appointment Notifications are used, templates can be created that match the available languages.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 174px;">
+   <p class="rvps3"><span class="rvts15">Race</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 568px;">
+   <p class="rvps3"><span class="rvts8">The patient's Race.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 174px;">
+   <p class="rvps3"><span class="rvts15">Ethnicity</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 568px;">
+   <p class="rvps3"><span class="rvts8">The patient's Ethnicity.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 174px;">
+   <p class="rvps3"><span class="rvts15">Marketing</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 568px;">
+   <p class="rvps3"><span class="rvts8">The reason that the patient </span><span class="rvts15">first</span><span class="rvts8"> decided to visit your practice. &nbsp;The marketing source can be selected when the patient is first added to the database, or added later. &nbsp;The first appointment made for the patient will use this marketing source as a default.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 174px;">
+   <p class="rvps3"><span class="rvts15">Patient Types</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 568px;">
+   <p class="rvps3"><span class="rvts8">The type of patient this is. Click on the </span><img alt="" style="padding : 1px;" src="lib/ellipsis.gif"><span class="rvts8"> button to display the choices. &nbsp;You can</span></p>
+   <p class="rvps3"><span class="rvts8">check multiple boxes, if needed. &nbsp;Additional patient type choices can be added in</span></p>
+   <p class="rvps3"><span class="rvts8">the </span><a class="rvts16" href="PatientType.html">Patient Setup</a><span class="rvts8">.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 174px;">
+   <p class="rvps3"><span class="rvts15">Marital Status</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 568px;">
+   <p class="rvps3"><span class="rvts8">The marital status of the patient. The marital status can be entered by typing the first letter or click on the down arrow and choose from the marital status list. (not required for claims)</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 174px;">
+   <p class="rvps3"><span class="rvts15">Employment Status</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 568px;">
+   <p class="rvps3"><span class="rvts8">The employment status of the patient. The employment status can be entered by typing the first letter or click on the down arrow and choose from the employment status list. (not required for claims)</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 174px;">
+   <p class="rvps3"><span class="rvts15">Student Status</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 568px;">
+   <p class="rvps3"><span class="rvts8">The student status of the patient. The student status can be entered by typing the first letter or click on the down arrow and choose from the student status list. (not required for claims)</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 174px;">
+   <p class="rvps3"><span class="rvts15">Patient Status</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 568px;">
+   <p class="rvps3"><span class="rvts8">The status of the patient. Choose status by typing the first letter or click on the down arrow and choose from the status list.&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 174px;">
+   <p class="rvps3"><span class="rvts15">Release Signature</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 568px;">
+   <p class="rvps3"><span class="rvts8">Check this box and fill in the date if the patient has signed a release statement allowing medical information to be shared with the insurance payer.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 174px;">
+   <p class="rvps3"><span class="rvts15">Assignment of Benefits</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 568px;">
+   <p class="rvps3"><span class="rvts8">A check mark used to indicate whether the patient has a signed form authorizing the payer to pay the provider, and whether the provider accepts such a payment arrangement. Check this box and fill in the date the form was signed.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 174px;">
+   <p class="rvps3"><span class="rvts15">Privacy Agreement</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 568px;">
+   <p class="rvps3"><span class="rvts8">The date the privacy statement was signed.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 174px;">
+   <p class="rvps3"><span class="rvts15">Consent</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 568px;">
+   <p class="rvps3"><span class="rvts8">The date the consent statement was signed.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 174px;">
+   <p class="rvps3"><span class="rvts15">Marketing Authorization</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 568px;">
+   <p class="rvps3"><span class="rvts8">Check this box and fill in the date if the patient has signed a release statement allowing marketing materials to sent from the authorized parties selected below.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 174px;">
+   <p class="rvps3"><span class="rvts15">&nbsp; Authorizations</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 568px;">
+   <p class="rvps3"><span class="rvts8">The parties which have been authorized to market to the patient. &nbsp;Authorized parties can be added in </span><a class="rvts16" href="Authorizations.html">Patient Setup</a><span class="rvts8">.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 174px;">
+   <p class="rvps3"><span class="rvts15">Release of Information</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 568px;">
+   <p class="rvps3"><span class="rvts8">Check this box and fill in the date if the patient has signed a release statement allowing medical information to be shared with another party.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 174px;">
+   <p class="rvps3"><span class="rvts15">&nbsp; Authorized Parties</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 568px;">
+   <p class="rvps3"><span class="rvts8">Type in the name of other parties authorized to receive medical information about the patient.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 174px;">
+   <p class="rvps3"><span class="rvts15">Appt Reminder and Communication Restrictions</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 568px;">
+   <p class="rvps3"><span class="rvts8">If the patient has any restrictions on how they are to be communicated with, enter</span></p>
+   <p class="rvps3"><span class="rvts8">them here. &nbsp;Click on the Select button </span><img alt="" style="padding : 1px;" src="lib/select%20btn.gif"><span class="rvts8"> to display the restriction choices. You can check multiple boxes, if needed. &nbsp;Additional restriction choices can be added in Patient Setup. Certain restrictions are protected are used as components of other TIMS functions.</span></p>
+   <ul style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside; list-style-type: disc;">
+    <li class="rvps3 noindent"><span class="rvts15">No Mail</span><span class="rvts8"> - used to filter the patient from receiving various marketing letters and/or emails.</span></li>
+    <li class="rvps3 noindent"><span class="rvts15">No Marketing</span><span class="rvts8"> - Used for </span><a class="rvts16" href="OpportunityTrackingOverview.html">Opportunity Tracking</a><span class="rvts8">. If checked, a patient will be flagged as No Marketing, regardless of the condition of either/both ears (i.e. whether there is hearing loss and/or outdated hearing aids for either ear).</span></li>
+    <li class="rvps3 noindent"><span class="rvts15">No Marketing 1 Ear</span><span class="rvts8"> - Used for </span><a class="rvts16" href="OpportunityTrackingOverview.html">Opportunity Tracking</a><span class="rvts8">. If checked, a patient will be flagged as No Marketing, regardless of the condition of either/both ears (i.e. whether there is hearing loss and/or outdated hearing aids for either ear). For example, a patient may have a hearing loss in both ears but chooses to purchase only 1 hearing aid. &nbsp;If they wish not to be marketed to for the un-aided ear, check this box.</span></li>
+    <li class="rvps3 noindent"><span class="rvts15">No Email Notifications</span><span class="rvts8"> - Used in </span><a class="rvts16" href="AppointmentNotificationOverview.html">Appointment Notifications</a><span class="rvts8">. Check this box to specifically exclude the patient from receiving text notifications.</span></li>
+    <li class="rvps3 noindent"><span class="rvts15">No Text Notifications</span><span class="rvts8"> - Used in </span><a class="rvts16" href="AppointmentNotificationOverview.html">Appointment Notifications</a><span class="rvts8">. Check this box to specifically exclude the patient from receiving text notifications.</span></li>
+    <li class="rvps3 noindent"><span class="rvts15">No Voice Notifications</span><span class="rvts8"> - Used in </span><a class="rvts16" href="AppointmentNotificationOverview.html">Appointment Notifications</a><span class="rvts8">. Check this box to specifically exclude the patient from receiving text notifications.</span></li>
+   </ul>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 174px;">
+   <p class="rvps3"><span class="rvts15">Notes</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 568px;">
+   <p class="rvps3"><span class="rvts8">A free form field for miscellaneous notes about the patient. Allows input of up to 10,000 characters.&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 174px;">
+   <p class="rvps3"><span class="rvts15">Custom Fields</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 568px;">
+   <p class="rvps3"><span class="rvts8"><br/></span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 174px;">
+   <p class="rvps3"><span class="rvts15">&nbsp; Custom Date 1 &amp; 2</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 568px;">
+   <p class="rvps3"><span class="rvts8">Custom dates that can display a date for whatever purpose the practice needs. Set up in&nbsp;</span><a class="rvts16" href="FieldDescriptions.html">Patient Setup - Field Descriptions</a><span class="rvts8">.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 174px;">
+   <p class="rvps3"><span class="rvts15">&nbsp; Custom Field 1 &amp; 2</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 568px;">
+   <p class="rvps3"><span class="rvts8">Custom field that can display custom text &nbsp;for whatever purpose the practice needs. Set up in&nbsp;</span><a class="rvts16" href="FieldDescriptions.html">Patient Setup - Field Descriptions</a><span class="rvts8">.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 174px;">
+   <p class="rvps3"><span class="rvts15">&nbsp; Additional Custom Fields</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 568px;">
+   <p class="rvps3"><span class="rvts8">If the practice has been setup to allow additional Custom Fields, this button will be available.&nbsp;</span></p>
+   <p class="rvps3"><span class="rvts8">&nbsp; </span><img alt="" style="padding : 1px;" src="lib/add%20custom%20fields%20btn.gif"></p>
+   <p class="rvps3"><span class="rvts8">Click to enter information for the custom fields that have been previously setup in </span><a class="rvts16" href="CustomFields.html">Patient Setup - Custom Fields</a><span class="rvts8">.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 174px;">
+   <p class="rvps3"><span class="rvts15">Insurance</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 568px;">
+   <p class="rvps3"><span class="rvts8">Click this button to display the Insurance Details for the patient. &nbsp;</span></p>
+   <p class="rvps3"><span class="rvts8">&nbsp; </span><img alt="" style="padding : 1px;" src="lib/ins%20payers%20btn.gif"></p>
+   <p class="rvps3"><span class="rvts8">This is where you can add or edit subscriber information for up to five insurance payers. &nbsp;See </span><a class="rvts16" href="InsuranceCoverage.html">Insurance Coverage</a><span class="rvts8"> for details.</span></p>
+  </td>
+ </tr>
+ <tr style="vertical-align: top;">
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 174px;">
+   <p class="rvps3"><span class="rvts15">Clone Patient</span></p>
+  </td>
+  <td style="border-width : 1px; border-color: #e9f0ff; border-style: solid; padding: 1px; width: 568px;">
+   <p class="rvps3"><span class="rvts8">To quickly create a new patient based on the demographics for the current one, click the Clone Patient button </span><img alt="" style="padding : 1px;" src="lib/clone%20patient%20btn.gif"><span class="rvts8">. A new patient details screen will popup with the Last Name, Address, phone numbers, and physicians copied from the original one. &nbsp;Enter a new first name, initial, and Date of Birth and click OK to save the new patient.</span></p>
+  </td>
+ </tr>
+</table>
+</div>
+<p class="rvps3"><span class="rvts8"></span><span class="rvts8"></span></p>
+
+            </div>
+            
+            
+        </div>  <!-- /#topic-content -->
+    </article>
+
+    <footer></footer>
+
+  </div>  <!-- /#main -->
+
+  <div class="mask" data-toggle="sm-nav-expanded"></div>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="hndModal" tabindex="-1" role="dialog" aria-labelledby="hndModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="hndModalLabel"></h4>
+        </div>
+        <div class="modal-body">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary modal-btn-close" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Splitter -->
+  <div id="hnd-splitter" style="left: 350px"></div>  
+
+  <!-- Scripts -->
+  <script src="vendors/jquery-3.7.1/jquery.min.js"></script>
+  <script src="vendors/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+  <script src="vendors/bootstrap-3.4.1/js/ie10-viewport-bug-workaround.js"></script>
+  <script src="vendors/markjs-8.11.1/jquery.mark.min.js"></script>
+  <script src="vendors/uri-1.19.11/uri.min.js"></script>
+  <script src="vendors/imageMapResizer-1.0.10/imageMapResizer.min.js"></script>
+  <script src="vendors/headroom-0.11.0/headroom.min.js"></script>
+  <script src="vendors/jstree-3.3.10/jstree.min.js"></script>  
+  <script src="vendors/interactjs-1.9.22/interact.min.js"></script>  
+
+  <!-- HelpNDoc scripts -->
+  <script src="js/polyfill.object.min.js"></script>
+  <script src="_translations.js"></script>
+  <script src="js/hndsd.min.js"></script>
+  <script src="js/hndse.min.js"></script>
+  <script src="js/app.min.js"></script>
+
+  <!-- Init script -->
+  <script src="_topic_init.js"></script>
+
+
+
+</body>
+
+</html>
+

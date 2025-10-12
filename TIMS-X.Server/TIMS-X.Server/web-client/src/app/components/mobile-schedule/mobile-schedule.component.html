@@ -1,0 +1,29 @@
+<div style="background-color: #1963a0; color: white; padding-bottom: 5px;">
+    <div class="mobile-navigation">
+        <button style="margin-right: 10px; margin-left: 5px; color: black" class="btn btn-sm tims-button gradient"
+            tooltip="Previous day" (click)="onPreviousDay()">
+            <i class="bi bi-caret-left-fill"></i>
+        </button>
+        <input class="form-control form-control-sm tims-input" placeholder="date" bsDatepicker
+            [bsConfig]="{ customTodayClass: 'tims-today-class', containerClass: 'theme-dark-blue', adaptivePosition: true }"
+            [(ngModel)]="selectedDate" (bsValueChange)="onDateChanged($event)">
+        <button style="margin-left: 10px; margin-right: 5px; color: black;"
+            class="btn btn-sm tims-button gradient nav-button" tooltip="Next day" (click)="onNextDay()">
+            <i class="bi bi-caret-right-fill"></i>
+        </button>
+    </div>
+    <div class="provider-selector">
+        <select (change)="onSelectedProviderChanged()" [(ngModel)]="selectedProvider"
+            class="focus-ring tims-input form-select">
+            <option [ngValue]="null">All Providers</option>
+            <option *ngFor="let p of ts.providerStore.provider_summary_list" [value]="p.id">
+                {{p.firstName}}
+                {{p.lastName}}</option>
+        </select>
+    </div>
+</div>
+
+
+<div style="display: flex;" *ngFor="let s of scheduleItems">
+    <app-mobile-schedule-item style="width: 100%;" [scheduleItem]="s"></app-mobile-schedule-item>
+</div>

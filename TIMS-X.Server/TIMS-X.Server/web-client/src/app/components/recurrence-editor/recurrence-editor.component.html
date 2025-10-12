@@ -1,0 +1,236 @@
+<form [formGroup]="recurrenceForm" autocomplete="off" novalidate>
+    <div class="row row-cols-2">
+        <!-- Left -->
+        <div class="col">
+            <div class="row">
+                <div class="col-5">
+                    <label class="col-form-label tims-label" for="isrecurrence">Is Recurrence</label>
+                    <input type="checkbox" class="form-check-input cb-1x align-middle patient-cb focus-ring tims-input"
+                        id="isrecurrence" name="isrecurrence" [formControlName]="'isrecurrence'"
+                        (change)="isrecurrenceChanged()">
+                </div>
+                <div class="col-5">
+                    <select style="max-width: 120px;" class="form-control form-control-sm focus-ring tims-input"
+                        id="recurrenceType" [formControlName]="'recurrenceType'" (change)="onRecurrenceTypeChanged()">
+                        <option *ngFor="let p of recurrenceOptions" [value]="p.id">
+                            {{p.label}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+            <div *ngIf="isDaily">
+                <div class="row recurrence-row">
+                    <div class="col-12">
+                        <div class="form-check">
+                            <input style="margin-left: -14px" class="form-check-input" type="radio"
+                                formControlName="dailySettings" value="singleDay">
+                            <label style="margin-left: 5px;" class="form-check-label">Every</label>
+                            <select style="max-width: 35px; display: inline-block; margin: 0 5px; font-size: 12px;"
+                                class="form-control form-control-sm focus-ring tims-input" id="dailyValue"
+                                [formControlName]="'dailyValue'">
+                                <option *ngFor="let p of dailyOptions" [value]="p.id">
+                                    {{p.id}}
+                                </option>
+                            </select>
+                            <label class="form-check-label">days</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row recurrence-row">
+                    <div class="col-12">
+                        <div class="form-check">
+                            <input style="margin-left: -14px;" class="form-check-input" type="radio"
+                                formControlName="dailySettings" value="weekdays">
+                            <label style="margin-left: 5px;" class="form-check-label">Every weekday</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row recurrence-row">
+                    <div class="col-12">
+                        <div class="form-check">
+                            <input style="margin-left: -14px;" class="form-check-input" type="radio"
+                                formControlName="dailySettings" value="monwedfri">
+                            <label style="margin-left: 5px;" class="form-check-label">Every Mon, Wed and Fri</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row recurrence-row">
+                    <div class="col-12">
+                        <div class="form-check">
+                            <input style="margin-left: -14px;" class="form-check-input" type="radio"
+                                formControlName="dailySettings" value="tuesthurs">
+                            <label style="margin-left: 5px;" class="form-check-label">Every Tues and Thurs</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="isWeekly">
+                <div class="row recurrence-row">
+                    <div class="col-12">
+                        <label style="margin-left: 5px;" class="form-check-label">Every</label>
+                        <select style="max-width: 35px; display: inline-block; margin: 0 5px; font-size: 12px;"
+                            class="form-control form-control-sm focus-ring tims-input" id="dailyValue"
+                            [formControlName]="'weeklyValue'">
+                            <option *ngFor="let p of dailyOptions" [value]="p.id">
+                                {{p.id}}
+                            </option>
+                        </select>
+                        <label class="form-check-label">week(s) on</label>
+                    </div>
+                </div>
+                <div class="row recurrence-row">
+                    <div class="col-12">
+                        <input type="checkbox"
+                            class="form-check-input cb-1x align-middle patient-cb focus-ring tims-input week-cb"
+                            [formControlName]="'isWeeklyMonday'">
+                        <span>M</span>
+                        <input type="checkbox"
+                            class="form-check-input cb-1x align-middle patient-cb focus-ring tims-input week-cb"
+                            [formControlName]="'isWeeklyTuesday'">
+                        <span>T</span>
+                        <input type="checkbox"
+                            class="form-check-input cb-1x align-middle patient-cb focus-ring tims-input week-cb"
+                            [formControlName]="'isWeeklyWednesday'">
+                        <span>W</span>
+                        <input type="checkbox"
+                            class="form-check-input cb-1x align-middle patient-cb focus-ring tims-input week-cb"
+                            [formControlName]="'isWeeklyThursday'">
+                        <span>T</span>
+                        <input type="checkbox"
+                            class="form-check-input cb-1x align-middle patient-cb focus-ring tims-input week-cb"
+                            [formControlName]="'isWeeklyFriday'">
+                        <span>F</span>
+                        <input type="checkbox"
+                            class="form-check-input cb-1x align-middle patient-cb focus-ring tims-input week-cb"
+                            [formControlName]="'isWeeklySaturday'">
+                        <span>S</span> <input type="checkbox"
+                            class="form-check-input cb-1x align-middle patient-cb focus-ring tims-input week-cb"
+                            [formControlName]="'isWeeklySunday'">
+                        <span>S</span>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="isMonthly">
+                <div class="row recurrence-row">
+                    <div class="col-12">
+                        <label style="margin-left: 5px;" class="form-check-label">Every</label>
+                        <select style="max-width: 35px; display: inline-block; margin: 0 5px; font-size: 12px;"
+                            class="form-control form-control-sm focus-ring tims-input" id="dailyValue"
+                            [formControlName]="'monthlyValue'">
+                            <option *ngFor="let p of dailyOptions" [value]="p.id">
+                                {{p.id}}
+                            </option>
+                        </select>
+                        <label class="form-check-label">month(s) on</label>
+                    </div>
+                </div>
+                <div class="row recurrence-row">
+                    <div class="col-12">
+                        <div class="form-check">
+                            <input style="margin-left: -14px;" class="form-check-input" type="radio"
+                                formControlName="monthlySettings" value="dayOfMonth">
+                            <label style="margin: 0 5px;" class="form-check-label">day</label>
+                            <select style="max-width: 35px; display: inline-block; margin: 0 5px; font-size: 12px;"
+                                class="form-control form-control-sm focus-ring tims-input" id="dailyValue"
+                                [formControlName]="'dayOfMonthValue'">
+                                <option *ngFor="let p of dailyOptions" [value]="p.id">
+                                    {{p.id}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row recurrence-row">
+                    <div class="col-12">
+                        <div class="form-check">
+                            <input style="margin-left: -14px;" class="form-check-input" type="radio"
+                                formControlName="monthlySettings" value="dayOfWeekMonth">
+                            <label style="margin: 0 5px;" class="form-check-label">the</label>
+                            <select style="max-width: 75px; display: inline-block; margin: 0 5px; font-size: 12px;"
+                                class="form-control form-control-sm focus-ring tims-input"
+                                [formControlName]="'weekOfMonth'">
+                                <option *ngFor="let p of weekOfMonthOptions" [value]="p.id">
+                                    {{p.label}}
+                                </option>
+                            </select>
+                            <select style="max-width: 85px; display: inline-block; margin: 0 5px; font-size: 12px;"
+                                class="form-control form-control-sm focus-ring tims-input"
+                                [formControlName]="'dayOfWeekOfMonth'">
+                                <option *ngFor="let p of dayOfWeekOptions" [value]="p.id">
+                                    {{p.label}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="isYearly">
+                <div class="row recurrence-row">
+                    <div class="col-12">
+                        <label style="margin: 0 5px;" class="form-check-label">Every year on</label>
+                        <select style="max-width: 85px; display: inline-block; margin: 0 5px; font-size: 12px;"
+                            class="form-control form-control-sm focus-ring tims-input"
+                            [formControlName]="'monthOfYear'">
+                            <option *ngFor="let p of monthOptions" [value]="p.id">
+                                {{p.label}}
+                            </option>
+                        </select>
+
+                        <select style="max-width: 35px; display: inline-block; margin: 0 5px; font-size: 12px;"
+                            class="form-control form-control-sm focus-ring tims-input" id="dailyValue"
+                            [formControlName]="'dayOfMonthYearValue'">
+                            <option *ngFor="let p of dailyOptions" [value]="p.id">
+                                {{p.id}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right -->
+        <div class="col">
+            <div class="row recurrence-row" style="padding-top: 30px;">
+                <div *ngIf="allowEndDate" class="col-12">
+                    <div class="form-check">
+                        <input style="margin-left: -14px;" class="form-check-input" type="radio"
+                            formControlName="endDateOption" value="noEndDate">
+                        <label style="margin-left: 5px;" class="form-check-label">No end date</label>
+                    </div>
+                </div>
+                <div class="row recurrence-row">
+                    <div class="col-12">
+
+                        <div class="form-check">
+                            <input style="margin-left: -14px;" class="form-check-input" type="radio"
+                                formControlName="endDateOption" value="endAfterOccurrences">
+                            <label style="margin-left: 5px; margin-right: 5px;" class="form-check-label">End
+                                after</label>
+                            <input type="text" style="width: 35px; display: inline-block;"
+                                class="form-control form-control-sm focus-ring focus-ring tims-input"
+                                [formControlName]="'occurrences'" placeholder="occurrences" NumberOnly="true"
+                                maxlength="2" min="0" max="99">
+                            <label style="margin-left: 5px;" class="form-check-label">occurrences</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row recurrence-row">
+                    <div class="col-12">
+
+                        <div class="form-check">
+                            <input style="margin-left: -14px;" class="form-check-input" type="radio"
+                                formControlName="endDateOption" value="endBy">
+                            <label style="margin-left: 5px; margin-right: 5px;" class="form-check-label">End by</label>
+                            <input style="display: inline-block; width: 120px;"
+                                class="form-control form-control-sm focus-ring focus-ring tims-input"
+                                placeholder="end by" bsDatepicker #dp="bsDatepicker" [bsConfig]="bsConfig"
+                                [formControlName]="'endByDate'">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

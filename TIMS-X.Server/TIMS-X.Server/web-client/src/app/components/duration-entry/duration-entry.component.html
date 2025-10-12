@@ -1,0 +1,10 @@
+<form [formGroup]="durationForm" autocomplete="off" novalidate>
+  <input style="margin-right: 2px;" (change)="updateModel()" type="text" NumberOnly="true" maxlength="2" min="0"
+    class="form-control form-control-sm d-inline number focus-ring tims-input" required [formControlName]="'hours'"
+    placeholder="hr">
+  <label style="padding-left: 3px; padding-right: 3px;" class="col-form-label tims-label">Hrs</label>
+  <input style="margin: 0 2px;" (change)="updateModel()" type="text" NumberOnly="true" maxlength="2" min="0" max="59"
+    class="form-control form-control-sm d-inline number focus-ring tims-input" required placeholder="mn"
+    [formControlName]="'minutes'">
+  <label style="padding-left: 3px; padding-right: 3px;" class="col-form-label tims-label">Mins</label>
+</form>

@@ -1,0 +1,364 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="generator" content="HelpNDoc Professional Edition 9.8.0.588">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="favicon.ico"/>
+
+  <title>Scheduling a New Patient Appointment</title>
+  <meta name="description" content="" /> 
+  <meta name="keywords" content="Scheduling Appointments,New Patient Appointment,Appointments">
+
+
+
+  
+  
+
+  <!-- Twitter Card data -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Scheduling a New Patient Appointment">
+  <meta name="twitter:description" content="">
+
+  <!-- Open Graph data -->
+  <meta property="og:title" content="Scheduling a New Patient Appointment" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="" />
+  <meta property="og:site_name" content="TIMS Audiology and SLP Version 6.08" /> 
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendors/bootstrap-3.4.1/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <link href="vendors/bootstrap-3.4.1/css/ie10-viewport-bug-workaround.css" rel="stylesheet"/>
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="vendors/html5shiv-3.7.3/html5shiv.min.js"></script>
+      <script src="vendors/respond-1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+  <!-- JsTree styles -->
+  <link href="vendors/jstree-3.3.10/themes/default/style.min.css" rel="stylesheet"/>
+
+  <!-- Hnd styles -->
+  <link href="css/layout.min.css" rel="stylesheet" />
+  <link href="css/effects.min.css" rel="stylesheet" />
+  <link href="css/theme-dark-blue.min.css" rel="stylesheet" />
+  <link href="css/print.min.css" rel="stylesheet" media="print" />
+  <style type="text/css">nav { width: 350px} @media screen and (min-width:769px) { body.md-nav-expanded div#main { margin-left: 350px} body.md-nav-expanded header { padding-left: 364px} }</style>
+  <style type="text/css">.navigation #inline-toc { width: auto !important}</style>
+
+  <!-- Content style -->
+  <link href="css/hnd.content.css" rel="stylesheet" />
+
+  
+
+
+
+</head>
+
+<body class="md-nav-expanded">
+
+
+
+  
+
+  <div id="skip-link">
+    <a href="#main-content" class="element-invisible">Skip to main content</a>
+  </div>
+
+  <header class="headroom">
+    <button class="hnd-toggle btn btn-default">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>        
+    </button>
+    <h1>TIMS Audiology and SLP Version 6.08</h1>
+    <a href="https://us.timsaudiology.com"><img src="_logo.png" alt="logo" class="logo"/></a>
+  </header>
+
+  <nav id="panel-left" class="md-nav-expanded">
+    <!-- Nav tabs -->
+    <ul class="tab-tabs nav nav-tabs" role="tablist">
+      <li id="nav-close" role="presentation"> 
+        <button class="hnd-toggle btn btn-default" aria-label="close">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+      </li>
+      
+	  
+        <li role="presentation" class="tab active">
+            <a href="#contents" id="tab-contents" aria-controls="contents" role="tab" data-toggle="tab">
+                <i class="glyphicon glyphicon-list"></i>
+                Contents
+            </a>
+        </li>
+      
+        <li role="presentation" class="tab">
+            <a href="#index" id="tab-index" aria-controls="index" role="tab" data-toggle="tab">
+                <i class="glyphicon glyphicon-asterisk"></i>
+                Index
+            </a>
+        </li>
+      
+        <li role="presentation" class="tab">
+            <a href="#search" id="tab-search" aria-controls="search" role="tab" data-toggle="tab">
+                <i class="glyphicon glyphicon-search"></i>
+                Search
+            </a>
+        </li>
+      
+    </ul>  <!-- /Nav tabs -->
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+	  
+      <div role="tabpanel" class="tab-pane active" id="contents">
+        <div id="toc" class="tree-container unselectable"
+            data-url="_toc.json"
+            data-openlvl="1"
+        >
+            
+        </div>
+      </div>  <!-- /contents-->
+      
+      <div role="tabpanel" class="tab-pane" id="index">
+        <div id="keywords" class="tree-container unselectable"
+            data-url="_keywords.json"
+            data-openlvl="2"
+        >
+            
+        </div>
+      </div>  <!-- /index-->
+      
+      <div role="tabpanel" class="tab-pane" id="search">
+        <div class="search-content">
+          <div class="search-input">
+            <form id="search-form">
+              <div class="form-group">
+                <div class="input-group">
+                  <input type="text" class="form-control" id="input-search" name="input-search" placeholder="Search..." aria-label="Search..." />
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit" aria-label="Search...">
+                      <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </button>
+                  </span>
+                </div>
+              </div>
+            </form>
+          </div>  <!-- /search-input -->
+          <div class="search-result">
+            <div id="search-info"></div>
+            <div class="tree-container unselectable" id="search-tree"></div>
+          </div>  <!-- /search-result -->
+        </div>  <!-- /search-content -->
+      </div>  <!-- /search-->
+      
+    </div>  <!-- /Tab panes -->
+
+  </nav>
+
+  <div id="main">
+
+    <article>
+        <div id="topic-content" class="container-fluid" 
+		  data-hnd-id="SchedulingaNewPatientAppointment"
+		  data-hnd-context="128"
+		  data-hnd-title="Scheduling a New Patient Appointment"
+		>
+            
+                <div class="navigation">
+                    <ol class="breadcrumb">
+                        <li>Appointments</li><li>Scheduling Appointments</li>
+                    </ol>
+                    <div class="nav-arrows">
+                        <div class="btn-group btn-group" role="group"><div class="btn-group"><button type="button" title="In this page..." class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span></button><ul id="inline-toc" class="dropdown-menu dropdown-menu-right"></ul></div><a class="btn btn-default" href="ScheduleBlocks.html" title="Schedule Blocks" role="button"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a><a class="btn btn-default" href="ViewingandChangingAppointmentDet.html" title="Viewing and Changing Appointment Details" role="button"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></div>
+                    </div>
+                </div> 
+            
+
+            <a id="main-content"></a>
+
+            <h2>Scheduling a New Patient Appointment</h2>
+
+            <div class="main-content">
+                
+<h1 class="rvps5"><span class="rvts0"><span class="rvts13">Search for an Opening</span></span></h1>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li class="rvps3 noindent"><span class="rvts8">Click on the Search for Appointment icon </span><img alt="" style="padding : 1px;" src="lib/appt%20search%20btn.gif"><span class="rvts8"> in the top part of the screen. &nbsp;The search criteria screen will popup.&nbsp;</span></li>
+</ol>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/appt%20filter%20screen2.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li class="rvps6 noindent"><span class="rvts15">Providers</span><span class="rvts8"> - Check the name of the provider for whom you wish to search for openings. Check All Providers to search all of them. &nbsp;</span></li>
+  <li class="rvps6 noindent"><span class="rvts15">Sites</span><span class="rvts8"> - Check the name of the site for which you wish to search for openings. &nbsp;Check All Sites to search all of them. &nbsp;</span></li>
+  <li class="rvps6 noindent"><span class="rvts15">Resources</span><span class="rvts8"> -&nbsp;Check the name of the resource for which you wish to search for openings. Individual Resources are only shown when a specific Site is checked, and are not shown when All Sites are checked. Check All Resources to search all of them. &nbsp;</span></li>
+  <li class="rvps6 noindent"><span class="rvts15">Specialties</span><span class="rvts8"> - Check either All Specialties, or just Audiology or SLP. &nbsp;The Appointment Type list will be filtered accordingly.</span></li>
+  <li class="rvps6 noindent"><span class="rvts8">Change the </span><span class="rvts15">Start and End</span><span class="rvts8"> search date, if needed. &nbsp;If not changed, the search period will default to 1 month, starting from today's date.</span></li>
+  <li class="rvps6 noindent"><span class="rvts8">Select an </span><span class="rvts15">Appointment Type</span><span class="rvts8">, if desired. &nbsp;Selecting an appointment type sets the duration time to the default for that type, as set in the Setup Link. The duration time can be changed manually if needed. &nbsp;</span><img alt="" style="padding : 1px;" src="lib/important.gif"><span class="rvts8"> Note: If the appointment type selected is contained in a &nbsp;</span><a class="rvts16" href="ScheduleBlocks.html">Schedule Block</a><span class="rvts8">, only previously setup time slots for that type/block will be searched.&nbsp;</span></li>
+ </ol>
+</ol>
+<p class="rvps6"><span class="rvts8">&nbsp;</span><span class="rvts8"> &nbsp; &nbsp; &nbsp; &nbsp;</span><img alt="" style="padding : 1px;" src="lib/block%20search.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li value="7" class="rvps6 noindent"><span class="rvts8">If the </span><span class="rvts15">Duration</span><span class="rvts8"> has not been defaulted from the appointment type, change to the desired amount of time, from 1 minute to 11 hours 59 minutes.</span></li>
+ </ol>
+ <li value="2" class="rvps3 noindent"><span class="rvts8">Click Find Openings </span><img alt="" style="padding : 1px;" src="lib/find%20openings%20btn.gif"><span class="rvts8"> to see a list of times that match the selected parameters, or Close to cancel the search.&nbsp;</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">A list of available openings will be displayed.</span></li>
+</ol>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/openings%20list.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="4" class="rvps3 noindent"><span class="rvts8">Search for the patient name on the tree. &nbsp;If the patient is not found in the database, add as new. &nbsp;See </span><a class="rvts16" href="PatientsListPanel.html">Patient List Panel</a><span class="rvts8"> for details.&nbsp;</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">From the Patient Tree, select the patient name, hold down the left mouse button, drag the name and drop it on the desired time slot.&nbsp;&nbsp;</span></li>
+</ol>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/appt%20drag%20to%20slot.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <li value="6" class="rvps3 noindent"><span class="rvts8">The Appointment Details pop-up screen will appear.&nbsp;</span></li>
+</ol>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/appt%20details%205.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li class="rvps6 noindent"><span class="rvts15">Patient</span><span class="rvts8"> name and </span><span class="rvts15">Phone</span><span class="rvts8"> will be copied from the patient's information. If the name of the patient is red, that means there are Communication Restrictions that will appear in the Notes section.</span></li>
+  <li class="rvps6 noindent"><span class="rvts15">Opportunity </span><span class="rvts8">status will be calculated and displayed automatically. The status is based on a combination of factors from hearing aid history, NOAH test results, and communication restrictions and shows the potential for future hearing aid sales. &nbsp;See </span><a class="rvts16" href="OpportunityTrackingOverview.html">Opportunity Tracking</a><span class="rvts8"> for more details.</span></li>
+  <li class="rvps6 noindent"><span class="rvts15">Provider</span><span class="rvts8"> will default in the following order:</span></li>
+  <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-roman;">
+   <li class="rvps11 noindent"><span class="rvts8">The provider name at the top of the column, if more than one provider is chosen and the Providers View is selected.&nbsp;</span></li>
+   <li class="rvps11 noindent"><span class="rvts8">The provider selected in the "Seen By" field in the patient's details.</span></li>
+   <li class="rvps11 noindent"><span class="rvts8">The provider field will be blank, and you must choose one before saving the appointment, if none of the above conditions are true.</span></li>
+  </ol>
+  <li class="rvps6 noindent"><span class="rvts15">Appt Type</span><span class="rvts8"> will default to the type searched for, if one was entered. &nbsp;If no type was entered, it will be blank - click on the down arrow to select one.&nbsp;Appointment types can be added and changed in the </span><a class="rvts16" href="AppointmentType.html">Setup Link</a><span class="rvts8">. &nbsp;This must be done before the appointment is added, however.</span></li>
+  <li class="rvps6 noindent"><span class="rvts15">Site</span><span class="rvts8"> will default in the following order:</span></li>
+  <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-roman;">
+   <li class="rvps11 noindent"><span class="rvts8">The site name at the top of the column, if more than one site is chosen and the Site View is selected.</span></li>
+   <li class="rvps11 noindent"><span class="rvts8">The patient's default Site as entered in the patient's details.</span></li>
+  </ol>
+  <li class="rvps6 noindent"><span class="rvts15">Resource</span><span class="rvts8"> will default in the following order:</span></li>
+  <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-roman;">
+   <li class="rvps11 noindent"><span class="rvts8">The resource name at the top of the column, if more than one resource is chosen and the Resources view is selected.</span></li>
+   <li class="rvps11 noindent"><span class="rvts8">The field will be blank and you can choose one if desired.&nbsp;</span></li>
+  </ol>
+  <li class="rvps6 noindent"><span class="rvts15">Status</span><span class="rvts8"> will default to "New", but can be changed as needed.&nbsp;&nbsp;Appointment statuses can be added and changed in the Setup Link.</span></li>
+  <li class="rvps6 noindent"><span class="rvts15">Marketing</span><span class="rvts8"> - If this is the first appointment for the patient, and a marketing source was set in the Patient details, that source will default here. &nbsp;&nbsp;It can be changed if needed. &nbsp;Otherwise, a source can be added if desired (or required).&nbsp;&nbsp;Click the ellipsis button to see a popup of all the available choices.&nbsp;</span></li>
+ </ol>
+</ol>
+<p class="rvps19"><img alt="" style="padding : 1px;" src="lib/marketing%20btn.gif"></p>
+<p class="rvps19"><span class="rvts8"><br/></span></p>
+<p class="rvps15"><span class="rvts17">Click the arrow symbol&nbsp;</span><img alt="" style="padding : 1px;" src="lib/expand%20tree.gif"><span class="rvts17">&nbsp;next to the desired category, then double-click on the source to select. Marketing categories and sources can be added in the&nbsp;</span><a class="rvts18" href="MarketingSources.html">Setup link</a><span class="rvts17">.</span></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li value="9" class="rvps6 noindent"><span class="rvts15">Authorization</span><span class="rvts8"> &nbsp;- If </span><a class="rvts16" href="AppointmentAuthorizations.html">appointment authorizations</a><span class="rvts8"> have been enabled, and the patient has active authorizations available, this field will display the name and number remaining.&nbsp;</span></li>
+ </ol>
+</ol>
+<p class="rvps19"><img alt="" style="padding : 1px;" src="lib/appt%20auth3.gif"></p>
+<p class="rvps15"><span class="rvts8">I</span><span class="rvts17">f the authorization is selected, the number used count will increase by one. For a recurring appointment series, one authorization will be applied to each member until all have been used, or the expiration date has been reached. &nbsp;Authorizations will become inactive when number of appointments has been reached or expiration date has expired. Inactive authorizations will no longer be displayed.</span></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li value="10" class="rvps6 noindent"><span class="rvts15">Date</span><span class="rvts8"> will default to the date of the slot on the appointment grid where the patient name was dropped.&nbsp;&nbsp;If this date &nbsp;is not correct, you can change it here if needed. &nbsp;The date can be changed by clicking on the calendar icon and selecting a new date.</span></li>
+ </ol>
+</ol>
+<p class="rvps12"><img alt="" style="padding : 1px;" src="lib/calendar%20popup.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li value="11" class="rvps6 noindent"><span class="rvts15">Time</span><span class="rvts8">&nbsp;will default to the beginning time of the slot on the results list where the patient name was dropped.&nbsp;&nbsp;If this time is not correct, you can change it here if needed. The start time can be changed by clicking on the time and typing a new value. &nbsp;The end time will be calculated automatically by adding the duration to the start time. &nbsp;&nbsp;</span></li>
+  <li class="rvps6 noindent"><span class="rvts15">Duration</span><span class="rvts8"> will default to the length set for the Appointment Type in the </span><a class="rvts16" href="AppointmentType.html">Setup link</a><span class="rvts8">. It can be changed if needed by clicking on the arrows or typing the desired minutes and hours. &nbsp;You can enter any value from 1 minute to 11 hours and 59 minutes.</span></li>
+  <li class="rvps6 noindent"><span class="rvts15">Next Contact</span><span class="rvts8"> will default to blank.&nbsp;&nbsp;If you wish to set a date to contact this patient next, enter it here.&nbsp;The date can be added by clicking on the calendar icon and selecting a date.</span></li>
+  <li class="rvps6 noindent"><span class="rvts15">Take Photo</span><span class="rvts8"> - if a picture of the patient has previously been obtained, it will appear here. &nbsp;If you have a web camera attached to your computer you can add or change the picture by clicking Take Photo. &nbsp;Follow the instructions in </span><a class="rvts16" href="TakingaPatientPicture.html">Taking a Patient Picture</a><span class="rvts8">.</span></li>
+  <li class="rvps6 noindent"><span class="rvts15">Scan Document</span><span class="rvts8"> - if you have a scanner attached to your computer, you can scan in any document that you want to associate with this patient. &nbsp;If no scanner is attached, you can also attach any previously scanned image or PDF file. &nbsp;Click the Scan Document button to open the TIMS Document Capture System screen. &nbsp;Follow the instructions in </span><a class="rvts16" href="AttachingDocumentstoaPatientReco.html">Attaching Documents to a Patient Record</a><span class="rvts8">.</span></li>
+  <li class="rvps6 noindent"><span class="rvts15">Digital Intake - </span><span class="rvts8">Click here to generate a message to the patient (Email and/or Text). &nbsp;The message will contain a link for the patient to click on. &nbsp;This will take them to the online digital intake sheet where they can submit their demographic information.</span></li>
+ </ol>
+</ol>
+<p class="rvps12"><img alt="" style="padding : 1px;" src="lib/dig%20intake%20message.gif"></p>
+<ol style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside;">
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li value="17" class="rvps6 noindent"><span class="rvts15">Add to Cancellation List</span><span class="rvts8"> - if the patient would prefer an earlier appointment than the one scheduled, check this box. &nbsp;Then if an opening comes available, a popup list will display the names and details of all the patients who would like to fill that time slot. &nbsp;See </span><a class="rvts16" href="AppointmentCancellationList.html">Appointment Cancellation List</a><span class="rvts8"> for details.</span></li>
+  <li class="rvps6 noindent"><span class="rvts15">Recurrence</span><span class="rvts8"> - if the appointment is a recurring one, check the Recurrence box, and follow the steps in the </span><a class="rvts16" href="RecurringAppointments.html">Recurring Appointments</a><span class="rvts8"> section.</span></li>
+  <li class="rvps6 noindent"><span class="rvts15">Notes</span><span class="rvts8"> - if the patient has any Communication Restrictions entered in the patient details, those restrictions will appear here.&nbsp;&nbsp;Otherwise this field will be blank.&nbsp;&nbsp;You can add any notes you wish, even if the restrictions are already in there - up to 255 characters.</span></li>
+  <li class="rvps6 noindent"><span class="rvts15">Tracking</span><span class="rvts8"> - Created, Updated, By Site, and By User - The Created field will show today's date. &nbsp;The other fields will be blank when a new appointment is made.&nbsp;&nbsp;They will be filled in automatically after the appointment is saved.</span></li>
+ </ol>
+ <li value="7" class="rvps3 noindent"><span class="rvts8">When all the appointment information is entered, click the OK button </span><img alt="" style="padding : 1px;" src="lib/ok%20button.gif"><span class="rvts8">.&nbsp;</span></li>
+ <ol style="text-indent: 0px; padding: 0; margin: 0 0 0 48px; list-style-position: outside; list-style-type: lower-alpha;">
+  <li class="rvps6 noindent"><span class="rvts8">If you click Cancel </span><img alt="" style="padding : 1px;" src="lib/cancel%20btn.gif"><span class="rvts8">, the appointment will not be saved and you will lose the information that you entered. &nbsp;The search results list will close, and the appointment will be displayed on the grid.</span></li>
+ </ol>
+</ol>
+<h1 class="rvps5"><span class="rvts0"><span class="rvts13">Additional Notes</span></span></h1>
+<ul style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside; list-style-type: disc;">
+ <li class="rvps3 noindent"><span class="rvts8">If you already know the day and time on which you want to schedule the appointment, simply switch to that day by clicking on the appropriate date on the Months Panel. &nbsp;Then proceed from Step 4 above, dragging the patient name onto the desired time.</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">Multiple patients can be scheduled for the same time slot.&nbsp;&nbsp;To schedule multiple patients for one time period, simply drag and drop them in the same time slot on the grid.&nbsp;&nbsp;Color-coding by provider will show you if you have accidentally booked more than one appointment for the same provider at the same time.</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">If you make an appointment for any date and time before the current date and time - a popup message will inform you of this, and ask if you're sure that's what you want to do.</span></li>
+</ul>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/appt%20in%20past%20msg.gif"></p>
+<ul style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside; list-style-type: disc;">
+ <li class="rvps3 noindent"><span class="rvts8">When an appointment is made for a patient, an associated History session will also be created at the same time, if this option has been checked in </span><a class="rvts16" href="Practice.html">Practice Setup</a><span class="rvts8">. &nbsp;The linked History session can be viewed on or after the date of the appointment.</span></li>
+ <li class="rvps3 noindent"><span class="rvts8">If you make an appointment for a provider for a site or time that the provider is not scheduled to be available, a popup message will inform you and ask if you want to continue.</span></li>
+</ul>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/outside%20hours%20msg.gif"></p>
+<ul style="text-indent: 0px; padding: 0; margin: 0 0 0 24px; list-style-position: outside; list-style-type: disc;">
+ <li class="rvps3 noindent"><span class="rvts8">If you make an appointment for an appointment type in a block timeslot that is designated for a different type, a popup message will inform you and ask if you want to continue.</span></li>
+</ul>
+<p class="rvps18"><img alt="" style="padding : 1px;" src="lib/wrong%20block%20msg.gif"></p>
+<p class="rvps3"><span class="rvts8"></span><span class="rvts8"></span></p>
+
+            </div>
+            
+            
+        </div>  <!-- /#topic-content -->
+    </article>
+
+    <footer></footer>
+
+  </div>  <!-- /#main -->
+
+  <div class="mask" data-toggle="sm-nav-expanded"></div>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="hndModal" tabindex="-1" role="dialog" aria-labelledby="hndModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="hndModalLabel"></h4>
+        </div>
+        <div class="modal-body">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary modal-btn-close" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Splitter -->
+  <div id="hnd-splitter" style="left: 350px"></div>  
+
+  <!-- Scripts -->
+  <script src="vendors/jquery-3.7.1/jquery.min.js"></script>
+  <script src="vendors/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+  <script src="vendors/bootstrap-3.4.1/js/ie10-viewport-bug-workaround.js"></script>
+  <script src="vendors/markjs-8.11.1/jquery.mark.min.js"></script>
+  <script src="vendors/uri-1.19.11/uri.min.js"></script>
+  <script src="vendors/imageMapResizer-1.0.10/imageMapResizer.min.js"></script>
+  <script src="vendors/headroom-0.11.0/headroom.min.js"></script>
+  <script src="vendors/jstree-3.3.10/jstree.min.js"></script>  
+  <script src="vendors/interactjs-1.9.22/interact.min.js"></script>  
+
+  <!-- HelpNDoc scripts -->
+  <script src="js/polyfill.object.min.js"></script>
+  <script src="_translations.js"></script>
+  <script src="js/hndsd.min.js"></script>
+  <script src="js/hndse.min.js"></script>
+  <script src="js/app.min.js"></script>
+
+  <!-- Init script -->
+  <script src="_topic_init.js"></script>
+
+
+
+</body>
+
+</html>
+

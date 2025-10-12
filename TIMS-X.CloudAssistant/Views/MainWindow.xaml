@@ -1,0 +1,513 @@
+﻿<mah:MetroWindow x:Class="TIMS_X.CloudAssistant.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TIMS_X.CloudAssistant.Views"
+        xmlns:localVMs="clr-namespace:TIMS_X.CloudAssistant.ViewModels"
+        xmlns:localModels="clr-namespace:TIMS_X.CloudAssistant.Models"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:md="https://github.com/fantasticfiasco/mvvm-dialogs"
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:controls="clr-namespace:TIMS_X.CloudAssistant.Controls"
+        xmlns:views="clr-namespace:TIMS_X.CloudAssistant.Views"
+        xmlns:noah="clr-namespace:BusinessSystemExternalControlsLibrary.Controls;assembly=BusinessSystemExternalControlsLibrary"
+        xmlns:converters="clr-namespace:TIMS_X.CloudAssistant.Converters"
+        xmlns:enums="clr-namespace:TIMS_X.Core.Enums;assembly=TIMS-X.Core"
+        md:DialogServiceViews.IsRegistered="True"
+        mc:Ignorable="d"
+        Title="{Binding Title}" Height="700" Width="1040"
+        WindowState="Normal"
+        BorderThickness="0" 
+        GlowBrush="Black"
+        ResizeMode="CanResizeWithGrip"
+        StateChanged ="_OnStateChanged"
+        WindowTransitionsEnabled="False"
+        WindowStartupLocation="CenterScreen"
+        Loaded="_WindowLoaded"
+        Closing="_WindowClosing">
+
+    <mah:MetroWindow.Resources>
+        <system:Double x:Key="SearchBoxSize">35</system:Double>
+        <system:Double x:Key="SearchBoxButtonSize">33</system:Double>
+        <system:Double x:Key="PatientButtonSize">40</system:Double>
+        <system:Boolean x:Key="True">True</system:Boolean>
+        <system:Boolean x:Key="False">False</system:Boolean>
+        <converters:BoolVisibilityConverter x:Key="BoolVisibilityConverter" />
+        <converters:BoolVisibilityInverter x:Key="BoolVisibilityInverter" />
+        <converters:StatusColorConverter x:Key="StatusColorConverter" />
+        <converters:LoadTimeColorConverter x:Key="LoadTimeColorConverter" />
+        <converters:StatusTextConverter x:Key="StatusTextConverter" />
+        <converters:InactiveForegroundConverter x:Key="InactiveForegroundConverter" />
+        <Path x:Key="RefreshPath" Stretch="Uniform" Fill="#404040" x:Shared="False"
+              Data="F1 M 38,20.5833C 42.9908,20.5833 47.4912,22.6825 50.6667,26.046L 50.6667,17.4167L 55.4166,22.1667L 55.4167,34.8333L 42.75,34.8333L 38,30.0833L 46.8512,30.0833C 44.6768,27.6539 41.517,26.125 38,26.125C 31.9785,26.125 27.0037,30.6068 26.2296,36.4167L 20.6543,36.4167C 21.4543,27.5397 28.9148,20.5833 38,20.5833 Z M 38,49.875C 44.0215,49.875 48.9963,45.3932 49.7703,39.5833L 55.3457,39.5833C 54.5457,48.4603 47.0852,55.4167 38,55.4167C 33.0092,55.4167 28.5088,53.3175 25.3333,49.954L 25.3333,58.5833L 20.5833,53.8333L 20.5833,41.1667L 33.25,41.1667L 38,45.9167L 29.1487,45.9167C 31.3231,48.3461 34.483,49.875 38,49.875 Z "/>
+
+        <Style x:Key="SearchBoxStyle" TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
+            <Setter Property="Width" Value="261"/>
+            <Setter Property="Height" Value="{StaticResource SearchBoxSize}"/>
+            <Setter Property="Padding" Value="2"/>
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="Background" Value="White"></Setter>
+            <Setter Property="Foreground" Value="Black"></Setter>
+        </Style>
+
+        <Style TargetType="{x:Type Button}" x:Key="SearchButtonStyle">
+            <Setter Property="Background" Value="White" />
+            <Setter Property="TextBlock.TextAlignment" Value="Center" />
+            <Setter Property="Width" Value="{StaticResource SearchBoxButtonSize}" />
+            <Setter Property="Height" Value="{StaticResource SearchBoxButtonSize}" />
+            <Setter Property="Margin" Value="-30, 0, 0, 0" />
+            <Setter Property="Border.CornerRadius" Value="0" />
+            <Setter Property="Border.BorderThickness" Value="0" />
+            <Setter Property="Padding" Value="4" />
+
+        </Style>
+
+        <Style x:Key="ToolTipTextStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="Foreground" Value="#FFEEEEEE"/>
+            <Setter Property="Margin" Value="5,2" />
+        </Style>
+        <Style x:Key="ToolTipLabelStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="Foreground" Value="#FFEEEEEE"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Margin" Value="5,2" />
+        </Style>
+
+
+
+        <Style x:Key="LargeLabelStyleDark" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource LargeLabelStyle}">
+            <Setter Property="Foreground" Value="Black" />
+        </Style>
+        <Style x:Key="CheckboxStyle" TargetType="{x:Type CheckBox}">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+
+        </Style>
+
+        <Style x:Key="StatusTextStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="WhiteSmoke" />
+            <Setter Property="Background" Value="Gray" />
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontFamily" Value="Consolas"/>
+            <Setter Property="Margin" Value="7,2"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Padding" Value="5,2"></Setter>
+        </Style>
+
+        <!-- Insert here your Data Templates -->
+        <DataTemplate x:Key="SampleTemplate">
+            <StackPanel/>
+        </DataTemplate>
+
+        <Style x:Key="LoadingTextStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+    </mah:MetroWindow.Resources >
+
+    <mah:MetroWindow.IconTemplate>
+        <DataTemplate>
+            <Grid Width="{TemplateBinding Width}"
+                  Height="{TemplateBinding Height}"
+                  Margin="4"
+                  Background="Transparent"
+                  RenderOptions.EdgeMode="Aliased"
+                  RenderOptions.BitmapScalingMode="HighQuality">
+                <Image Source="../Assets/timsicon2.ico"></Image>
+            </Grid>
+        </DataTemplate>
+    </mah:MetroWindow.IconTemplate>
+
+    <mah:MetroWindow.Flyouts>
+        <mah:FlyoutsControl>
+            <mah:Flyout Header="Patients" Position="Right" 
+                        Width="450" x:Name="PatientFlyout"
+                        Theme="Accent">
+                <Grid>
+                    <TabControl HorizontalAlignment="Stretch" Background="#5D6C7A">
+                        <TabControl.ItemContainerStyle>
+                            <Style TargetType="TabItem" BasedOn="{StaticResource {x:Type TabItem}}">
+                                <Setter Property="Foreground" Value="WhiteSmoke" />
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type TabItem}">
+                                            <Border Name="Border" BorderThickness="1,1,1,0" BorderBrush="Silver" Background="WhiteSmoke" CornerRadius="4,4,0,0" Margin="1,0,0,-1">
+                                                <StackPanel Orientation="Horizontal" Height="30">
+                                                    <ContentPresenter x:Name="ContentSite"
+                                                                  VerticalAlignment="Center"
+                                                                  HorizontalAlignment="Center"
+                                                                  ContentSource="Header"
+                                                                  Margin="10,2"/>
+                                                </StackPanel>
+
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsSelected" Value="False">
+                                                    <Setter TargetName="Border" Property="Background" Value="#4A5763" />
+                                                </Trigger>
+                                                <Trigger Property="Border.IsMouseOver" Value="True">
+                                                    <Setter TargetName="Border" Property="Background" Value="#353D44" />
+                                                </Trigger>
+                                                <Trigger Property="IsSelected" Value="True">
+                                                    <Setter TargetName="Border" Property="Background" Value="#5D6C7A" />
+
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </TabControl.ItemContainerStyle>
+                        <TabItem Header="Appt Today">
+                            <Grid Margin="0,5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <TextBlock Style="{StaticResource ToolTipLabelStyle}" Text="Providers" Grid.Column="0" VerticalAlignment="Center"/>
+                                <TextBox Text="{Binding SelectedProviders, Mode=OneWay}" HorizontalAlignment="Stretch" Margin="5" Grid.Column="1" IsReadOnly="True"/>
+                                <Button Margin="4" Grid.Column="2" Content="..." Width="26" VerticalContentAlignment="Center" Command="{Binding SelectProvidersCommand}"/>
+
+
+                                <StackPanel Orientation="Horizontal" Margin="15" Grid.ColumnSpan="3" HorizontalAlignment="Center" Grid.Row="1" Visibility="{Binding Refreshing, Converter={StaticResource BoolVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}" >
+                                    <mah:ProgressRing 
+                                        IsActive="{Binding Searching, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                        Width="30" Height="30"
+                                        Foreground="White"/>
+                                    <TextBlock Margin="15" Style="{StaticResource LoadingTextStyle}" Text="Loading, Please Wait..." VerticalAlignment="Center" />
+                                </StackPanel>
+
+                                <ListBox x:Name="TodayPatientsListBox"  VerticalAlignment="Stretch" Background="Transparent" BorderThickness="1" VerticalContentAlignment="Stretch" BorderBrush="Silver"
+                                 ItemsSource="{Binding TodayPatientList, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Grid.Row="1" Grid.ColumnSpan="3" 
+                                 SelectedItem="{Binding SelectedTodayPatient, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" MouseDoubleClick="OnTodayPatientDoubleClick"
+                                 ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                 Visibility="{Binding Refreshing, Converter={StaticResource BoolVisibilityInverter}, UpdateSourceTrigger=PropertyChanged}">
+                                    <ListBox.ItemContainerStyle>
+                                        <Style TargetType="{x:Type ListBoxItem}">
+                                            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                                            <Setter Property="Foreground" Value="#CCCCCC"></Setter>
+                                            <Setter Property="Padding" Value="5" />
+                                            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                                        </Style>
+                                    </ListBox.ItemContainerStyle>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding NameAndAppointmentTime}">
+                                        <ToolTipService.ToolTip>
+                                            <Grid Margin="5">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+                                                <TextBlock Style="{StaticResource ToolTipLabelStyle}" Text="Appointment Details" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
+                                                <Separator Grid.Row="1" Grid.ColumnSpan="2" />
+                                                <TextBlock Style="{StaticResource ToolTipLabelStyle}" Text="Provider:" Grid.Row="2" Grid.Column="0" />
+                                                <TextBlock Style="{StaticResource ToolTipTextStyle}" Text="{Binding Model.ProviderName}" Grid.Row="2" Grid.Column="1" />
+                                                <TextBlock Style="{StaticResource ToolTipLabelStyle}" Text="Time:" Grid.Row="3" Grid.Column="0" />
+                                                <TextBlock Style="{StaticResource ToolTipTextStyle}" Text="{Binding Model.AppointmentTime}" Grid.Row="3" Grid.Column="1" />
+                                                <TextBlock Style="{StaticResource ToolTipLabelStyle}" Text="Duration:" Grid.Row="4" Grid.Column="0" />
+                                                <TextBlock Style="{StaticResource ToolTipTextStyle}" Text="{Binding Model.AppointmentDuration}" Grid.Row="4" Grid.Column="1" />
+                                                <TextBlock Style="{StaticResource ToolTipLabelStyle}" Text="Type:" Grid.Row="5" Grid.Column="0" />
+                                                <TextBlock Style="{StaticResource ToolTipTextStyle}" Text="{Binding Model.AppointmentType}" Grid.Row="5" Grid.Column="1" />
+                                                <TextBlock Style="{StaticResource ToolTipLabelStyle}" Text="Status:" Grid.Row="6" Grid.Column="0" />
+                                                <TextBlock Style="{StaticResource ToolTipTextStyle}" Text="{Binding Model.AppointmentStatus}" Grid.Row="6" Grid.Column="1" />
+                                            </Grid>
+                                        </ToolTipService.ToolTip>
+                                    </TextBlock>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Recent">
+                            <Grid Margin="0,5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+
+
+                                <StackPanel Orientation="Horizontal" Margin="15" Grid.ColumnSpan="3" HorizontalAlignment="Center" Grid.Row="0" Visibility="{Binding Refreshing, Converter={StaticResource BoolVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}" >
+                                    <mah:ProgressRing 
+                                        IsActive="{Binding Refreshing, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                        Width="30" Height="30"
+                                        Foreground="White"/>
+                                    <TextBlock Margin="15" Style="{StaticResource LoadingTextStyle}" Text="Loading, Please Wait..." VerticalAlignment="Center" />
+
+                                </StackPanel>
+
+                                <ListBox x:Name="RecentPatientsListBox" Grid.Row="0" Grid.ColumnSpan="3" VerticalAlignment="Stretch" Background="Transparent" BorderThickness="1" VerticalContentAlignment="Stretch" BorderBrush="Silver"
+                                         ItemsSource="{Binding RecentPatientList, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                                         SelectedItem="{Binding SelectedRecentPatient, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                         DisplayMemberPath="Name" MouseDoubleClick="OnRecentPatientDoubleClick"
+                                         ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                         Visibility="{Binding Refreshing, Converter={StaticResource BoolVisibilityInverter}, UpdateSourceTrigger=PropertyChanged}">
+                                    <ListBox.ItemContainerStyle>
+                                        <Style TargetType="{x:Type ListBoxItem}">
+                                            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                                            <Setter Property="Foreground" Value="#CCCCCC"></Setter>
+                                            <Setter Property="Padding" Value="5" />
+                                            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                                        </Style>
+                                    </ListBox.ItemContainerStyle>
+                                </ListBox>
+                            </Grid>
+
+                        </TabItem>
+                        <TabItem Header="Search" BorderThickness="1">
+
+                            <Grid x:Name="PatientFlyoutContents" Opacity="1.0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0" Margin="15,5">
+                                    <TextBox Style="{StaticResource SearchBoxStyle}" Width="440" Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                             mah:TextBoxHelper.Watermark="Search Patients...">
+                                        <TextBox.InputBindings>
+                                            <KeyBinding Command="{Binding OnReturnPressed}" Key="Enter" />
+                                        </TextBox.InputBindings>
+                                    </TextBox>
+                                    <Button Style="{StaticResource SearchButtonStyle}" HorizontalAlignment="Right" Command="{Binding SearchPatientsCommand}">
+                                        <Image Source="../Assets/Search.png"></Image>
+                                    </Button>
+                                </Grid>
+                                <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="15,5">
+                                    <StackPanel.Resources>
+                                        <converters:ComparisonConverter x:Key="ComparisonConverter" />
+                                    </StackPanel.Resources>
+                                    <RadioButton Content="Last Name" GroupName="RBG" IsChecked="{Binding Path=SelectedSearchType, Converter={StaticResource ComparisonConverter}, ConverterParameter={x:Static enums:SearchType.LastName}}" />
+                                    <RadioButton Margin="24,0,0,0" GroupName="RBG" Content="First Name" IsChecked="{Binding Path=SelectedSearchType, Converter={StaticResource ComparisonConverter}, ConverterParameter={x:Static enums:SearchType.FirstName}}" />
+                                    <RadioButton Margin="24,0,0,0" GroupName="RBG" Content="Date of Birth" IsChecked="{Binding Path=SelectedSearchType, Converter={StaticResource ComparisonConverter}, ConverterParameter={x:Static enums:SearchType.DateOfBirth}}" />
+                                    <RadioButton Margin="24,0,0,0" GroupName="RBG" Content="Account No" IsChecked="{Binding Path=SelectedSearchType, Converter={StaticResource ComparisonConverter}, ConverterParameter={x:Static enums:SearchType.AccountNo}}" />
+
+                                </StackPanel>
+                                <Grid Grid.Row="2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <CheckBox Content="Include Inactive" Foreground="White" Grid.Column="0" IsChecked="{Binding WhenSearchingIncludeInactivePatients}" Margin="15,5"/>
+                                    <TextBlock Style="{StaticResource ToolTipTextStyle}" Text="{Binding SearchResultsCount}" Margin="0,0,15,0" Foreground="LightGreen" 
+                                               Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                </Grid>
+                                
+
+                                <Grid Grid.Row="3">
+                                    <StackPanel Orientation="Horizontal" Margin="15" HorizontalAlignment="Center" Visibility="{Binding Searching, Converter={StaticResource BoolVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}" >
+                                        <mah:ProgressRing 
+                                        IsActive="{Binding Searching, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                        Width="30" Height="30"
+                                        Foreground="White"/>
+                                        <TextBlock Margin="15" Style="{StaticResource LoadingTextStyle}" Text="Loading, Please Wait..." VerticalAlignment="Center" />
+
+                                    </StackPanel>
+                                    <ListBox x:Name="SearchPatientsListBox" VerticalAlignment="Stretch" Background="Transparent" BorderThickness="1" VerticalContentAlignment="Stretch" BorderBrush="Silver"
+                                         ItemsSource="{Binding SearchPatientList, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                                         SelectedItem="{Binding SelectedSearchPatient, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                         DisplayMemberPath="NameAndDob" MouseDoubleClick="OnSearchPatientDoubleClick"
+                                         ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                         Visibility="{Binding Searching, Converter={StaticResource BoolVisibilityInverter}, UpdateSourceTrigger=PropertyChanged}">
+                                        <ListBox.ItemContainerStyle>
+                                            <Style TargetType="{x:Type ListBoxItem}">
+                                                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                                                <Setter Property="Padding" Value="5" />
+                                                <Setter Property="Foreground" Value="{Binding Model.Inactive, Converter={StaticResource InactiveForegroundConverter}}"></Setter>
+                                                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                                            </Style>
+                                        </ListBox.ItemContainerStyle>
+                                    </ListBox>
+                                </Grid>
+                            </Grid>
+                        </TabItem>
+
+
+                    </TabControl>
+                    <Button HorizontalAlignment="Right" VerticalAlignment="Top" Width="25" Height="25" Margin="0,0,5,0"
+                            ToolTip="Refresh Data From Server" Content="{StaticResource RefreshPath}"
+                            Command="{Binding RefreshCommand}"/>
+                </Grid>
+                
+
+
+            </mah:Flyout>
+
+        </mah:FlyoutsControl>
+    </mah:MetroWindow.Flyouts>
+
+    <mah:MetroWindow.RightWindowCommands>
+        <mah:WindowCommands>
+            <ToggleButton IsChecked="{Binding ElementName=PatientFlyout, Path=IsOpen}" Cursor="Hand" ToolTip="Show Patients" Width="36" Height="36">
+                <ToggleButton.Content>
+                    <Image Source="../Assets/Patients.png"></Image>
+                </ToggleButton.Content>
+            </ToggleButton>
+        </mah:WindowCommands>
+    </mah:MetroWindow.RightWindowCommands>
+
+    <Window.InputBindings>
+        <!-- Example of Keyboard shortcuts -->
+        <KeyBinding Command="{Binding ContactSupportCommand}" Gesture="Ctrl+H" />
+        <KeyBinding Command="{Binding ViewLogCommand}" Gesture="Ctrl+V" />
+        <KeyBinding Command="{Binding ManageNoahCommand}" Gesture="Ctrl+M" />
+        <KeyBinding Command="{Binding ChangeServerCommand}" Gesture="Ctrl+C" />
+        <KeyBinding Command="{Binding ExitCommand}" Gesture="Alt+F4" />
+    </Window.InputBindings>
+
+    <DockPanel>
+        <!-- File Menu -->
+        <Menu DockPanel.Dock="Top" VerticalAlignment="Center" VerticalContentAlignment="Center">
+            <MenuItem Header="File">
+                <MenuItem Header="View Log" Command="{Binding ViewLogCommand}" InputGestureText="Ctrl+V"/>
+                <MenuItem Header="Contact Support" Command="{Binding ContactSupportCommand}" InputGestureText="Ctrl+H"/>
+                <MenuItem Header="Manage Noah" Command="{Binding ManageNoahCommand}" InputGestureText="Ctrl+M"/>
+                <MenuItem Header="Change Server" Command="{Binding ChangeServerCommand}" InputGestureText="Ctrl+C"/>
+                <Separator />
+                <MenuItem Header="Enable Privacy Mode" IsCheckable="True" IsChecked="{Binding PrivacyModeEnabled}" InputGestureText="Ctrl+P" />
+                <Separator />
+                <MenuItem Header="Exit" Command="{Binding ExitCommand}" InputGestureText="Alt+F4"/>
+            </MenuItem>
+            <MenuItem Header="About" Command="{Binding ShowAboutDialog}"/>
+        </Menu>
+
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem>
+                <StackPanel Orientation="Horizontal" Margin="5,2">
+                    <TextBlock Style="{StaticResource SmallLabelStyle}" 
+                               Text="Noah Server:" 
+                               Margin="5,2"/>
+                    <TextBlock Style="{StaticResource SmallLabelStyle}"
+                               Padding="4,2"
+                               Background="{Binding NoahServerStatus, Converter={StaticResource StatusColorConverter}}" 
+                               Text="{Binding NoahServerStatus, Converter={StaticResource StatusTextConverter}}" />
+                </StackPanel>
+            </StatusBarItem>
+            <StatusBarItem>
+                <StackPanel Orientation="Horizontal" Margin="5,2">
+                    <TextBlock Style="{StaticResource SmallLabelStyle}" 
+                               Text="Noah Client:"
+                               Margin="5,2"
+                               />
+                    <TextBlock Style="{StaticResource SmallLabelStyle}" 
+                               Padding="4,2"
+                               Background="{Binding NoahClientStatus, Converter={StaticResource StatusColorConverter}}" 
+                               Text="{Binding NoahClientStatus, Converter={StaticResource StatusTextConverter}}" />
+                </StackPanel>
+            </StatusBarItem>
+            <StatusBarItem>
+                <StackPanel Orientation="Horizontal" Margin="5,2">
+                    <TextBlock Style="{StaticResource SmallLabelStyle}" 
+                               Text="Patient Load Time:"
+                               Margin="5,2"
+                    />
+                    <TextBlock Style="{StaticResource SmallLabelStyle}"
+                               Padding="4, 2"
+                               Background="{Binding PatientLoadTime, Converter={StaticResource LoadTimeColorConverter}}" 
+                               Text="{Binding PatientLoadTime, StringFormat={}{0:F}}" />
+                    <TextBlock Style="{StaticResource SmallLabelStyle}"
+                               Padding="4,2"
+                               Background="{Binding PatientLoadTime, Converter={StaticResource LoadTimeColorConverter}}" 
+                               Text="secs"
+                               Margin="0,2"
+                    />
+                </StackPanel>
+            </StatusBarItem>
+        </StatusBar>
+
+        <Grid>
+            <Grid Background="Transparent">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Border  BorderThickness="0" x:Name="PatientDetails"
+                         HorizontalAlignment="Stretch"
+                         VerticalAlignment="Stretch"
+                         Visibility="{Binding IsPatientLoaded, Converter={StaticResource BoolVisibilityInverter}, UpdateSourceTrigger=PropertyChanged}">
+                    <Image Source="../Assets/Logo2.png" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="None"></Image>
+                    
+
+                </Border>
+                <StackPanel x:Name="PART_NoahTesting" Visibility="{Binding IsPatientLoaded, Converter={StaticResource BoolVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}"></StackPanel>
+                
+            </Grid>
+
+        </Grid>
+    </DockPanel>
+</mah:MetroWindow>
+
+<!--<TabItem Header="Document Management" x:Name="PART_DocManagementTab">
+                        <controls:PatientTabControl Background="Transparent" ItemsSource="{Binding PatientTabs}" Grid.Row="0" SelectedItem="{Binding SelectedTab}">
+                            <controls:PatientTabControl.ItemContainerStyle>
+                                <Style TargetType="controls:PatientTabItem" BasedOn="{StaticResource {x:Type TabItem}}">
+                                    <Setter Property="CloseCommand" Value="{Binding DataContext.CloseTabCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type mah:MetroWindow}}}" />
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type controls:PatientTabItem}">
+                                                <Border Name="Border" BorderThickness="1,1,1,0" BorderBrush="Silver" Background="WhiteSmoke" CornerRadius="4,4,0,0">
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <ContentPresenter x:Name="ContentSite"
+                                                                  VerticalAlignment="Center"
+                                                                  HorizontalAlignment="Center"
+                                                                  ContentSource="Header"
+                                                                  Margin="10,2"/>
+                                                        <Button x:Name="CloseButton" Style="{StaticResource CloseButtonStyle}" Foreground="#FF8f949b" Margin="4"
+                                                        Command="{TemplateBinding CloseCommand}" 
+                                                        CommandParameter="{TemplateBinding PatientId}"/>
+                                                    </StackPanel>
+
+                                                </Border>
+                                                <ControlTemplate.Triggers>
+                                                    <Trigger Property="IsSelected" Value="False">
+                                                        <Setter TargetName="Border" Property="Background" Value="WhiteSmoke" />
+                                                    </Trigger>
+                                                    <Trigger Property="Border.IsMouseOver" Value="True">
+                                                        <Setter TargetName="Border" Property="Background" Value="White" />
+                                                    </Trigger>
+                                                    <Trigger Property="IsSelected" Value="True">
+                                                        <Setter TargetName="Border" Property="Background" Value="{DynamicResource AccentColorBrush}" />
+                                                        <Setter Property="Foreground" Value="WhiteSmoke" />
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </controls:PatientTabControl.ItemContainerStyle>
+                        </controls:PatientTabControl>
+                    </TabItem>-->
