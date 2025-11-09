@@ -36,6 +36,11 @@ The application consists of a C# ASP.net core back end and Angular 17 SPA
 Once the source code has been pulled, open the solution [TIMS-X](https://github.com/CUDev-net/TIMS-Audiology-Web/blob/main/TIMS-X.sln) in Visual Studio. 
 The solution has been tested with Visual Studion 2022.
 
+## Database
+TIMS-X has an internal [databse](https://github.com/CUDev-net/TIMS-Audiology-Web/blob/main/TIMS-X.sln) used to manage support users, customer info, etc.
+
+TIMS database is included in the TIMS repoistory.
+
 ### Configuration
 App Settings in the [app-settings](https://github.com/CUDev-net/TIMS-Audiology-Web/blob/main/TIMS-X.Server/TIMS-X.Server/appsettings.json)
 #### Keys
@@ -75,5 +80,3 @@ File for server side logging
 #### Database connectivity
 The TIMS-X internal database connection is configured [here](https://github.com/CUDev-net/TIMS-Audiology-Web/blob/main/TIMS-X.Server/TIMS-X.Server/Startup.cs#L237)
 
-## TIMS Desktop Application (includes SQL scripts for Database creation) 
-Please see the desktop repository for the backing desktop database(required)
