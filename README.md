@@ -23,7 +23,7 @@ Allows Customers to:
 
 The application consists of a C# ASP.net core back end and Angular 17 SPA
 - Angular front end
-    - The client is found in the folder `\TIMS-X.Server\TIMS-X.Server\TIMS-X.Server`
+    - The [spa clinet](https://github.com/CUDev-net/TIMS-Audiology-Web/tree/main/TIMS-X.Server/TIMS-X.Server/web-client)
     - MOBX is used as the client backend store for state management
 - .net core server application consisting of:
     - A [ASP.net core application](https://github.com/CUDev-net/TIMS-Audiology-Web/tree/main/TIMS-X.DAL) for exposing endpoints and authentication
@@ -31,6 +31,49 @@ The application consists of a C# ASP.net core back end and Angular 17 SPA
     - A [database layer](https://github.com/CUDev-net/TIMS-Audiology-Web/tree/main/TIMS-X.DAL) for handling database operations
         - Utilizes EF Core
         - Uses a Unit of work pattern and an [abstract Unit of Work](https://github.com/CUDev-net/TIMS-Audiology-Web/blob/main/TIMS-X.DAL/DAL/UoWs/UnitOfWorkBase.cs) to reduce duplicate code for CRUD actions
+
+## Build
+Once the source code has been pulled, open the solution [TIMS-X](https://github.com/CUDev-net/TIMS-Audiology-Web/blob/main/TIMS-X.sln) in Visual Studio. 
+The solution has been tested with Visual Studion 2022.
+
+### Configuration
+App Settings in the [app-settings](https://github.com/CUDev-net/TIMS-Audiology-Web/blob/main/TIMS-X.Server/TIMS-X.Server/appsettings.json)
+#### Keys
+| Setting           | Value                     |
+|-------------------|---------------------------|
+|DbUsername         |TIMS-X database username   |
+|DbPassword         |TIMS-X database password   |
+|SupportPassword    |Support login password     |
+|ImagingKey         |Key for data encryption    |
+|ApiKey             |Twilio API key             |
+|TimsToken          |Authentication token       |
+|DefaultPassword    |Default new user password  |
+|HelpPassword6_8    |Password for online help   |
+|TwilioAccountSid   |Twilio account             |
+|TwilioAuthToken    |Twilio account             |
+|MailgunApiKey      |Mailgun integration        |
+
+| Dpeprecated                                   |
+|-----------------------------------------------|
+|AwsAccessKey                                   |
+|AwsAccessKeySecret                             |
+|TwilioSmsStatusCallbackUrl                     |
+|TwilioVoiceStatusCallbackUrl                   |
+|TwilioVoiceCallScriptCallbackUrl               |
+|ZoomTokenAuthUrl                               |
+|ZoomUserAuthUrl                                |
+
+#### ConnectionStrings
+| Setting           | Value                     |
+|-------------------|---------------------------|
+|TIMSInternal       |TIMS-X internal database   |
+|AzureBlobStorage   |Blob storage in Azure      |
+
+#### LogFile
+File for server side logging
+
+#### Database connectivity
+The TIMS-X internal database connection is configured [here](https://github.com/CUDev-net/TIMS-Audiology-Web/blob/main/TIMS-X.Server/TIMS-X.Server/Startup.cs#L237)
 
 ## TIMS Desktop Application (includes SQL scripts for Database creation) 
 Please see the desktop repository for the backing desktop database(required)
