@@ -1,0 +1,333 @@
+USE [master]
+GO
+/****** Object:  Database [tims-x]    Script Date: 11/9/2025 3:02:48 PM ******/
+CREATE DATABASE [tims-x]
+GO
+ALTER DATABASE [tims-x] SET COMPATIBILITY_LEVEL = 160
+GO
+
+USE [tims-x]
+GO
+/****** Object:  Table [dbo].[ApiUrl]    Script Date: 11/9/2025 3:02:48 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ApiUrl](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[Url] [varchar](128) NOT NULL,
+	[Description] [varchar](256) NULL,
+	[Inactive] [bit] NOT NULL,
+	[DateCreated] [datetime] NOT NULL,
+ CONSTRAINT [PK_ApiUrl] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+ CONSTRAINT [UQ_ApiUrl_Url] UNIQUE NONCLUSTERED 
+(
+	[Url] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Customer]    Script Date: 11/9/2025 3:02:48 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Customer](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[Inactive] [bit] NOT NULL,
+	[Name] [nvarchar](128) NULL,
+	[OfficeCode] [varchar](16) NULL,
+	[ServerId] [int] NULL,
+	[Database] [varchar](128) NULL,
+	[SqlUser] [nvarchar](100) NOT NULL,
+	[SqlPassword] [nvarchar](100) NOT NULL,
+	[Notes] [nvarchar](256) NULL,
+	[DateCreated] [datetime] NOT NULL,
+	[DateUpdated] [datetime] NOT NULL,
+	[UpdatedBy] [int] NULL,
+	[TimeZoneId] [int] NULL,
+ CONSTRAINT [PK_Customer] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+ CONSTRAINT [UQ_Customer_OfficeCode] UNIQUE NONCLUSTERED 
+(
+	[OfficeCode] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[CustomerVendorPermission]    Script Date: 11/9/2025 3:02:48 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[CustomerVendorPermission](
+	[CustomerId] [int] NOT NULL,
+	[VendorId] [int] NOT NULL,
+	[PermissionId] [int] NOT NULL,
+ CONSTRAINT [PK_CustomerVendorPermission] PRIMARY KEY CLUSTERED 
+(
+	[CustomerId] ASC,
+	[VendorId] ASC,
+	[PermissionId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[DefaultVendorPermission]    Script Date: 11/9/2025 3:02:48 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[DefaultVendorPermission](
+	[VendorId] [int] NOT NULL,
+	[PermissionId] [int] NOT NULL,
+ CONSTRAINT [PK_DefaultVendorPermission] PRIMARY KEY CLUSTERED 
+(
+	[VendorId] ASC,
+	[PermissionId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[FormLink]    Script Date: 11/9/2025 3:02:48 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[FormLink](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[CustomerId] [int] NULL,
+	[Url] [varchar](6) NOT NULL,
+	[UserId] [int] NOT NULL,
+	[FormType] [int] NOT NULL,
+	[PatientId] [int] NOT NULL,
+	[Submitted] [bit] NOT NULL,
+	[DateCreated] [datetime] NOT NULL,
+ CONSTRAINT [PK_FormLink] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+ CONSTRAINT [UQ_FormLink_Url] UNIQUE NONCLUSTERED 
+(
+	[Url] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[SupportUser]    Script Date: 11/9/2025 3:02:48 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[SupportUser](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [varchar](64) NOT NULL,
+	[Password] [varchar](256) NULL,
+	[Email] [varchar](128) NOT NULL,
+	[Inactive] [bit] NOT NULL,
+	[DateCreated] [datetime] NOT NULL,
+ CONSTRAINT [PK_SupportUser] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+ CONSTRAINT [UQ_SupportUser_Email] UNIQUE NONCLUSTERED 
+(
+	[Email] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[TimsLog]    Script Date: 11/9/2025 3:02:48 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[TimsLog](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[OfficeCode] [nvarchar](128) NULL,
+	[Message] [nvarchar](256) NULL,
+	[Error] [nvarchar](4000) NULL,
+	[DateCreated] [datetime] NOT NULL,
+ CONSTRAINT [PK_Log] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[TimsServer]    Script Date: 11/9/2025 3:02:48 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[TimsServer](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [varchar](64) NOT NULL,
+	[Address] [varchar](64) NOT NULL,
+	[Inactive] [bit] NOT NULL,
+	[DateCreated] [datetime] NOT NULL,
+ CONSTRAINT [PK_TimsServer] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+ CONSTRAINT [UQ_TimsServer_Address] UNIQUE NONCLUSTERED 
+(
+	[Address] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+ CONSTRAINT [UQ_TimsServer_Name] UNIQUE NONCLUSTERED 
+(
+	[Name] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Vendor]    Script Date: 11/9/2025 3:02:48 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Vendor](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [varchar](64) NOT NULL,
+	[ApiKey] [varchar](256) NOT NULL,
+	[Inactive] [bit] NOT NULL,
+	[DateCreated] [datetime] NOT NULL,
+ CONSTRAINT [PK_Vendor] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+ CONSTRAINT [UQ_Vendor_ApiKey] UNIQUE NONCLUSTERED 
+(
+	[ApiKey] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+ CONSTRAINT [UQ_Vendor_Name] UNIQUE NONCLUSTERED 
+(
+	[Name] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[VendorPermission]    Script Date: 11/9/2025 3:02:48 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[VendorPermission](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [varchar](64) NOT NULL,
+	[Description] [varchar](256) NULL,
+	[Inactive] [bit] NOT NULL,
+	[DateCreated] [datetime] NOT NULL,
+ CONSTRAINT [PK_VendorPermission] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+ CONSTRAINT [UQ_VendorPermission_Name] UNIQUE NONCLUSTERED 
+(
+	[Name] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[VendorPermissionApiUrl]    Script Date: 11/9/2025 3:02:48 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[VendorPermissionApiUrl](
+	[PermissionId] [int] NOT NULL,
+	[ApiUrlId] [int] NOT NULL,
+ CONSTRAINT [PK_VendorPermissionApiUrlReference] PRIMARY KEY CLUSTERED 
+(
+	[PermissionId] ASC,
+	[ApiUrlId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [IX_Log_CustomerId]    Script Date: 11/9/2025 3:02:48 PM ******/
+CREATE NONCLUSTERED INDEX [IX_Log_CustomerId] ON [dbo].[TimsLog]
+(
+	[OfficeCode] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[ApiUrl] ADD  DEFAULT ((0)) FOR [Inactive]
+GO
+ALTER TABLE [dbo].[ApiUrl] ADD  DEFAULT (getdate()) FOR [DateCreated]
+GO
+ALTER TABLE [dbo].[Customer] ADD  DEFAULT ((0)) FOR [Inactive]
+GO
+ALTER TABLE [dbo].[Customer] ADD  DEFAULT ('TIMSUser') FOR [SqlUser]
+GO
+ALTER TABLE [dbo].[Customer] ADD  DEFAULT ('x+/Fe9NPLBqojfxPFsNIvw==') FOR [SqlPassword]
+GO
+ALTER TABLE [dbo].[Customer] ADD  DEFAULT (getdate()) FOR [DateCreated]
+GO
+ALTER TABLE [dbo].[FormLink] ADD  DEFAULT (getdate()) FOR [DateCreated]
+GO
+ALTER TABLE [dbo].[SupportUser] ADD  DEFAULT ((0)) FOR [Inactive]
+GO
+ALTER TABLE [dbo].[SupportUser] ADD  DEFAULT (getdate()) FOR [DateCreated]
+GO
+ALTER TABLE [dbo].[TimsServer] ADD  DEFAULT ((0)) FOR [Inactive]
+GO
+ALTER TABLE [dbo].[TimsServer] ADD  DEFAULT (getdate()) FOR [DateCreated]
+GO
+ALTER TABLE [dbo].[Vendor] ADD  DEFAULT ((0)) FOR [Inactive]
+GO
+ALTER TABLE [dbo].[Vendor] ADD  DEFAULT (getdate()) FOR [DateCreated]
+GO
+ALTER TABLE [dbo].[VendorPermission] ADD  DEFAULT ((0)) FOR [Inactive]
+GO
+ALTER TABLE [dbo].[VendorPermission] ADD  DEFAULT (getdate()) FOR [DateCreated]
+GO
+ALTER TABLE [dbo].[Customer]  WITH CHECK ADD  CONSTRAINT [FK_Customer_TimsServer] FOREIGN KEY([ServerId])
+REFERENCES [dbo].[TimsServer] ([ID])
+GO
+ALTER TABLE [dbo].[Customer] CHECK CONSTRAINT [FK_Customer_TimsServer]
+GO
+ALTER TABLE [dbo].[Customer]  WITH CHECK ADD  CONSTRAINT [FK_Customer_User] FOREIGN KEY([UpdatedBy])
+REFERENCES [dbo].[SupportUser] ([ID])
+GO
+ALTER TABLE [dbo].[Customer] CHECK CONSTRAINT [FK_Customer_User]
+GO
+ALTER TABLE [dbo].[CustomerVendorPermission]  WITH CHECK ADD  CONSTRAINT [FK_CVP_Customer] FOREIGN KEY([CustomerId])
+REFERENCES [dbo].[Customer] ([ID])
+GO
+ALTER TABLE [dbo].[CustomerVendorPermission] CHECK CONSTRAINT [FK_CVP_Customer]
+GO
+ALTER TABLE [dbo].[CustomerVendorPermission]  WITH CHECK ADD  CONSTRAINT [FK_CVP_Permission] FOREIGN KEY([PermissionId])
+REFERENCES [dbo].[VendorPermission] ([ID])
+GO
+ALTER TABLE [dbo].[CustomerVendorPermission] CHECK CONSTRAINT [FK_CVP_Permission]
+GO
+ALTER TABLE [dbo].[CustomerVendorPermission]  WITH CHECK ADD  CONSTRAINT [FK_CVP_Vendor] FOREIGN KEY([VendorId])
+REFERENCES [dbo].[Vendor] ([ID])
+GO
+ALTER TABLE [dbo].[CustomerVendorPermission] CHECK CONSTRAINT [FK_CVP_Vendor]
+GO
+ALTER TABLE [dbo].[DefaultVendorPermission]  WITH CHECK ADD  CONSTRAINT [FK_DVP_Permission] FOREIGN KEY([PermissionId])
+REFERENCES [dbo].[VendorPermission] ([ID])
+GO
+ALTER TABLE [dbo].[DefaultVendorPermission] CHECK CONSTRAINT [FK_DVP_Permission]
+GO
+ALTER TABLE [dbo].[DefaultVendorPermission]  WITH CHECK ADD  CONSTRAINT [FK_DVP_Vendor] FOREIGN KEY([VendorId])
+REFERENCES [dbo].[Vendor] ([ID])
+GO
+ALTER TABLE [dbo].[DefaultVendorPermission] CHECK CONSTRAINT [FK_DVP_Vendor]
+GO
+ALTER TABLE [dbo].[FormLink]  WITH CHECK ADD  CONSTRAINT [FK_FormLink_Customer] FOREIGN KEY([CustomerId])
+REFERENCES [dbo].[Customer] ([ID])
+GO
+ALTER TABLE [dbo].[FormLink] CHECK CONSTRAINT [FK_FormLink_Customer]
+GO
+ALTER TABLE [dbo].[VendorPermissionApiUrl]  WITH CHECK ADD  CONSTRAINT [FK_VPAU_ApiUrl] FOREIGN KEY([ApiUrlId])
+REFERENCES [dbo].[ApiUrl] ([ID])
+GO
+ALTER TABLE [dbo].[VendorPermissionApiUrl] CHECK CONSTRAINT [FK_VPAU_ApiUrl]
+GO
+ALTER TABLE [dbo].[VendorPermissionApiUrl]  WITH CHECK ADD  CONSTRAINT [FK_VPAU_Permission] FOREIGN KEY([PermissionId])
+REFERENCES [dbo].[VendorPermission] ([ID])
+GO
+ALTER TABLE [dbo].[VendorPermissionApiUrl] CHECK CONSTRAINT [FK_VPAU_Permission]
+GO
+USE [master]
+GO
+ALTER DATABASE [tims-x] SET  READ_WRITE 
+GO
