@@ -4,6 +4,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -41,13 +42,13 @@ namespace TIMS_X.Server.Controllers.Api
         private readonly IVendorPatientRepository _vendorPatientRepository;
         private readonly IPointOfSaleRepository _pointOfSaleRepository;
         private readonly IDataMiningRepository _dataMiningRepository;
-        private readonly ILogger<ApiV1Controller> _logger;
         private readonly ImagingService _imagingService;
         private readonly PatientService _patientService;
         private readonly ProviderQuery _providerQuery;
         private readonly UserQuery _userQuery;
+        private readonly TimsInternalDbContext _dbContext;
 
-        public ApiV1Controller(IVendorAppointmentRepository vendorAppointmentRepository,
+		public ApiV1Controller(IVendorAppointmentRepository vendorAppointmentRepository,
             IPracticeRepository practiceRepository,
             CustomerQuery customerQuery,
             IHttpContextAccessor httpContextAccessor,
@@ -58,11 +59,11 @@ namespace TIMS_X.Server.Controllers.Api
             IVendorHAUnitRepository vendorHAUnitRepository,
             IPointOfSaleRepository pointOfSaleRepository,
             IDataMiningRepository dataMiningRepository,
-            ILogger<ApiV1Controller> logger,
             ImagingService imagingService,
             PatientService patientService,
             UserQuery userQuery,
-            ProviderQuery providerQuery)
+            ProviderQuery providerQuery,
+            TimsInternalDbContext dbContext)
         {
             _vendorAppointmentRepository = vendorAppointmentRepository;
             _practiceRepository = practiceRepository;
@@ -79,7 +80,7 @@ namespace TIMS_X.Server.Controllers.Api
             _patientService = patientService;
             _userQuery = userQuery;
             _providerQuery = providerQuery;
-            _logger = logger;
+            _dbContext = dbContext;
         }
         
         /// <summary>
@@ -94,12 +95,22 @@ namespace TIMS_X.Server.Controllers.Api
         /// <response code="500">An error occurred</response>
         [HttpGet("GetPractice")]
         [ProducesResponseType(200)]
-        [ProducesResponseType(typeof(ErrorResponse), 500)]
+        [ProducesResponseType(typeof(BadRequest), 400)]
+		[ProducesResponseType(typeof(ErrorResponse), 500)]
         public async Task<ActionResult> GetPracticeAsync()
         {
-            var practice = await _practiceRepository.GetPractice();
-
-            return Ok(practice);
+	        try
+	        {
+		        var practice = await _practiceRepository.GetPractice();
+		        return Ok(practice);
+			}
+	        catch (Exception e)
+	        {
+		         await _dbContext.TimsLogs.AddAsync(new TimsLog()
+			        { DateCreated = DateTime.Now, Message = "ApiV1Controller:GetPracticeAsync", Error = e.ToString() });
+		        await _dbContext.SaveChangesAsync();
+				return BadRequest(e.Message);
+	        }
         }
 
         /// <summary>
@@ -114,7 +125,8 @@ namespace TIMS_X.Server.Controllers.Api
         /// <response code="500">An error occurred</response>
         [HttpGet("GetPractices")]
         [ProducesResponseType(200)]
-        [ProducesResponseType(typeof(ErrorResponse), 500)]
+        [ProducesResponseType(typeof(BadRequest), 400)]
+		[ProducesResponseType(typeof(ErrorResponse), 500)]
         public async Task<ActionResult> GetPracticesAsync()
         {
             var practiceList = new List<BLL.VendorSync.Audigy.Practice>();
@@ -133,11 +145,13 @@ namespace TIMS_X.Server.Controllers.Api
                     practiceList.Add(practice);
                 }
             }
-            catch(Exception ex)
+            catch(Exception e)
             {
-                _logger.LogError(ex, ex.Message);
-                return StatusCode(500);
-            }
+				 await _dbContext.TimsLogs.AddAsync(new TimsLog()
+					{ DateCreated = DateTime.Now, Message = "ApiV1Controller:GetPractices", Error = e.ToString() });
+				await _dbContext.SaveChangesAsync();
+				return BadRequest(e.Message);
+			}
 
             return Ok(practiceList);
         }
@@ -154,11 +168,23 @@ namespace TIMS_X.Server.Controllers.Api
         /// <response code="500">An error occurred</response>
         [HttpGet("GetLocations")]
         [ProducesResponseType(200)]
-        [ProducesResponseType(typeof(ErrorResponse), 500)]
+        [ProducesResponseType(typeof(BadRequest), 400)]
+		[ProducesResponseType(typeof(ErrorResponse), 500)]
         public async Task<ActionResult> GetLocationsAsync()
         {
-            var locations = await _locationRepository.GetLocations();
-            return Ok(locations);
+	        try
+	        {
+		        var locations = await _locationRepository.GetLocations();
+		        return Ok(locations);
+			}
+	        catch (Exception e)
+	        {
+				await _dbContext.TimsLogs.AddAsync(new TimsLog()
+					{ DateCreated = DateTime.Now, Message = "ApiV1Controller:GetLocationsAsync", Error = e.ToString() });
+				await _dbContext.SaveChangesAsync();
+				return BadRequest(e.Message);
+			}
+
         }
 
         /// <summary>
@@ -234,11 +260,22 @@ namespace TIMS_X.Server.Controllers.Api
         /// <param name="includeInactive">If true, inactive audiologists are included</param>
         [HttpGet("GetAudiologists")]
         [ProducesResponseType(typeof(IEnumerable<Audiologist>), 200)]
-        [ProducesResponseType(typeof(ErrorResponse), 500)]
+        [ProducesResponseType(typeof(BadRequest), 400)]
+		[ProducesResponseType(typeof(ErrorResponse), 500)]
         public async Task<ActionResult> GetAudiologistsAsync(bool includeInactive)
         {
-            var audiologists = await _audiologistRepository.GetAudiologists(includeInactive);
-            return Ok(audiologists);
+	        try
+	        {
+		        var audiologists = await _audiologistRepository.GetAudiologists(includeInactive);
+		        return Ok(audiologists);
+			}
+	        catch (Exception e)
+	        {
+		        await _dbContext.TimsLogs.AddAsync(new TimsLog()
+			        { DateCreated = DateTime.Now, Message = "ApiV1Controller:GetAudiologistsAsync", Error = e.ToString() });
+		        await _dbContext.SaveChangesAsync();
+		        return BadRequest(e.Message);
+	        }
         }
 
         /// <summary>
@@ -276,11 +313,22 @@ namespace TIMS_X.Server.Controllers.Api
         /// <response code="500">An error occurred</response>
         [HttpGet("GetAppointments")]
         [ProducesResponseType(typeof(IEnumerable<Appointment>), 200)]
-        [ProducesResponseType(typeof(ErrorResponse), 500)]
+        [ProducesResponseType(typeof(BadRequest), 400)]
+		[ProducesResponseType(typeof(ErrorResponse), 500)]
         public async Task<ActionResult> GetAppointmentsAsync(DateTime? fromDate, DateTime? toDate)
         {
-            var appointments = await _vendorAppointmentRepository.GetAppointments(fromDate, toDate);
-            return Ok(appointments);
+	        try
+	        {
+		        var appointments = await _vendorAppointmentRepository.GetAppointments(fromDate, toDate);
+		        return Ok(appointments);
+			}
+	        catch (Exception e)
+	        {
+		        await _dbContext.TimsLogs.AddAsync(new TimsLog()
+			        { DateCreated = DateTime.Now, Message = "ApiV1Controller:GetAppointmentsAsync", Error = e.ToString() });
+		        await _dbContext.SaveChangesAsync();
+				return BadRequest(e.Message);
+	        }
         }
 
         /// <summary>
@@ -297,11 +345,22 @@ namespace TIMS_X.Server.Controllers.Api
         /// <response code="500">An error occurred</response>
         [HttpGet("GetUnitsSold")]
         [ProducesResponseType(typeof(IEnumerable<HAUnitSold>), 200)]
-        [ProducesResponseType(typeof(ErrorResponse), 500)]
-        public async Task<ActionResult> GetUnitsSoldAsync(DateTime? fromDate, DateTime? toDate)
+        [ProducesResponseType(typeof(BadRequest), 400)]
+		[ProducesResponseType(typeof(ErrorResponse), 500)]
+		public async Task<ActionResult> GetUnitsSoldAsync(DateTime? fromDate, DateTime? toDate)
         {
-            var unitsSold = await _vendorHaUnitRepository.GetHAUnitsSold(fromDate, toDate);
-            return Ok(unitsSold);
+	        try
+	        {
+		        var unitsSold = await _vendorHaUnitRepository.GetHAUnitsSold(fromDate, toDate);
+		        return Ok(unitsSold);
+			}
+	        catch (Exception e)
+	        {
+		        await _dbContext.TimsLogs.AddAsync(new TimsLog()
+			        { DateCreated = DateTime.Now, Message = "ApiV1Controller:GetUnitsSoldAsync", Error = e.ToString() });
+		        await _dbContext.SaveChangesAsync();
+		        return BadRequest(e.Message);
+	        }
         }
 
         /// <summary>
