@@ -26,7 +26,7 @@ The application consists of a C# ASP.net core back end and Angular 17 SPA
     - The [spa clinet](https://github.com/CUDev-net/TIMS-Audiology-Web/tree/main/TIMS-X.Server/TIMS-X.Server/web-client)
     - MOBX is used as the client backend store for state management
 - .net core server application consisting of:
-    - A [ASP.net core application](https://github.com/CUDev-net/TIMS-Audiology-Web/tree/main/TIMS-X.DAL) for exposing endpoints and authentication
+    - A [ASP.net core application](https://github.com/CUDev-net/TIMS-Audiology-Web/tree/main/TIMS-X.Server/TIMS-X.Server) for exposing endpoints and authentication
     - A [middle tier](https://github.com/CUDev-net/TIMS-Audiology-Web/tree/main/TIMS-X.BLL) for handling business logic
     - A [database layer](https://github.com/CUDev-net/TIMS-Audiology-Web/tree/main/TIMS-X.DAL) for handling database operations
         - Utilizes EF Core
