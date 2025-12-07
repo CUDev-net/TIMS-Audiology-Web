@@ -27,7 +27,7 @@ A WPF desktop application for accessing patient [NOAH data](https://www.himsa.co
 
 The application consists of a C# ASP.net core back end and Angular 17 SPA
 - Angular front end
-    - The [spa clinet](https://github.com/CUDev-net/TIMS-Audiology-Web/tree/main/TIMS-X.Server/TIMS-X.Server/web-client)
+    - The [spa client](https://github.com/CUDev-net/TIMS-Audiology-Web/tree/main/TIMS-X.Server/TIMS-X.Server/web-client)
     - MOBX is used as the client backend store for state management
 - .net core server application consisting of:
     - A [ASP.net core application](https://github.com/CUDev-net/TIMS-Audiology-Web/tree/main/TIMS-X.Server/TIMS-X.Server) for exposing endpoints and authentication
