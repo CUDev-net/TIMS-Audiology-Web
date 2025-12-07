@@ -37,7 +37,7 @@ Once the source code has been pulled, open the solution [TIMS-X](https://github.
 The solution has been tested with Visual Studion 2022.
 
 ## Database
-TIMS-X has an internal [databse](https://github.com/CUDev-net/TIMS-Audiology-Web/blob/main/TIMS-X.sln) used to manage support users, customer info, etc.
+TIMS-X has an internal [databse](https://github.com/CUDev-net/TIMS-Audiology-Web/blob/main/TIMS-X.sql) used to manage support users, customer info, etc.
 
 TIMS database is included in the TIMS repoistory.
 
