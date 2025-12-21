@@ -2870,14 +2870,15 @@
         </member>
         <member name="T:TIMS_X.Server.Middleware.ApiKeyMiddleware">
             <summary>
-                This class gets inserted into the request pipeline and validates all requests that require an api key.
+            This class gets inserted into the request pipeline and validates all requests that require an api key.
             </summary>
         </member>
-        <member name="M:TIMS_X.Server.Middleware.ApiKeyMiddleware.Invoke(Microsoft.AspNetCore.Http.HttpContext)">
+        <member name="M:TIMS_X.Server.Middleware.ApiKeyMiddleware.Invoke(Microsoft.AspNetCore.Http.HttpContext,TIMS_X.Server.Queries.VendorQuery)">
             <summary>
-                Invoke the middleware on a request to require api key authentication
+            Invoke the middleware on a request to require api key authentication
             </summary>
             <param name="context"></param>
+            <param name="vendorQuery"></param>
             <returns></returns>
         </member>
         <member name="T:TIMS_X.Server.Middleware.ChangePasswordMiddleware">
@@ -2970,7 +2971,7 @@
         </member>
         <member name="M:TIMS_X.Server.Pages.HelpModel.OnPost">
             <summary>
-            User is submitting password change
+                User is submitting password change
             </summary>
         </member>
         <member name="M:TIMS_X.Server.Queries.PatientQuery.CalculateBatchesAsync(System.Int32)">
