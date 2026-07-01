@@ -36,7 +36,7 @@ The application consists of a C# ASP.net core back end and Angular 17 SPA
      - Desktop Client for accessing Noah data 
 
 ## Desktop
-A desktop app for this can be found [here][(https://github.com/CUDev-net/TIMS-Audiology-Desktop). The schema for the OMS part of the app is included.
+A desktop app for this can be found [here](https://github.com/CUDev-net/TIMS-Audiology-Desktop). The schema for the OMS part of the app is included.
 
 ## Build
 Once the source code has been pulled, open the solution [TIMS-X](https://github.com/CUDev-net/TIMS-Audiology-Web/blob/main/TIMS-X.sln) in Visual Studio. 
