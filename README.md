@@ -2,7 +2,6 @@
 The source code for the web portal for TIMS Audiology.  It consists of 3 parts
  
 ## Support Portal
-
 Support where users can configure Customer sites:
 - Add or Edit Customers
 - Add or Edit Servers
@@ -11,7 +10,6 @@ Support where users can configure Customer sites:
 - Add or Edit Vendoer permissions
 
 ## Audiologist Portal
-
 Allows Customers to:
 - Add or Edit Patients
 - Add/View/Edit/Delete Patient Appointments
@@ -24,7 +22,6 @@ A WPF desktop application for accessing patient [NOAH data](https://www.himsa.co
 - Allows access to the web patients to create Noah Sessions and Actions
 
 ## Source
-
 The application consists of a C# ASP.net core back end and Angular 17 SPA
 - Angular front end
     - The [spa client](https://github.com/CUDev-net/TIMS-Audiology-Web/tree/main/TIMS-X.Server/TIMS-X.Server/web-client)
@@ -37,6 +34,9 @@ The application consists of a C# ASP.net core back end and Angular 17 SPA
         - Uses a Unit of work pattern and an [abstract Unit of Work](https://github.com/CUDev-net/TIMS-Audiology-Web/blob/main/TIMS-X.DAL/DAL/UoWs/UnitOfWorkBase.cs) to reduce duplicate code for CRUD actions
  - [TIMS Assistant](https://github.com/CUDev-net/TIMS-Audiology-Web/tree/main/TIMS-X.CloudAssistant)
      - Desktop Client for accessing Noah data 
+
+## Desktop
+A desktop app for this can be found [here][(https://github.com/CUDev-net/TIMS-Audiology-Desktop). The schema for the OMS part of the app is included.
 
 ## Build
 Once the source code has been pulled, open the solution [TIMS-X](https://github.com/CUDev-net/TIMS-Audiology-Web/blob/main/TIMS-X.sln) in Visual Studio. 
